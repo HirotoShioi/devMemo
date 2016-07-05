@@ -1,5 +1,6 @@
 //layout
 import '../ui/layouts/MainLayout.js';
+import '../ui/layouts/HomeLayout.js';
 
 //pages
 import '../ui/memo/Memos.js';
@@ -24,6 +25,7 @@ Router.configure({
 });
 
 Router.route('/home',function(){
+	this.layout('HomeLayout');
 	this.render('Home');
 },{
 	name:'home'

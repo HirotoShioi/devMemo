@@ -32,7 +32,7 @@ flex: 1 0 auto;
 	position: relative;
 }
 @media (min-width: 991px) {
-  main {
+  .main-layout {
     padding-left: 240px;
   }
 }
