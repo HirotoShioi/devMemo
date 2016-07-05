@@ -1,0 +1,152 @@
+/* layout */
+body {
+display: flex;
+min-height: 100vh;
+flex-direction: column;
+font-size: 14px;
+}
+main {
+flex: 1 0 auto;
+}
+.main-content{
+	margin-top: 40px;
+}
+.card .fa-close{
+	position: absolute;
+	top: 4%;
+	right: 3%;
+	color: #ddd;
+	cursor: pointer;
+}
+.fa-close{
+	color: #ddd;
+	cursor: pointer;
+}
+.fa-close:hover{
+	color:#cc0000;
+}
+.help-block{
+	color:#cc0000;
+}
+.card-contet{
+	position: relative;
+}
+@media (min-width: 991px) {
+  main {
+    padding-left: 240px;
+  }
+}
+/* board*/
+.board .header{
+	color:#0d47a1;
+	cursor: pointer;
+}
+.container {
+    width: 85%;
+}
+/* new-memo */
+.new-memo-hide{
+	position: absolute;
+    right: 3%;
+    font-size: 2em;
+    top: 5%;
+}
+#insertNewMemoForm{
+	position: relative;
+}
+legend{
+	font-size: 2em;
+}
+/*Page Title */
+.page-title{
+	color:#fff;
+	height: 122px;
+}
+.page-title h3{
+	line-height: 122px;
+	margin:0;
+}
+#devmemo{
+	color:#fff;
+}
+.brand-logo span{
+	font-size: 2em;
+	color:#1565C0;
+}
+h4{
+	color:#1565C0;
+}
+/* Modal */
+.modal{
+	width: 40%;
+	max-height: 80%;
+}
+.modal .row{
+	margin-bottom: 0px;
+}
+@media (max-width: 991px) {
+  .modal {
+    width: 80%;
+  }
+}
+
+
+.valign-home{
+	text-align: center;
+	width: 100%;
+	height: 400px;
+}
+.valign-home i{
+	font-size:14em;
+	color:#1565C0;
+}
+.about-content{
+	margin-top: 40px;
+	font-size: 18px;
+}
+/* card */
+.edit-btn{
+	font-size: 12px;
+	height:20px;
+	line-height: 20px;
+	padding:0 1em;
+	text-transform: none;
+	position: absolute;
+	right:2%;
+	top:50%;
+}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating)
+{
+	text-transform: lowercase;
+}
+
+/*board form */
+.new-status{
+	position: relative;
+}
+.status-form-hide{
+	position: absolute;
+	top:0;
+	right: 3%;
+    font-size: 1.7em;
+}
+/*board */
+.remove-status{
+	font-size: 0.7em;
+}
+/*status color */
+.interested{
+	background-color: #ffa000;
+}
+.hot{
+	background-color: #e53935 ;
+}
+.must_read{
+	background-color:#1e88e5;
+}
+.other{
+	background-color: #212121;
+}
+.in_use{
+	background-color: #00897b ;
+}

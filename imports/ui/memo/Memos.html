@@ -1,0 +1,14 @@
+<Template name="Memos">
+	<div class="container main-content">
+		{{> NewMemo}}
+		 <div class="list-group">
+			 <div class="row">
+				 	{{#each memos}}
+				 		{{> Memo}}
+				 	{{else}}
+				 		<h3>No Memo Available!</h3>
+				 	{{/each}}
+			 </div>
+		 </div>
+	</div>
+</Template>

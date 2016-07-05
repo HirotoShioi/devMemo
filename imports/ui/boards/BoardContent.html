@@ -1,0 +1,15 @@
+<template name="BoardContent">
+		<section class="board" id="">
+			<h4 class="header">
+				<span class="toggle-status-option">{{name}}</span>
+				{{#if editMode}}
+				<i class="fa fa-close remove-status"></i>
+				{{/if}}
+			</h4>
+			<div class="row">
+				{{#each memos}}
+					{{> Memo}}
+				{{/each}}
+			</div>
+		</section>
+</template>

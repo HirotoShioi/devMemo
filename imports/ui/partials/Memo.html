@@ -1,0 +1,22 @@
+<Template name="Memo">
+		<div class="col l4 m6 s12">
+		 	<div class="card hoverable">
+	 		    {{#afModal classes="btn amber darken-2 edit-btn" title=name collection="Memos" operation="update" doc=_id fields="statusId" formId="updateMemo"}}
+							{{status.name}}
+				{{/afModal}}
+	            <div class="card-content">
+		              <span class="card-title">
+		              	<span class="truncate activator">{{name}}</span>
+		              	{{#if isOwner}}
+		              		<i class="fa fa-close"></i>
+		              	{{/if}}
+		              </span>
+	              	  <p class="truncate">{{desc}}</p>
+	              	   <a href="{{pathFor route='memo.detail'}}">details</a>
+	            </div>
+	            <div class="card-action ">
+	              <a href="{{url}}" class="truncate blue-text">{{url}}</a>
+	            </div>
+	        </div>
+		</div>
+</Template>

@@ -1,0 +1,21 @@
+<template name="NewMemo">
+      {{#if addMemo}}
+        <div class="row">
+              <div class="col m6 offset-m3 s12">
+                {{#autoForm collection="Memos" id="insertNewMemoForm" type="insert"}}
+                <i class="fa fa-close new-memo-hide"></i>
+                <fieldset>
+                  <legend>Add a Book</legend>
+                  {{> afQuickField name='name'}}
+                  {{> afQuickField name='url'}}
+                  {{> afQuickField name='desc'}}
+                  {{> afQuickField name='statusId' options=options}}
+                    <button type="submit" class="btn btn-primary">Insert</button>
+                </fieldset>
+                {{/autoForm}}
+              </div>
+        </div>
+      {{else}}
+        <button class="btn new-memo-show">Add Memo</button>
+      {{/if}}
+</template>

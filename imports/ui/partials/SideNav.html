@@ -1,0 +1,15 @@
+<template name="SideNav">
+	<header>
+		<ul class="side-nav fixed grey lighten-5">
+			<li class="brand-logo">
+				<a href="{{pathFor route='memo.home'}}"><span>DevMemo</span></a>
+				{{> loginButtons}}
+			</li>
+	      	{{#if currentUser}}
+	      	{{> NewMemoModal}}
+	      	<li><a href="{{pathFor route='memo.board'}}" class="waves-effect">Board</a></li>
+	      	{{/if}}
+	      	<li><a href="{{pathFor route='about'}}" class="waves-effect">About</a></li>
+		</ul>
+	</header>
+</template>

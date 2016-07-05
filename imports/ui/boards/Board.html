@@ -1,0 +1,8 @@
+<template name="Board">
+	<div class="container main-content">
+		{{> BoardForm}}
+		{{#each lists}}
+			{{> BoardContent}}
+		{{/each}}
+	</div>
+</template>

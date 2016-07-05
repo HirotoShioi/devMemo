@@ -1,0 +1,9 @@
+<template name="MainLayout">
+	{{> autoformModals}}
+	{{> SideNav currentUser=currentUser}}
+		<main>
+				{{> PageTitle}}
+				{{> yield}}
+		</main>
+	{{> Footer}}
+</template>

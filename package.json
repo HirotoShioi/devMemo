@@ -1,0 +1,11 @@
+{
+  "name": "WebDevMemo",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "bootcards": "^1.1.2",
+    "meteor-node-stubs": "~0.2.0"
+  }
+}
