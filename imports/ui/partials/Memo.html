@@ -2,7 +2,11 @@
 		<div class="col l4 m6 s12">
 		 	<div class="card hoverable">
 	 		    {{#afModal classes="btn amber darken-2 edit-btn" title=name collection="Memos" operation="update" doc=_id fields="statusId" formId="updateMemo"}}
+	 		    	{{#if status.name}}
 							{{status.name}}
+					{{else}}
+							None
+					{{/if}}
 				{{/afModal}}
 	            <div class="card-content">
 		              <span class="card-title">

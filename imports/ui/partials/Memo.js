@@ -16,6 +16,13 @@ Template.Memo.helpers({
 	isOwner(){
 		return (Meteor.userId() === this.owner);
 	},
+	statusName(){
+		if(this.status.name){
+			console.log(this.status.name);
+		}else{
+			console.log("nope")
+		}
+	}
 });
 Template.Memo.events({
 	'click .fa-close'(){
