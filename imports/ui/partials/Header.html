@@ -1,8 +1,8 @@
 <template name="Header">
 <nav>
     <div class="nav-wrapper blue darken-3">
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-      	<li>{{> loginButtons}}</li>
+      <a href="{{pathFor route='home'}}" class="brand-logo">DevMemo</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li>{{> atNavButton }}</li>
       	<li><a href="{{pathFor route='about'}}">About</a></li>
       	{{#if currentUser}}

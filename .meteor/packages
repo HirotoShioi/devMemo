@@ -19,8 +19,8 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 accounts-password
 useraccounts:materialize
-accounts-ui
 useraccounts:iron-routing
+aldeed:template-extension
 
 meteortoys:allthings
 iron:router
