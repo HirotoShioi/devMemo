@@ -43,6 +43,8 @@ nav .brand-logo{
 /* board*/
 .board .header{
 	color:#0d47a1;
+}
+.board-editable{
 	cursor: pointer;
 }
 .container {

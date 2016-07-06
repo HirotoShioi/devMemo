@@ -24,7 +24,7 @@ Template.Board.helpers({
 		return lists;
 	},
 	none:()=>{
-		const none = {name:"None"};
+		const none = {name:"No Status"};
 		none.memos = (Memos.find({statusId:{$exists:false}},{sort:{createdAt:-1}}));
 		return none;
 	}

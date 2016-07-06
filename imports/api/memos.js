@@ -28,7 +28,8 @@ Schemas.memos = new SimpleSchema({
 	},
 	desc:{
 		type:String,
-		label:"Description"
+		label:"Description",
+		optional:true
 	},
 	statusId: {
     type: String,
