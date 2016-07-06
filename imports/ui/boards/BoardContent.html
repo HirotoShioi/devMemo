@@ -1,5 +1,5 @@
 <template name="BoardContent">
-		<section class="board {{#if _id}}board-editable{{/if}}" id="">
+		<section class="board {{#if _id}}board-editable{{else}} board-uneditable{{/if}}" id="">
 			<h4 class="header">
 				<span class="{{#if _id}}toggle-status-option{{/if}}">{{name}}</span>
 				{{#if editMode}}
