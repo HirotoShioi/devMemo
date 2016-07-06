@@ -36,6 +36,7 @@ flex: 1 0 auto;
     padding-left: 240px;
   }
 }
+
 /* header */
 nav .brand-logo{
 	padding: 0 15px;
@@ -66,6 +67,7 @@ nav .brand-logo{
 legend{
 	font-size: 2em;
 }
+
 /*Page Title */
 .page-title{
 	color:#fff;
@@ -157,7 +159,17 @@ h4{
 .about{
 	font-size: 16px;
 }
+
 /*footer */
 footer.page-footer{
 	margin-top: 0;
+}
+
+/* sideNav */
+.logout{
+	text-decoration: underline;
+	font-weight: 400;
+}
+.fa-sign-out{
+	margin-left: 1em;
 }
