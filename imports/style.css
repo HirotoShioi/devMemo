@@ -100,13 +100,18 @@ h4{
 }
 
 /* landing page */
-
+.home-main{
+	margin-top: 40px;
+}
+.home-main h1{
+	margin: 0;
+}
 .about-content{
 	margin-top: 40px;
 	font-size: 18px;
 }
 .landing-page-section{
-	padding:40px 0;
+	padding:60px 0;
 }
 .landing-container{
 	width: 70%;
