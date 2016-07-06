@@ -6,17 +6,13 @@
 			</li>
 	      	{{#if currentUser}}
 	      	{{> NewMemoModal}}
-	      	<li><a href="{{pathFor route='memo.home'}}" class="waves-effect">Memos</a></li>
-	      	<li><a href="{{pathFor route='memo.board'}}" class="waves-effect">Board</a></li>
+		      	<li><a href="{{pathFor route='memo.home'}}" class="waves-effect">Memos</a></li>
+		      	<li><a href="{{pathFor route='memo.board'}}" class="waves-effect">Board</a></li>
+		      	<li><a class="waves-effect red-text logout auth-link">Logout<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
 	      	{{else}}
 	      		<li><a href="{{pathFor route='atSignIn'}}" class="waves-effect auth-link">Sign In</a></li>
 	      	{{/if}}
 	      	<li><a href="{{pathFor route='about'}}" class="waves-effect">About</a></li>
-	      	<li><a class="waves-effect red-text logout auth-link">Logout<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
-	      		<li><a href="{{pathFor route='signIn'}}" class="waves-effect">Sign In</a></li>
-	      	{{/if}}
-	      	<li><a href="{{pathFor route='about'}}" class="waves-effect">About</a></li>
-	      	<li><a class="waves-effect red-text logout">Logout<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
 		</ul>
 	</header>
 </template>
