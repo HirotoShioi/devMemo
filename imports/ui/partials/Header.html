@@ -5,7 +5,10 @@
       <ul id="nav-mobile" class="right hide-on-med-and-down">
       	<li>{{> loginButtons}}</li>
       	<li><a href="{{pathFor route='about'}}">About</a></li>
+      	{{#if currentUser}}
+      	<li><a href="{{pathFor route='memo.home'}}">Memos</a></li>
       	<li><a href="{{pathFor route='memo.board'}}">Board</a></li>
+      	{{/if}}
       </ul>
     </div>
   </nav>
