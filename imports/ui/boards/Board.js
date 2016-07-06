@@ -23,4 +23,9 @@ Template.Board.helpers({
 		});
 		return lists;
 	},
+	none:()=>{
+		const none = {name:"None"};
+		none.memos = (Memos.find({statusId:{$exists:false}},{sort:{createdAt:-1}}));
+		return none;
+	}
 });

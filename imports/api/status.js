@@ -63,6 +63,9 @@ Meteor.methods({
 		}
 
 		Status.remove({_id:id});
+		Memos.update({statusId:id},{
+			$unset:{statusId:""}
+		});
 	}
 });
 

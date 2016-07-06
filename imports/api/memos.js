@@ -32,7 +32,7 @@ Schemas.memos = new SimpleSchema({
 	},
 	statusId: {
     type: String,
-    regEx:SimpleSchema.RegEx.Id,
+    optional:true,
     autoform: {
         type: "select-radio",
         options: function () {
