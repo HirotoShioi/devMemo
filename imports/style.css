@@ -43,7 +43,7 @@ nav .brand-logo{
 /* board*/
 .board .header{
 }
-.board-editable{
+.board-editable h4{
 	color:#0d47a1;
 	cursor: pointer;
 }
@@ -138,6 +138,9 @@ h4{
 	top:0;
 	right: 3%;
     font-size: 1.7em;
+}
+[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:after{
+	background-color: #1565C0;
 }
 /*board */
 .remove-status{
