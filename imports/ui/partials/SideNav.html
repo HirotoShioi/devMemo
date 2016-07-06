@@ -5,6 +5,7 @@
 				<a href="{{pathFor route='memo.home'}}"><span>DevMemo</span></a>
 				{{> loginButtons}}
 			</li>
+			<li>{{> atNavButton }}</li>
 	      	{{#if currentUser}}
 	      	{{> NewMemoModal}}
 	      	<li><a href="{{pathFor route='memo.home'}}" class="waves-effect">Memos</a></li>

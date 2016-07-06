@@ -12,10 +12,6 @@ import '../ui/home/Home.js';
 import { Memos } from '../api/memos.js';
 import { Status } from '../api/status.js';
 
-Accounts.onLogin(function(){
-	Router.go('memo.home');
-});
-
 Accounts.onLogout(function(){
 	Router.go('home');
 });
@@ -76,4 +72,21 @@ Router.route('/board',function(){
 			this.next();
 		}
 	}
+});
+
+//account routing
+//Routes
+AccountsTemplates.configure({
+	defaultLayout:'HomeLayout'
+});
+AccountsTemplates.configureRoute('enrollAccount');
+AccountsTemplates.configureRoute('resetPwd');
+AccountsTemplates.configureRoute('signUp');
+
+AccountsTemplates.configureRoute('signIn', {
+    redirect: function(){
+        var user = Meteor.user();
+        if (user)
+          Router.go('memo.home');
+    }
 });

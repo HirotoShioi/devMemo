@@ -3,6 +3,7 @@
     <div class="nav-wrapper blue darken-3">
       <ul id="nav-mobile" class="left hide-on-med-and-down">
       	<li>{{> loginButtons}}</li>
+        <li>{{> atNavButton }}</li>
       	<li><a href="{{pathFor route='about'}}">About</a></li>
       	{{#if currentUser}}
       	<li><a href="{{pathFor route='memo.home'}}">Memos</a></li>
