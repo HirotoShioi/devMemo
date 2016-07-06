@@ -36,6 +36,10 @@ flex: 1 0 auto;
     padding-left: 240px;
   }
 }
+/* header */
+nav .brand-logo{
+	padding: 0 15px;
+}
 /* board*/
 .board .header{
 	color:#0d47a1;
@@ -90,7 +94,7 @@ h4{
   }
 }
 
-
+/* landing page */
 .valign-home{
 	text-align: center;
 	width: 100%;
