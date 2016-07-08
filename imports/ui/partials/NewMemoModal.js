@@ -12,7 +12,6 @@ Template.NewMemoModal.helpers({
 
 Template.NewMemoModal.events({
 	'click .addMemoModal'(){
-		console.log("check");
 		Session.set('cmDoc',undefined);
 	}
 })
