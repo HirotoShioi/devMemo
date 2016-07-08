@@ -1,18 +1,20 @@
 <template name="BoardContent">
 		<section class="board {{#if _id}}board-editable{{else}} board-uneditable{{/if}}" id="">
-			<h4 class="header">
-					<span class="{{#if _id}}toggle-status-option{{/if}}">{{name}}</span>
-				{{#if editMode}}
-					{{#afModal classes="fa fa-close remove-status" title="Edit Status" collection="Status" operation="remove" doc=_id fields="name" formId="deleteStatus"}}
-					{{/afModal}}
-		 		    {{#afModal classes="fa fa-pencil" title="Edit Status" collection="Status" operation="update" doc=_id fields="name" formId="updateStatus"}}
-					{{/afModal}}
-				{{/if}}
-			</h4>
-			<div class="row">
-				{{#each memos}}
-					{{> Memo}}
-				{{/each}}
+			<div class="container">
+				<h4 class="header">
+						<span class="{{#if _id}}toggle-status-option{{/if}}">{{name}}</span>
+					{{#if editMode}}
+						{{#afModal classes="fa fa-close remove-status" title="Edit Status" collection="Status" operation="remove" doc=_id fields="name" formId="deleteStatus"}}
+						{{/afModal}}
+			 		    {{#afModal classes="fa fa-pencil" title="Edit Status" collection="Status" operation="update" doc=_id fields="name" formId="updateStatus"}}
+						{{/afModal}}
+					{{/if}}
+				</h4>
+				<div class="row">
+					{{#each memos}}
+						{{> Memo}}
+					{{/each}}
+				</div>
 			</div>
 		</section>
 </template>

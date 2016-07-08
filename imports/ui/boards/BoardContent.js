@@ -21,7 +21,11 @@ Template.BoardContent.helpers({
 
 Template.BoardContent.events({
 	'click .toggle-status-option'(){
-		Session.set("editMode",this._id);
+		if(Session.get("editMode") === this._id){
+			Session.set("editMode",false);
+		}else{
+			Session.set("editMode",this._id);
+		}
 	},
 });
 
