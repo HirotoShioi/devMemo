@@ -5,8 +5,7 @@ import './MainLayout.html';
 
 //partials
 import '../partials/Footer.html';
-import '../partials/Header.html';
-import '../partials/NotLoggedIn.html';
+import '../partials/Header.js';
 import '../partials/SideNav.js';
 import '../partials/PageTitle.js';
 
@@ -15,5 +14,5 @@ Template.MainLayout.onCreated(function(){
 });
 
 Template.MainLayout.helpers({
-	
+
 });
