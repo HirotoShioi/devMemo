@@ -4,15 +4,25 @@
 			<li class="brand-logo">
 				<a href="{{pathFor route='memo.home'}}"><span>DevMemo</span></a>
 			</li>
-	      	{{#if currentUser}}
-	      	{{> NewMemoModal}}
-		      	<li class="{{isActiveRoute 'memo.home'}}"><a href="{{pathFor route='memo.home'}}" class="waves-effect {{isActiveRoute 'memo.home'}}">Memos</a></li>
-		      	<li class="{{isActiveRoute 'memo.board'}}"><a href="{{pathFor route='memo.board'}}" class="waves-effect {{isActiveRoute 'memo.board'}}">Board</a></li>
-		      	<li><a class="waves-effect red-text logout auth-link">Logout<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
-	      	{{else}}
-	      		<li><a href="{{pathFor route='atSignIn'}}" class="waves-effect auth-link">Sign In</a></li>
-	      	{{/if}}
-	      	<li class="{{isActiveRoute 'about'}}"><a href="{{pathFor route='about'}}" class="waves-effect">About</a></li>
+		      	{{#if currentUser}}
+		      	{{> NewMemoModal}}
+			      	<li class="{{isActiveRoute 'memo.home'}}">
+			      		<a href="{{pathFor route='memo.home'}}" class="waves-effect {{isActiveRoute 'memo.home'}}">Memos</a>
+			      	</li>
+			      	<li class="{{isActiveRoute 'memo.board'}}">
+			      		<a href="{{pathFor route='memo.board'}}" class="waves-effect {{isActiveRoute 'memo.board'}}">Board</a>
+			      	</li>
+			      	<li>
+			      		<a class="waves-effect red-text logout auth-link">Logout<i class="fa fa-sign-out" aria-hidden="true"></i></a>
+			      	</li>
+		      	{{else}}
+		      		<li>
+		      			<a href="{{pathFor route='atSignIn'}}" class="waves-effect auth-link">Sign In</a>
+		      		</li>
+		      	{{/if}}
+		      		<li class="{{isActiveRoute 'about'}}">
+		      			<a href="{{pathFor route='about'}}" class="waves-effect">About</a>
+		      		</li>
 		</ul>
 	</header>
 </template>
