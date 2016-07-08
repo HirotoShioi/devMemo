@@ -25,6 +25,14 @@ flex: 1 0 auto;
 .fa-close:hover{
 	color:#cc0000;
 }
+.fa-pencil{
+	font-size: 0.7em;
+	color: #ddd;
+	cursor: pointer;
+}
+.fa-pencil:hover{
+	color:#ffeb3b;
+}
 .help-block{
 	color:#cc0000;
 }
