@@ -10,8 +10,10 @@ import '../partials/NotLoggedIn.html';
 import '../partials/SideNav.js';
 import '../partials/PageTitle.js';
 
+Template.MainLayout.onCreated(function(){
+	Session.set('Layout',true);
+});
+
 Template.MainLayout.helpers({
-	currentUser:()=>{
-		return Meteor.user();
-	}
+	
 });

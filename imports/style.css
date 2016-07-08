@@ -49,6 +49,11 @@ flex: 1 0 auto;
 nav .brand-logo{
 	padding: 0 15px;
 }
+@media (min-width: 991px) {
+ .app-layout{
+    display: none;
+  }
+}
 /* board*/
 .board-editable h4{
 	color:#0d47a1;

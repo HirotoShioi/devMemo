@@ -36,3 +36,4 @@ dburles:collection-helpers
 percolate:momentum
 multiply:iron-router-progress
 zimme:active-route
+raix:handlebar-helpers
