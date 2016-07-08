@@ -20,15 +20,6 @@ Template.BoardContent.helpers({
 });
 
 Template.BoardContent.events({
-	/*
-	'click .remove-status'(){
-		Meteor.call('removeStatus',this._id,(err,result)=>{
-			if(err){
-				Bert.alert( 'Cannot delete last status', 'danger', 'growl-top-right' );
-			}
-		});
-	},
-	*/
 	'click .toggle-status-option'(){
 		Session.set("editMode",this._id);
 	},

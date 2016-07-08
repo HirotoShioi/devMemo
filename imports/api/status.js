@@ -11,6 +11,9 @@ Status.allow({
 		return !!userId;
 	},
 	remove:function(userId,doc){
+		Memos.update({statusId:doc._id},{
+			$unset:{statusId:""}
+		});
 		return !!userId;
 	}
 });
@@ -64,18 +67,6 @@ Meteor.methods({
 			username: Meteor.user().username
 		});
 	},
-	'removeStatus'(id){
-		check(id,String);
-
-		if(Status.find({owner:Meteor.userId()}).count() === 1){
-			throw new Meteor.Error('Cannot remove the status');
-		}
-
-		Status.remove({_id:id});
-		Memos.update({statusId:id},{
-			$unset:{statusId:""}
-		});
-	}
 });
 
 Status.helpers({
