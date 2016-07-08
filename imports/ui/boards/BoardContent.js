@@ -28,5 +28,5 @@ Template.BoardContent.events({
 	},
 	'click .toggle-status-option'(){
 		Template.instance().editMode.set(!Template.instance().editMode.get());
-	}
+	},
 });

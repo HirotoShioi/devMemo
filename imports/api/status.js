@@ -6,6 +6,12 @@ import { Memos } from './memos.js';
 
 export const Status = new Mongo.Collection('status');
 
+Status.allow({
+	update:function(userId,doc){
+		return !!userId;
+	}
+});
+
 var Schemas = {};
 
 Schemas.status = new SimpleSchema({
