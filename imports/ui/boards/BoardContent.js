@@ -9,12 +9,12 @@ Template.BoardContent.onCreated(function(){
 	this.autorun(()=>{
 		this.subscribe('status');
 	});
-	this.editMode = new ReactiveVar(false);
 });
 
 Template.BoardContent.helpers({
-	editMode:()=>{
-		return Template.instance().editMode.get();
+	//need to use function() because of the scope problem (cannot use this_id);
+	editMode:function(){
+		return Session.get("editMode") === this._id;
 	}
 });
 
@@ -27,6 +27,16 @@ Template.BoardContent.events({
 		});
 	},
 	'click .toggle-status-option'(){
-		Template.instance().editMode.set(!Template.instance().editMode.get());
+		Session.set("editMode",this._id);
 	},
+});
+
+const hooksObject = {
+	onSuccess:(formType,result)=>{
+		Session.set('editMode',false);
+	},
+}
+
+AutoForm.hooks({
+  updateStatus: hooksObject
 });
