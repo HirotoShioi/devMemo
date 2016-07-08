@@ -19,6 +19,7 @@ Template.BoardContent.helpers({
 });
 
 Template.BoardContent.events({
+	/*
 	'click .remove-status'(){
 		Meteor.call('removeStatus',this._id,(err,result)=>{
 			if(err){
@@ -26,6 +27,7 @@ Template.BoardContent.events({
 			}
 		});
 	},
+	*/
 	'click .toggle-status-option'(){
 		Session.set("editMode",this._id);
 	},
