@@ -198,7 +198,11 @@ footer.page-footer{
     z-index: 1003;
     display: block;
     opacity: 1;
-	transition: left 0.3s ease-in;
+	transition: left 0.2s ease-in;
+}
+.sidenav-inactive{
+	left:0;
+	transition: left 0.2s ease-in;
 }
 .overlay{
 	position: fixed;

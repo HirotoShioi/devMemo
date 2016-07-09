@@ -16,7 +16,7 @@
           <a class="{{isActiveRoute 'about'}}" href="{{pathFor route='about'}}">About</a>
         </li>
       </ul>
-       <ul id="slide-out" class="side-nav  {{#if $.Session.get 'sideNav'}}sidenav-active{{/if}}">
+       <ul id="slide-out" class="side-nav  {{#if $.Session.get 'sideNav'}}sidenav-active {{else}} sidenav-inactive {{/if}}">
           {{#if currentUser}}
             {{> NewMemoModal}}
             <li class="{{isActiveRoute 'memo.home'}}">
