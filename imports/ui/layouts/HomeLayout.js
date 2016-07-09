@@ -7,7 +7,7 @@ import './HomeLayout.html';
 import '../partials/Footer.html';
 import '../partials/Header.html';
 import '../partials/PageTitle.js';
-
+import '../partials/Overlay.js';
 Template.HomeLayout.onCreated(function(){
 	Session.set('Layout',false);
 });

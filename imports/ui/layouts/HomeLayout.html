@@ -1,7 +1,9 @@
 <template name="HomeLayout">
+	{{> autoformModals}}
 	{{> Header}}
 	<main class="home-main">
 		{{> yield}}
 	</main>	
 	{{> Footer}}
+	{{> Overlay}}
 </template>

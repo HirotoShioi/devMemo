@@ -188,3 +188,32 @@ footer.page-footer{
 .fa-sign-out{
 	margin-left: 1em;
 }
+.sidenav-active{
+	left:240px;
+    z-index: 1003;
+    display: block;
+    opacity: 1;
+	transition: left 0.3s ease-in;
+}
+.overlay{
+	position: fixed;
+    z-index: 999;
+    top: -100px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 125%;
+    width: 100%;
+    background: #000;
+    display: none;
+}
+.overlay-show{
+	z-index: 1002;
+    display: block;
+    opacity: 0.5;
+    transition: all 0.3s ease-in;
+}
+nav .button-collapse i{
+	font-size:32px;
+	padding:0 0.5em;
+}
