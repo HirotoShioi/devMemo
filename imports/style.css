@@ -108,6 +108,11 @@ h4{
 }
 @media (max-width: 991px) {
   .modal {
+    width: 60%;
+  }
+}
+@media (max-width: 600px) {
+  .modal {
     width: 80%;
   }
 }

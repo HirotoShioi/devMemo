@@ -12,7 +12,7 @@ Template.Board.onCreated(function(){
 		this.subscribe('status');
 		this.subscribe('memos');
 	});
-	Session.set('Title',{name:"Memo Board"});
+	Session.set('Title',{name:"Board"});
 });
 
 Template.Board.helpers({

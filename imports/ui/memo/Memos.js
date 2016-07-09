@@ -11,7 +11,7 @@ import '../partials/Memo.js';
 import './NewMemo.js';
 
 Template.Memos.onCreated(function(){
-	Session.set("Title",{name:"Memo Home"});
+	Session.set("Title",{name:"Home"});
 
  	const self = this;
  	self.autorun(function(){

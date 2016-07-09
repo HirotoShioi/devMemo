@@ -18,17 +18,19 @@
       </ul>
        <ul id="slide-out" class="side-nav  {{#if $.Session.get 'sideNav'}}sidenav-active{{/if}}">
           {{#if currentUser}}
-          {{> NewMemoModal}}
-          <li class="{{isActiveRoute 'memo.home'}}">
-            <a class="{{isActiveRoute 'memo.home'}}" href="{{pathFor route='memo.home'}}">Memos</a>
-          </li>
-          <li class="{{isActiveRoute 'memo.board'}}">
-            <a class="{{isActiveRoute 'memo.board'}}" href="{{pathFor route='memo.board'}}">Board</a>
-          </li>
+            {{> NewMemoModal}}
+            <li class="{{isActiveRoute 'memo.home'}}">
+              <a class="{{isActiveRoute 'memo.home'}}" href="{{pathFor route='memo.home'}}">Memos</a>
+            </li>
+            <li class="{{isActiveRoute 'memo.board'}}">
+              <a class="{{isActiveRoute 'memo.board'}}" href="{{pathFor route='memo.board'}}">Board</a>
+            </li>
+          {{else}}
+            <li>{{> atNavButton }}</li>
           {{/if}}
-          <li class="{{isActiveRoute 'about'}}">
-            <a class="{{isActiveRoute 'about'}}" href="{{pathFor route='about'}}">About</a>
-          </li>
+            <li class="{{isActiveRoute 'about'}}">
+              <a class="{{isActiveRoute 'about'}}" href="{{pathFor route='about'}}">About</a>
+            </li>
           {{#if currentUser}}
             <li>
               <a href="" class="waves-effect red-text logout auth-link">Logout<i class="fa fa-sign-out" aria-hidden="true"></i></a>                
