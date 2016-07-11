@@ -1,0 +1,17 @@
+<template name="List">
+		{{show}}
+      <table class="highlight">
+        <thead>
+          <tr>
+              <th data-field="id">Name</th>
+              <th data-field="price" class="center">Status</th>
+              <th data-field="date" class="right">Last Update</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each memos}}
+          	{{> SingleList}}
+          {{/each}}
+        </tbody>
+      </table>	
+</template>

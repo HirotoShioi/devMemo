@@ -8,28 +8,7 @@
 				 	{{else}}
 				 		<h3>No Memo Available!</h3>
 				 	{{/each}}
-
-			      <table class="highlight">
-			        <thead>
-			          <tr>
-			              <th data-field="id">Name</th>
-			              <th data-field="price" class="center">Status</th>
-			              <th data-field="date" class="right">Created At</th>
-			          </tr>
-			        </thead>
-			        <tbody>
-			        	{{#each memos}}
-				          <tr>
-				            <td>
-				            	<img class="" src="http://www.google.com/s2/favicons?domain={{url}}" alt="">
-				            	<a href="{{url}}">{{name}}</a><i class="fa fa-close"></i>
-				            </td>
-				            <td class="center"><button class="table-status-btn btn amber darken-3">{{status.name}}</button></td>
-				            <td class="right">{{moFormat createdAt 'M/D'}}</td>
-				          </tr>
-			          {{/each}}
-			        </tbody>
-			      </table>
+				 	{{> List memos=memos}}
 			 </div>
 		 </div>
 	</div>

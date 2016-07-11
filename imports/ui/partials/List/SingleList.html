@@ -1,0 +1,18 @@
+<template name="SingleList">
+  <tr>
+    <td>
+    	<img class="" src="http://www.google.com/s2/favicons?domain={{url}}" alt="">
+    	<a href="{{url}}">{{name}}</a><i class="fa fa-close"></i>
+    </td>
+    <td class="center">
+ 		    {{#afModal classes="waves-effect table-status-btn btn amber darken-3" title=name collection="Memos" operation="update" doc=_id fields="statusId" formId="updateMemo"}}
+ 		    	{{#if status.name}}
+						{{status.name}}
+				{{else}}
+						None
+				{{/if}}
+			{{/afModal}}
+    </td>
+    <td class="right">{{moFormat createdAt 'M/D'}}</td>
+  </tr>
+</template>
