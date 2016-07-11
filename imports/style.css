@@ -152,7 +152,15 @@ h4{
 {
 	text-transform: lowercase;
 }
-
+.memo-favicon{
+	position: absolute;
+    top: 18%;
+    width: 7%;
+    left: 7%;
+}
+.card-title-text{
+	margin-left:1em;
+}
 /*board form */
 .new-status{
 	position: relative;

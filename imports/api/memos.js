@@ -31,15 +31,20 @@ Schemas.memos = new SimpleSchema({
 		label:"Description",
 		optional:true
 	},
+	tags:{
+		type:String,
+		label:"Tag",
+		optional:true
+	},
 	statusId: {
-    type: String,
-    optional:true,
-    autoform: {
-        type: "select-radio",
-        options: function () {
-            return Status.find({owner:Meteor.userId()},{sort:{createdAt:-1}}).map(function (c) {
-                return {label: c.name, value: c._id};
-            });
+    	type: String,
+    	optional:true,
+    	autoform: {
+	        type: "select-radio",
+	        options: function () {
+	            return Status.find({owner:Meteor.userId()},{sort:{createdAt:-1}}).map(function (c) {
+	                return {label: c.name, value: c._id};
+	            });
         }
     }
 },
