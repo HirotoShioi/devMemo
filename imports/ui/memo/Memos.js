@@ -28,5 +28,5 @@ Template.Memos.helpers({
 	},
 	newMemo:()=>{
 		return Session.get('newMemo');
-	}
+	},
 });

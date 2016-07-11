@@ -33,6 +33,7 @@ themeteorchef:bert
 gildaspk:autoform-modals-materialize
 gwendall:auth-client-callbacks
 dburles:collection-helpers
+lbee:moment-helpers
 percolate:momentum
 multiply:iron-router-progress
 zimme:active-route

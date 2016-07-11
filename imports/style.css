@@ -234,3 +234,15 @@ nav .button-collapse i{
 	font-size:32px;
 	padding:0 0.5em;
 }
+/* table */
+td{
+	padding:8px 5px;
+}
+.table-status-btn{
+    height: 26px;
+    width: 103px;
+    line-height: 26px;
+    padding:0;
+    text-transform: none;
+    overflow: hidden;
+}
