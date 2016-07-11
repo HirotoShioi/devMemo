@@ -1,15 +1,18 @@
 <Template name="Memos">
 	<div class="container main-content">
-		{{> NewMemo}}
+		{{> ViewBtn}}
 		 <div class="list-group">
-			 <div class="row">
-				 	{{#each memos}}
-				 		{{> Memo}}
-				 	{{else}}
-				 		<h3>No Memo Available!</h3>
-				 	{{/each}}
-				 	{{> List memos=memos}}
-			 </div>
+		 	{{#if $.Session.get 'ListMode'}}
+				{{> List memos=memos}}
+		 	{{else}}
+				 <div class="row">
+					 	{{#each memos}}
+					 		{{> Memo}}
+					 	{{else}}
+					 		<h3>No Memo Available!</h3>
+					 	{{/each}}
+				 </div>
+		 	{{/if}}
 		 </div>
 	</div>
 </Template>

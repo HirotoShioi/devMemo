@@ -7,6 +7,7 @@ import './Memos.html';
 //partials
 import '../partials/Memo.js';
 import '../partials/List/List.js';
+import '../partials/ViewBtn.js';
 //test
 import './NewMemo.js';
 
