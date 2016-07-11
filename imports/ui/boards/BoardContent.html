@@ -10,11 +10,15 @@
 						{{/afModal}}
 					{{/if}}
 				</h4>
-				<div class="row">
-					{{#each memos}}
-						{{> Memo}}
-					{{/each}}
-				</div>
+				{{#if $.Session.get 'ListMode'}}
+					{{> List memos=memos}}
+				{{else}}
+					<div class="row">
+						{{#each memos}}
+							{{> Memo}}
+						{{/each}}
+					</div>
+				{{/if}}
 			</div>
 		</section>
 </template>

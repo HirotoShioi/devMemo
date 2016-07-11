@@ -4,7 +4,10 @@ import { Template } from 'meteor/templating';
 
 import { Status }  from '../../api/status.js';
 
+//partials
 import '../partials/Memo.js';
+import '../partials/List/List.js';
+
 Template.BoardContent.onCreated(function(){
 	this.autorun(()=>{
 		this.subscribe('status');

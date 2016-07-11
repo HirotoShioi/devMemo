@@ -1,5 +1,6 @@
 <template name="List">
-		{{show}}
+	{{#if memos}}
+	<div class="memos-list">
       <table class="highlight">
         <thead>
           <tr>
@@ -13,5 +14,7 @@
           	{{> SingleList}}
           {{/each}}
         </tbody>
-      </table>	
+      </table>
+	</div>
+     {{/if}}
 </template>

@@ -178,7 +178,9 @@ h4{
 .remove-status{
 	font-size: 0.7em;
 }
-
+.board-view-btn{
+	margin-top: 40px;
+}
 /*about page*/
 .about{
 	font-size: 16px;
@@ -237,12 +239,21 @@ nav .button-collapse i{
 /* table */
 td{
 	padding:8px 5px;
+	font-size: 18px;
 }
 .table-status-btn{
+	font-size: 14px;
     height: 26px;
     width: 103px;
     line-height: 26px;
     padding:0;
     text-transform: none;
     overflow: hidden;
+}
+.list-name{
+	width: 46%;
+	overflow: hidden;
+}
+.memos-list{
+	margin-bottom: 40px;
 }

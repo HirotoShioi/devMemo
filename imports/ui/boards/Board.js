@@ -7,6 +7,9 @@ import './Board.html';
 import './BoardForm.js';
 import './BoardContent.js';
 
+//partials
+import '../partials/ViewBtn.js';
+
 Template.Board.onCreated(function(){
 	this.autorun(()=>{
 		this.subscribe('status');
