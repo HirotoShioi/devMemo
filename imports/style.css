@@ -155,7 +155,7 @@ h4{
 .memo-favicon{
 	position: absolute;
     top: 18%;
-    width: 7%;
+    width: 20px;
     left: 7%;
 }
 .card-title-text{
@@ -235,16 +235,15 @@ footer.page-footer{
 nav .button-collapse i{
 	font-size:32px;
 	padding:0 0.5em;
+	cursor: pointer;
 }
 /* table */
 td{
 	padding:8px 5px;
-	font-size: 18px;
 }
 .table-status-btn{
-	font-size: 14px;
     height: 26px;
-    width: 103px;
+    width: 80px;
     line-height: 26px;
     padding:0;
     text-transform: none;

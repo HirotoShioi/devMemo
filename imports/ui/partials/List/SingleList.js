@@ -16,6 +16,9 @@ Template.SingleList.helpers({
 	isOwner(){
 		return (Meteor.userId() === this.owner);
 	},
+	Url(){
+		return `http://www.google.com/s2/favicons?domain=${this.url}`;
+	}
 });
 Template.SingleList.events({
 	'click .fa-close'(){
