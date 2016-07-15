@@ -13,7 +13,7 @@ Status.allow({
 	remove:function(userId,doc){
 		Memos.update({statusId:doc._id},{
 			$unset:{statusId:""}
-		});
+		},{multi:true});
 		return !!userId;
 	}
 });
@@ -67,6 +67,15 @@ Meteor.methods({
 			username: Meteor.user().username
 		});
 	},
+	'removeStatus'(id){
+		check(id,String);
+
+		Status.remove(id);
+		Memos.update({statusId:id},
+		{
+			$unset:{statusId:""}
+		});
+	}
 });
 
 Status.helpers({
