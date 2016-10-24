@@ -11,7 +11,11 @@
 					{{/if}}
 				</h4>
 				{{#if $.Session.get 'ListMode'}}
-					{{> List memos=memos}}
+					{{#if $neq memos.count 0}}
+						{{> List memos=memos}}
+					{{else}}
+						No memos
+					{{/if}}
 				{{else}}
 					<div class="row">
 						{{#each memos}}

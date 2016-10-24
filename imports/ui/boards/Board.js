@@ -23,6 +23,8 @@ Template.Board.helpers({
 		const lists =  Status.find({},{sort:{createdAt:-1}});
 		lists.forEach((list)=>{
 			list.memos = Memos.find({statusId:list._id},{sort:{createdAt:-1}});
+			let count = Memos.find({statusId:list._id}).count();
+			list.memos.count = count;
 		});
 		return lists;
 	},
