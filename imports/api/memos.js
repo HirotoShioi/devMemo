@@ -90,6 +90,9 @@ Meteor.methods({
 	deleteMemo(id){
 		Memos.remove(id);
 	},
+	addMemo(doc){
+		console.log(doc);
+	}
 });
 
 Memos.helpers({
