@@ -8,9 +8,6 @@ export const Memos = new Mongo.Collection('memos');
 var Schemas = {};
 
 Memos.allow({
-	insert:function(userId,doc){
-		return !!userId;
-	},
 	update:function(userId,doc){
 		return !!userId;
 	}
