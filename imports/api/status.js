@@ -52,7 +52,7 @@ Schemas.status = new SimpleSchema({
 		autoform:{
 			type:"hidden"
 		}
-	}
+	},
 });
 
 Status.attachSchema(Schemas.status);

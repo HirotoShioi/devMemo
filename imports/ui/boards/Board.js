@@ -12,20 +12,15 @@ import '../partials/ViewBtn.js';
 
 Template.Board.onCreated(function(){
 	this.autorun(()=>{
-		this.subscribe('status');
 		this.subscribe('memos');
+		this.subscribe('statusBoard');
 	});
 	Session.set('Title',{name:"Board"});
 });
 
 Template.Board.helpers({
-	lists:()=>{
+	statusLists:()=>{
 		const lists =  Status.find({},{sort:{createdAt:-1}});
-		lists.forEach((list)=>{
-			list.memos = Memos.find({statusId:list._id},{sort:{createdAt:-1}});
-			let count = Memos.find({statusId:list._id}).count();
-			list.memos.count = count;
-		});
 		return lists;
 	},
 	none:()=>{

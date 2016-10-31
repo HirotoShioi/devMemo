@@ -14,3 +14,17 @@ Meteor.publish('singleMemo',function(id){
 Meteor.publish('status',function(){
 	return Status.find({owner:this.userId});
 });
+
+//publication for the board
+Meteor.publishComposite('statusBoard',{
+	find:function(){
+		return Status.find({owner:this.userId});
+	},
+	children:[
+		{
+			find:function(status){
+				return Memos.find({ owner:this.userId, statusId:status._id},{sort:{createdAt:-1}});
+			}
+		},
+	]
+});

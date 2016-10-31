@@ -19,7 +19,7 @@ Template.BoardContent.helpers({
 	//if status has id, edit mode is available
 	editMode:function(){
 		return Session.get("editMode") === this._id && this._id;
-	}
+	},
 });
 
 Template.BoardContent.events({
