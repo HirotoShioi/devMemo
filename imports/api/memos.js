@@ -20,6 +20,10 @@ Schemas.memos = new SimpleSchema({
 	name:{
 		type:String,
 		label:"Name",
+		optional:true,
+		autoform:{
+			type:"hidden"
+		},
 	},
 	url:{
 		type:String,
@@ -29,7 +33,10 @@ Schemas.memos = new SimpleSchema({
 	desc:{
 		type:String,
 		label:"Description",
-		optional:true
+		optional:true,
+		autoform:{
+			type:"hidden"
+		}
 	},
 	tags:{
 		type:String,
@@ -45,9 +52,9 @@ Schemas.memos = new SimpleSchema({
 	            return Status.find({owner:Meteor.userId()},{sort:{createdAt:-1}}).map(function (c) {
 	                return {label: c.name, value: c._id};
 	            });
-        }
-    }
-},
+        	}
+    	}
+	},
 	createdAt:{
 		type:Date,
 		autoValue:function(){
@@ -90,5 +97,6 @@ Memos.helpers({
 		return Status.findOne(this.statusId);
 	}
 });
+
 
 
