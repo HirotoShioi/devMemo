@@ -17,10 +17,13 @@ Template.NewMemoModal.events({
 });
 const hooksObject = {
 	before:{
-		insert:function(doc,e){
-			Meteor.call('addMemo',doc);
-			this.resetForm();
-			$('#afModal').closeModal();
+		insert:function(doc){
+			let isValidForm = AutoForm.validateForm("NewMemo");
+			if(isValidForm){
+				Meteor.call("addMemo",doc);
+				this.resetForm();
+				$('#afModal').closeModal();
+			}
 		}
 	},
 }
