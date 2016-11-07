@@ -1,24 +1,24 @@
 import './Memo.html';
-
-import { Template } from 'meteor/templating';
+import { TemplateController } from 'meteor/space:template-controller';
 import { Status } from '../../api/status.js';
 
-Template.Memo.onCreated(function(){
-	this.autorun(()=>{
-		this.subscribe('status');
-	});
-});
+TemplateController('Memo',{
+	onCreated(){
+		this.autorun(()=>{
+			this.subscribe('status');
+		});
+	},
 
-Template.Memo.helpers({
-	uniqueId(){
-		return this._id;
+	helpers:{
+		isOwner(){
+			return (Meteor.userId() === this.data.owner);
+		},
+
 	},
-	isOwner(){
-		return (Meteor.userId() === this.owner);
-	},
-});
-Template.Memo.events({
-	'click .fa-close'(){
-		Meteor.call('deleteMemo',this._id);
+
+	events:{
+		'click .fa-close'(){
+			Meteor.call('deleteMemo',this.data._id);
+		},
 	},
 });

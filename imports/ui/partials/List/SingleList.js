@@ -1,27 +1,26 @@
 import './SingleList.html';
-
-import { Template } from 'meteor/templating';
+import { TemplateController } from 'meteor/space:template-controller';
 import { Status } from '../../../api/status.js';
 
-Template.SingleList.onCreated(function(){
-	this.autorun(()=>{
-		this.subscribe('status');
-	});
-});
+TemplateController('SingleList',{
+	onCreated(){
+		this.autorun(()=>{
+			this.subscribe('status');
+		});
+	},
 
-Template.SingleList.helpers({
-	uniqueId(){
-		return this._id;
+	helpers:{
+		isOwner(){
+			return (Meteor.userId() === this.data.owner);
+		},
+		faviconUrl(){
+			return `http://www.google.com/s2/favicons?domain=${this.data.url}`;
+		},
 	},
-	isOwner(){
-		return (Meteor.userId() === this.owner);
-	},
-	Url(){
-		return `http://www.google.com/s2/favicons?domain=${this.url}`;
+
+	events:{
+		'click .fa-close'(){
+			Meteor.call('deleteMemo',this.data._id);
+		},
 	}
-});
-Template.SingleList.events({
-	'click .fa-close'(){
-		Meteor.call('deleteMemo',this._id);
-	},
 });

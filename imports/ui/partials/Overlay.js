@@ -1,9 +1,10 @@
-import { Template } from 'meteor/templating';
-
+import { TemplateController } from 'meteor/space:template-controller';
 import './Overlay.html';
 
-Template.Overlay.events({
-	'click .overlay-show'(){
-		Session.set('sideNav',false);
-	}
+TemplateController('Overlay',{
+	events:{
+		'click .overlay-show'(){
+			Session.set('sideNav',false);
+		},
+	},
 });

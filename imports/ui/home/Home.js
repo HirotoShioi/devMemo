@@ -1,6 +1,8 @@
 import './Home.html';
-import {Template} from 'meteor/templating';
+import { TemplateController } from 'meteor/space:template-controller';
 
-Template.Home.onCreated(function(){
-	Session.set('Title',{name:"DevMemo"});
+TemplateController('Home',{
+	onCreated(){
+		Session.set('Title',{name:"DevMemo"});
+	},
 });

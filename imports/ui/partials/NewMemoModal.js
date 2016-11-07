@@ -1,19 +1,18 @@
 import './NewMemoModal.html';
+import { TemplateController } from 'meteor/space:template-controller';
 
+TemplateController('NewMemoModal',{
+	onCreated(){
+		this.autorun(()=>{
+			this.subscribe('status');
+		});
+	},
 
-Template.NewMemoModal.onCreated(function(){
-	this.autorun(()=>{
-		this.subscribe('status');
-	});
-});
-
-Template.NewMemoModal.helpers({
-});
-
-Template.NewMemoModal.events({
-	'click .addMemoModal'(){
-		Session.set('cmDoc',undefined);
-	}
+	events:{
+		'click .addMemoModal'(){
+			Session.set('cmDoc',undefined);
+		},
+	},
 });
 const hooksObject = {
 	before:{

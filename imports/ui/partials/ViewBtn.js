@@ -1,12 +1,14 @@
 import './ViewBtn.html';
 
-import { Template } from 'meteor/templating';
+import { TemplateController } from 'meteor/space:template-controller';
 
-Template.ViewBtn.events({
-	'click .card-view'(){
-		Session.set('ListMode',false);
+TemplateController('ViewBtn',{
+	events:{
+		'click .card-view'(){
+			Session.set('ListMode',false);
+		},
+		'click .list-view'(){
+			Session.set('ListMode',true);
+		},
 	},
-	'click .list-view'(){
-		Session.set('ListMode',true);
-	}
 });

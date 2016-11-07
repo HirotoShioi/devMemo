@@ -1,8 +1,10 @@
 import './PageTitle.html';
-import { Template } from 'meteor/templating';
+import { TemplateController } from 'meteor/space:template-controller';
 
-Template.PageTitle.helpers({
-	title:()=>{
-		return Session.get('Title');
-	}
-})
+TemplateController('PageTitle',{
+	helpers:{
+		title(){
+			return Session.get('Title');
+		},
+	},
+});

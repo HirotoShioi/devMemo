@@ -1,42 +1,50 @@
+import { TemplateController } from 'meteor/space:template-controller';
 import './BoardForm.html';
-import { Template } from 'meteor/templating';
 import { Status } from '../../api/status';
 
-Template.BoardForm.onCreated(function(){
-	this.addStatus = new ReactiveVar(false);
-	this.autorun(()=>{
-		this.subscribe('categories');
-	});
-});
+TemplateController('BoardForm',{
+	state:{
+		addStatus:false,
+	},
 
-Template.BoardForm.helpers({
-	addStatus:()=>{
-		return Template.instance().addStatus.get();
+	onCreated(){
+		this.autorun(()=>{
+			this.subscribe('categories');
+		});
 	},
-});
 
-Template.BoardForm.events({
-	'click .status-form-show'(){
-		Template.instance().addStatus.set(true);
+	helpers:{
+		addStatus(){
+			return this.state.addStatus;
+		},
 	},
-	'click .status-form-hide'(){
-		Template.instance().addStatus.set(false);
-	},
-	'submit .new-status'(event){
-	    // Prevent default browser form submit
-	    event.preventDefault();
-	 
-	    // Get value from form element
-	    const target = event.target;
-	    const status = target.status.value;
-	    Meteor.call('addStatus',status,(err,result)=>{
-	    	if(!err){
-	    		Bert.alert( 'Status Added', 'info', 'growl-top-right' );
-	    	}
-	    });
-	    
-	    // Clear form
-    	target.status.value = '';
-    	Template.instance().addStatus.set(false);
+
+	events:{
+		'click .status-form-show'(){
+			this.state.addStatus = true;
+		},
+		'click .status-form-hide'(){
+			this.state.addStatus = false;
+		},
+		'submit .new-status'(event){
+		    // Prevent default browser form submit
+		    event.preventDefault();
+		 
+		    // Get value from form element
+		    const target = event.target;
+		    const status = target.status.value;
+		    Meteor.call('addStatus',status,(err,result)=>{
+		    	if(err){
+		    		Bert.alert( err.reason, 'danger', 'growl-top-right');
+		    	};
+		    	if(!err){
+		    		Bert.alert( 'Status Added', 'info', 'growl-top-right' );
+		    	}
+		    });
+		    
+		    // Clear form
+	    	target.status.value = '';
+	    	this.state.addStatus = false;
+		}
 	}
 });

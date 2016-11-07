@@ -1,25 +1,22 @@
 import './Header.html';
+import { TemplateController } from 'meteor/space:template-controller';
 
-import { Template } from 'meteor/templating';
-
-Template.Header.onRendered(function(){
-
-});
-
-Template.Header.helpers({
-	title:()=>{
-		return Session.get('Title');
-	}
-});
-
-Template.Header.events({
-	'click .toggle-sidenav'(){
-		Session.set('sideNav',!Session.get('sideNav'));
+TemplateController('Header',{
+	helpers:{
+		title(){
+			return Session.get('Title');
+		},
 	},
-	'click #slide-out a'(){
-		Session.set('sideNav',false);
-	},
-	'click .logout':()=>{
-		Meteor.logout();
+
+	events:{
+		'click .toggle-sidenav'(){
+			Session.set('sideNav',!Session.get('sideNav'));
+		},
+		'click #slide-out a'(){
+			Session.set('sideNav',false);
+		},
+		'click .logout':()=>{
+			Meteor.logout();
+		},
 	}
 });

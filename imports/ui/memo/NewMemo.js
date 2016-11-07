@@ -1,38 +1,43 @@
-import { Template } from 'meteor/templating';
-
+import { TemplateController } from 'meteor/space:template-controller';
 import './NewMemo.html';
 
 import {Status} from '../../api/status.js';
 
-Template.NewMemo.onCreated(function(){
-	this.autorun(()=>{
-		this.subscribe('status');
-	});
-	this.addMemo = new ReactiveVar(false);
-});
+TemplateController('NewMemo',{
+	state:{
+		addMemo:false,
+	},
 
-Template.NewMemo.helpers({
-	options(){
-		const status = Status.find({});
-		let statusAry = [];
-		status.forEach((stat) =>{
-			statusAry.push({label:stat.name,value:stat._id});
+	onCreated(){
+		this.autorun(()=>{
+			this.subscribe('status');
 		});
-		return statusAry;
 	},
-	addMemo(){
-		return Template.instance().addMemo.get();
-	}
+
+	helpers:{
+		options(){
+			const status = Status.find({});
+			let statusAry = [];
+			status.forEach((stat) =>{
+				statusAry.push({label:stat.name,value:stat._id});
+			});
+			return statusAry;
+		},
+		addMemo(){
+			return this.state.addMemo;
+		},
+	},
+
+	events:{
+		'click .new-memo-show'(){
+			this.state.addMemo = true;
+		},
+		'click .new-memo-hide'(){
+			this.state.addMemo = false;
+		},
+	},
 });
 
-Template.NewMemo.events({
-	'click .new-memo-show'(){
-		Template.instance().addMemo.set(true);
-	},
-	'click .new-memo-hide'(){
-		Template.instance().addMemo.set(false);
-	}
-});
 const hooksObject = {
 	onSuccess:(formType,result)=>{
 		Bert.alert({
