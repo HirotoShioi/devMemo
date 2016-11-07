@@ -1,9 +1,18 @@
 <template name="MemoDetail">
 	<div class="container about-content">
-			<img class="responsive-img" src="{{memo.thumbnailUrl}}" alt="{{memo.desc}}">
-			<a href="http://{{url}}">{{memo.url}}</a>
-			<p class="caption">
-				{{memo.desc}}
-			</p>	
+		<div class="row">
+			<div class="col s12 m8 offset-m2 offset-l3">
+				<img class="responsive-img memo-detail-image" src="{{memo.thumbnailUrl}}" alt="{{memo.desc}}">	
+			</div>
+			<div class="col s12">
+				<h5>{{memo.name}}</h5>
+				<p>
+					<a href="http://{{url}}">{{memo.url}}</a>
+				</p>
+				<p class="caption">
+					{{memo.desc}}
+				</p>
+			</div>
+		</div>	
 	</div>
 </template>

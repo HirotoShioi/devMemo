@@ -77,7 +77,7 @@ legend{
 	color:#fff;
 	height: 122px;
 }
-.page-title h3{
+.page-title h4{
 	line-height: 122px;
 	margin:0;
 }
@@ -86,9 +86,6 @@ legend{
 }
 .brand-logo span{
 	font-size: 2em;
-	color:#1565C0;
-}
-h4{
 	color:#1565C0;
 }
 /* Modal */
@@ -261,3 +258,5 @@ td{
 .list-edit{
 	width: 28%;
 }
+
+/* detail */

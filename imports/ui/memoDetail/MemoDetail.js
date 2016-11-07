@@ -8,8 +8,8 @@ Template.MemoDetail.onCreated(function(){
  	self.autorun(function(){
  		const id = Template.instance().data._id;
  		self.subscribe('singleMemo',id);
- 		Session.set('Title',Memos.findOne({_id:id},{fields:{'name':1}}));
  	});
+ 	Session.set('Title',{name:"Detail"});
 });
 
 Template.MemoDetail.helpers({
