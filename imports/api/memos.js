@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
+import { HTTP } from 'meteor/http';
 
 import { Status } from './status.js';
 
@@ -27,6 +28,13 @@ Schemas.memos = new SimpleSchema({
 		label:"URL",
 		regEx:SimpleSchema.RegEx.Url
 	},
+	thumbnailUrl:{
+		type:String,
+		optional:true,
+		autoform:{
+			type:"hidden"
+		}
+	},
 	desc:{
 		type:String,
 		label:"Description",
@@ -42,7 +50,7 @@ Schemas.memos = new SimpleSchema({
 	},
 	statusId: {
     	type: String,
-    	optional:true,
+    	label:"Status",
     	autoform: {
 	        type: "select-radio",
 	        options: function () {
@@ -88,7 +96,25 @@ Meteor.methods({
 		Memos.remove(id);
 	},
 	addMemo(doc){
-		console.log(doc);
+		if(Meteor.isServer){
+			const result = HTTP.call('GET',"https://api.embedly.com/1/oembed",{
+				params:{
+					key:Meteor.settings.embedApiKey,
+					url:doc.url}
+			});
+			console.log(result);
+			const data = result.data;
+			Memos.insert({
+				name:data.title,
+				url:doc.url,
+				thumbnailUrl:data.thumbnail_url,
+				desc:data.description,
+				statusId:doc.statusId,
+				createdAt:new Date(),
+				owner: this.userId,
+				username:Meteor.userId(),
+			});
+		}
 	}
 });
 
@@ -97,6 +123,4 @@ Memos.helpers({
 		return Status.findOne(this.statusId);
 	}
 });
-
-
 
