@@ -242,14 +242,14 @@ td{
 }
 .table-status-btn{
     height: 26px;
-    width: 80px;
+    width: 120px;
     line-height: 26px;
     padding:0;
     text-transform: none;
     overflow: hidden;
 }
 .list-name{
-	width: 46%;
+	width: 50%;
 	overflow: hidden;
 }
 .memos-list{
