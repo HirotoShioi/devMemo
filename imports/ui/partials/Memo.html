@@ -1,13 +1,6 @@
 <Template name="Memo">
-		<div class="col l4 m6 s12">
+		<div class="col l3 m6 s12">
 		 	<div class="card hoverable">
-	 		    {{#afModal classes="waves-effect btn amber darken-2 edit-btn" title=name collection="Memos" operation="update" doc=_id fields="statusId" formId="updateMemo"}}
-	 		    	{{#if status.name}}
-							{{status.name}}
-					{{else}}
-							None
-					{{/if}}
-				{{/afModal}}
 	            <div class="card-content">
 	            	  <div class="card-image">
               			<img src="{{thumbnailUrl}}">
@@ -15,12 +8,21 @@
 		              {{#if isOwner}}
 		              	<i class="fa fa-close"></i>
 		              {{/if}}
-		              {{#if desc}}
-	              	  	<p class="truncate">{{name}}</p>
-	              	  {{else}}
-	              	  	<p class="grey-text">No descriptions available</p>
-	              	  {{/if}}
-	              	  <a href="{{pathFor route='memo.detail'}}">details</a>
+            		  <div class="card-body">
+			              {{#if desc}}
+		              	  	<p class="truncate">{{name}}</p>
+		              	  {{else}}
+		              	  	<p class="grey-text">No descriptions available</p>
+		              	  {{/if}}
+		              	  <a href="{{pathFor route='memo.detail'}}">more</a>
+			 		      {{#afModal classes="waves-effect btn amber darken-2 edit-btn" title=name collection="Memos" operation="update" doc=_id fields="statusId" formId="updateMemo"}}
+			 		    	{{#if status.name}}
+									{{status.name}}
+							{{else}}
+									None
+							{{/if}}
+						  {{/afModal}}
+            		  </div>
 	            </div>
 	            <div class="card-action ">
 	              <a href="{{url}}" class="truncate blue-text">{{url}}</a>

@@ -51,6 +51,7 @@ nav .brand-logo{
 .board-editable h4{
 	color:#0d47a1;
 	cursor: pointer;
+	font-size: 1.7em;
 }
 .board-uneditable h4{
 	color:#ff6f00;
@@ -128,6 +129,9 @@ legend{
 	padding: 0 1em;
 }
 /* card */
+.card-body{
+	position: relative;
+}
 .edit-btn{
 	font-size: 12px;
 	height:20px;
@@ -135,8 +139,8 @@ legend{
 	padding:0 1em;
 	text-transform: none;
 	position: absolute;
-	right:7%;
-	top:73%;
+	right:-3%;
+	top:59%;
 }
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating)
 {
@@ -159,6 +163,12 @@ legend{
 	color: #ddd;
 	font-size: 23px;
 	cursor: pointer;
+}
+.card .fa-close:hover{
+	color:#cc0000;
+}
+.card .card-action{
+	padding:10px;
 }
 /*board form */
 .new-status{
