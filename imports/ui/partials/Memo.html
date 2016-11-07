@@ -9,19 +9,18 @@
 					{{/if}}
 				{{/afModal}}
 	            <div class="card-content">
-	            	  <img class="memo-favicon" src="http://www.google.com/s2/favicons?domain={{url}}" alt="">
-		              <span class="card-title">
-		              	<span class="card-title-text truncate activator">{{name}}</span>
-		              	{{#if isOwner}}
-		              		<i class="fa fa-close"></i>
-		              	{{/if}}
-		              </span>
+	            	  <div class="card-image">
+              			<img src="{{thumbnailUrl}}">
+            		　 </div>
+		              {{#if isOwner}}
+		              	<i class="fa fa-close"></i>
+		              {{/if}}
 		              {{#if desc}}
-	              	  	<p class="truncate">{{desc}}</p>
+	              	  	<p class="truncate">{{name}}</p>
 	              	  {{else}}
 	              	  	<p class="grey-text">No descriptions available</p>
 	              	  {{/if}}
-	              	   <a href="{{pathFor route='memo.detail'}}">details</a>
+	              	  <a href="{{pathFor route='memo.detail'}}">details</a>
 	            </div>
 	            <div class="card-action ">
 	              <a href="{{url}}" class="truncate blue-text">{{url}}</a>
