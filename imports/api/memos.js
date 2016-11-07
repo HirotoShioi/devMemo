@@ -51,6 +51,7 @@ Schemas.memos = new SimpleSchema({
 	statusId: {
     	type: String,
     	label:"Status",
+    	optional:true,
     	autoform: {
 	        type: "select-radio",
 	        options: function () {
