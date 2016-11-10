@@ -129,6 +129,10 @@ legend{
 	padding: 0 1em;
 }
 /* card */
+.card-image{
+	height: 175px;
+    overflow: hidden;
+}
 .card-body{
 	position: relative;
 }
