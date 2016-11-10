@@ -1,6 +1,6 @@
 import './Memo.html';
 import { TemplateController } from 'meteor/space:template-controller';
-import { Status } from '../../api/status.js';
+import { Status } from '../../../api/status.js';
 
 TemplateController('Memo',{
 	onCreated(){

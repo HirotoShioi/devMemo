@@ -4,7 +4,7 @@ import { Memos } from '../../api/memos.js';
 import './Memos.html';
 
 //partials
-import '../partials/Memo.js';
+import '../partials/Pin/Memo.js';
 import '../partials/List/List.js';
 import '../partials/ViewBtn.js';
 

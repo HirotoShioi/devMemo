@@ -4,7 +4,7 @@ import { Status }  from '../../api/status.js';
 
 import './BoardContent.html';
 //partials
-import '../partials/Memo.js';
+import '../partials/Pin/Memo.js';
 import '../partials/List/List.js';
 
 TemplateController('BoardContent',{

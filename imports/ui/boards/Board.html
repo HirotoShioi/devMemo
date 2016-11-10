@@ -1,12 +1,10 @@
 <template name="Board">
-	<div class="container board-view-btn">
-		{{> ViewBtn}}
-	</div>
 	<div class="container main-content">
+		{{> ViewBtn}}
 		{{> BoardForm}}
-	</div>
 		{{#each statusLists}}
 			{{> BoardContent}}
 		{{/each}}
 		{{> BoardContent(none)}}
+	</div>
 </template>

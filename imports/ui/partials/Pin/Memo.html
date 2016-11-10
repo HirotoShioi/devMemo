@@ -1,0 +1,22 @@
+<template name="Memo">
+	<div class="memo">
+		<a href="{{url}}">
+			<img src="{{thumbnailUrl}}">
+		</a>
+	      {{#if isOwner}}
+	      	<i class="fa fa-close"></i>
+	      {{/if}}
+	      <div class="memo-body">
+		      <p>
+		      	<a href="{{pathFor route='memo.detail'}}">{{name}}</a>
+			 	{{#afModal classes="waves-effect btn amber darken-2 edit-btn" title=name collection="Memos" operation="update" doc=_id fields="statusId" formId="updateMemo"}}
+			    	{{#if status.name}}
+						{{status.name}}
+				{{else}}
+						None
+				{{/if}}
+			  {{/afModal}}
+		      </p>
+	      </div>
+	</div>
+</template>
