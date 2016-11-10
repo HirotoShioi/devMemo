@@ -286,7 +286,7 @@ td{
 	float:right;
 }
 .memo-body{
-	 padding-bottom: 28px;
+	 padding-bottom: 1em;
 }
 @media (max-width: 960px) {
 	.memo-wrapper {
