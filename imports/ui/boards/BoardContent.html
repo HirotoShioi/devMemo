@@ -2,11 +2,11 @@
 		<section class="board {{#if _id}}board-editable{{else}} board-uneditable{{/if}}" id="">
 			<div class="container">
 				<h4 class="header">
-					<span class="{{#if _id}}toggle-status-option{{/if}}">{{name}}</span>
+					<span class="{{#if _id}}toggle-label-option{{/if}}">{{name}}</span>
 					{{#if editMode}}
-						{{#afModal classes="fa fa-close remove-status" title="Delete Status" collection="Status" operation="remove" doc=_id fields="name" formId="deleteStatus"}}
+						{{#afModal classes="fa fa-close remove-label" title="Delete Label" collection="Label" operation="remove" doc=_id fields="name" formId="deleteLabel"}}
 						{{/afModal}}
-			 		    {{#afModal classes="fa fa-pencil" title="Edit Status" collection="Status" operation="update" doc=_id fields="name" formId="updateStatus"}}
+			 		    {{#afModal classes="fa fa-pencil" title="Edit Label" collection="Label" operation="update" doc=_id fields="name" formId="updateLabel"}}
 						{{/afModal}}
 					{{/if}}
 				</h4>

@@ -1,12 +1,12 @@
 <template name="BoardForm">
-	{{#if addStatus}}
+	{{#if addLabel}}
 		<div class="row">
-		    <form class="col m7 s12 new-status">
-		      <i class="fa fa-close status-form-hide"></i>
+		    <form class="col m7 s12 new-label">
+		      <i class="fa fa-close label-form-hide"></i>
 		      <div class="row">
 		        <div class="input-field col s7 m8">
-		          <input name="status" id="icon_prefix" type="text" class="validate">
-		          <label for="icon_prefix">New Status</label>
+		          <input name="label" id="icon_prefix" type="text" class="validate">
+		          <label for="icon_prefix">New Label</label>
 		        </div>
 		        <div class="input-field col s5 m4">
 		        	<input type="submit" class="btn category-submit">
@@ -15,6 +15,6 @@
 		    </form>
 		 </div>
 	{{else}}
-		<button class="waves-effect btn status-form-show">Add Status</button>
+		<button class="waves-effect btn label-form-show">Add Label</button>
 	{{/if}}
 </template>

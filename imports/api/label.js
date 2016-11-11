@@ -4,15 +4,15 @@ import { check } from 'meteor/check';
 
 import { Memos } from './memos.js';
 
-export const Status = new Mongo.Collection('status');
+export const Label = new Mongo.Collection('Label');
 
-Status.allow({
+Label.allow({
 	update:function(userId,doc){
 		return !!userId;
 	},
 	remove:function(userId,doc){
-		Memos.update({statusId:doc._id},{
-			$unset:{statusId:""}
+		Memos.update({labelId:doc._id},{
+			$unset:{labelId:""}
 		},{multi:true});
 		return !!userId;
 	}
@@ -20,7 +20,7 @@ Status.allow({
 
 var Schemas = {};
 
-Schemas.status = new SimpleSchema({
+Schemas.label = new SimpleSchema({
 	name:{
 		type:String,
 		label:"name",
@@ -55,31 +55,31 @@ Schemas.status = new SimpleSchema({
 	},
 });
 
-Status.attachSchema(Schemas.status);
+Label.attachSchema(Schemas.label);
 Meteor.methods({
-	'addStatus'(name){
+	'addLabel'(name){
 		check(name,String);
 
-		Status.insert({
+		Label.insert({
 			name,
 			createdAt:new Date(),
 			owner: Meteor.userId(),
 			username: Meteor.user().username
 		});
 	},
-	'removeStatus'(id){
+	'removeLabel'(id){
 		check(id,String);
 
-		Status.remove(id);
-		Memos.update({statusId:id},
+		Label.remove(id);
+		Memos.update({labelId:id},
 		{
-			$unset:{statusId:""}
+			$unset:{labelId:""}
 		});
 	}
 });
 
-Status.helpers({
+Label.helpers({
 	memos(){
-		return Memos.find({statusId:this._id});
+		return Memos.find({labelId:this._id});
 	},
 });

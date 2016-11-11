@@ -10,7 +10,7 @@ import '../ui/boards/Board.js';
 import '../ui/home/Home.js';
 
 import { Memos } from '../api/memos.js';
-import { Status } from '../api/status.js';
+import { Label } from '../api/memos.js';
 
 Accounts.onLogout(function(){
 	Router.go('home');

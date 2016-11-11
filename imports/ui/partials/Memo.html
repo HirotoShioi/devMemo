@@ -15,9 +15,9 @@
 		              	  	<p class="grey-text">No descriptions available</p>
 		              	  {{/if}}
 		              	  <a href="{{pathFor route='memo.detail'}}">more</a>
-			 		      {{#afModal classes="waves-effect btn amber darken-2 edit-btn" title=name collection="Memos" operation="update" doc=_id fields="statusId" formId="updateMemo"}}
-			 		    	{{#if status.name}}
-									{{status.name}}
+			 		      {{#afModal classes="waves-effect btn amber darken-2 edit-btn" title=name collection="Memos" operation="update" doc=_id fields="labelId" formId="updateMemo"}}
+			 		    	{{#if label.name}}
+									{{label.name}}
 							{{else}}
 									None
 							{{/if}}

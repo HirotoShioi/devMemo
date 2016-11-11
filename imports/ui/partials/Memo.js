@@ -1,11 +1,11 @@
 import './Memo.html';
 import { TemplateController } from 'meteor/space:template-controller';
-import { Status } from '../../api/status.js';
+import { Label } from '../../api/label.js';
 
 TemplateController('Memo',{
 	onCreated(){
 		this.autorun(()=>{
-			this.subscribe('status');
+			this.subscribe('label');
 		});
 	},
 

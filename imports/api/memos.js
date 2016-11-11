@@ -2,7 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import { HTTP } from 'meteor/http';
 
-import { Status } from './status.js';
+import { Label } from './label.js';
 
 export const Memos = new Mongo.Collection('memos');
 
@@ -48,14 +48,14 @@ Schemas.memos = new SimpleSchema({
 		label:"Tag",
 		optional:true
 	},
-	statusId: {
+	labelId: {
     	type: String,
-    	label:"Status",
+    	label:"Label",
     	optional:true,
     	autoform: {
 	        type: "select-radio",
 	        options: function () {
-	            return Status.find({owner:Meteor.userId()},{sort:{createdAt:-1}}).map(function (c) {
+	            return Label.find({owner:Meteor.userId()},{sort:{createdAt:-1}}).map(function (c) {
 	                return {label: c.name, value: c._id};
 	            });
         	}
@@ -110,7 +110,7 @@ Meteor.methods({
 				url:doc.url,
 				thumbnailUrl:data.thumbnail_url,
 				desc:data.description,
-				statusId:doc.statusId,
+				labelId:doc.labelId,
 				createdAt:new Date(),
 				owner: this.userId,
 				username:Meteor.userId(),
@@ -120,8 +120,8 @@ Meteor.methods({
 });
 
 Memos.helpers({
-	status(){
-		return Status.findOne(this.statusId);
+	label(){
+		return Label.findOne(this.labelId);
 	}
 });
 
