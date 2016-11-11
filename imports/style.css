@@ -133,6 +133,9 @@ legend{
 	height: 175px;
     overflow: hidden;
 }
+.card-image img{
+	min-height: 130px;
+}
 .card-body{
 	position: relative;
 }
@@ -272,5 +275,7 @@ td{
 .list-edit{
 	width: 28%;
 }
-
+.favicon{
+	width:14px;
+}
 /* detail */

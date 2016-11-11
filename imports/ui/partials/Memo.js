@@ -13,7 +13,12 @@ TemplateController('Memo',{
 		isOwner(){
 			return (Meteor.userId() === this.data.owner);
 		},
-
+		hasLabel(){
+			return (this.data.labelId)? true:false;
+		},
+		faviconUrl(){
+			return `http://www.google.com/s2/favicons?domain=${this.data.url}`;
+		},
 	},
 
 	events:{

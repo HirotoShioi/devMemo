@@ -11,13 +11,17 @@ Meteor.publish('singleMemo',function(id){
 	return Memos.find({_id:id});
 });
 
+Meteor.publish('memoWithLabels', function(id){
+	return Memos.find({labelId:id});
+});
+
 //label publication
 Meteor.publish('label', function(){
 	return Label.find({owner:this.userId});
 });
 
 //publication for the board
-Meteor.publishComposite('labelBoard',{
+Meteor.publishComposite('labelWithMemos',{
 	find:function(){
 		return Label.find({owner:this.userId});
 	},

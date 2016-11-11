@@ -14,7 +14,7 @@ TemplateController('Board',{
 	onCreated(){
 		this.autorun(()=>{
 			this.subscribe('memos');
-			this.subscribe('labelBoard');
+			this.subscribe('labelWithMemos');
 		});
 		Session.set('Title',{name:"Board"});
 	},
