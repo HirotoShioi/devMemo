@@ -8,13 +8,10 @@ import '../ui/memoDetail/MemoDetail.js';
 import '../ui/about/About.js';
 import '../ui/boards/Board.js';
 import '../ui/home/Home.js';
+import '../ui/labelDetail/LabelDetail.js';
 
 import { Memos } from '../api/memos.js';
 import { Label } from '../api/memos.js';
-
-Accounts.onLogout(function(){
-	Router.go('home');
-});
 
 Router.configure({
   layoutTemplate: 'MainLayout'
@@ -74,6 +71,13 @@ Router.route('/board',function(){
 	}
 });
 
+Router.route('/label/:labelId', function(){
+	this.render('LabelDetail',{
+		data:{ _id:this.params.labelId }
+	});
+},{
+	name:'label.detail',
+});
 //account routing
 //Routes
 AccountsTemplates.configure({
