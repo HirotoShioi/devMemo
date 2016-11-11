@@ -175,10 +175,10 @@ legend{
 	padding:10px;
 }
 /*board form */
-.new-status{
+.new-label{
 	position: relative;
 }
-.status-form-hide{
+.label-form-hide{
 	position: absolute;
 	top:0;
 	right: 3%;
@@ -188,7 +188,7 @@ legend{
 	background-color: #1565C0;
 }
 /*board */
-.remove-status{
+.remove-label{
 	font-size: 0.7em;
 }
 .board-view-btn{
@@ -254,7 +254,7 @@ nav .button-collapse i{
 td{
 	padding:8px 5px;
 }
-.table-status-btn{
+.table-label-btn{
     height: 26px;
     width: 120px;
     line-height: 26px;

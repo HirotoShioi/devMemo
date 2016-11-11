@@ -1,6 +1,6 @@
 import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../api/memos.js';
-import { Status }  from '../../api/status.js';
+import { Label } from '../../api/label.js';
 import './Board.html';
 
 //components
@@ -14,19 +14,19 @@ TemplateController('Board',{
 	onCreated(){
 		this.autorun(()=>{
 			this.subscribe('memos');
-			this.subscribe('statusBoard');
+			this.subscribe('labelBoard');
 		});
 		Session.set('Title',{name:"Board"});
 	},
 
 	helpers:{
-		statusLists(){
-			const lists =  Status.find({},{sort:{createdAt:-1}});
+		labelLists(){
+			const lists =  Label.find({},{sort:{createdAt:-1}});
 			return lists;
 		},
 		none(){
-			const none = {name:"No Status"};
-			none.memos = (Memos.find({statusId:{$exists:false}},{sort:{createdAt:-1}}));
+			const none = {name:"No Label"};
+			none.memos = (Memos.find({labelId:{$exists:false}},{sort:{createdAt:-1}}));
 			return none;
 		}
 	},

@@ -1,6 +1,6 @@
 import { TemplateController } from 'meteor/space:template-controller';
 
-import { Status }  from '../../api/status.js';
+import { Label } from '../../api/label.js';
 
 import './BoardContent.html';
 //partials
@@ -10,7 +10,7 @@ import '../partials/List/List.js';
 TemplateController('BoardContent',{
 	onCreated(){
 		this.autorun(()=>{
-			this.subscribe('status');
+			this.subscribe('label');
 		});
 	},
 	helpers:{
@@ -19,7 +19,7 @@ TemplateController('BoardContent',{
 		},
 	},
 	events:{
-		'click .toggle-status-option'(){
+		'click .toggle-label-option'(){
 			if(Session.get("editMode") === this.data._id){
 				Session.set("editMode",false);
 			}else{
@@ -35,5 +35,5 @@ const hooksObject = {
 }
 
 AutoForm.hooks({
-  updateStatus: hooksObject
+  updateLabel: hooksObject
 });

@@ -1,10 +1,11 @@
 import './NewMemoModal.html';
 import { TemplateController } from 'meteor/space:template-controller';
+import { Label } from '../../api/label.js';
 
 TemplateController('NewMemoModal',{
 	onCreated(){
 		this.autorun(()=>{
-			this.subscribe('status');
+			this.subscribe('label');
 		});
 	},
 
