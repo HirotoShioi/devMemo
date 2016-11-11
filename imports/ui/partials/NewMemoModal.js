@@ -19,8 +19,8 @@ const hooksObject = {
 	before:{
 		insert:function(doc){
 			let isValidForm = AutoForm.validateForm("NewMemo");
-			Session.set('isLoadingMemo',true);
 			if(isValidForm){
+				Session.set('isLoadingMemo',true);
 				this.resetForm();
 				$('#afModal').closeModal();
 				Meteor.call("addMemo",doc,(err,result)=>{
