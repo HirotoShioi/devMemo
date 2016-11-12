@@ -130,8 +130,11 @@ legend{
 }
 /* card */
 .card-image{
-	height: 175px;
+	height: 135px;
     overflow: hidden;
+}
+.card-image-url{
+	cursor: pointer;
 }
 .card-image img{
 	min-height: 130px;
@@ -278,4 +281,14 @@ td{
 .favicon{
 	width:14px;
 }
-/* detail */
+.memo-tooltip{
+	position: absolute;
+    text-align: center;
+    bottom: -22%;
+    z-index: 2000;
+    padding: 6px;
+    width: 100%;
+    border-radius: 2px;
+    background: #333;
+    color: #fff;
+}

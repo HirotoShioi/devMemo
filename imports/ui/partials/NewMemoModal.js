@@ -24,9 +24,7 @@ const hooksObject = {
 				this.resetForm();
 				$('#afModal').closeModal();
 				Meteor.call("addMemo",doc,(err,result)=>{
-					if(!err){
-						Session.set('isLoadingMemo', false);					
-					}
+					Session.set('isLoadingMemo', false);
 				});
 			}
 		}
