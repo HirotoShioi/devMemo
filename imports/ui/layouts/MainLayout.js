@@ -3,7 +3,6 @@ import '../../style.css';
 import './MainLayout.html';
 
 //partials
-import '../partials/Footer.html';
 import '../partials/Header.js';
 import '../partials/SideNav.js';
 import '../partials/PageTitle.js';

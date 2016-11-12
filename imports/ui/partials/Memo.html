@@ -1,31 +1,34 @@
 <Template name="Memo">
 	<div class="col l3 m6 s12">
-	 	<div class="card hoverable">
-            	  <div class="card-image">
-          			<img class="" src="{{thumbnailUrl}}">
-        		　 </div>
-        		  <div class="card-content">
-	              {{#if isOwner}}
-	              	<i class="fa fa-close"></i>
-	              {{/if}}
-        		  <div class="card-body">
-		              {{#if desc}}             
-	              	  	<p class="truncate">
-					    	{{#if faviconUrl}}
-					    		<img class="favicon" src="{{faviconUrl}}" alt="">
-					    	{{/if}}			 
-	              	  		{{name}}
-	              	  	</p>
-	              	  {{else}}
-	              	  	<p class="grey-text">No descriptions available</p>
-	              	  {{/if}}
-	              	  <a href="{{pathFor route='memo.detail'}}">more</a>
-	              	  {{#if hasLabel}}
-	              	  <a href="{{pathFor route='label.detail'}}" class="btn amber darken-2 edit-btn">
-								{{label.name}}
-	              	  </a>
-	              	  {{/if}}
-        		  </div>
+		<div class="card hoverable">
+			{{#if isHovered}}
+		 		<div class="memo-tooltip center truncate">{{url}}</div>
+		 	{{/if}}
+        	  <div class="card-image">
+      			<img class="card-image-url" src="{{thumbnailUrl}}">
+    		　 </div>
+    		  <div class="card-content">
+              {{#if isOwner}}
+              	<i class="fa fa-close"></i>
+              {{/if}}
+    		  <div class="card-body">
+	              {{#if desc}}             
+              	  	<p class="truncate">
+				    	{{#if faviconUrl}}
+				    		<img class="favicon" src="{{faviconUrl}}" alt="">
+				    	{{/if}}			 
+              	  		{{name}}
+              	  	</p>
+              	  {{else}}
+              	  	<p class="grey-text">No descriptions available</p>
+              	  {{/if}}
+              	  <a href="{{pathFor route='memo.detail'}}">more</a>
+              	  {{#if hasLabel}}
+              	  <a href="{{pathFor route='label.detail'}}" class="btn amber darken-2 edit-btn">
+							{{label.name}}
+              	  </a>
+              	  {{/if}}
+    		  </div>
             </div>
         </div>
 	</div>
