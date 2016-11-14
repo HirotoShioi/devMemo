@@ -10,13 +10,13 @@ TemplateController('Header',{
 
 	events:{
 		'click .toggle-sidenav'(){
-			Session.set('sideNav',!Session.get('sideNav'));
+			Session.set('isShrinkedSideNavShown',!Session.get('isShrinkedSideNavShown'));
 		},
 		'click #slide-out a'(){
-			Session.set('sideNav',false);
+			Session.set('isShrinkedSideNavShown',false);
 		},
-		'click .logout':()=>{
-			Meteor.logout();
+		'click .logout'(){
+			AccountsTemplates.logout();
 		},
 	}
 });

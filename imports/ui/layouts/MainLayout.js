@@ -10,6 +10,6 @@ import '../partials/Overlay.js';
 
 TemplateController('MainLayout',{
 	onCreated(){
-		Session.set('Layout',true);
+		Session.set('shouldHeaderBeShown',true);
 	}
 });

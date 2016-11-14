@@ -1,5 +1,5 @@
 <template name="Header">
-  <nav class="{{#if $.Session.get 'Layout'}}app-layout{{/if}}">
+  <nav class="{{#if $.Session.get 'shouldHeaderBeShown'}}app-layout{{/if}}">
     <div class="nav-wrapper blue darken-3">
       <a href="{{pathFor route='memo.home'}}" class="brand-logo">{{title.name}}</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -16,7 +16,7 @@
           <a class="{{isActiveRoute 'about'}}" href="{{pathFor route='about'}}">About</a>
         </li>
       </ul>
-       <ul id="slide-out" class="side-nav  {{#if $.Session.get 'sideNav'}}sidenav-active {{else}} sidenav-inactive {{/if}}">
+       <ul id="slide-out" class="side-nav  {{#if $.Session.get 'isShrinkedSideNavShown'}}sidenav-active {{else}} sidenav-inactive {{/if}}">
           {{#if currentUser}}
             {{> NewMemoModal}}
             <li class="{{isActiveRoute 'memo.home'}}">
