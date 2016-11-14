@@ -4,30 +4,34 @@
 			{{#if isHovered}}
 		 		<div class="memo-tooltip center truncate">{{url}}</div>
 		 	{{/if}}
-        	  <div class="card-image">
+        	  <div class="card-image center">
+            {{#if thumbnailUrl}}
       			<img class="card-image-url" src="{{thumbnailUrl}}">
+            {{else}}
+              <i class="fa fa-file-text-o card-image-alt-icon" aria-hidden="true"></i>
+            {{/if}}
     		　 </div>
     		  <div class="card-content">
               {{#if isOwner}}
               	<i class="fa fa-close"></i>
               {{/if}}
     		  <div class="card-body">
-	              {{#if desc}}             
-              	  	<p class="truncate">
-				    	{{#if faviconUrl}}
-				    		<img class="favicon" src="{{faviconUrl}}" alt="">
-				    	{{/if}}			 
-              	  		{{name}}
+	            {{#if name}}             
+              	  <p class="truncate">
+    				    	{{#if faviconUrl}}
+    				    		<img class="favicon" src="{{faviconUrl}}" alt="">
+    				    	{{/if}}			 
+              	  {{name}}
               	  	</p>
-              	  {{else}}
-              	  	<p class="grey-text">No descriptions available</p>
-              	  {{/if}}
+              {{else}}
+              	  	<p class="grey-text">No title</p>
+              {{/if}}
               	  <a href="{{pathFor route='memo.detail'}}">more</a>
-              	  {{#if hasLabel}}
+              {{#if hasLabel}}
               	  <a href="{{pathFor route='label.detail'}}" class="btn amber darken-2 edit-btn">
 							{{label.name}}
               	  </a>
-              	  {{/if}}
+              {{/if}}
     		  </div>
             </div>
         </div>

@@ -180,6 +180,11 @@ legend{
 .card .card-action{
 	padding:10px;
 }
+.card-image-alt-icon{
+	font-size: 8em;
+    margin-top: 15px;
+    color: #999;
+}
 /*board form */
 .new-label{
 	position: relative;
