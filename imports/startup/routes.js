@@ -17,6 +17,17 @@ Router.configure({
   layoutTemplate: 'MainLayout'
 });
 
+Router.onBeforeAction(function () {
+
+  if (!Meteor.userId()) {
+    Router.go('home');
+  } else {
+    this.next();
+  }
+},{
+	only:['memo.home','memo.detail','memo.board','labeldetail']
+});
+
 Router.route('/home',function(){
 	this.layout('HomeLayout');
 	this.render('Home');
@@ -28,13 +39,6 @@ Router.route('/',function(){
 	this.render('Memos');
 },{
 	name:'memo.home',
-	onBeforeAction:function(){
-		if(!Meteor.user()){
-			Router.go('home');
-		}else{
-			this.next();
-		}
-	}
 });
 
 Router.route('/detail/:_id',function(){
@@ -43,13 +47,6 @@ Router.route('/detail/:_id',function(){
 	});
 },{
 	name:'memo.detail',
-	onBeforeAction:function(){
-		if(!Meteor.user()){
-			Router.go('home');
-		}else{
-			this.next();
-		}
-	}
 });
 
 Router.route('/about',function(){
@@ -62,13 +59,6 @@ Router.route('/board',function(){
 	this.render('Board');
 },{
 	name:'memo.board',
-	onBeforeAction:function(){
-		if(!Meteor.user()){
-			Router.go('home');
-		}else{
-			this.next();
-		}
-	}
 });
 
 Router.route('/label/:labelId', function(){
@@ -81,7 +71,10 @@ Router.route('/label/:labelId', function(){
 //account routing
 //Routes
 AccountsTemplates.configure({
-	defaultLayout:'HomeLayout'
+	defaultLayout:'HomeLayout',
+	onLogoutHook:function(){
+		Router.go('home');
+	},
 });
 AccountsTemplates.configureRoute('enrollAccount');
 AccountsTemplates.configureRoute('resetPwd');

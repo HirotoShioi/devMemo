@@ -5,7 +5,7 @@ import './NewMemoModal.js';
 TemplateController('SideNav',{
 	events:{
 		'click .logout'(){
-			Meteor.logout();
+			AccountsTemplates.logout();
 		},
 	}
 });
