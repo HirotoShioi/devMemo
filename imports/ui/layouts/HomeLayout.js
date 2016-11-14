@@ -10,6 +10,6 @@ import '../partials/Overlay.js';
 
 TemplateController('HomeLayout',{
 	onCreated(){
-		Session.set('Layout',false);
+		Session.set('shouldHeaderBeShownAtFullWindow',false);
 	},
 });

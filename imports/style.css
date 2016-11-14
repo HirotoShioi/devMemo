@@ -42,7 +42,7 @@ flex: 1 0 auto;
 nav .brand-logo{
 	padding: 0 15px;
 }
-@media (min-width: 991px) {
+@media (min-width: 992px) {
  .app-layout{
     display: none;
   }
