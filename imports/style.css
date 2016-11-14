@@ -297,3 +297,8 @@ td{
     background: #333;
     color: #fff;
 }
+/* detail */
+.card-detail-alt-icon{
+	font-size: 10em;
+    color: #999;
+}

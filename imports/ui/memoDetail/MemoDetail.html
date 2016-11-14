@@ -2,7 +2,11 @@
 	<div class="container about-content">
 		<div class="row">
 			<div class="center">
-				<img class="responsive-img memo-detail-image" src="{{memo.thumbnailUrl}}" alt="{{memo.desc}}">	
+				{{#if memo.thumbnailUrl}}
+					<img class="responsive-img memo-detail-image" src="{{memo.thumbnailUrl}}" alt="{{memo.desc}}">	
+				{{else}}
+					<i class="fa fa-file-text-o card-detail-alt-icon" aria-hidden="true"></i>
+				{{/if}}
 			</div>
 			<div class="col s12">
 				<h5>{{memo.name}}</h5>
