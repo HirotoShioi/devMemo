@@ -1,9 +1,7 @@
 <Template name="Memo">
 	<div class="col l3 m6 s12">
 		<div class="card hoverable">
-			{{#if isHovered}}
-		 		<div class="memo-tooltip center truncate">{{url}}</div>
-		 	{{/if}}
+		 		<div class="memo-tooltip center truncate {{#if isHovered}}tooltip-show{{/if}}">{{url}}</div>
         	  <div class="card-image center">
             {{#if thumbnailUrl}}
       			<img class="card-image-url" src="{{thumbnailUrl}}">
