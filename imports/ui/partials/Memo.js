@@ -59,6 +59,9 @@ TemplateController('Memo',{
 		},	
 		'click .card-image-url'(){
 			window.open(this.data.url);
+		},
+		'click .fa-share-square'(){
+			window.open(`https://twitter.com/intent/tweet?text=From my memo "${this.data.name}"&url=${this.data.url}`);
 		}
 	},
 });

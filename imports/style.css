@@ -202,7 +202,7 @@ legend{
 .card .card-option{
 	cursor: pointer;
 	font-size: 21px;
-	margin-right: 5px;
+	margin-right: 8px;
 	color:#777;
 }
 .card .fa-heart{
@@ -210,6 +210,12 @@ legend{
 }
 .card .fa-cog:hover{
 	color:#1565C0;
+}
+.card .fa-share-square:hover{
+	color:#26a69a;
+}
+.card .fa:hover{
+	transition: all .3s ease;
 }
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating){
 	margin-right: 0px;
