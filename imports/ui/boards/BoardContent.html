@@ -1,8 +1,8 @@
 <template name="BoardContent">
-		<section class="board {{#if _id}}board-editable{{else}} board-uneditable{{/if}}" id="">
+		<section class="board {{#if _id}}board-editable{{else}} board-uneditable{{/if}} z-depth-1" id="">
 			<div class="container">
 				<h4 class="header">
-					<span class="{{#if _id}}toggle-label-option{{/if}}">{{name}}</span>
+					<span class="{{#if _id}}toggle-label-option{{/if}} label-chip">{{name}}</span>
 					{{#if editMode}}
 						{{#afModal classes="fa fa-close remove-label" title="Delete Label" collection="Label" operation="remove" doc=_id fields="name" formId="deleteLabel"}}
 						{{/afModal}}
