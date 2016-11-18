@@ -4,7 +4,8 @@ import { Label } from '../../api/label.js';
 
 TemplateController('Memo',{
 	state:{
-		isHovered:false
+		isHovered:false,
+		shouldHeartHightlight:false,
 	},
 
 	onCreated(){
@@ -32,6 +33,9 @@ TemplateController('Memo',{
 		faviconUrl(){
 			return `http://www.google.com/s2/favicons?domain=${this.data.url}`;
 		},
+		shouldFavoriteHightlight(){
+			return ( this.state.shouldHeartHightlight || this.data.isFavorited );
+		},
 	},
 
 	events:{
@@ -44,6 +48,15 @@ TemplateController('Memo',{
 		'mouseout .card'(){
 			this.state.isHovered = false;
 		},
+		'mouseover .heart'(){
+			this.state.shouldHeartHightlight = true;
+		},
+		'mouseout .heart'(){
+			this.state.shouldHeartHightlight = false;
+		},	
+		'click .heart'(){
+			Meteor.call('updateFavorite', this.data);
+		},	
 		'click .card-image-url'(){
 			window.open(this.data.url);
 		}
