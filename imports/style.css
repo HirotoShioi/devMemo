@@ -72,7 +72,17 @@ nav .brand-logo{
 legend{
 	font-size: 2em;
 }
-
+.label-chip{
+    display: inline-block;
+    height: 46px;
+    font-size: 24px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 46px;
+    padding: 0 20px;
+    border-radius: 23px;
+    background-color: #e4e4e4;
+}
 /*Page Title */
 .page-title{
 	color:#fff;
@@ -186,6 +196,12 @@ legend{
     color: #999;
 }
 /*board form */
+.board{
+	padding:1em 0;
+}
+.add-label-content{
+	margin-bottom: 15px;
+}
 .new-label{
 	position: relative;
 }
