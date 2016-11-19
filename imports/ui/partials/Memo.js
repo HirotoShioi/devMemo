@@ -58,6 +58,7 @@ TemplateController('Memo',{
 			Meteor.call('updateFavorite', this.data);
 		},	
 		'click .card-image-url'(){
+			Meteor.call('memoUrlClicked', this.data);
 			window.open(this.data.url);
 		},
 		'click .fa-share-square'(){

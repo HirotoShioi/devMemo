@@ -56,6 +56,13 @@ Schemas.memos = new SimpleSchema({
 		label:"Tag",
 		optional:true
 	},
+	clicked:{
+		type:Number,
+		defaultValue:0,
+		autoform:{
+			type:"hidden"
+		},
+	},
 	labelId: {
     	type: String,
     	label:"Label",
@@ -108,6 +115,13 @@ Meteor.methods({
 			isFavorited = false;
 		}
 		Memos.update({_id:data._id},{$set:{isFavorited:!data.isFavorited}});
+	},
+	memoUrlClicked(data){
+		if(!data.clicked){
+			Memos.update({_id:data._id},{$set: {clicked:1}});
+		}else{
+			Memos.update({_id:data._id},{$inc: {clicked:1}});
+		}
 	},
 	addMemo(doc){
 		if(Meteor.isServer){
