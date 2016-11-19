@@ -43,10 +43,25 @@ Schemas.memos = new SimpleSchema({
 			type:"hidden"
 		}
 	},
+	isFavorited:{
+		type:Boolean,
+		optional:true,
+		defaultValue:false,
+		autoform:{
+			type:"hidden"
+		}
+	},
 	tags:{
 		type:String,
 		label:"Tag",
 		optional:true
+	},
+	clicked:{
+		type:Number,
+		defaultValue:0,
+		autoform:{
+			type:"hidden"
+		},
 	},
 	labelId: {
     	type: String,
@@ -63,9 +78,7 @@ Schemas.memos = new SimpleSchema({
 	},
 	createdAt:{
 		type:Date,
-		autoValue:function(){
-			return new Date();
-		},
+		optional:true,
 		autoform:{
 			type:"hidden"
 		}
@@ -96,6 +109,20 @@ Meteor.methods({
 	deleteMemo(id){
 		Memos.remove(id);
 	},
+	updateFavorite(data){
+		let isFavorited = data.isFavorited;
+		if(isFavorited === undefined){
+			isFavorited = false;
+		}
+		Memos.update({_id:data._id},{$set:{isFavorited:!data.isFavorited}});
+	},
+	memoUrlClicked(data){
+		if(!data.clicked){
+			Memos.update({_id:data._id},{$set: {clicked:1}});
+		}else{
+			Memos.update({_id:data._id},{$inc: {clicked:1}});
+		}
+	},
 	addMemo(doc){
 		if(Meteor.isServer){
 			const result = HTTP.call('GET',"https://api.embedly.com/1/oembed",{
@@ -111,7 +138,7 @@ Meteor.methods({
 				thumbnailUrl:data.thumbnail_url,
 				desc:data.description,
 				labelId:doc.labelId,
-				createdAt:new Date(),
+				createdAt: Date.now(),
 				owner: this.userId,
 				username:Meteor.userId(),
 			});

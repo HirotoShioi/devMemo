@@ -13,25 +13,32 @@
               {{#if isOwner}}
               	<i class="fa fa-close"></i>
               {{/if}}
-    		  <div class="card-body">
-	            {{#if name}}             
-              	  <p class="truncate">
-    				    	{{#if faviconUrl}}
-    				    		<img class="favicon" src="{{faviconUrl}}" alt="">
-    				    	{{/if}}			 
-              	  {{name}}
-              	  	</p>
-              {{else}}
-              	  	<p class="grey-text">No title</p>
-              {{/if}}
-              	  <a href="{{pathFor route='memo.detail'}}">more</a>
-              {{#if hasLabel}}
-              	  <a href="{{pathFor route='label.detail'}}" class="btn amber darken-2 edit-btn">
-							{{label.name}}
-              	  </a>
-              {{/if}}
-    		  </div>
-            </div>
+      		  <div class="card-body">
+  	            {{#if name}}             
+                	  <p class="truncate">
+      				    	{{#if faviconUrl}}
+      				    		<img class="favicon" src="{{faviconUrl}}" alt="">
+      				    	{{/if}}			 
+                	  {{name}}
+                	  	</p>
+                {{else}}
+                	  	<p class="grey-text">No title</p>
+                {{/if}}
+                	  <a href="{{pathFor route='memo.detail'}}">more</a>
+                {{#if hasLabel}}
+                	  <a href="{{pathFor route='label.detail'}}" class="chip edit-btn">
+  							{{label.name}}
+                	  </a>
+                {{/if}}
+      		  </div>
+          </div>
+          <div class="card-action">
+              {{#afModal title=name collection="Memos" operation="update" doc=_id fields="labelId" formId="updateMemo"}}
+                <i class="fa fa-cog card-option"></i>
+              {{/afModal}}
+              <i class="fa heart {{#if shouldFavoriteHightlight}}fa-heart{{ else }}fa-heart-o{{/if}}  card-option"></i>
+              <i class="fa fa-share-square card-option" aria-hidden="true"></i>
+          </div>
         </div>
 	</div>
 </Template>
