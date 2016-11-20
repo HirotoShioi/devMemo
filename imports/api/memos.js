@@ -110,7 +110,7 @@ Meteor.methods({
 		check(id, String);
 
 		const memo = Memos.findOne(id);
-		
+
 		if(this.userId !== memo.owner){
 			throw new Meteor.Error('not authorized');
 		}
@@ -128,6 +128,10 @@ Meteor.methods({
 	memoUrlClicked(doc){
 		check(doc, Object);
 
+		if(this.userId !== doc.owner){
+			throw new Meteor.Error("not authorized");
+		}
+		
 		if(!doc.clicked){
 			Memos.update({_id:doc._id},{$set: {clicked:1}});
 		}else{
