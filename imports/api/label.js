@@ -63,7 +63,7 @@ Meteor.methods({
 		if(!this.userId){
 			throw new Meteor.Error("not authorized");
 		}
-		
+
 		Label.insert({
 			name,
 			createdAt:new Date(),
@@ -76,7 +76,7 @@ Meteor.methods({
 		const label = Label.find({_id:id});
 
 		if(this.userId !== label.owner){
-			throw new Meteor.Error('not-authorized');
+			throw new Meteor.Error('not authorized');
 		}
 
 		Label.remove(id);

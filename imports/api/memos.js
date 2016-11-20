@@ -110,7 +110,7 @@ Meteor.methods({
 		check(id, String);
 
 		const memo = Memos.findOne(id);
-		console.log(memo);
+		
 		if(this.userId !== memo.owner){
 			throw new Meteor.Error('not authorized');
 		}
