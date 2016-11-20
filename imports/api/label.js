@@ -73,7 +73,7 @@ Meteor.methods({
 	},
 	'removeLabel'(id){
 		check(id,String);
-		const label = Label.find({_id:id});
+		const label = Label.findOne(id);
 
 		if(this.userId !== label.owner){
 			throw new Meteor.Error('not authorized');
