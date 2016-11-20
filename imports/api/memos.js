@@ -1,7 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import { HTTP } from 'meteor/http';
-
+import { check } from 'meteor/check';
 import { Label } from './label.js';
 
 export const Memos = new Mongo.Collection('memos');
@@ -107,23 +107,40 @@ Memos.attachSchema(Schemas.memos);
 //Methods
 Meteor.methods({
 	deleteMemo(id){
+		check(id, String);
+
+		const memo = Memos.findOne(id);
+		console.log(memo);
+		if(this.userId !== memo.owner){
+			throw new Meteor.Error('not authorized');
+		}
 		Memos.remove(id);
 	},
-	updateFavorite(data){
-		let isFavorited = data.isFavorited;
+	updateFavorite(doc){
+		check(doc, Object);
+
+		let isFavorited = doc.isFavorited;
 		if(isFavorited === undefined){
 			isFavorited = false;
 		}
-		Memos.update({_id:data._id},{$set:{isFavorited:!data.isFavorited}});
+		Memos.update({_id:doc._id},{$set:{isFavorited:!doc.isFavorited}});
 	},
-	memoUrlClicked(data){
-		if(!data.clicked){
-			Memos.update({_id:data._id},{$set: {clicked:1}});
+	memoUrlClicked(doc){
+		check(doc, Object);
+
+		if(!doc.clicked){
+			Memos.update({_id:doc._id},{$set: {clicked:1}});
 		}else{
-			Memos.update({_id:data._id},{$inc: {clicked:1}});
+			Memos.update({_id:doc._id},{$inc: {clicked:1}});
 		}
 	},
 	addMemo(doc){
+		check(doc, Object);
+
+		if(!this.userId){
+			throw new Meteor.Error('not authorized');
+		}
+
 		if(Meteor.isServer){
 			const result = HTTP.call('GET',"https://api.embedly.com/1/oembed",{
 				params:{
