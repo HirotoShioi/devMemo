@@ -17,5 +17,13 @@ TemplateController('SearchBar',{
 				return Memos.find({$or:[{name:regex},{description:regex}]}).fetch();
 			}
 		}
+	},
+	events:{
+		'mouseover .search-nav-bar'(){
+			Session.set('isHoveringSearchBar',true);
+		},
+		'mouseout .search-nav-bar'(){
+			Session.set('isHoveringSearchBar',false);
+		},
 	}
 });

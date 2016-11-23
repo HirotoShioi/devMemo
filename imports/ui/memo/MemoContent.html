@@ -1,0 +1,13 @@
+<template name="MemoContent">
+ 	{{#if $.Session.get 'ListMode'}}
+		{{> List memos=memos}}
+ 	{{else}}
+		 <div class="row">
+			 	{{#each memos}}
+			 		{{> Memo}}
+			 	{{else}}
+			 		<h3>No Memo Available!</h3>
+			 	{{/each}}
+		 </div>
+ 	{{/if}}
+</template>

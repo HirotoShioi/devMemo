@@ -42,11 +42,9 @@ Meteor.publish('searchMemo',function(search){
       projection = { limit: 10, sort: { createdAt: -1 } };
 
   if ( search ) {
-    let regex = new RegExp( search, 'i' );
-    console.log(regex);
+    const regex = new RegExp( search, 'i' );
     projection.limit = 10;
-    return Memos.find({name:search},projection);
+    return Memos.find({owner:this.userId, name:regex},projection);
   }
 
-  //return Memos.find( query, projection );
 });

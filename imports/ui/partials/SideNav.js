@@ -18,7 +18,9 @@ TemplateController('SideNav',{
 			Session.set('searchQuery', value);
 		},
 		'focusout [name="search"]'(event){
-			Session.set('isSearching', false);
+			if(!Session.get('isHoveringSearchBar')){
+				Session.set('isSearching', false);
+			}
 		},
 		'focus [name="search"]'(event){
 			if(Session.get('searchQuery')){

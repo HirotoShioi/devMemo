@@ -384,13 +384,15 @@ td{
 .search-nav-bar{
 	will-change:transform;
     position: fixed;
-    height: calc(100% + 60px);
+    height: calc(100%);
     background: #fefefe;
     z-index: 990;
     border-right: 1px solid #ddd;
     visibility: hidden;
-    overflow-y:scroll;
     overflow-x: hidden;
+}
+.search-result{
+	overflow-y:scroll;
 }
 .search-bar-show{
 	left: 240px;
@@ -413,6 +415,12 @@ td{
 .search-bar-item-img{
 	width: 50%;
 }
+.search-item .chip{
+	font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 1em;
+}
 .collection{
 	border:none;
 	margin:0;
@@ -424,14 +432,17 @@ td{
 	background-color: rgba(0,0,0,0.05);
 	cursor: pointer;
 }
+.collection .collection-item.avatar .title {
+    font-size: 14px;
+}
 .not-found{
-	    display: flex;
+	display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
     top: 100px;
-    height: calc(100% - 60px);
+    height: 100%;
     bottom: 0;
     right: 0;
     z-index: 2000;
