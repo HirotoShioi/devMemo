@@ -7,6 +7,7 @@ import '../partials/Header.js';
 import '../partials/SideNav.js';
 import '../partials/PageTitle.js';
 import '../partials/Overlay.js';
+import '../partials/SearchBar/SearchBar.js';
 
 TemplateController('MainLayout',{
 	onCreated(){

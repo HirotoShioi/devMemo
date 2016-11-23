@@ -6,6 +6,11 @@
 			</li>
 		      	{{#if currentUser}}
 		      	{{> NewMemoModal}}
+		      		<li class="search">
+		      			<div class="search-wrapper card">
+		      				<input type="text" name="search" id="search" placeholder="Search...">
+		      			</div>
+		      		</li>
 			      	<li class="{{isActiveRoute 'memo.home'}}">
 			      		<a href="{{pathFor route='memo.home'}}" class="waves-effect {{isActiveRoute 'memo.home'}}">Memos</a>
 			      	</li>

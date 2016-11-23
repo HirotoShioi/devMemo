@@ -258,6 +258,32 @@ footer.page-footer{
 }
 
 /* sideNav */
+.side-nav a.btn.addMemoModal{
+	margin-bottom: 70px;
+}
+li.search{
+	position: absolute;
+    left: 0;
+    right: 0;
+    top: 150px;
+    margin-top: 1px;
+    padding: 1px 0 0 0;
+    z-index: 2;
+}
+input#search{
+	display: block;
+    font-size: 16px;
+    font-weight: 300;
+    width: 100%;
+    height: 45px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.search-wrapper{
+	margin: 0 16px;
+    transition: margin .25s ease;
+}
 .logout{
 	text-decoration: underline;
 	font-weight: 400;
@@ -352,4 +378,69 @@ td{
 .card-detail-alt-icon{
 	font-size: 10em;
     color: #999;
+}
+
+/* Search Nav bar */
+.search-nav-bar{
+	will-change:transform;
+    position: fixed;
+    height: calc(100% + 60px);
+    background: #fefefe;
+    z-index: 990;
+    border-right: 1px solid #ddd;
+    visibility: hidden;
+    overflow-y:scroll;
+    overflow-x: hidden;
+}
+.search-bar-show{
+	left: 240px;
+	width: 260px;
+	visibility: visible;
+    transition: all 0.2s ease;
+}
+.search-bar-hidden{
+	left: 0px;
+	width: 240px;
+	visibility: hidden;
+	transition: all 0.2s ease;
+}
+.search-nav-bar h5{
+    padding: 10px 12px;
+    background: #ddd;
+    margin: 0px;
+    font-size: 1.24em;
+}
+.search-bar-item-img{
+	width: 50%;
+}
+.collection{
+	border:none;
+	margin:0;
+}
+.collection .collection-item{
+	border:none;
+}
+.collection .collection-item:hover{
+	background-color: rgba(0,0,0,0.05);
+	cursor: pointer;
+}
+.not-found{
+	    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    top: 100px;
+    height: calc(100% - 60px);
+    bottom: 0;
+    right: 0;
+    z-index: 2000;
+    left: 0;
+    color: #777;
+}
+.not-found .fa-search{
+	font-size: 4em;
+}
+.not-found h4{
+	font-size: 1.6em;
 }

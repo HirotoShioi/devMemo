@@ -1,0 +1,17 @@
+<template name="SearchBar">
+	<div id="search-bar" class="search-nav-bar {{#if $.Session.get 'isSearching'}}search-bar-show {{else}}search-bar-hidden{{/if}}">
+		<h5>Search Result</h5>
+		<ul class="collection">
+		{{#each searchedMemos}}
+			{{> SearchBarItem}}
+		{{/each}}
+		</ul>
+		{{#if searchedMemos}}
+		{{else}}
+			<div class="not-found">
+				<i class="fa fa-search"></i>
+				<h4>No results found</h4>
+			</div>
+		{{/if}}
+	</div>
+</template>

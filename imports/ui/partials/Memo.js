@@ -13,12 +13,6 @@ TemplateController('Memo',{
 			this.subscribe('label');
 		});
 	},
-	onRendered(){
-		$('.tooltipped').tooltip({delay: 50});
-	},
-	onDestroyed(){
-		$('.tooltipped').tooltip('remove');
-	},
 
 	helpers:{
 		isHovered(){
