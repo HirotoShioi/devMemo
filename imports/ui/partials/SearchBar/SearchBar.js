@@ -16,6 +16,9 @@ TemplateController('SearchBar',{
 			if(search){
 				return Memos.find({$or:[{name:regex},{description:regex}]}).fetch();
 			}
+		},
+		shouldSearchBarShow(){
+			return Session.get('isSearching');
 		}
 	},
 	events:{

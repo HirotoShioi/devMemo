@@ -391,6 +391,12 @@ td{
     visibility: hidden;
     overflow-x: hidden;
 }
+@media (max-width: 992px) {
+  .search-nav-bar {
+    display: none;
+    left:0px;
+  }
+}
 .search-result{
 	overflow-y:scroll;
 }
