@@ -16,7 +16,7 @@ TemplateController('MainLayout',{
 
 	helpers:{
 		shouldSearchBarShow(){
-			if(rwindow.outerWidth() <= 992){
+			if(rwindow.$width() <= 992){
 				Session.set('isSearching',false);
 				return false;
 			}else{

@@ -5,7 +5,7 @@ import './Overlay.html';
 TemplateController('Overlay',{
 	helpers:{
 		shouldOverlayShow(){
-			if(rwindow.outerWidth() >= 992 && Session.get('isShrinkedSideNavShown') == true){
+			if(rwindow.$width() >= 992){
 				Session.set('isShrinkedSideNavShown',false);
 			}
 			return Session.get('isShrinkedSideNavShown');
