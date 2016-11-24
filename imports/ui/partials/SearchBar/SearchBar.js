@@ -5,7 +5,7 @@ import { Memos } from '../../../api/memos.js';
 TemplateController('SearchBar',{
 	onCreated(){
 		this.autorun(()=>{
-			this.subscribe('searchMemo',Session.get('searchQuery'));
+			this.subscribe('memos',Session.get('searchQuery'));//for search query!
 		});
 	},
 	helpers:{
