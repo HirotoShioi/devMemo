@@ -20,7 +20,7 @@ TemplateController('MainLayout',{
 				Session.set('isShrinkedSideNavShown',false);
 				Session.set('isSearchNavShown',false);
 			}
-			if(rwindow.$width() <= 992 || Meteor.userId()){
+			if(rwindow.$width() <= 992 && Meteor.userId() === true){
 				Session.set('isSearching',false);
 				return false;
 			}else{
