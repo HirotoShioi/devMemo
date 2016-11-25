@@ -16,6 +16,10 @@ TemplateController('MainLayout',{
 
 	helpers:{
 		shouldSearchBarShow(){
+			if(rwindow.$width() >= 992){
+				Session.set('isShrinkedSideNavShown',false);
+				Session.set('isSearchNavShown',false);
+			}
 			if(rwindow.$width() <= 992){
 				Session.set('isSearching',false);
 				return false;

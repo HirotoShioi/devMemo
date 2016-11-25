@@ -5,15 +5,17 @@ import './Overlay.html';
 TemplateController('Overlay',{
 	helpers:{
 		shouldOverlayShow(){
-			if(rwindow.$width() >= 992){
-				Session.set('isShrinkedSideNavShown',false);
+			if(Session.get('isShrinkedSideNavShown') || Session.get('isSearchNavShown')){
+				return true;
+			}else{
+				return false;
 			}
-			return Session.get('isShrinkedSideNavShown');
 		},
 	},
 	events:{
 		'click .overlay-show'(){
 			Session.set('isShrinkedSideNavShown',false);
+			Session.set('isSearchNavShown',false);
 		},
 	},
 });
