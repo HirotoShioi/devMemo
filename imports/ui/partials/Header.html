@@ -1,6 +1,12 @@
 <template name="Header">
+  {{#if currentUser}}
+    {{> SearchNavBar}}
+  {{/if}}
   <nav class="{{#if $.Session.get 'shouldHeaderBeShownAtFullWindow'}}app-layout{{/if}}">
     <div class="nav-wrapper blue darken-3">
+      {{#if currentUser}}
+        <i class="nav-icon fa fa-search right"></i>
+      {{/if}}
       <a href="{{pathFor route='memo.home'}}" class="brand-logo">{{title.name}}</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li>{{> atNavButton }}</li>

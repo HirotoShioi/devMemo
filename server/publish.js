@@ -1,11 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Memos } from '../imports/api/memos.js';
 import { Label } from '../imports/api/label.js';
-
-//Memos Publication
-Meteor.publish('memos',function(){
-	return Memos.find({owner:this.userId});
-});
+import { check, Match } from 'meteor/check';
 
 Meteor.publish('singleMemo',function(id){
 	return Memos.find({_id:id});
@@ -32,4 +28,18 @@ Meteor.publishComposite('labelWithMemos',{
 			}
 		},
 	]
+});
+
+//Memo publication with query options
+Meteor.publish('memos',function(search){
+  check( search, Match.OneOf( String, null, undefined ) );
+
+  let query      = { owner:this.userId },
+      projection = { limit: 100, sort: { createdAt: -1 } };
+
+  if ( search ) {
+    const regex = new RegExp( search, 'i' );
+    query.name = regex;
+  }
+  return Memos.find(query,projection);
 });

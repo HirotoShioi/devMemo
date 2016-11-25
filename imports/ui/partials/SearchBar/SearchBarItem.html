@@ -1,0 +1,13 @@
+<template name="SearchBarItem">
+    <li class="collection-item avatar search-item">
+    	{{#if thumbnailUrl}}
+      		<img src="{{thumbnailUrl}}" alt="" class="circle">
+      	{{else}}
+			<i class="fa fa-file-text-o circle" aria-hidden="true"></i>
+      	{{/if}}
+      <span class="title">{{name}}</span>
+      <p>
+      	<span class="chip">{{label.name}}</span>
+      </p>
+    </li>
+</template>

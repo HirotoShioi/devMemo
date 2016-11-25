@@ -1,6 +1,9 @@
 <template name="MainLayout">
 	{{> autoformModals}}
 	{{> SideNav}}
+	{{#if shouldSearchBarShow}}
+		{{> SearchBar}}
+	{{/if}}
 	{{> Header}}
 		<main class="main-layout">
 				{{> PageTitle}}

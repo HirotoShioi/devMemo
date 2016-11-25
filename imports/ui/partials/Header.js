@@ -1,6 +1,6 @@
 import './Header.html';
 import { TemplateController } from 'meteor/space:template-controller';
-
+import './SearchBar/SearchNavBar.js';
 TemplateController('Header',{
 	helpers:{
 		title(){
@@ -18,5 +18,9 @@ TemplateController('Header',{
 		'click .logout'(){
 			AccountsTemplates.logout();
 		},
+		'click .fa-search'(){
+			Session.set('searchQuery','');
+			Session.set('isSearchNavShown',true);
+		}
 	}
 });
