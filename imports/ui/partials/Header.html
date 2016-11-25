@@ -1,5 +1,7 @@
 <template name="Header">
-  {{> SearchNavBar}}
+  {{#if currentUser}}
+    {{> SearchNavBar}}
+  {{/if}}
   <nav class="{{#if $.Session.get 'shouldHeaderBeShownAtFullWindow'}}app-layout{{/if}}">
     <div class="nav-wrapper blue darken-3">
       {{#if currentUser}}
