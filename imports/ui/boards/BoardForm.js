@@ -4,28 +4,15 @@ import { Label } from '../../api/label.js';
 
 TemplateController('BoardForm',{
 	state:{
-		addLabel:false,
 	},
 
 	onCreated(){
-		this.autorun(()=>{
-			this.subscribe('categories');
-		});
 	},
 
 	helpers:{
-		addLabel(){
-			return this.state.addLabel;
-		},
 	},
 
 	events:{
-		'click .label-form-show'(){
-			this.state.addLabel = true;
-		},
-		'click .label-form-hide'(){
-			this.state.addLabel = false;
-		},
 		'submit .new-label'(event){
 		    // Prevent default browser form submit
 		    event.preventDefault();
@@ -44,7 +31,6 @@ TemplateController('BoardForm',{
 		    
 		    // Clear form
 	    	target.label.value = '';
-	    	this.state.addLabel = false;
 		}
 	}
 });

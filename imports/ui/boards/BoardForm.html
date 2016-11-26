@@ -1,20 +1,24 @@
 <template name="BoardForm">
-	{{#if addLabel}}
 		<div class="row">
-		    <form class="col m7 s12 new-label">
-		      <i class="fa fa-close label-form-hide"></i>
+		    <form class="col m12 s12 new-label">
 		      <div class="row">
-		        <div class="input-field col s7 m8">
+		        <div class="input-field col s5 m5">
 		          <input name="label" id="icon_prefix" type="text" class="validate">
 		          <label for="icon_prefix">New Label</label>
 		        </div>
-		        <div class="input-field col s5 m4">
+		        <div class="input-field col s5 m3">
+		        	<div class="color-btn z-depth-1 hoverable">
+		        		<div class="color-box z-depth-1 hoverable"></div>
+		        		<input type="text" class="search inline" value="#dedede" name="color">
+		        	</div>
+		        	<div class="color-select-box z-depth-1">
+		        		
+		        	</div>
+		        </div>
+		        <div class="input-field col s3 m4">
 		        	<input type="submit" class="btn category-submit">
 		        </div>
 		      </div>
 		    </form>
 		 </div>
-	{{else}}
-		<button class="waves-effect btn label-form-show">Add Label</button>
-	{{/if}}
 </template>
