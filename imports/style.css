@@ -136,11 +136,11 @@ legend{
 }
 .label-chip{
     display: inline-block;
-    height: 46px;
-    font-size: 24px;
+    height: 40px;
+    font-size: 20px;
     font-weight: 500;
     color: rgba(0, 0, 0, 0.6);
-    line-height: 46px;
+    line-height: 40px;
     padding: 0 20px;
     border-radius: 23px;
     background-color: #e4e4e4;
