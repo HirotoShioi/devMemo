@@ -60,6 +60,7 @@ nav .brand-logo{
 	 display: inline-block;
 	 min-width: 135px;
 	 max-width: 160px;
+	 cursor: pointer;
 }
 .color-box{
     float: left;
@@ -98,6 +99,21 @@ nav .brand-logo{
 }
 .color-select-box:hover{
 	background-color: #fefefe;
+}
+.color-chooser{
+	display: table-row;
+    height: 25px;
+    list-style: none;
+}
+.color-chooser li{
+	display: table-cell;
+}
+.color-chooser-color{
+	display: block;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    cursor: pointer;
 }
 .board-uneditable h4{
 	color:#ff6f00;

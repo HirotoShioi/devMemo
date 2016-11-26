@@ -8,12 +8,23 @@
 		        </div>
 		        <div class="input-field col s5 m3">
 		        	<div class="color-btn z-depth-1 hoverable">
-		        		<div class="color-box z-depth-1 hoverable"></div>
-		        		<input type="text" class="search inline" value="#dedede" name="color">
+		        		<div class="color-box z-depth-1 hoverable" style="background-color:{{selectedColor}}"></div>
+		        		<input type="text" class="search inline" value="{{selectedColor}}" name="color">
 		        	</div>
+		        	{{#if shouldColorPaletteShow}}
 		        	<div class="color-select-box z-depth-1">
-		        		
+		        		<ul class="color-chooser">
+		        			{{#each labelColorsFirst}}
+		        				<li class="color-chooser-color" style="background-color:{{value}}" data="{{value}}"></li>
+		        			{{/each}}
+		        		</ul>
+		        		<ul class="color-chooser">
+		        			{{#each labelColorsSecond}}
+		        				<li class="color-chooser-color" style="background-color:{{value}}" data="{{value}}"></li>
+		        			{{/each}}
+		        		</ul>
 		        	</div>
+		        	{{/if}}
 		        </div>
 		        <div class="input-field col s3 m4">
 		        	<input type="submit" class="btn category-submit">
