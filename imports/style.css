@@ -49,6 +49,12 @@ nav .brand-logo{
   }
 }
 /* board*/
+.board{
+	padding:1px 0;
+}
+.board .row{
+	margin-bottom: 0px;
+}
 .board-editable h4{
 	color:#0d47a1;
 	cursor: pointer;
@@ -283,9 +289,6 @@ legend{
 	margin-right: 0px;
 }
 /*board form */
-.board{
-	padding:1em 0;
-}
 .add-label-content{
 	margin-bottom: 15px;
 }
