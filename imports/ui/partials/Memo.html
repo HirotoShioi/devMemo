@@ -26,8 +26,8 @@
                 {{/if}}
                 	  <a href="{{pathFor route='memo.detail'}}">more</a>
                 {{#if hasLabel}}
-                	  <a href="{{pathFor route='label.detail'}}" class="chip edit-btn">
-  							{{label.name}}
+                	  <a href="{{pathFor route='label.detail'}}" class="chip edit-btn" style="background-color:{{label.color}}">
+  							       {{label.name}}
                 	  </a>
                 {{/if}}
       		  </div>
