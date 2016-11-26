@@ -29,7 +29,8 @@ Schemas.label = new SimpleSchema({
 	color:{
 		type:String,
 		optional:true,
-		defaultValue:"e4e4e4",
+		defaultValue:"#e4e4e4",
+		regEx:/^#([0-9a-f]{6}|[0-9a-f]{3})$/i,
 	},
 	createdAt:{
 		type:Date,

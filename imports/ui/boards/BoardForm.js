@@ -7,13 +7,13 @@ TemplateController('BoardForm',{
 		shouldColorPaletteShow:false,
 		selectedColor:"#e4e4e4",
 		labelColorsFirst:[
-			{value:"#ffcdd2"},
-			{value:"#f8bbd0"},
-			{value:"#e1bee7"},
-			{value:"#d1c4e9"},
-			{value:"#c5cae9"},
-			{value:"#bbdefb"},
-			{value:"#b3e5fc"},
+			{value:"#ff5252"},
+			{value:"#ff4081"},
+			{value:"#e040fb"},
+			{value:"#b388ff"},
+			{value:"#8c9eff"},
+			{value:"#82b1ff"},
+			{value:"#40c4ff"},
 		],
 		labelColorsSecond:[
 			{value:"#40c4ff"},
@@ -49,6 +49,12 @@ TemplateController('BoardForm',{
 		    // Get value from form element
 		    const target = event.target;
 		    const labelName = target.label.value;
+
+		    const colorRegExp = /^#([0-9a-f]{6}|[0-9a-f]{3})$/i;
+		    if(!colorRegExp.test(this.state.selectedColor)){
+		    	Bert.alert("Invalid Color", 'danger', 'growl-top-right');
+		    	return;
+		    }
 		    const labelObj = {
 		    	label:labelName,
 		    	color:this.state.selectedColor
@@ -72,6 +78,10 @@ TemplateController('BoardForm',{
 		},
 		'click .color-btn'(){
 			this.state.shouldColorPaletteShow = true;
+		},
+		'keyup [name="color"]'(event){
+			let value = event.target.value.trim();
+			this.state.selectedColor = value;
 		},
 	}
 });
