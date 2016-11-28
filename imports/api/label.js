@@ -24,7 +24,7 @@ Schemas.label = new SimpleSchema({
 	name:{
 		type:String,
 		label:"name",
-		max:20
+		max:15,
 	},
 	color:{
 		type:String,

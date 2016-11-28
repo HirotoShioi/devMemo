@@ -70,6 +70,7 @@ TemplateController('BoardForm',{
 		    
 		    // Clear form
 	    	target.label.value = '';
+	    	this.state.selectedColor = "#e4e4e4";
 		},
 		'click .color-chooser-color'(event){
 			const selectedColor = event.target.attributes.data.value;
