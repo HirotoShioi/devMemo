@@ -10,6 +10,7 @@ TemplateController('Memo',{
 		shouldExpireProgressbarShow:true,
 		progressBarColor:'over-75',
 		progressRate:0,
+		isMemoExpired:false,
 	},
 
 	onCreated(){
@@ -43,6 +44,9 @@ TemplateController('Memo',{
 		progressBarColor(){
 			return this.state.progressBarColor;
 		},
+		isMemoExpired(){
+			return this.state.isMemoExpired;
+		},
 		expireStatus(){
 			const expireDate = moment(this.data.expiredAt);
 			const today = moment().format();
@@ -54,8 +58,9 @@ TemplateController('Memo',{
 			if(progressRate > 100){
 				progressRate = 100;
 			}
-			if(progressRate < 0){
+			if(progressRate <= 0){
 				progressRate = 0;
+				this.state.isMemoExpired = true;
 			}
 
 			if(progressRate >= 75){
@@ -89,14 +94,21 @@ TemplateController('Memo',{
 		},	
 		'click .heart'(){
 			this.state.shouldExpireProgressbarShow = !this.state.shouldExpireProgressbarShow;
+			this.state.isMemoExpired = false;
 			Meteor.call('updateFavorite', this.data);
 		},	
 		'click .card-image-url'(){
 			Meteor.call('memoUrlClicked', this.data);
+			this.state.isMemoExpired = false;
 			window.open(this.data.url);
+		},
+		'click .expired-memo-icon'(){
+			Meteor.call('memoUrlClicked', this.data);
+			this.state.isMemoExpired = false;
 		},
 		'click .card-image-alt-icon'(){
 			Meteor.call('memoUrlClicked', this.data);
+			this.state.isMemoExpired = false;
 			window.open(this.data.url);
 		},
 		'click .fa-share-square'(){
