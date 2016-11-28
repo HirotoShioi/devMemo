@@ -1,11 +1,15 @@
 import './Memo.html';
 import { TemplateController } from 'meteor/space:template-controller';
 import { Label } from '../../api/label.js';
+import { moment } from 'meteor/momentjs:moment';
 
 TemplateController('Memo',{
 	state:{
 		isHovered:false,
 		shouldHeartHightlight:false,
+		shouldExpireProgressbarShow:true,
+		progressBarColor:'over-75',
+		progressRate:0,
 	},
 
 	onCreated(){
@@ -17,6 +21,12 @@ TemplateController('Memo',{
 	helpers:{
 		isHovered(){
 			return this.state.isHovered;
+		},
+		shouldExpireProgressbarShow(){
+			if(this.data.isFavorited == true){
+				this.state.shouldExpireProgressbarShow = false;
+			}
+			return this.state.shouldExpireProgressbarShow;
 		},
 		isOwner(){
 			return (Meteor.userId() === this.data.owner);
@@ -30,6 +40,35 @@ TemplateController('Memo',{
 		shouldFavoriteHightlight(){
 			return ( this.state.shouldHeartHightlight || this.data.isFavorited );
 		},
+		progressBarColor(){
+			return this.state.progressBarColor;
+		},
+		expireStatus(){
+			const expireDate = moment(this.data.expiredAt);
+			const today = moment().format();
+			const progress = expireDate.diff(today, 'hours');
+			const expireLimit = 7*24;
+			let progressRate = this.state.progressRate;
+			progressRate = Math.floor((progress / expireLimit) * 100);
+
+			if(progressRate > 100){
+				progressRate = 100;
+			}
+			if(progressRate < 0){
+				progressRate = 0;
+			}
+
+			if(progressRate >= 75){
+				this.state.progressBarColor = 'over-75';
+			}else if(progressRate >= 50){
+				this.state.progressBarColor = 'over-50';
+			}else if(progressRate >= 25){
+				this.state.progressBarColor = 'over-25';
+			}else{
+				this.state.progressBarColor = 'over-0';
+			}
+			return progressRate;
+		}
 	},
 
 	events:{
@@ -49,6 +88,7 @@ TemplateController('Memo',{
 			this.state.shouldHeartHightlight = false;
 		},	
 		'click .heart'(){
+			this.state.shouldExpireProgressbarShow = !this.state.shouldExpireProgressbarShow;
 			Meteor.call('updateFavorite', this.data);
 		},	
 		'click .card-image-url'(){
