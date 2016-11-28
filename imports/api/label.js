@@ -4,15 +4,15 @@ import { check } from 'meteor/check';
 
 import { Memos } from './memos.js';
 
-export const Status = new Mongo.Collection('status');
+export const Label = new Mongo.Collection('Label');
 
-Status.allow({
+Label.allow({
 	update:function(userId,doc){
 		return !!userId;
 	},
 	remove:function(userId,doc){
-		Memos.update({statusId:doc._id},{
-			$unset:{statusId:""}
+		Memos.update({labelId:doc._id},{
+			$unset:{labelId:""}
 		},{multi:true});
 		return !!userId;
 	}
@@ -20,11 +20,17 @@ Status.allow({
 
 var Schemas = {};
 
-Schemas.status = new SimpleSchema({
+Schemas.label = new SimpleSchema({
 	name:{
 		type:String,
 		label:"name",
-		max:20
+		max:15,
+	},
+	color:{
+		type:String,
+		optional:true,
+		defaultValue:"#e4e4e4",
+		regEx:/^#([0-9a-f]{6}|[0-9a-f]{3})$/i,
 	},
 	createdAt:{
 		type:Date,
@@ -52,34 +58,44 @@ Schemas.status = new SimpleSchema({
 		autoform:{
 			type:"hidden"
 		}
-	}
+	},
 });
 
-Status.attachSchema(Schemas.status);
+Label.attachSchema(Schemas.label);
 Meteor.methods({
-	'addStatus'(name){
-		check(name,String);
+	'addLabel'(labelObj){
+		check(labelObj , Object);
 
-		Status.insert({
-			name,
+		if(!this.userId){
+			throw new Meteor.Error("not authorized");
+		}
+
+		Label.insert({
+			name:labelObj.label,
+			color:labelObj.color,
 			createdAt:new Date(),
 			owner: Meteor.userId(),
 			username: Meteor.user().username
 		});
 	},
-	'removeStatus'(id){
+	'removeLabel'(id){
 		check(id,String);
+		const label = Label.findOne(id);
 
-		Status.remove(id);
-		Memos.update({statusId:id},
+		if(this.userId !== label.owner){
+			throw new Meteor.Error('not authorized');
+		}
+
+		Label.remove(id);
+		Memos.update({labelId:id},
 		{
-			$unset:{statusId:""}
+			$unset:{labelId:""}
 		});
 	}
 });
 
-Status.helpers({
+Label.helpers({
 	memos(){
-		return Memos.find({statusId:this._id});
+		return Memos.find({labelId:this._id});
 	},
 });

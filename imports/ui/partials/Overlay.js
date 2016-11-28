@@ -1,9 +1,21 @@
-import { Template } from 'meteor/templating';
-
+import { TemplateController } from 'meteor/space:template-controller';
+import { rwindow } from 'meteor/gadicohen:reactive-window';
 import './Overlay.html';
 
-Template.Overlay.events({
-	'click .overlay-show'(){
-		Session.set('sideNav',false);
-	}
+TemplateController('Overlay',{
+	helpers:{
+		shouldOverlayShow(){
+			if(Session.get('isShrinkedSideNavShown') || Session.get('isSearchNavShown')){
+				return true;
+			}else{
+				return false;
+			}
+		},
+	},
+	events:{
+		'click .overlay-show'(){
+			Session.set('isShrinkedSideNavShown',false);
+			Session.set('isSearchNavShown',false);
+		},
+	},
 });

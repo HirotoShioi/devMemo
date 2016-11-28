@@ -1,20 +1,30 @@
 import './MemoDetail.html';
-import { Template } from 'meteor/templating';
-
+import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../api/memos.js';
 
-Template.MemoDetail.onCreated(function(){
- 	const self = this;
- 	self.autorun(function(){
- 		const id = Template.instance().data._id;
- 		self.subscribe('singleMemo',id);
- 		Session.set('Title',Memos.findOne({_id:id},{fields:{'name':1}}));
- 	});
-});
+TemplateController('MemoDetail',{
+	state:{
+		memos: '',
+	},
 
-Template.MemoDetail.helpers({
-	memo:()=>{
-		const id = Template.instance().data._id;
-		return Memos.findOne({_id:id});
-	}
+	onCreated(){
+	 	this.autorun(()=>{
+	 		this.subscribe('singleMemo',this.data._id);
+	 		this.state.memos = Memos.findOne({_id:this.data._id});
+	 	});
+	 	Session.set('Title',{name:"Detail"});
+	},
+
+	helpers:{
+		memo(){
+			return this.state.memos;
+		},
+	},
+
+	events:{
+		'click .memo-detail-url'(){
+			window.open(this.state.memos.url,'_blank');
+			return false;
+		}
+	},
 });

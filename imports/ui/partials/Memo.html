@@ -1,31 +1,47 @@
 <Template name="Memo">
-		<div class="col l4 m6 s12">
-		 	<div class="card hoverable">
-	 		    {{#afModal classes="waves-effect btn amber darken-2 edit-btn" title=name collection="Memos" operation="update" doc=_id fields="statusId" formId="updateMemo"}}
-	 		    	{{#if status.name}}
-							{{status.name}}
-					{{else}}
-							None
-					{{/if}}
-				{{/afModal}}
-	            <div class="card-content">
-	            	  <img class="memo-favicon" src="http://www.google.com/s2/favicons?domain={{url}}" alt="">
-		              <span class="card-title">
-		              	<span class="card-title-text truncate activator">{{name}}</span>
-		              	{{#if isOwner}}
-		              		<i class="fa fa-close"></i>
-		              	{{/if}}
-		              </span>
-		              {{#if desc}}
-	              	  	<p class="truncate">{{desc}}</p>
-	              	  {{else}}
-	              	  	<p class="grey-text">No descriptions available</p>
-	              	  {{/if}}
-	              	   <a href="{{pathFor route='memo.detail'}}">details</a>
-	            </div>
-	            <div class="card-action ">
-	              <a href="{{url}}" class="truncate blue-text">{{url}}</a>
-	            </div>
-	        </div>
-		</div>
+	<div class="col l3 m6 s12">
+		<div class="card hoverable">
+		 		<div class="memo-tooltip center truncate {{#if isHovered}}tooltip-show{{/if}}">{{url}}</div>
+        	  <div class="card-image center">
+            <div class="expire-progress {{#if shouldExpireProgressbarShow}}show{{else}}hide{{/if}}-progress-bar">
+              <div class="progress-bar progress-{{progressBarColor}}" style="width:{{expireStatus}}%"></div>
+            </div>
+            {{#if thumbnailUrl}}
+      			<img class="card-image-url" src="{{thumbnailUrl}}">
+            {{else}}
+              <i class="fa fa-file-text-o card-image-alt-icon" aria-hidden="true"></i>
+            {{/if}}
+    		　 </div>
+    		  <div class="card-content">
+              {{#if isOwner}}
+              	<i class="fa fa-close"></i>
+              {{/if}}
+      		  <div class="card-body">
+  	            {{#if name}}             
+                	  <p class="truncate">
+      				    	{{#if faviconUrl}}
+      				    		<img class="favicon" src="{{faviconUrl}}" alt="">
+      				    	{{/if}}			 
+                	  {{name}}
+                	  	</p>
+                {{else}}
+                	  	<p class="grey-text">No title</p>
+                {{/if}}
+                	  <a href="{{pathFor route='memo.detail'}}">more</a>
+                {{#if hasLabel}}
+                	  <a href="{{pathFor route='label.detail'}}" class="chip edit-btn" style="background-color:{{label.color}}">
+  							       {{label.name}}
+                	  </a>
+                {{/if}}
+      		  </div>
+          </div>
+          <div class="card-action">
+              {{#afModal title=name collection="Memos" operation="update" doc=_id fields="labelId" formId="updateMemo"}}
+                <i class="fa fa-cog card-option"></i>
+              {{/afModal}}
+              <i class="fa heart {{#if shouldFavoriteHightlight}}fa-heart{{ else }}fa-heart-o{{/if}}  card-option"></i>
+              <i class="fa fa-share-square card-option" aria-hidden="true"></i>
+          </div>
+        </div>
+	</div>
 </Template>

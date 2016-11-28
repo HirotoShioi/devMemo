@@ -31,10 +31,15 @@ materialize:materialize
 gildaspk:autoform-materialize
 themeteorchef:bert
 gildaspk:autoform-modals-materialize
-gwendall:auth-client-callbacks
 dburles:collection-helpers
 lbee:moment-helpers
 percolate:momentum
 multiply:iron-router-progress
 zimme:active-route
 raix:handlebar-helpers
+reywood:publish-composite
+http
+space:template-controller
+sacha:spin
+gadicohen:reactive-window
+momentjs:moment

@@ -1,8 +1,4 @@
-import { Template } from 'meteor/templating';
-
+import { TemplateController } from 'meteor/space:template-controller';
 import './List.html';
 
 import './SingleList.js';
-
-Template.List.helpers({
-});

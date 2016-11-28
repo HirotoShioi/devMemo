@@ -1,20 +1,35 @@
 <template name="BoardForm">
-	{{#if addStatus}}
 		<div class="row">
-		    <form class="col m7 s12 new-status">
-		      <i class="fa fa-close status-form-hide"></i>
+		    <form class="col m12 s12 new-label">
 		      <div class="row">
-		        <div class="input-field col s7 m8">
-		          <input name="status" id="icon_prefix" type="text" class="validate">
-		          <label for="icon_prefix">New Status</label>
+		        <div class="input-field col s5 m5">
+		          <input name="label" id="icon_prefix" type="text" class="validate">
+		          <label for="icon_prefix">New Label</label>
 		        </div>
-		        <div class="input-field col s5 m4">
+		        <div class="input-field col s5 m3">
+		        	<div class="color-btn z-depth-1 hoverable">
+		        		<div class="color-box z-depth-1 hoverable" style="background-color:{{selectedColor}}"></div>
+		        		<input type="text" class="search inline" value="{{selectedColor}}" name="color">
+		        	</div>
+		        	{{#if shouldColorPaletteShow}}
+		        	<div class="color-select-box z-depth-1">
+		        		<ul class="color-chooser">
+		        			{{#each labelColorsFirst}}
+		        				<li class="color-chooser-color" style="background-color:{{value}}" data="{{value}}"></li>
+		        			{{/each}}
+		        		</ul>
+		        		<ul class="color-chooser">
+		        			{{#each labelColorsSecond}}
+		        				<li class="color-chooser-color" style="background-color:{{value}}" data="{{value}}"></li>
+		        			{{/each}}
+		        		</ul>
+		        	</div>
+		        	{{/if}}
+		        </div>
+		        <div class="input-field col s3 m4">
 		        	<input type="submit" class="btn category-submit">
 		        </div>
 		      </div>
 		    </form>
 		 </div>
-	{{else}}
-		<button class="waves-effect btn status-form-show">Add Status</button>
-	{{/if}}
 </template>

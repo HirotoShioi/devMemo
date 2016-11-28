@@ -1,0 +1,13 @@
+<template name="SearchNavBar">
+	<div class="search-nav-wrapper {{#if $.Session.get 'isSearchNavShown'}}show{{else}}hide{{/if}}-search-nav">
+		<i class="nav-icon fa fa-arrow-left left"></i>
+		<input type="text" name="search"
+		 id="nav-search" class="nav-search"
+		  placeholder="Search..." value="{{$.Session.get 'searchQuery'}}">
+		  <ul class="collection">
+		  {{#each searchedMemos}}
+		  	{{> SearchBarItem}}
+		  {{/each}}
+		  </ul>
+	</div>
+</template>

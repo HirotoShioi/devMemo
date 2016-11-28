@@ -1,6 +1,6 @@
-import { Template } from 'meteor/templating';
-
+import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../api/memos.js';
+import { moment } from 'meteor/momentjs:moment';
 
 import './Memos.html';
 
@@ -8,26 +8,21 @@ import './Memos.html';
 import '../partials/Memo.js';
 import '../partials/List/List.js';
 import '../partials/ViewBtn.js';
-//test
-import './NewMemo.js';
 
-Template.Memos.onCreated(function(){
-	Session.set("Title",{name:"Home"});
+TemplateController('Memos',{
+	onCreated(){
+		Session.set("Title",{name:"Home"});
 
- 	const self = this;
- 	self.autorun(function(){
- 		self.subscribe('memos');
- 	});
-});
-
-Template.Memos.helpers({
-	memos:()=>{
-		return Memos.find({},{sort:{createdAt:-1}});
+		this.autorun(()=>{
+			this.subscribe('memos');
+		});
 	},
-	addMemo:()=>{
-		return Template.instance().addMemo.get();
-	},
-	newMemo:()=>{
-		return Session.get('newMemo');
+
+	helpers:{
+		memos(){
+			const today = moment().toDate();
+			//{$or:[{name:regex},{description:regex}]}
+			return Memos.find({$or:[{isFavorited:true},{expiredAt:{"$gte":today}}]},{sort:{createdAt:-1}});
+		},
 	},
 });

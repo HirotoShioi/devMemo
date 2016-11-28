@@ -1,6 +1,6 @@
-import { Template } from 'meteor/templating';
+import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../api/memos.js';
-import { Status }  from '../../api/status.js';
+import { Label } from '../../api/label.js';
 import './Board.html';
 
 //components
@@ -10,25 +10,24 @@ import './BoardContent.js';
 //partials
 import '../partials/ViewBtn.js';
 
-Template.Board.onCreated(function(){
-	this.autorun(()=>{
-		this.subscribe('status');
-		this.subscribe('memos');
-	});
-	Session.set('Title',{name:"Board"});
-});
-
-Template.Board.helpers({
-	lists:()=>{
-		const lists =  Status.find({},{sort:{createdAt:-1}});
-		lists.forEach((list)=>{
-			list.memos = Memos.find({statusId:list._id},{sort:{createdAt:-1}});
+TemplateController('Board',{
+	onCreated(){
+		this.autorun(()=>{
+			this.subscribe('memos');
+			this.subscribe('labelWithMemos');
 		});
-		return lists;
+		Session.set('Title',{name:"Board"});
 	},
-	none:()=>{
-		const none = {name:"No Status"};
-		none.memos = (Memos.find({statusId:{$exists:false}},{sort:{createdAt:-1}}));
-		return none;
-	}
+
+	helpers:{
+		labelLists(){
+			const lists =  Label.find({},{sort:{createdAt:-1}});
+			return lists;
+		},
+		none(){
+			const none = {name:"No Label"};
+			none.memos = (Memos.find({labelId:{$exists:false}},{sort:{createdAt:-1}}));
+			return none;
+		}
+	},
 });

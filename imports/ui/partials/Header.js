@@ -1,25 +1,26 @@
 import './Header.html';
-
-import { Template } from 'meteor/templating';
-
-Template.Header.onRendered(function(){
-
-});
-
-Template.Header.helpers({
-	title:()=>{
-		return Session.get('Title');
-	}
-});
-
-Template.Header.events({
-	'click .toggle-sidenav'(){
-		Session.set('sideNav',!Session.get('sideNav'));
+import { TemplateController } from 'meteor/space:template-controller';
+import './SearchBar/SearchNavBar.js';
+TemplateController('Header',{
+	helpers:{
+		title(){
+			return Session.get('Title');
+		},
 	},
-	'click #slide-out a'(){
-		Session.set('sideNav',false);
-	},
-	'click .logout':()=>{
-		Meteor.logout();
+
+	events:{
+		'click .toggle-sidenav'(){
+			Session.set('isShrinkedSideNavShown',!Session.get('isShrinkedSideNavShown'));
+		},
+		'click #slide-out a'(){
+			Session.set('isShrinkedSideNavShown',false);
+		},
+		'click .logout'(){
+			AccountsTemplates.logout();
+		},
+		'click .fa-search'(){
+			Session.set('searchQuery','');
+			Session.set('isSearchNavShown',true);
+		}
 	}
 });

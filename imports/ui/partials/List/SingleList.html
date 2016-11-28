@@ -1,15 +1,15 @@
 <template name="SingleList">
   <tr>
     <td class="list-name">
-    	{{#if Url}}
-    		<img class="" src="{{Url}}" alt="">
+    	{{#if faviconUrl}}
+    		<img class="favicon" src="{{faviconUrl}}" alt="">
     	{{/if}}
     	<a href="{{url}}">{{name}}</a><i class="fa fa-close"></i>
     </td>
     <td class="center">
- 		    {{#afModal classes="waves-effect table-status-btn btn amber darken-3" title=name collection="Memos" operation="update" doc=_id fields="statusId" formId="updateMemo"}}
- 		    	{{#if status.name}}
-						{{status.name}}
+ 		    {{#afModal classes="waves-effect table-label-btn btn amber darken-3" title=name collection="Memos" operation="update" doc=_id fields="labelId" formId="updateMemo"}}
+ 		    	{{#if label.name}}
+						{{label.name}}
 				{{else}}
 						None
 				{{/if}}
