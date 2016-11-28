@@ -1,5 +1,6 @@
 import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../api/memos.js';
+import { moment } from 'meteor/momentjs:moment';
 
 import './Memos.html';
 
@@ -19,7 +20,9 @@ TemplateController('Memos',{
 
 	helpers:{
 		memos(){
-			return Memos.find({},{sort:{createdAt:-1}});
+			const today = moment().toDate();
+			//{$or:[{name:regex},{description:regex}]}
+			return Memos.find({$or:[{isFavorited:true},{expiredAt:{"$gte":today}}]},{sort:{createdAt:-1}});
 		},
 	},
 });

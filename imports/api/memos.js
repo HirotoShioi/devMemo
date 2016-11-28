@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { HTTP } from 'meteor/http';
 import { check } from 'meteor/check';
 import { Label } from './label.js';
-
+import { moment } from 'meteor/momentjs:moment';
 export const Memos = new Mongo.Collection('memos');
 
 var Schemas = {};
@@ -83,6 +83,13 @@ Schemas.memos = new SimpleSchema({
 			type:"hidden"
 		}
 	},
+	expiredAt:{
+		type:Date,
+		optional:true,
+		autoform:{
+			type:"hidden"
+		}
+	},
 	owner:{
 		type:String,
 		autoValue:function(){
@@ -133,10 +140,11 @@ Meteor.methods({
 		}
 		
 		if(!doc.clicked){
-			Memos.update({_id:doc._id},{$set: {clicked:1}});
+			Memos.update({_id:doc._id},{$set: {clicked:1,}});
 		}else{
 			Memos.update({_id:doc._id},{$inc: {clicked:1}});
 		}
+		Memos.update({_id:doc._id},{$set: {expiredAt: moment().add(7,'days').format()}});
 	},
 	addMemo(doc){
 		check(doc, Object);
@@ -159,7 +167,8 @@ Meteor.methods({
 				thumbnailUrl:data.thumbnail_url,
 				desc:data.description,
 				labelId:doc.labelId,
-				createdAt: Date.now(),
+				createdAt: moment().format(),
+				expiredAt:moment().add(7, 'days').format(),
 				owner: this.userId,
 				username:Meteor.userId(),
 			});
