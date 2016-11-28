@@ -24,7 +24,13 @@ Schemas.label = new SimpleSchema({
 	name:{
 		type:String,
 		label:"name",
-		max:20
+		max:15,
+	},
+	color:{
+		type:String,
+		optional:true,
+		defaultValue:"#e4e4e4",
+		regEx:/^#([0-9a-f]{6}|[0-9a-f]{3})$/i,
 	},
 	createdAt:{
 		type:Date,
@@ -57,15 +63,16 @@ Schemas.label = new SimpleSchema({
 
 Label.attachSchema(Schemas.label);
 Meteor.methods({
-	'addLabel'(name){
-		check(name,String);
+	'addLabel'(labelObj){
+		check(labelObj , Object);
 
 		if(!this.userId){
 			throw new Meteor.Error("not authorized");
 		}
 
 		Label.insert({
-			name,
+			name:labelObj.label,
+			color:labelObj.color,
 			createdAt:new Date(),
 			owner: Meteor.userId(),
 			username: Meteor.user().username
