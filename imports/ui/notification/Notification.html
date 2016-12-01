@@ -1,0 +1,13 @@
+<template name="Notification">
+	<div class="container main-content notification">
+		<div class="row">
+			<div class="col l8 s12 offset-l2">
+				<ul class="collection">
+				{{#each notifyItem}}
+					{{> NotificationItem}}
+				{{/each}}
+				</ul>
+			</div>
+		</div>
+	</div>
+</template>

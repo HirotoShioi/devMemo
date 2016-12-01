@@ -1,0 +1,10 @@
+<template name="NotificationItem">
+ 	<li class=" {{#if shouldNotify}}should-notify{{/if}} collection-item avatar">
+      <img src="{{thumbnailUrl}}" alt="" class="circle">
+      <span class="title">{{name}}</span>
+      <p>
+      	{{url}}
+      </p>
+      <a href="#!" class="secondary-content"><i class="fa fa-clock-o"></i></a>
+   </li>
+</template>

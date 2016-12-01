@@ -9,6 +9,7 @@ import '../ui/about/About.js';
 import '../ui/boards/Board.js';
 import '../ui/home/Home.js';
 import '../ui/labelDetail/LabelDetail.js';
+import '../ui/notification/Notification.js';
 
 import { Memos } from '../api/memos.js';
 import { Label } from '../api/memos.js';
@@ -59,6 +60,15 @@ Router.route('/board',function(){
 	this.render('Board');
 },{
 	name:'memo.board',
+});
+
+Router.route('/notifications',function(){
+	this.render('Notification');
+},{
+	name:'memo.notifications',
+	onStop:function(){
+		Meteor.call('expiredMemoNotified');
+	},
 });
 
 Router.route('/label/:labelId', function(){

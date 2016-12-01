@@ -17,7 +17,7 @@ import '../imports/api/user.js';
 
 //jobs
 SyncedCron.add({
-  name: 'Find expired memo',
+  name: 'Find notification needed memos',
   schedule: function(parser) {
     // parser is a later.parse object
     return parser.text('every 10 seconds');
