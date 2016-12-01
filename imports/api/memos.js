@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { HTTP } from 'meteor/http';
 import { check } from 'meteor/check';
 import { Label } from './label.js';
-
+import { moment } from 'meteor/momentjs:moment';
 export const Memos = new Mongo.Collection('memos');
 
 var Schemas = {};
@@ -83,6 +83,20 @@ Schemas.memos = new SimpleSchema({
 			type:"hidden"
 		}
 	},
+	expiredAt:{
+		type:Date,
+		optional:true,
+		autoform:{
+			type:"hidden"
+		}
+	},
+	expireIn:{
+		type:Number,
+		optional:true,
+		autoform:{
+			type:"hidden"
+		}
+	},
 	owner:{
 		type:String,
 		autoValue:function(){
@@ -104,6 +118,10 @@ Schemas.memos = new SimpleSchema({
 });
 Memos.attachSchema(Schemas.memos);
 
+const updateMemoExpiration = function(id){
+	const expireIn = Meteor.user().profile.memoExpireIn;
+	Memos.update({_id:id},{$set: {expiredAt: moment().add(expireIn,'days').format(), expireIn:expireIn}});
+};
 //Methods
 Meteor.methods({
 	deleteMemo(id){
@@ -123,6 +141,11 @@ Meteor.methods({
 		if(isFavorited === undefined){
 			isFavorited = false;
 		}
+
+		//if false, turn to true and update expiredAt
+		if(isFavorited == true){
+			updateMemoExpiration(doc._id);
+		}
 		Memos.update({_id:doc._id},{$set:{isFavorited:!doc.isFavorited}});
 	},
 	memoUrlClicked(doc){
@@ -133,19 +156,20 @@ Meteor.methods({
 		}
 		
 		if(!doc.clicked){
-			Memos.update({_id:doc._id},{$set: {clicked:1}});
+			Memos.update({_id:doc._id},{$set: {clicked:1,}});
 		}else{
 			Memos.update({_id:doc._id},{$inc: {clicked:1}});
 		}
+		updateMemoExpiration(doc._id);
 	},
 	addMemo(doc){
 		check(doc, Object);
-
 		if(!this.userId){
 			throw new Meteor.Error('not authorized');
 		}
 
 		if(Meteor.isServer){
+			const expireIn = Meteor.user().profile.memoExpireIn;
 			const result = HTTP.call('GET',"https://api.embedly.com/1/oembed",{
 				params:{
 					key:Meteor.settings.embedApiKey,
@@ -159,7 +183,9 @@ Meteor.methods({
 				thumbnailUrl:data.thumbnail_url,
 				desc:data.description,
 				labelId:doc.labelId,
-				createdAt: Date.now(),
+				createdAt: moment().format(),
+				expiredAt:moment().add(expireIn, 'days').format(),
+				expireIn: expireIn,
 				owner: this.userId,
 				username:Meteor.userId(),
 			});

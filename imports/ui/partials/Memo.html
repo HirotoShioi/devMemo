@@ -3,6 +3,10 @@
 		<div class="card hoverable">
 		 		<div class="memo-tooltip center truncate {{#if isHovered}}tooltip-show{{/if}}">{{url}}</div>
         	  <div class="card-image center">
+              <i class="fa fa-clock-o expired-memo-icon {{#if isMemoExpired}}show{{else}}hide{{/if}}-expired"></i>
+            <div class="expire-progress {{#if shouldExpireProgressbarShow}}show{{else}}hide{{/if}}-progress-bar">
+              <div class="progress-bar progress-{{progressBarColor}}" style="width:{{expireStatus}}%"></div>
+            </div>
             {{#if thumbnailUrl}}
       			<img class="card-image-url" src="{{thumbnailUrl}}">
             {{else}}
