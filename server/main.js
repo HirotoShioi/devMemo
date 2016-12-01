@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Memos } from '../imports/api/memos.js';
 import { Accounts } from 'meteor/accounts-base';
 import { Label } from '../imports/api/label.js';
-
+import '../imports/api/user.js';
   Accounts.onCreateUser(function(options, user) {
   	Label.insert({
   		name:"default",

@@ -12,7 +12,7 @@ import '../ui/labelDetail/LabelDetail.js';
 
 import { Memos } from '../api/memos.js';
 import { Label } from '../api/memos.js';
-
+import '../api/user.js';
 Router.configure({
   layoutTemplate: 'MainLayout'
 });
