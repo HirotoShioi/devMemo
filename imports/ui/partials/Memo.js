@@ -51,7 +51,7 @@ TemplateController('Memo',{
 			const expireDate = moment(this.data.expiredAt);
 			const today = moment().format();
 			const progress = expireDate.diff(today, 'hours');
-			const expireLimit = 7*24;
+			const expireLimit = this.data.expireIn*24;
 			let progressRate = this.state.progressRate;
 			progressRate = Math.floor((progress / expireLimit) * 100);
 

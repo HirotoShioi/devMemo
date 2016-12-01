@@ -5,7 +5,7 @@ import { check } from 'meteor/check';
 Schema = {};
 
 Schema.userSettings = new SimpleSchema({
-	memoExpireAt:{
+	memoExpireIn:{
 		type: Number,
 		optional:true,
 		autoValue:function(){

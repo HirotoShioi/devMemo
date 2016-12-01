@@ -90,6 +90,13 @@ Schemas.memos = new SimpleSchema({
 			type:"hidden"
 		}
 	},
+	expireIn:{
+		type:Number,
+		optional:true,
+		autoform:{
+			type:"hidden"
+		}
+	},
 	owner:{
 		type:String,
 		autoValue:function(){
@@ -111,6 +118,10 @@ Schemas.memos = new SimpleSchema({
 });
 Memos.attachSchema(Schemas.memos);
 
+const updateMemoExpiration = function(id){
+	const expireIn = Meteor.user().profile.memoExpireIn;
+	Memos.update({_id:id},{$set: {expiredAt: moment().add(expireIn,'days').format(), expireIn:expireIn}});
+};
 //Methods
 Meteor.methods({
 	deleteMemo(id){
@@ -133,7 +144,7 @@ Meteor.methods({
 
 		//if false, turn to true and update expiredAt
 		if(isFavorited == true){
-			Memos.update({_id:doc._id},{$set: {expiredAt: moment().add(7,'days').format()}});
+			updateMemoExpiration(doc._id);
 		}
 		Memos.update({_id:doc._id},{$set:{isFavorited:!doc.isFavorited}});
 	},
@@ -149,16 +160,16 @@ Meteor.methods({
 		}else{
 			Memos.update({_id:doc._id},{$inc: {clicked:1}});
 		}
-		Memos.update({_id:doc._id},{$set: {expiredAt: moment().add(7,'days').format()}});
+		updateMemoExpiration(doc._id);
 	},
 	addMemo(doc){
 		check(doc, Object);
-
 		if(!this.userId){
 			throw new Meteor.Error('not authorized');
 		}
 
 		if(Meteor.isServer){
+			const expireIn = Meteor.user().profile.memoExpireIn;
 			const result = HTTP.call('GET',"https://api.embedly.com/1/oembed",{
 				params:{
 					key:Meteor.settings.embedApiKey,
@@ -173,7 +184,8 @@ Meteor.methods({
 				desc:data.description,
 				labelId:doc.labelId,
 				createdAt: moment().format(),
-				expiredAt:moment().add(7, 'days').format(),
+				expiredAt:moment().add(expireIn, 'days').format(),
+				expireIn: expireIn,
 				owner: this.userId,
 				username:Meteor.userId(),
 			});
