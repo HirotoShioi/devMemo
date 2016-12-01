@@ -99,21 +99,32 @@ Schemas.memos = new SimpleSchema({
 	},
 	owner:{
 		type:String,
-		autoValue:function(){
-			return Meteor.userId();
-		},
+		optional:true,
 		autoform:{
 			type:"hidden"
 		}
 	},
 	username:{
 		type:String,
-		autoValue:function(){
-			return Meteor.user().username;
-		},
+		optional:true,
 		autoform:{
 			type:"hidden"
 		}
+	},
+	notifiedToUser:{
+		type:Boolean,
+		optional:true,
+		defaultValue:false,
+		autoform:{
+			type:"hidden"
+		}
+	},
+	shouldNotify:{
+		type:Boolean,
+		optional:true,
+		autoform:{
+			type:"hidden"
+		}	
 	}
 });
 Memos.attachSchema(Schemas.memos);
@@ -186,10 +197,16 @@ Meteor.methods({
 				createdAt: moment().format(),
 				expiredAt:moment().add(expireIn, 'days').format(),
 				expireIn: expireIn,
-				owner: this.userId,
-				username:Meteor.userId(),
+				owner: Meteor.userId(),
+				username:Meteor.user().username,
 			});
 		}
+	},
+	checkNotify(){
+		const today = moment().toDate();
+		const needNotificationMemoCount = Memos.find({expiredAt:{"$lt":today},shouldNotify:true}).count();
+		console.log(`${needNotificationMemoCount} memos needs to be notified to users`);
+    	Memos.update({expiredAt:{"$lt":today}, notifiedToUser:false},{$set:{shouldNotify:true}},{multi:true});
 	}
 });
 
