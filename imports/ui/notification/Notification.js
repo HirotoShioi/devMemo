@@ -15,7 +15,7 @@ TemplateController('Notification',{
 	helpers:{
 		notifyItem(){
 			const today = moment().toDate();
-			let notifiyItems = Memos.find({shouldNotify:true,expiredAt:{"$lt":today}},{sort:{expiredAt:-1}});
+			let notifiyItems = Memos.find({status:"expired"},{sort:{expiredAt:-1}});
 			return notifiyItems;
 		},
 	},

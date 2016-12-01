@@ -119,25 +119,29 @@ Schemas.memos = new SimpleSchema({
 			type:"hidden"
 		}
 	},
-	shouldNotify:{
-		type:Boolean,
-		defaultValue:false,
+	status:{
+		type:String,
+		defaultValue:"active",
 		optional:true,
 		autoform:{
 			type:"hidden"
 		}
-	}
+	},
 });
 Memos.attachSchema(Schemas.memos);
 
 const updateMemoExpiration = function(id){
 	const expireIn = Meteor.user().profile.memoExpireIn;
-	Memos.update({_id:id},{$set: {
-		expiredAt: moment().add(expireIn,'days').format(), 
-		expireIn:expireIn,
-		shouldNotify:false,
-		notifiedToUser:false,
-	}});
+	Memos.update({_id:id},{
+		$set: {
+			expiredAt: moment().add(expireIn,'days').format(),
+			expireIn:expireIn,
+			status:"active",
+		},
+		$unset:{
+			notifiedToUser:'',
+		}
+});
 };
 //Methods
 Meteor.methods({
@@ -210,16 +214,16 @@ Meteor.methods({
 	},
 	checkNotify(){
 		const today = moment().toDate();
-		const findExpiredMemoQuery = {expiredAt:{"$lt":today}, notifiedToUser:false, shouldNotify:false };
+		const findExpiredMemoQuery = {expiredAt:{"$lt":today}, status:"active" };
 		const needNotificationMemoCount = Memos.find(findExpiredMemoQuery).count();
 		console.log(`${needNotificationMemoCount} memos needs to be notified to users`);
-    	Memos.update(findExpiredMemoQuery,{$set:{shouldNotify:true}},{multi:true});
+		Memos.update(findExpiredMemoQuery,{$set:{status:"expired", notifiedToUser:false}},{multi:true});
 	},
 	expiredMemoNotified(){
 		if(!this.userId){
 			throw new Meteor.Error('not authorized');
 		}
-		Memos.update({owner:this.userId, notifiedToUser:false, shouldNotify:true}, {$set:{notifiedToUser:true}}, {multi:true});
+		Memos.update({owner:this.userId, notifiedToUser:false, status:"expired"}, {$set:{notifiedToUser:true}}, {multi:true});
 	},
 });
 
