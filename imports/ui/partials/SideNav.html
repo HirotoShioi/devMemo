@@ -17,6 +17,9 @@
 			      	<li class="{{isActiveRoute 'memo.notifications'}}">
 			      		<a href="{{pathFor route='memo.notifications'}}" class="waves-effect {{isActiveRoute 'memo.notifications'}}">
 			      			Notification
+							{{#if notificationCount}}
+								<span class="chip blue lighten-4">{{notificationCount}}</span>
+							{{/if}}
 			      		</a>
 			      	</li>
 			      	<li class="{{isActiveRoute 'memo.board'}}">

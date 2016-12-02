@@ -382,6 +382,14 @@ footer.page-footer{
 }
 
 /* sideNav */
+.side-nav .chip{
+    height: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+    padding: 0 9px;
+    border-radius: 16px;
+}
 .side-nav a.btn.addMemoModal{
 	margin-bottom: 70px;
 }
@@ -680,4 +688,15 @@ td{
 .notification .collection .fa-clock-o{
 	font-size:3em;
 	color:rgba(244,115,54,0.9);
+}
+.no-notification{
+	text-align: center;
+    font-size: 3em;
+    color: #777;
+}
+.no-notification p{
+	margin:0;
+}
+.no-notification .fa-list-alt{
+	font-size: 2em;
 }

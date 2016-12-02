@@ -26,7 +26,7 @@ Router.onBeforeAction(function () {
     this.next();
   }
 },{
-	only:['memo.home','memo.detail','memo.board','labeldetail']
+	only:['memo.home', 'memo.detail', 'memo.board', 'labeldetail', 'memo.notifications']
 });
 
 Router.route('/home',function(){
