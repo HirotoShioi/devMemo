@@ -4,8 +4,8 @@
 			<div class="col l8 s12 offset-l2">
 				{{#if notifyCount}}
 					<ul class="collection">
-					{{#each notifyItem}}
-						{{> SingleList}}
+					{{#each notifyItem in notifyItems}}
+						{{> SingleList memo=notifyItem shouldNotify=true}}
 					{{/each}}
 					</ul>
 				{{else}}

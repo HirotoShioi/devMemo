@@ -13,7 +13,7 @@ TemplateController('Notification',{
 	},
 
 	helpers:{
-		notifyItem(){
+		notifyItems(){
 			const today = moment().toDate();
 			let notifiyItems = Memos.find({status:"expired"},{sort:{expiredAt:-1}});
 			return notifiyItems;

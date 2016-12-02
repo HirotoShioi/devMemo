@@ -17,19 +17,21 @@ TemplateController('SingleList',{
 
 	helpers:{
 		isOwner(){
-			return (Meteor.userId() === this.data.owner);
+			return (Meteor.userId() === this.data.memo.owner);
 		},
 		faviconUrl(){
-			return `http://www.google.com/s2/favicons?domain=${this.data.url}`;
+			return `http://www.google.com/s2/favicons?domain=${this.data.memo.url}`;
 		},
 		shouldNotify(){
-			return !this.data.notifiedToUser;
+			if(this.data.shouldNotify){
+				return !this.data.memo.notifiedToUser;
+			}
 		},
 		progressBarColor(){
-			const expireDate = moment(this.data.expiredAt);
+			const expireDate = moment(this.data.memo.expiredAt);
 			const today = moment().format();
 			const progress = expireDate.diff(today, 'hours');
-			const expireLimit = this.data.expireIn*24;
+			const expireLimit = this.data.memo.expireIn*24;
 			let progressRate = this.state.progressRate;
 			progressRate = Math.floor((progress / expireLimit) * 100);
 
@@ -50,25 +52,24 @@ TemplateController('SingleList',{
 			}else{
 				this.state.progressBarColor = 'over-0';
 			}
-
 			return this.state.progressBarColor;
 		},
 	},
 
 	events:{
 		'click .fa-close'(){
-			Meteor.call('deleteMemo',this.data._id);
+			Meteor.call('deleteMemo',this.data.memo._id);
 		},
 		'click .fa-clock-o'(){
-			Meteor.call('memoUrlClicked', this.data);
+			Meteor.call('memoUrlClicked', this.data.memo);
 		},
 		'click .title'(){
-			Meteor.call('memoUrlClicked', this.data);
-			window.open(this.data.url);
+			Meteor.call('memoUrlClicked', this.data.memo);
+			window.open(this.data.memo.url);
 		},
 		'click .circle'(){
-			Meteor.call('memoUrlClicked', this.data);
-			window.open(this.data.url);
+			Meteor.call('memoUrlClicked', this.data.memo);
+			window.open(this.data.memo.url);
 		},
 	}
 });

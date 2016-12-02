@@ -2,8 +2,8 @@
 	<div class="memos-list">
     <div class="col l8 s12 offset-l2">
         <ul class="collection">
-          {{#each memos}}
-            {{> SingleList}}
+          {{#each memo in memos}}
+            {{> SingleList memo=memo shouldNotify=false}}
           {{/each}}
         </ul>
     </div>

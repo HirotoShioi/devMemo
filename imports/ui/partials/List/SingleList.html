@@ -1,13 +1,13 @@
 <template name="SingleList">
     <li class=" {{#if shouldNotify}}should-notify{{/if}} collection-item list-item avatar">
-      {{#if thumbnailUrl}}
-        <img src="{{thumbnailUrl}}" alt="" class="circle">
+      {{#if memo.thumbnailUrl}}
+        <img src="{{memo.thumbnailUrl}}" alt="" class="circle">
       {{else}}
         <i class="fa fa-file circle"></i>
       {{/if}}
-      <span class="title">{{name}} <span class="chip" style="background-color:{{label.color}}">{{label.name}}</span></span>
+      <span class="title">{{memo.name}} <span class="chip" style="background-color:{{memo.label.color}}">{{memo.label.name}}</span></span>
       <p>
-        {{url}}
+        {{memo.url}}
       </p>
       <a class="secondary-content"><i class="fa fa-clock-o notify-item time-{{ progressBarColor }}"></i></a>
    </li>
