@@ -500,6 +500,9 @@ nav .button-collapse i{
 .list-item .expire-progress{
 	height: 2px;
 }
+.list-item p{
+	color:#777;
+}
 .favicon{
 	width:14px;
 }
