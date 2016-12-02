@@ -1,20 +1,14 @@
 <template name="SingleList">
-  <tr>
-    <td class="list-name">
-    	{{#if faviconUrl}}
-    		<img class="favicon" src="{{faviconUrl}}" alt="">
-    	{{/if}}
-    	<a href="{{url}}">{{name}}</a><i class="fa fa-close"></i>
-    </td>
-    <td class="center">
- 		    {{#afModal classes="waves-effect table-label-btn btn amber darken-3" title=name collection="Memos" operation="update" doc=_id fields="labelId" formId="updateMemo"}}
- 		    	{{#if label.name}}
-						{{label.name}}
-				{{else}}
-						None
-				{{/if}}
-			{{/afModal}}
-    </td>
-    <td class="right">{{moFormat createdAt 'M/D'}}</td>
-  </tr>
+    <li class=" {{#if shouldNotify}}should-notify{{/if}} collection-item list-item avatar">
+      {{#if thumbnailUrl}}
+        <img src="{{thumbnailUrl}}" alt="" class="circle">
+      {{else}}
+        <i class="fa fa-file circle"></i>
+      {{/if}}
+      <span class="title">{{name}} <span class="chip" style="background-color:{{label.color}}">{{label.name}}</span></span>
+      <p>
+        {{url}}
+      </p>
+      <a class="secondary-content"><i class="fa fa-clock-o notify-item"></i></a>
+   </li>
 </template>

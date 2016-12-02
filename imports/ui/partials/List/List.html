@@ -1,18 +1,11 @@
 <template name="List">
 	<div class="memos-list">
-      <table class="highlight">
-        <thead>
-          <tr>
-              <th data-field="id" class="list-name">Name</th>
-              <th data-field="price" class="center list-edit">Label</th>
-              <th data-field="date" class="right">Last Update</th>
-          </tr>
-        </thead>
-        <tbody>
+    <div class="col l8 s12 offset-l2">
+        <ul class="collection">
           {{#each memos}}
-          	{{> SingleList}}
+            {{> SingleList}}
           {{/each}}
-        </tbody>
-      </table>
+        </ul>
+    </div>
 	</div>
 </template>

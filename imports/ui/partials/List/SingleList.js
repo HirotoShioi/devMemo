@@ -16,11 +16,25 @@ TemplateController('SingleList',{
 		faviconUrl(){
 			return `http://www.google.com/s2/favicons?domain=${this.data.url}`;
 		},
+		shouldNotify(){
+			return !this.data.notifiedToUser;
+		},
 	},
 
 	events:{
 		'click .fa-close'(){
 			Meteor.call('deleteMemo',this.data._id);
+		},
+		'click .fa-clock-o'(){
+			Meteor.call('memoUrlClicked', this.data);
+		},
+		'click .title'(){
+			Meteor.call('memoUrlClicked', this.data);
+			window.open(this.data.url);
+		},
+		'click .circle'(){
+			Meteor.call('memoUrlClicked', this.data);
+			window.open(this.data.url);
 		},
 	}
 });

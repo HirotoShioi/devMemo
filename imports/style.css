@@ -467,26 +467,33 @@ nav .button-collapse i{
 	cursor: pointer;
 }
 /* table */
-td{
-	padding:8px 5px;
+.list-item{
+	background-color: transparent;
+	transition:all 0.3 ease;
 }
-.table-label-btn{
-    height: 26px;
-    width: 120px;
-    line-height: 26px;
-    padding:0;
-    text-transform: none;
-    overflow: hidden;
+.list-item:hover{
+	background-color:rgba(0,0,0,0.05);
 }
-.list-name{
-	width: 50%;
-	overflow: hidden;
+.list-item .circle{
+	cursor: pointer;
 }
-.memos-list{
-	margin-bottom: 40px;
+.list-item .title{
+	cursor: pointer;
 }
-.list-edit{
-	width: 28%;
+.list-item .chip{
+	font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 1em;
+}
+.list-item .fa-clock-o{
+	cursor: pointer;
+    font-size: 3em;
+    color: rgba(244,115,54,0.9);
+    transition: all .3s ease;
+}
+.list-item .fa-clock-o:hover{
+	color:rgb(0,200,83);
 }
 .favicon{
 	width:14px;
@@ -688,15 +695,6 @@ td{
 }
 .notification .collection .should-notify{
 	background-color: rgba(0, 0, 0, 0.05);
-}
-.notification .collection .fa-clock-o{
-	cursor: pointer;
-	font-size:3em;
-	color:rgba(244,115,54,0.9);
-	transition: all .3s ease;
-}
-.notification .collection .fa-clock-o:hover{
-	color:rgb(0,200,83);
 }
 .no-notification{
 	text-align: center;
