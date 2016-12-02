@@ -338,6 +338,9 @@ legend{
     cursor: pointer;
     transition:all .2s linear;
 }
+.expired-memo-icon:hover{
+	color:rgba(0,200,83,0.9);
+}
 .show-expired{
 	visibility: visible;
 	top:0;
@@ -689,7 +692,7 @@ td{
 	transition: all .3s ease;
 }
 .notification .collection .fa-clock-o:hover{
-	color:#00c853;
+	color:rgba(0,200,83);
 }
 .no-notification{
 	text-align: center;

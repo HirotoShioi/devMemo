@@ -114,7 +114,6 @@ Schemas.memos = new SimpleSchema({
 	notifiedToUser:{
 		type:Boolean,
 		optional:true,
-		defaultValue:false,
 		autoform:{
 			type:"hidden"
 		}
