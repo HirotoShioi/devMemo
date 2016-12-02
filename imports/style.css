@@ -383,6 +383,10 @@ footer.page-footer{
 }
 
 /* sideNav */
+.side-nav .fa{
+	font-size: 1.3em;
+    width: 25px;
+}
 .side-nav .chip{
     height: 20px;
     font-size: 13px;
