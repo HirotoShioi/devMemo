@@ -86,5 +86,8 @@ TemplateController('SingleList',{
 			Meteor.call('memoUrlClicked', this.data.memo);
 			window.open(this.data.memo.url);
 		},
+		'click .chip'(){
+			Router.go('label.detail',{labelId:this.data.memo.labelId});
+		}
 	}
 });

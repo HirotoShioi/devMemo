@@ -485,6 +485,7 @@ nav .button-collapse i{
     height: 20px;
     line-height: 20px;
     padding: 0 1em;
+    cursor: pointer;
 }
 .list-item .fa-clock-o{
 	cursor: pointer;
