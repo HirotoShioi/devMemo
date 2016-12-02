@@ -311,6 +311,7 @@ legend{
 	font-size: 21px;
 	margin-right: 8px;
 	color:#777;
+	transition: color .3s ease;
 }
 .card .fa-heart{
 	color:#cc0000;
@@ -320,9 +321,6 @@ legend{
 }
 .card .fa-share-square:hover{
 	color:#26a69a;
-}
-.card .fa:hover{
-	transition: all .3s ease;
 }
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating){
 	margin-right: 0px;
