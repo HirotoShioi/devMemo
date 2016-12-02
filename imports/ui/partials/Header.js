@@ -1,10 +1,22 @@
 import './Header.html';
 import { TemplateController } from 'meteor/space:template-controller';
 import './SearchBar/SearchNavBar.js';
+import { Memos } from '../../api/memos.js';
+
 TemplateController('Header',{
+
+	onCreated(){
+		this.autorun(()=>{
+			this.subscribe('memos');
+		});
+	},
 	helpers:{
 		title(){
 			return Session.get('Title');
+		},
+		notificationCount(){
+			notifyCount = Memos.find({notifiedToUser:false}).count();
+			return notifyCount;
 		},
 	},
 
