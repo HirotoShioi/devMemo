@@ -218,6 +218,18 @@ legend{
     z-index: 10;
     transition: all 0.2s linear;
 }
+.time-over-75{
+	color: #00c853;
+}
+.time-over-50{
+	color: #aeea00;
+}
+.time-over-25{
+	color: #ffab00;
+}
+.time-over-0{
+	color: #dd2c00;
+}
 .progress-over-75{
 	background-color: #00c853;
 }
@@ -489,7 +501,6 @@ nav .button-collapse i{
 .list-item .fa-clock-o{
 	cursor: pointer;
     font-size: 3em;
-    color: rgba(244,115,54,0.9);
     transition: all .3s ease;
 }
 .list-item .fa-clock-o:hover{
