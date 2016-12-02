@@ -218,18 +218,6 @@ legend{
     z-index: 10;
     transition: all 0.2s linear;
 }
-.time-over-75{
-	color: #00c853;
-}
-.time-over-50{
-	color: #aeea00;
-}
-.time-over-25{
-	color: #ffab00;
-}
-.time-over-0{
-	color: #dd2c00;
-}
 .progress-over-75{
 	background-color: #00c853;
 }
@@ -503,6 +491,9 @@ nav .button-collapse i{
     font-size: 3em;
     transition: all .3s ease;
 }
+.list-item .fa-clock-o{
+	color:rgba(244,115,54,0.9);
+}
 .list-item .fa-clock-o:hover{
 	color:rgb(0,200,83);
 }
@@ -705,7 +696,7 @@ nav .button-collapse i{
     border: 1px solid #e0e0e0;
 }
 .notification .collection .should-notify{
-	background-color: rgba(0, 0, 0, 0.05);
+	background-color: #e1f5fe;
 }
 .no-notification{
 	text-align: center;

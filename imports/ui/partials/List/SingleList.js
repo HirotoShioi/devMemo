@@ -5,8 +5,10 @@ import { moment } from 'meteor/momentjs:moment';
 
 TemplateController('SingleList',{
 	state:{
+		shouldExpireProgressbarShow:true,
 		progressBarColor:'over-75',
 		progressRate:0,
+		isMemoExpired:false,
 	},
 
 	onCreated(){
@@ -16,6 +18,12 @@ TemplateController('SingleList',{
 	},
 
 	helpers:{
+		shouldExpireProgressbarShow(){
+			if(this.data.memo.isFavorited == true){
+				this.state.shouldExpireProgressbarShow = false;
+			}
+			return this.state.shouldExpireProgressbarShow;
+		},
 		isOwner(){
 			return (Meteor.userId() === this.data.memo.owner);
 		},
@@ -27,33 +35,40 @@ TemplateController('SingleList',{
 				return !this.data.memo.notifiedToUser;
 			}
 		},
+		expireStatus(){
+			return this.state.progressRate;
+		},
 		progressBarColor(){
-			const expireDate = moment(this.data.memo.expiredAt);
-			const today = moment().format();
-			const progress = expireDate.diff(today, 'hours');
-			const expireLimit = this.data.memo.expireIn*24;
-			let progressRate = this.state.progressRate;
-			progressRate = Math.floor((progress / expireLimit) * 100);
+				const expireDate = moment(this.data.memo.expiredAt);
+				const today = moment().format();
+				const progress = expireDate.diff(today, 'hours');
+				const expireLimit = this.data.memo.expireIn*24;
+				let progressRate = 0;
+				progressRate = Math.floor((progress / expireLimit) * 100);
 
-			if(progressRate > 100){
-				progressRate = 100;
-			}
-			if(progressRate <= 0){
-				progressRate = 0;
-				this.state.isMemoExpired = true;
-			}
+				if(progressRate > 100){
+					progressRate = 100;
+				}
+				if(progressRate <= 0){
+					progressRate = 0;
+					this.state.isMemoExpired = true;
+				}
 
-			if(progressRate >= 75){
-				this.state.progressBarColor = 'over-75';
-			}else if(progressRate >= 50){
-				this.state.progressBarColor = 'over-50';
-			}else if(progressRate >= 25){
-				this.state.progressBarColor = 'over-25';
-			}else{
-				this.state.progressBarColor = 'over-0';
-			}
+				if(progressRate >= 75){
+					this.state.progressBarColor = 'over-75';
+				}else if(progressRate >= 50){
+					this.state.progressBarColor = 'over-50';
+				}else if(progressRate >= 25){
+					this.state.progressBarColor = 'over-25';
+				}else{
+					this.state.progressBarColor = 'over-0';
+				}
+				this.state.progressRate = progressRate;
 			return this.state.progressBarColor;
 		},
+		isMemoExpired(){
+			return this.state.isMemoExpired;
+		}
 	},
 
 	events:{
