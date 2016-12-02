@@ -99,28 +99,48 @@ Schemas.memos = new SimpleSchema({
 	},
 	owner:{
 		type:String,
-		autoValue:function(){
-			return Meteor.userId();
-		},
+		optional:true,
 		autoform:{
 			type:"hidden"
 		}
 	},
 	username:{
 		type:String,
-		autoValue:function(){
-			return Meteor.user().username;
-		},
+		optional:true,
 		autoform:{
 			type:"hidden"
 		}
-	}
+	},
+	notifiedToUser:{
+		type:Boolean,
+		optional:true,
+		autoform:{
+			type:"hidden"
+		}
+	},
+	status:{
+		type:String,
+		defaultValue:"active",
+		optional:true,
+		autoform:{
+			type:"hidden"
+		}
+	},
 });
 Memos.attachSchema(Schemas.memos);
 
 const updateMemoExpiration = function(id){
 	const expireIn = Meteor.user().profile.memoExpireIn;
-	Memos.update({_id:id},{$set: {expiredAt: moment().add(expireIn,'days').format(), expireIn:expireIn}});
+	Memos.update({_id:id},{
+		$set: {
+			expiredAt: moment().add(expireIn,'days').format(),
+			expireIn:expireIn,
+			status:"active",
+		},
+		$unset:{
+			notifiedToUser:'',
+		}
+});
 };
 //Methods
 Meteor.methods({
@@ -186,11 +206,24 @@ Meteor.methods({
 				createdAt: moment().format(),
 				expiredAt:moment().add(expireIn, 'days').format(),
 				expireIn: expireIn,
-				owner: this.userId,
-				username:Meteor.userId(),
+				owner: Meteor.userId(),
+				username:Meteor.user().username,
 			});
 		}
-	}
+	},
+	checkNotify(){
+		const today = moment().toDate();
+		const findExpiredMemoQuery = {expiredAt:{"$lt":today}, status:"active" };
+		const needNotificationMemoCount = Memos.find(findExpiredMemoQuery).count();
+		console.log(`${needNotificationMemoCount} memos needs to be notified to users`);
+		Memos.update(findExpiredMemoQuery,{$set:{status:"expired", notifiedToUser:false}},{multi:true});
+	},
+	expiredMemoNotified(){
+		if(!this.userId){
+			throw new Meteor.Error('not authorized');
+		}
+		Memos.update({owner:this.userId, notifiedToUser:false, status:"expired"}, {$set:{notifiedToUser:true}}, {multi:true});
+	},
 });
 
 Memos.helpers({

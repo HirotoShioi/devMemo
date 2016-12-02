@@ -311,6 +311,7 @@ legend{
 	font-size: 21px;
 	margin-right: 8px;
 	color:#777;
+	transition: color .3s ease;
 }
 .card .fa-heart{
 	color:#cc0000;
@@ -320,9 +321,6 @@ legend{
 }
 .card .fa-share-square:hover{
 	color:#26a69a;
-}
-.card .fa:hover{
-	transition: all .3s ease;
 }
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating){
 	margin-right: 0px;
@@ -339,6 +337,9 @@ legend{
     color: rgba(244,115,54,0.9);
     cursor: pointer;
     transition:all .2s linear;
+}
+.expired-memo-icon:hover{
+	color:rgba(0,200,83,0.9);
 }
 .show-expired{
 	visibility: visible;
@@ -382,6 +383,14 @@ footer.page-footer{
 }
 
 /* sideNav */
+.side-nav .chip{
+    height: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+    padding: 0 9px;
+    border-radius: 16px;
+}
 .side-nav a.btn.addMemoModal{
 	margin-bottom: 70px;
 }
@@ -551,18 +560,18 @@ td{
     line-height: 20px;
     padding: 0 1em;
 }
-.collection{
+.search-nav-bar .collection{
 	border:none;
 	margin:0;
 }
-.collection .collection-item{
+.search-nav-bar .collection .collection-item{
 	border:none;
 }
-.collection .collection-item:hover{
+.search-nav-bar .collection .collection-item:hover{
 	background-color: rgba(0,0,0,0.05);
 	cursor: pointer;
 }
-.collection .collection-item.avatar .title {
+.search-nav-bar .collection .collection-item.avatar .title {
     font-size: 14px;
 }
 .not-found{
@@ -620,6 +629,8 @@ td{
     line-height: 0px;
 }
 .search-nav-wrapper .collection{
+	border:none;
+	margin:0;
 	width: 50%;
 	position: absolute;
 	top: 64px;
@@ -664,4 +675,33 @@ td{
 	.search-nav-wrapper .collection{
 		width: 100%;
 	}
+}
+
+/* notification */
+.notification .collection{
+	margin: 0.5rem 0 1rem 0;
+    border: 1px solid #e0e0e0;
+}
+.notification .collection .should-notify{
+	background-color: rgba(0, 0, 0, 0.05);
+}
+.notification .collection .fa-clock-o{
+	cursor: pointer;
+	font-size:3em;
+	color:rgba(244,115,54,0.9);
+	transition: all .3s ease;
+}
+.notification .collection .fa-clock-o:hover{
+	color:rgba(0,200,83);
+}
+.no-notification{
+	text-align: center;
+    font-size: 3em;
+    color: #777;
+}
+.no-notification p{
+	margin:0;
+}
+.no-notification .fa-list-alt{
+	font-size: 2em;
 }

@@ -1,0 +1,20 @@
+<template name="Notification">
+	<div class="container main-content notification">
+		<div class="row">
+			<div class="col l8 s12 offset-l2">
+				{{#if notifyCount}}
+					<ul class="collection">
+					{{#each notifyItem}}
+						{{> NotificationItem}}
+					{{/each}}
+					</ul>
+				{{else}}
+					<div class="no-notification">
+						<i class="fa fa-list-alt"></i>
+						<p>Nothing to notify</p>
+					</div>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+</template>
