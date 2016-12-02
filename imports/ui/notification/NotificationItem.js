@@ -6,5 +6,11 @@ TemplateController('NotificationItem',{
 		shouldNotify(){
 			return !this.data.notifiedToUser;
 		}
+	},
+
+	events:{
+		'click .notify-item'(){
+			Meteor.call('memoUrlClicked', this.data);
+		},
 	}
 });

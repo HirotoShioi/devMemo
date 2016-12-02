@@ -680,14 +680,18 @@ td{
 .notification .collection{
 	margin: 0.5rem 0 1rem 0;
     border: 1px solid #e0e0e0;
-    cursor: pointer;
 }
 .notification .collection .should-notify{
 	background-color: rgba(0, 0, 0, 0.05);
 }
 .notification .collection .fa-clock-o{
+	cursor: pointer;
 	font-size:3em;
 	color:rgba(244,115,54,0.9);
+	transition: all .3s ease;
+}
+.notification .collection .fa-clock-o:hover{
+	color:#00c853;
 }
 .no-notification{
 	text-align: center;
