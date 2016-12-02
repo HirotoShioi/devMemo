@@ -497,6 +497,9 @@ nav .button-collapse i{
 .list-item .fa-clock-o:hover{
 	color:rgb(0,200,83);
 }
+.list-item .expire-progress{
+	height: 2px;
+}
 .favicon{
 	width:14px;
 }
