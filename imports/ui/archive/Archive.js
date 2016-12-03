@@ -1,15 +1,15 @@
-import './Notification.html';
+import './Archive.html';
 import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../api/memos.js';
 import '../partials/List/SingleList.js';
 import { moment } from 'meteor/momentjs:moment';
 
-TemplateController('Notification',{
+TemplateController('Archive',{
 	onCreated(){
 		this.autorun(()=>{
 			this.subscribe('memos',);
 		});
-		Session.set('Title',{name:"Notification"});
+		Session.set('Title',{name:"Archive"});
 	},
 
 	helpers:{
