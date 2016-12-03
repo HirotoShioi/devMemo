@@ -216,7 +216,7 @@ legend{
     left: 0;
     display: block;
     z-index: 10;
-    transition: all 0.2s linear;
+    transition: all 0.4s ease;
 }
 .progress-over-75{
 	background-color: #00c853;
@@ -337,9 +337,6 @@ legend{
     color: rgba(244,115,54,0.9);
     cursor: pointer;
     transition:all .2s linear;
-}
-.expired-memo-icon:hover{
-	color:rgba(0,200,83,0.9);
 }
 .show-expired{
 	visibility: visible;

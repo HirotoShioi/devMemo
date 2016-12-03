@@ -5,7 +5,7 @@ import { moment } from 'meteor/momentjs:moment';
 
 TemplateController('SingleList',{
 	state:{
-		shouldExpireProgressbarShow:true,
+		shouldExpireProgressbarShow:false,
 		progressBarColor:'over-75',
 		progressRate:0,
 		isMemoExpired:false,
@@ -88,6 +88,16 @@ TemplateController('SingleList',{
 		},
 		'click .chip'(){
 			Router.go('label.detail',{labelId:this.data.memo.labelId});
+		},
+		'mouseover .list-item'(){
+			const memo = this.data.memo;
+			if(memo.status == "expired" || memo.isFavorited == true){
+				return;
+			}
+			this.state.shouldExpireProgressbarShow = true;
+		},
+		'mouseout .list-item'(){
+			this.state.shouldExpireProgressbarShow = false;
 		}
 	}
 });
