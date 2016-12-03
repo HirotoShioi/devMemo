@@ -495,6 +495,10 @@ nav .button-collapse i{
 .list-item .notify-item:hover{
 	color:rgb(0,200,83);
 }
+.archive-indicator{
+	font-size: 1.4em;
+    color: #777;
+}
 .list-item .expire-progress{
 	height: 2px;
 }
