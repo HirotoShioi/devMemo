@@ -21,7 +21,7 @@ TemplateController('Memos',{
 	helpers:{
 		memos(){
 			const today = moment().toDate();
-			return Memos.find({$or:[{isFavorited:true},{expiredAt:{"$gte":today}}]},{sort:{createdAt:-1}});
+			return Memos.find({$or:[{isFavorited:true},{status:"active"}]},{sort:{createdAt:-1}});
 		},
 	},
 });

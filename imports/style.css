@@ -484,15 +484,15 @@ nav .button-collapse i{
     padding: 0 1em;
     cursor: pointer;
 }
-.list-item .fa-clock-o{
+.list-item .notify-item{
 	cursor: pointer;
-    font-size: 3em;
+    font-size: 2em;
     transition: all .3s ease;
 }
-.list-item .fa-clock-o{
+.list-item .notify-item{
 	color:rgba(244,115,54,0.9);
 }
-.list-item .fa-clock-o:hover{
+.list-item .notify-item:hover{
 	color:rgb(0,200,83);
 }
 .list-item .expire-progress{
