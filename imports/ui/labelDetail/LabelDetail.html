@@ -1,9 +1,18 @@
 <template name="LabelDetail">
 	<div class="container main-content">
-		<div class="row">
-			{{#each labelLists}}
-				{{> Memo}}
-			{{/each}}
-		</div>
+			{{> ViewBtn}}
+		 	{{#if $.Session.get 'ListMode'}}
+		 		<div class="row">
+		 			{{> List memos=memos}}
+		 		</div>
+		 	{{else}}
+				 <div class="row">
+					 	{{#each memos}}
+					 		{{> Memo}}
+					 	{{else}}
+					 		<h3>No Memo Available!</h3>
+					 	{{/each}}
+				 </div>
+		 	{{/if}}
 	</div>
 </template>

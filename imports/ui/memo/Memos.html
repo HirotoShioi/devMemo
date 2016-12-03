@@ -3,7 +3,9 @@
 		{{> ViewBtn}}
 		 <div class="list-group">
 		 	{{#if $.Session.get 'ListMode'}}
-				{{> List memos=memos}}
+		 		<div class="row">
+		 			{{> List memos=memos}}
+		 		</div>
 		 	{{else}}
 				 <div class="row">
 					 	{{#each memos}}

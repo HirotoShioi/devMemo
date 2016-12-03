@@ -1,7 +1,7 @@
 import './Notification.html';
 import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../api/memos.js';
-import { NotificationItem } from './NotificationItem.js';
+import '../partials/List/SingleList.js';
 import { moment } from 'meteor/momentjs:moment';
 
 TemplateController('Notification',{
@@ -13,7 +13,7 @@ TemplateController('Notification',{
 	},
 
 	helpers:{
-		notifyItem(){
+		notifyItems(){
 			const today = moment().toDate();
 			let notifiyItems = Memos.find({status:"expired"},{sort:{expiredAt:-1}});
 			return notifiyItems;

@@ -216,7 +216,7 @@ legend{
     left: 0;
     display: block;
     z-index: 10;
-    transition: all 0.2s linear;
+    transition: all 0.4s ease;
 }
 .progress-over-75{
 	background-color: #00c853;
@@ -337,9 +337,6 @@ legend{
     color: rgba(244,115,54,0.9);
     cursor: pointer;
     transition:all .2s linear;
-}
-.expired-memo-icon:hover{
-	color:rgba(0,200,83,0.9);
 }
 .show-expired{
 	visibility: visible;
@@ -467,26 +464,42 @@ nav .button-collapse i{
 	cursor: pointer;
 }
 /* table */
-td{
-	padding:8px 5px;
+.list-item{
+	background-color: transparent;
+	transition:all 0.3 ease;
 }
-.table-label-btn{
-    height: 26px;
-    width: 120px;
-    line-height: 26px;
-    padding:0;
-    text-transform: none;
-    overflow: hidden;
+.list-item:hover{
+	background-color:rgba(0,0,0,0.05);
 }
-.list-name{
-	width: 50%;
-	overflow: hidden;
+.list-item .circle{
+	cursor: pointer;
 }
-.memos-list{
-	margin-bottom: 40px;
+.list-item .title{
+	cursor: pointer;
 }
-.list-edit{
-	width: 28%;
+.list-item .chip{
+	font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 1em;
+    cursor: pointer;
+}
+.list-item .fa-clock-o{
+	cursor: pointer;
+    font-size: 3em;
+    transition: all .3s ease;
+}
+.list-item .fa-clock-o{
+	color:rgba(244,115,54,0.9);
+}
+.list-item .fa-clock-o:hover{
+	color:rgb(0,200,83);
+}
+.list-item .expire-progress{
+	height: 2px;
+}
+.list-item p{
+	color:#777;
 }
 .favicon{
 	width:14px;
@@ -687,16 +700,7 @@ td{
     border: 1px solid #e0e0e0;
 }
 .notification .collection .should-notify{
-	background-color: rgba(0, 0, 0, 0.05);
-}
-.notification .collection .fa-clock-o{
-	cursor: pointer;
-	font-size:3em;
-	color:rgba(244,115,54,0.9);
-	transition: all .3s ease;
-}
-.notification .collection .fa-clock-o:hover{
-	color:rgb(0,200,83);
+	background-color: #e1f5fe;
 }
 .no-notification{
 	text-align: center;
