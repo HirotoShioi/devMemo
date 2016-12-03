@@ -2,10 +2,19 @@
 	<div class="container main-content notification">
 		<div class="row">
 			<div class="col l8 s12 offset-l2">
-				{{#if notifyCount}}
+				{{#if archiveCount}}
+					{{#if notifyCount}}
+					<h5>Recently Expired</h5>
 					<ul class="collection">
 					{{#each notifyItem in notifyItems}}
 						{{> SingleList memo=notifyItem shouldNotify=true}}
+					{{/each}}
+					</ul>
+					{{/if}}
+					<h5>Archived</h5>
+					<ul class="collection">
+					{{#each archivedItem in archived}}
+						{{> SingleList memo=archivedItem shouldNotify=false}}
 					{{/each}}
 					</ul>
 				{{else}}
