@@ -52,7 +52,11 @@ nav .brand-logo{
 .board{
 	padding:1px 0;
 }
+.board-label-wrapper{
+	width: 100%;
+}
 .label-collection .label-chip{
+	border: 1px solid rgba(0,0,0,0.1);
     display: inline-block;
     height: 33px;
     font-size: 15px;
