@@ -1,5 +1,4 @@
 import { TemplateController } from 'meteor/space:template-controller';
-import { rwindow } from 'meteor/gadicohen:reactive-window';
 import './Overlay.html';
 
 TemplateController('Overlay',{

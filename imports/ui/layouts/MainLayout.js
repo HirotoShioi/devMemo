@@ -17,11 +17,15 @@ TemplateController('MainLayout',{
 	helpers:{
 		shouldSearchBarShow(){
 			if(rwindow.$width() >= 992){
-				Session.set('isShrinkedSideNavShown',false);
-				Session.set('isSearchNavShown',false);
+				if(Session.get('isSearchNavShown') || Session.get('isShrinkedSideNavShown')){
+					Session.set('isShrinkedSideNavShown',false);
+					Session.set('isSearchNavShown',false);
+				}
 			}
-			if(rwindow.$width() <= 992 && Meteor.userId() === true){
-				Session.set('isSearching',false);
+			if(rwindow.$width() <= 992){
+				if(Session.get('isSearching')){
+					Session.set('isSearching',false);
+				}
 				return false;
 			}else{
 				return true;

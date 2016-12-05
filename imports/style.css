@@ -462,6 +462,7 @@ input#search[type=text]:focus:not([readonly]){
     background: #fff;
     opacity: 0;
     display: none;
+    will-change:opacity;
 }
 .overlay-show{
 	z-index: 1002;
