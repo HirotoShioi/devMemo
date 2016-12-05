@@ -71,11 +71,13 @@ TemplateController('SearchBar',{
 			if(this.state.labelSearchLimit < 20){
 				this.state.labelSearchLimit += 3;
 			}
+			return false;
 		},
 		'click .toggle-memo-show'(){
 			if(this.state.memoSearchLimit < 30){
 				this.state.memoSearchLimit += 5;
 			}
+			return false;
 		}
 	}
 });

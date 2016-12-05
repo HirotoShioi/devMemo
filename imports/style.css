@@ -404,7 +404,11 @@ input#search{
     margin: 0;
     padding: 0;
     border: 1px solid #dedede;
-    border-radius: 5px;
+    border-radius: 3px;
+}
+input#search[type=text]:focus:not([readonly]){
+	border-bottom: 1px solid #dedede;
+	box-shadow: none;
 }
 .search-input-title{
 	padding-bottom: 20px;
