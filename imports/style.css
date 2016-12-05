@@ -404,7 +404,7 @@ input#search{
     margin: 0;
     padding: 0;
     border: 1px solid #dedede;
-    border-radius: 2px;
+    border-radius: 5px;
 }
 .search-input-title{
 	padding-bottom: 20px;
@@ -707,7 +707,7 @@ nav .button-collapse i{
 }
 .search-result-title{
 	width: 100%;
-    padding-left: 20px;
+    padding:0 20px;
     background: #f0f0f0;
 }
 /* notification */

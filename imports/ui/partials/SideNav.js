@@ -24,6 +24,7 @@ TemplateController('SideNav',{
 			Session.set('isSearching', false);
 		},
 		'click .search-link'(){
+			$('#afModal').closeModal();
 			Session.set('isSearching', !Session.get('isSearching'));
 		},
 	}

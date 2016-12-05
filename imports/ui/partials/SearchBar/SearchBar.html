@@ -6,19 +6,24 @@
 		</div>
 		<div class="search-result">
 			{{#if $neq labelResultCount 0}}
-				<div class="search-result-title">Labels</div>
+				<div class="search-result-title">
+					<span>Labels</span>
+					<a href="" class="right toggle-label-show">more</a>
+				</div>
 				<ul class="collection">
 				{{#each label in searchedLabels}}
 					{{> labelSearchItem label=label}}
 				{{/each}}
 				</ul>
 			{{/if}}
+			{{#if $neq memoResultCount 0}}
 				<ul class="collection">
 				<div class="search-result-title">{{labelTitle}}</div>
 				{{#each searchedMemos}}
 					{{> SearchBarItem}}
 				{{/each}}
 				</ul>
+			{{/if}}
 		</div>
 		{{#if noResult}}
 			<div class="not-found">

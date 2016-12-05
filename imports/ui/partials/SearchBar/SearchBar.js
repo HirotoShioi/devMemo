@@ -10,6 +10,7 @@ TemplateController('SearchBar',{
 	state:{
 		memoResultCount:0,
 		labelResultCount:0,
+		labelSearchLimit:3,
 		labelTitle:"Recently Used",
 	},
 
@@ -37,7 +38,7 @@ TemplateController('SearchBar',{
 		},
 		searchedLabels(){
 			const label = Label.find();
-			return Label.find({},{limit:5, sort:{createdAt:-1}});
+			return Label.find({},{limit:this.state.labelSearchLimit, sort:{createdAt:-1}});
 		},
 		shouldSearchBarShow(){
 			return Session.get('isSearching');
@@ -47,8 +48,8 @@ TemplateController('SearchBar',{
 			let regex = new RegExp(search,'i');
 			if(search){
 				this.state.memoResultCount = Memos.find({$or:[{name:regex},{description:regex}]}).count();
+				return this.state.memoResultCount;
 			}
-			return this.state.memoResultCount;
 		},
 		labelResultCount(){
 			this.state.labelResultCount = Label.find().count();
@@ -65,5 +66,8 @@ TemplateController('SearchBar',{
 			let value = event.target.value.trim();
 			Session.set('searchQuery', value);
 		},
+		'click .toggle-label-show'(){
+			this.state.labelSearchLimit +=3;
+		}
 	}
 });
