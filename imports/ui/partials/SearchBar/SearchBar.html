@@ -18,7 +18,10 @@
 			{{/if}}
 			{{#if $neq memoResultCount 0}}
 				<ul class="collection">
-				<div class="search-result-title">{{labelTitle}}</div>
+				<div class="search-result-title">
+					{{labelTitle}}
+					<a href="" class="right toggle-memo-show">more</a>
+				</div>
 				{{#each searchedMemos}}
 					{{> SearchBarItem}}
 				{{/each}}

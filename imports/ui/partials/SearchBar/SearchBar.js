@@ -11,6 +11,7 @@ TemplateController('SearchBar',{
 		memoResultCount:0,
 		labelResultCount:0,
 		labelSearchLimit:3,
+		memoSearchLimit:5,
 		labelTitle:"Recently Used",
 	},
 
@@ -27,10 +28,10 @@ TemplateController('SearchBar',{
 			//need research on description ( full text search)
 			if(search){
 				this.state.labelTitle = "Search result";
-				return Memos.find({$or:[{name:regex},{description:regex}]}, {sort:{clicked:1}}).fetch();
+				return Memos.find({$or:[{name:regex},{description:regex}]}, {limit:this.state.memoSearchLimit, sort:{clicked:1}}).fetch();
 			}else{
 				this.state.labelTitle = "Frequently used";
-				return Memos.find({},{limit:5, sort:{clicked:1}});
+				return Memos.find({},{limit:this.state.memoSearchLimit, sort:{clicked:1}});
 			}
 		},
 		labelTitle(){
@@ -67,7 +68,14 @@ TemplateController('SearchBar',{
 			Session.set('searchQuery', value);
 		},
 		'click .toggle-label-show'(){
-			this.state.labelSearchLimit +=3;
+			if(this.state.labelSearchLimit < 20){
+				this.state.labelSearchLimit += 3;
+			}
+		},
+		'click .toggle-memo-show'(){
+			if(this.state.memoSearchLimit < 30){
+				this.state.memoSearchLimit += 5;
+			}
 		}
 	}
 });
