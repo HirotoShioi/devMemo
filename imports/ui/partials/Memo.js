@@ -113,6 +113,9 @@ TemplateController('Memo',{
 		},
 		'click .fa-share-square'(){
 			window.open(`https://twitter.com/intent/tweet?text=From my memo "${this.data.name}"&url=${this.data.url}`);
+		},
+		'click .archive-memo'(){
+			Meteor.call('archiveMemo', this.data);
 		}
 	},
 });

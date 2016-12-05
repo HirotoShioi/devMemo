@@ -6,9 +6,9 @@ import { moment } from 'meteor/momentjs:moment';
 TemplateController('SingleList',{
 	state:{
 		shouldExpireProgressbarShow:false,
+		shouldOptionButtonShow:false,
 		progressBarColor:'over-75',
 		progressRate:0,
-		isMemoExpired:false,
 	},
 
 	onCreated(){
@@ -23,6 +23,9 @@ TemplateController('SingleList',{
 				this.state.shouldExpireProgressbarShow = false;
 			}
 			return this.state.shouldExpireProgressbarShow;
+		},
+		shouldOptionButtonShow(){
+			return this.state.shouldOptionButtonShow;
 		},
 		isOwner(){
 			return (Meteor.userId() === this.data.memo.owner);
@@ -51,7 +54,6 @@ TemplateController('SingleList',{
 				}
 				if(progressRate <= 0){
 					progressRate = 0;
-					this.state.isMemoExpired = true;
 				}
 
 				if(progressRate >= 75){
@@ -67,7 +69,11 @@ TemplateController('SingleList',{
 			return this.state.progressBarColor;
 		},
 		isMemoExpired(){
-			return this.state.isMemoExpired;
+			if(this.data.memo.status == "expired"){
+				return true;
+			}else{
+				return false;
+			}
 		}
 	},
 
@@ -75,7 +81,7 @@ TemplateController('SingleList',{
 		'click .fa-close'(){
 			Meteor.call('deleteMemo',this.data.memo._id);
 		},
-		'click .fa-clock-o'(){
+		'click .fa-refresh'(){
 			Meteor.call('memoUrlClicked', this.data.memo);
 		},
 		'click .title'(){
@@ -90,6 +96,7 @@ TemplateController('SingleList',{
 			Router.go('label.detail',{labelId:this.data.memo.labelId});
 		},
 		'mouseover .list-item'(){
+			this.state.shouldOptionButtonShow = true;
 			const memo = this.data.memo;
 			if(memo.status == "expired" || memo.isFavorited == true){
 				return;
@@ -97,7 +104,11 @@ TemplateController('SingleList',{
 			this.state.shouldExpireProgressbarShow = true;
 		},
 		'mouseout .list-item'(){
+			this.state.shouldOptionButtonShow = false;
 			this.state.shouldExpireProgressbarShow = false;
-		}
+		},
+		'click .fa-archive'(){
+			Meteor.call('archiveMemo', this.data.memo);
+		},
 	}
 });

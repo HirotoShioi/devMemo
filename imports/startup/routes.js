@@ -9,7 +9,7 @@ import '../ui/about/About.js';
 import '../ui/boards/Board.js';
 import '../ui/home/Home.js';
 import '../ui/labelDetail/LabelDetail.js';
-import '../ui/notification/Notification.js';
+import '../ui/archive/Archive.js';
 
 import { Memos } from '../api/memos.js';
 import { Label } from '../api/memos.js';
@@ -26,7 +26,7 @@ Router.onBeforeAction(function () {
     this.next();
   }
 },{
-	only:['memo.home', 'memo.detail', 'memo.board', 'labeldetail', 'memo.notifications']
+	only:['memo.home', 'memo.detail', 'memo.board', 'labeldetail', 'memo.archive']
 });
 
 Router.route('/home',function(){
@@ -62,10 +62,10 @@ Router.route('/board',function(){
 	name:'memo.board',
 });
 
-Router.route('/notifications',function(){
-	this.render('Notification');
+Router.route('/archive',function(){
+	this.render('Archive');
 },{
-	name:'memo.notifications',
+	name:'memo.archive',
 	onStop:function(){
 		Meteor.call('expiredMemoNotified');
 	},
