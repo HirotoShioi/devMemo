@@ -2,18 +2,28 @@
 	<div id="search-bar" class="search-nav-bar {{#if shouldSearchBarShow}}search-bar-show {{else}}search-bar-hidden{{/if}}">
 		<h5>Search Result</h5>
 		<div class="search-result">
-			<ul class="collection">
-			{{#each searchedMemos}}
-				{{> SearchBarItem}}
-			{{/each}}
-			</ul>		
+			{{#if $neq labelResultCount 0}}
+				<div class="search-result-title">Labels</div>
+				<ul class="collection">
+				{{#each label in searchedLabels}}
+					{{> labelSearchItem label=label}}
+				{{/each}}
+				</ul>
+			{{/if}}
+			{{#if $neq memoResultCount 0}}
+				<ul class="collection">
+				<div class="search-result-title">Memos</div>
+				{{#each searchedMemos}}
+					{{> SearchBarItem}}
+				{{/each}}
+				</ul>
+			{{/if}}
 		</div>
-		{{#each searchedMemos}}
-		{{else}}
+		{{#if noResult}}
 			<div class="not-found">
 				<i class="fa fa-search"></i>
 				<h4>No results found</h4>
 			</div>
-		{{/each}}
+		{{/if}}
 	</div>
 </template>

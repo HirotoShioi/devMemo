@@ -556,7 +556,7 @@ nav .button-collapse i{
 }
 .search-bar-show{
 	left: 240px;
-	width: 260px;
+	width: 340px;
 	visibility: visible;
     transition: all 0.2s ease;
 }
@@ -567,7 +567,7 @@ nav .button-collapse i{
 	transition: all 0.2s ease;
 }
 .search-nav-bar h5{
-    padding: 10px 12px;
+    padding: 10px 20px;
     background: #ddd;
     margin: 0px;
     font-size: 1.24em;
@@ -593,7 +593,7 @@ nav .button-collapse i{
 	cursor: pointer;
 }
 .search-nav-bar .collection .collection-item.avatar .title {
-    font-size: 14px;
+    font-size: 13px;
 }
 .not-found{
 	display: flex;
@@ -697,7 +697,11 @@ nav .button-collapse i{
 		width: 100%;
 	}
 }
-
+.search-result-title{
+	width: 100%;
+    padding-left: 20px;
+    background: #f0f0f0;
+}
 /* notification */
 .notification .collection{
 	margin: 0.5rem 0 1rem 0;
