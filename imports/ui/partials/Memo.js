@@ -45,6 +45,11 @@ TemplateController('Memo',{
 			return this.state.progressBarColor;
 		},
 		isMemoExpired(){
+			if(this.data.status == "expired" && this.data.isFavorited === false){
+				this.state.isMemoExpired = true;
+			}else{
+				this.state.isMemoExpired = false;
+			}
 			return this.state.isMemoExpired;
 		},
 		expireStatus(){
@@ -52,7 +57,7 @@ TemplateController('Memo',{
 			const today = moment().format();
 			const progress = expireDate.diff(today, 'hours');
 			const expireLimit = this.data.expireIn*24;
-			let progressRate = this.state.progressRate;
+			let progressRate = 0;
 			progressRate = Math.floor((progress / expireLimit) * 100);
 
 			if(progressRate > 100){
@@ -60,7 +65,6 @@ TemplateController('Memo',{
 			}
 			if(progressRate <= 0){
 				progressRate = 0;
-				this.state.isMemoExpired = true;
 			}
 
 			if(progressRate >= 75){
@@ -72,7 +76,8 @@ TemplateController('Memo',{
 			}else{
 				this.state.progressBarColor = 'over-0';
 			}
-			return progressRate;
+			this.state.progressRate = progressRate;
+			return this.state.progressRate;
 		}
 	},
 
@@ -115,6 +120,7 @@ TemplateController('Memo',{
 			window.open(`https://twitter.com/intent/tweet?text=From my memo "${this.data.name}"&url=${this.data.url}`);
 		},
 		'click .archive-memo'(){
+			this.state.isMemoExpired = true;
 			Meteor.call('archiveMemo', this.data);
 		}
 	},
