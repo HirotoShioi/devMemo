@@ -69,7 +69,7 @@ TemplateController('SingleList',{
 			return this.state.progressBarColor;
 		},
 		isMemoExpired(){
-			if(this.data.memo.status == "expired"){
+			if(this.data.memo.status == "expired" && this.data.memo.isFavorited === false){
 				return true;
 			}else{
 				return false;
