@@ -36,9 +36,7 @@ TemplateController('SideNav',{
 			}
 		},
 		'focus [name="search"]'(event){
-			if(Session.get('searchQuery')){
 				Session.set('isSearching', true);
-			};
 		}
 	}
 });

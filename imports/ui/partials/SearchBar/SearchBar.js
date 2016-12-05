@@ -29,7 +29,7 @@ TemplateController('SearchBar',{
 		},
 		searchedLabels(){
 			const label = Label.find();
-			return Label.find();
+			return Label.find({},{limit:5, sort:{createdAt:-1}});
 		},
 		shouldSearchBarShow(){
 			return Session.get('isSearching');
