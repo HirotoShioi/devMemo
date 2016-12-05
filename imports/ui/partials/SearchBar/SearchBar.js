@@ -10,6 +10,7 @@ TemplateController('SearchBar',{
 	state:{
 		memoResultCount:0,
 		labelResultCount:0,
+		labelTitle:"Recently Used",
 	},
 
 	onCreated(){
@@ -24,8 +25,15 @@ TemplateController('SearchBar',{
 			let regex = new RegExp(search,'i');
 			//need research on description ( full text search)
 			if(search){
-				return Memos.find({$or:[{name:regex},{description:regex}]}).fetch();
+				this.state.labelTitle = "Search result";
+				return Memos.find({$or:[{name:regex},{description:regex}]}, {sort:{clicked:1}}).fetch();
+			}else{
+				this.state.labelTitle = "Frequently used";
+				return Memos.find({},{limit:5, sort:{clicked:1}});
 			}
+		},
+		labelTitle(){
+			return this.state.labelTitle;
 		},
 		searchedLabels(){
 			const label = Label.find();
@@ -53,11 +61,9 @@ TemplateController('SearchBar',{
 		},
 	},
 	events:{
-		'mouseover .search-nav-bar'(){
-			Session.set('isHoveringSearchBar',true);
-		},
-		'mouseout .search-nav-bar'(){
-			Session.set('isHoveringSearchBar',false);
+		'keyup [name="search"]'(event){
+			let value = event.target.value.trim();
+			Session.set('searchQuery', value);
 		},
 	}
 });

@@ -1,6 +1,9 @@
 <template name="SearchBar">
 	<div id="search-bar" class="search-nav-bar {{#if shouldSearchBarShow}}search-bar-show {{else}}search-bar-hidden{{/if}}">
-		<h5>Search Result</h5>
+		<div class="search-bar-wrapper">
+			<div class="search-input-title">Search</div>
+			<input id="search" type="text" name="search" placeholder="Search...">
+		</div>
 		<div class="search-result">
 			{{#if $neq labelResultCount 0}}
 				<div class="search-result-title">Labels</div>
@@ -10,14 +13,12 @@
 				{{/each}}
 				</ul>
 			{{/if}}
-			{{#if $neq memoResultCount 0}}
 				<ul class="collection">
-				<div class="search-result-title">Memos</div>
+				<div class="search-result-title">{{labelTitle}}</div>
 				{{#each searchedMemos}}
 					{{> SearchBarItem}}
 				{{/each}}
 				</ul>
-			{{/if}}
 		</div>
 		{{#if noResult}}
 			<div class="not-found">

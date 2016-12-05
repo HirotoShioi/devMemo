@@ -380,6 +380,9 @@ footer.page-footer{
 }
 
 /* sideNav */
+.side-nav{
+	z-index: 1005;
+}
 .side-nav .fa{
 	font-size: 1.3em;
     width: 25px;
@@ -392,31 +395,31 @@ footer.page-footer{
     padding: 0 9px;
     border-radius: 16px;
 }
-.side-nav a.btn.addMemoModal{
-	margin-bottom: 70px;
-}
-li.search{
-	position: absolute;
-    left: 0;
-    right: 0;
-    top: 150px;
-    margin-top: 1px;
-    padding: 1px 0 0 0;
-    z-index: 2;
-}
 input#search{
-	display: block;
-    font-size: 16px;
+    display: block;
+    font-size: 14px;
     font-weight: 300;
     width: 100%;
-    height: 45px;
+    height: 36px;
     margin: 0;
     padding: 0;
-    border: 0;
+    border: 1px solid #dedede;
+    border-radius: 2px;
 }
-.search-wrapper{
+.search-input-title{
+	padding-bottom: 20px;
+    font-size: 1.5em;
+    color: #777;
+}
+.search-bar-wrapper{
 	margin: 0 16px;
     transition: margin .25s ease;
+    margin-top: 1px;
+    padding: 15px 20px;
+    z-index: 2;
+}
+.search-result .collection .collection-item.avatar{
+	min-height: 76px;
 }
 .logout{
 	text-decoration: underline;
@@ -440,6 +443,9 @@ input#search{
 	left:0;
 	transition: left 0.2s ease-in;
 }
+.lean-overlay{
+	background: #fff;
+}
 .overlay{
 	position: fixed;
     z-index: 999;
@@ -449,7 +455,8 @@ input#search{
     right: 0;
     height: 125%;
     width: 100%;
-    background: #000;
+    background: #fff;
+    opacity: 0;
     display: none;
 }
 .overlay-show{
@@ -544,6 +551,7 @@ nav .button-collapse i{
     border-right: 1px solid #ddd;
     visibility: hidden;
     overflow-x: hidden;
+    z-index: 1004;
 }
 @media (max-width: 992px) {
   .search-nav-bar {
