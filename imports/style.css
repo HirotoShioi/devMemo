@@ -62,7 +62,7 @@ nav .brand-logo{
     padding: 0px 5px 0 12px;
     border-radius: 16px;
     background-color: #e4e4e4;
-    margin: 10px;
+    margin: 10px 10px 10px 0;
 }
 .label-collection .counter-chip{
 	display: inline-block;
