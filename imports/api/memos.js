@@ -224,13 +224,6 @@ Meteor.methods({
 		}
 		Memos.update({owner:this.userId, notifiedToUser:false, status:"expired"}, {$set:{notifiedToUser:true}}, {multi:true});
 	},
-	archiveMemo(doc){
-		if(this.userId !== doc.owner){
-			throw new Meteor.Error("not authorized");
-		}
-		const today = moment().toDate();
-		Memos.update({_id:doc._id},{$set:{expiredAt:today, status:"expired", isFavorited:false, notifiedToUser:true}});
-	}
 });
 
 Memos.helpers({

@@ -14,20 +14,11 @@
       <span class="chip" style="background-color:{{memo.label.color}}">
          {{memo.label.name}}
       </span>
-      {{#if isMemoExpired}}
-        <i class="fa fa-archive archive-indicator"></i>
-      {{/if}}
       <p>
         {{memo.url}}
       </p>
-       <a class="secondary-content">
-       {{#if shouldOptionButtonShow}}
-         {{#if isMemoExpired}}
-            <i class="fa fa-refresh notify-item"></i>
-        {{else}}
-            <i class="fa fa-archive notify-item"></i>
-        {{/if}}
+      {{#if isMemoExpired}}
+       <a class="secondary-content"><i class="fa fa-clock-o notify-item"></i></a>
       {{/if}}
-       </a>
    </li>
 </template>
