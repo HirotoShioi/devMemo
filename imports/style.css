@@ -52,6 +52,32 @@ nav .brand-logo{
 .board{
 	padding:1px 0;
 }
+.label-collection .label-chip{
+    display: inline-block;
+    height: 33px;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 32px;
+    padding: 0px 5px 0 12px;
+    border-radius: 16px;
+    background-color: #e4e4e4;
+    margin: 10px;
+}
+.label-collection .counter-chip{
+	display: inline-block;
+    height: 25px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 25px;
+    padding: 0 9px;
+    border-radius: 17px;
+    background-color: #fff;
+}
+.label-collection .label-text{
+	margin-right: 2px;
+}
 .board .row{
 	margin-bottom: 0px;
 }

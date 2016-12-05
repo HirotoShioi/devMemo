@@ -64,7 +64,6 @@ TemplateController('BoardForm',{
 		    		Bert.alert( err.reason, 'danger', 'growl-top-right');
 		    	};
 		    	if(!err){
-		    		Bert.alert( 'Label Added', 'info', 'growl-top-right' );
 		    	}
 		    });
 		    

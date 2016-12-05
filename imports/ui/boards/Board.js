@@ -2,10 +2,9 @@ import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../api/memos.js';
 import { Label } from '../../api/label.js';
 import './Board.html';
-
+import './BoardLabel.js';
 //components
 import './BoardForm.js';
-import './BoardContent.js';
 
 //partials
 import '../partials/ViewBtn.js';

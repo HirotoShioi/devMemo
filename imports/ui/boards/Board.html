@@ -4,9 +4,12 @@
 	</div>
 	<div class="container main-content add-label-content">
 		{{> BoardForm}}
+		<div class="row">
+			<div class="label-collection col s2">
+				{{#each label in labelLists}}
+					{{> BoardLabel label=label}}
+				{{/each}}
+			</div>
+		</div>
 	</div>
-		{{#each labelLists}}
-			{{> BoardContent}}
-		{{/each}}
-		{{> BoardContent(none)}}
 </template>
