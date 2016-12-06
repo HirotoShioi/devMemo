@@ -27,10 +27,10 @@ TemplateController('labelBar',{
 			let regex = new RegExp(search,'i');
 			if(search !== ""){
 				this.state.isSearching = true;
-				return Label.find({name:regex}, {sort:{clicked:1}}).fetch();
+				return Label.find({name:regex}, {sort:{name:1}}).fetch();
 			}else{
 				this.state.isSearching = false;
-				let projection = {limit:this.state.labelSearchLimit};
+				let projection = {limit:this.state.labelSearchLimit, sort:{name:1}};
 				this.state.labelResultCount = Label.find({},projection).count();
 				return Label.find({},projection);
 			}

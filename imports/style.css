@@ -532,13 +532,13 @@ nav .button-collapse i{
 	left: 240px;
 	width: 340px;
 	visibility: visible;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
 }
 .search-bar-hidden{
 	left: 0px;
 	width: 240px;
 	visibility: hidden;
-	transition: all 0.2s ease;
+	transition: all 0.3s ease;
 }
 .search-nav-bar h5{
     padding: 10px 20px;
