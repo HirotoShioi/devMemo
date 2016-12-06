@@ -48,30 +48,6 @@ nav .brand-logo{
     display: none;
   }
 }
-.label-bar-chip{
-    display: inline-block;
-    height: 29px;
-    font-size: 14px;
-    color: rgba(0, 0, 0, 0.6);
-    line-height: 29px;
-    padding: 0px 5px 0 12px;
-    border-radius: 16px;
-    background-color: #e4e4e4;
-}
-.counter-chip{
-	display: inline-block;
-    height: 20px;
-    font-size: 14px;
-    font-weight: 500;
-    color: rgba(0, 0, 0, 0.6);
-    line-height: 20px;
-    padding: 0px 6px;
-    border-radius: 20px;
-    background-color: #fff;
-}
-.label-collection .label-text{
-	margin-right: 2px;
-}
 .color-btn{
 	padding:8px 1em;
 	 background-color: #fff;
@@ -718,4 +694,30 @@ nav .button-collapse i{
 }
 .no-notification .fa-list-alt{
 	font-size: 2em;
+}
+/* label bar */
+.label-bar-chip{
+    display: inline-block;
+    height: 29px;
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 29px;
+    padding: 0px 5px 0 12px;
+    border-radius: 16px;
+    background-color: #e4e4e4;
+}
+.counter-chip{
+	display: inline-block;
+    height: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 20px;
+    padding: 0px 6px;
+    border-radius: 20px;
+    background-color: #fff;
+}
+.label-text{
+	margin-right: 2px;
 }

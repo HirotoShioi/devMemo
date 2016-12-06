@@ -6,6 +6,8 @@ import './labelBarItem.js';
 
 TemplateController('labelBar',{
 	state:{
+		labelSearchQuery:"",
+		isSearching:false,
 		labelResultCount:0,
 		labelSearchLimit:20,
 		labelTitle:"Recently Used",
@@ -13,7 +15,7 @@ TemplateController('labelBar',{
 
 	onCreated(){
 		this.autorun(()=>{
-			this.subscribe('label');
+			this.subscribe('label', );
 		});
 	},
 	helpers:{
@@ -21,18 +23,31 @@ TemplateController('labelBar',{
 			return this.state.labelTitle;
 		},
 		searchedLabels(){
-			const label = Label.find();
-			return Label.find({},{limit:this.state.labelSearchLimit, sort:{createdAt:-1}});
+			let search = this.state.labelSearchQuery;
+			let regex = new RegExp(search,'i');
+			if(search !== ""){
+				this.state.isSearching = true;
+				return Label.find({name:regex}, {sort:{clicked:1}}).fetch();
+			}else{
+				this.state.isSearching = false;
+				let projection = {limit:this.state.labelSearchLimit};
+				this.state.labelResultCount = Label.find({},projection).count();
+				return Label.find({},projection);
+			}
 		},
 		shouldSearchBarShow(){
 			return Session.get('labelBarShow');
 		},
 		labelResultCount(){
-			this.state.labelResultCount = Label.find().count();
-			return this.state.labelResultCount;
+			let search = this.state.labelSearchQuery;
+			let regex = new RegExp(search,'i');
+			if(search){
+				this.state.labelResultCount =  Label.find({name:regex}).count();
+				return this.state.labelResultCount;
+			}
 		},
 		noResult(){
-			if(this.state.labelResultCount == 0){
+			if(this.state.labelResultCount == 0 && this.state.isSearching){
 				return true;
 			}
 		},
@@ -40,7 +55,7 @@ TemplateController('labelBar',{
 	events:{
 		'keyup [name="labelSearch"]'(event){
 			let value = event.target.value.trim();
-			Session.set('searchQuery', value);
+			this.state.labelSearchQuery = value;
 		},
 		'click .toggle-label-show'(){
 			if(this.state.labelSearchLimit < 20){
