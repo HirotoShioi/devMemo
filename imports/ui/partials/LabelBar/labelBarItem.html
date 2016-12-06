@@ -5,7 +5,12 @@
       	<span class="counter-chip">{{label.memoCount}}</span>
       </span>
       <div class="secondary-content">
-
+		{{#if shouldOptionShow}}
+			{{#afModal classes="fa fa-pencil" title="Edit Label" collection="Label" operation="update" doc=label._id fields="name" formId="updateStatus"}}
+			{{/afModal}}
+			{{#afModal classes="fa fa-trash" title="Delete Label" collection="Label" operation="remove" doc=label._id fields="name" formId="deleteStatus"}}
+			{{/afModal}}
+		{{/if}}
       </div>
     </li>
 </template>

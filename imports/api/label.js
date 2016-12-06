@@ -90,7 +90,7 @@ Meteor.methods({
 		Memos.update({labelId:id},
 		{
 			$unset:{labelId:""}
-		});
+		},{multi:true});
 	}
 });
 

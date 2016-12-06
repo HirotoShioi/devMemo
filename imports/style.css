@@ -413,7 +413,7 @@ input#search[type=text]:focus:not([readonly]){
 }
 .overlay{
 	position: fixed;
-    z-index: 999;
+    z-index: 500;
     top: -100px;
     left: 0;
     bottom: 0;
@@ -426,7 +426,7 @@ input#search[type=text]:focus:not([readonly]){
     will-change:opacity;
 }
 .overlay-show{
-	z-index: 1002;
+	z-index: 500;
     display: block;
     opacity: 0.5;
     transition: all 0.3s ease-in;
@@ -513,11 +513,10 @@ nav .button-collapse i{
     position: fixed;
     height: calc(100%);
     background: #fefefe;
-    z-index: 990;
+    z-index: 800;
     border-right: 1px solid #ddd;
     visibility: hidden;
     overflow-x: hidden;
-    z-index: 1004;
 }
 @media (max-width: 992px) {
   .search-nav-bar {
@@ -555,6 +554,9 @@ nav .button-collapse i{
     line-height: 20px;
     padding: 0 1em;
 }
+.search-memo-item{
+	cursor: pointer;
+}
 .search-nav-bar .collection{
 	border:none;
 	margin:0;
@@ -564,7 +566,6 @@ nav .button-collapse i{
 }
 .search-nav-bar .collection .collection-item:hover{
 	background-color: rgba(0,0,0,0.05);
-	cursor: pointer;
 }
 .search-nav-bar .collection .collection-item.avatar .title {
     font-size: 13px;
@@ -697,6 +698,7 @@ nav .button-collapse i{
 }
 /* label bar */
 .label-bar-chip{
+	cursor: pointer;
     display: inline-block;
     height: 29px;
     font-weight: 500;
@@ -720,4 +722,15 @@ nav .button-collapse i{
 }
 .label-text{
 	margin-right: 2px;
+}
+.search-item .fa{
+	font-size: 1.5em;
+	color: #777;
+	cursor: pointer;
+	transition:all 0.2s ease;
+}
+.search-item .fa-trash:hover{
+	color:#cc0000;
+}.search-item .fa-pencil:hover{
+	color:#00c853;
 }
