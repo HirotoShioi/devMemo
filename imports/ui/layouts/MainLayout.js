@@ -8,6 +8,7 @@ import '../partials/SideNav.js';
 import '../partials/PageTitle.js';
 import '../partials/Overlay.js';
 import '../partials/SearchBar/SearchBar.js';
+import '../partials/LabelBar/labelBar.js';
 
 TemplateController('MainLayout',{
 	onCreated(){
@@ -23,8 +24,9 @@ TemplateController('MainLayout',{
 				}
 			}
 			if(rwindow.$width() <= 992){
-				if(Session.get('isSearching')){
+				if(Session.get('isSearching') || Session.get('labelBarShow')){
 					Session.set('isSearching',false);
+					Session.set('labelBarShow',false);
 				}
 				return false;
 			}else{

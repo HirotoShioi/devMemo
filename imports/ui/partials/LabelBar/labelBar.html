@@ -1,18 +1,18 @@
-<template name="SearchBar">
+<template name="labelBar">
 	<div id="search-bar" class="search-nav-bar {{#if shouldSearchBarShow}}search-bar-show {{else}}search-bar-hidden{{/if}}">
 		<div class="search-bar-wrapper">
-			<div class="search-input-title">Search</div>
-			<input id="search" type="text" name="search" placeholder="Search...">
+			<div class="search-input-title">Label</div>
+			<input id="search" type="text" name="labelSearch" placeholder="Search...">
 		</div>
 		<div class="search-result">
-			{{#if $neq memoResultCount 0}}
-				<ul class="collection">
+			{{#if $neq labelResultCount 0}}
 				<div class="search-result-title">
-					{{labelTitle}}
-					<a href="" class="right toggle-memo-show">more</a>
+					<span>Labels</span>
+					<a href="" class="right toggle-label-show">more</a>
 				</div>
-				{{#each searchedMemos}}
-					{{> SearchBarItem}}
+				<ul class="collection">
+				{{#each label in searchedLabels}}
+					{{> labelBarItem label=label}}
 				{{/each}}
 				</ul>
 			{{/if}}

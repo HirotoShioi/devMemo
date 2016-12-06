@@ -55,28 +55,25 @@ nav .brand-logo{
 .board-label-wrapper{
 	width: 100%;
 }
-.label-collection .label-chip{
-	border: 1px solid rgba(0,0,0,0.1);
+.label-bar-chip{
     display: inline-block;
-    height: 33px;
-    font-size: 15px;
-    font-weight: 500;
+    height: 29px;
+    font-size: 14px;
     color: rgba(0, 0, 0, 0.6);
-    line-height: 32px;
+    line-height: 29px;
     padding: 0px 5px 0 12px;
     border-radius: 16px;
     background-color: #e4e4e4;
-    margin: 10px 10px 10px 0;
 }
-.label-collection .counter-chip{
+.counter-chip{
 	display: inline-block;
-    height: 25px;
-    font-size: 13px;
+    height: 20px;
+    font-size: 14px;
     font-weight: 500;
     color: rgba(0, 0, 0, 0.6);
-    line-height: 25px;
-    padding: 0 9px;
-    border-radius: 17px;
+    line-height: 20px;
+    padding: 0px 6px;
+    border-radius: 20px;
     background-color: #fff;
 }
 .label-collection .label-text{
@@ -446,7 +443,6 @@ input#search[type=text]:focus:not([readonly]){
     color: #777;
 }
 .search-bar-wrapper{
-	margin: 0 16px;
     transition: margin .25s ease;
     margin-top: 1px;
     padding: 15px 20px;

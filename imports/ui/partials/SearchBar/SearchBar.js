@@ -1,24 +1,19 @@
 import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../../api/memos.js';
-import { Label } from '../../../api/label.js';
 
 import './SearchBar.html';
 import './SearchBarItem.js';
-import './labelSearchItem.js';
 
 TemplateController('SearchBar',{
 	state:{
 		memoResultCount:0,
-		labelResultCount:0,
-		labelSearchLimit:3,
-		memoSearchLimit:5,
+		memoSearchLimit:10,
 		labelTitle:"Recently Used",
 	},
 
 	onCreated(){
 		this.autorun(()=>{
 			this.subscribe('memos',Session.get('searchQuery'));//for search query!
-			this.subscribe('label');
 		});
 	},
 	helpers:{
@@ -37,10 +32,6 @@ TemplateController('SearchBar',{
 		labelTitle(){
 			return this.state.labelTitle;
 		},
-		searchedLabels(){
-			const label = Label.find();
-			return Label.find({},{limit:this.state.labelSearchLimit, sort:{createdAt:-1}});
-		},
 		shouldSearchBarShow(){
 			return Session.get('isSearching');
 		},
@@ -52,12 +43,8 @@ TemplateController('SearchBar',{
 				return this.state.memoResultCount;
 			}
 		},
-		labelResultCount(){
-			this.state.labelResultCount = Label.find().count();
-			return this.state.labelResultCount;
-		},
 		noResult(){
-			if(this.state.memoResultCount == 0 && this.state.labelResultCount == 0){
+			if(this.state.memoResultCount == 0){
 				return true;
 			}
 		},
@@ -67,15 +54,9 @@ TemplateController('SearchBar',{
 			let value = event.target.value.trim();
 			Session.set('searchQuery', value);
 		},
-		'click .toggle-label-show'(){
-			if(this.state.labelSearchLimit < 20){
-				this.state.labelSearchLimit += 3;
-			}
-			return false;
-		},
 		'click .toggle-memo-show'(){
 			if(this.state.memoSearchLimit < 30){
-				this.state.memoSearchLimit += 5;
+				this.state.memoSearchLimit += 10;
 			}
 			return false;
 		}
