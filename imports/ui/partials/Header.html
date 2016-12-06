@@ -22,12 +22,6 @@
         {{/if}}
           </a>
         </li>
-      	<li class="{{isActiveRoute 'memo.board'}}">
-          <a class="{{isActiveRoute 'memo.board'}}" href="{{pathFor route='memo.board'}}">
-            <i class="fa fa-tags"></i>
-            Labels
-          </a>
-        </li>
       	{{/if}}
         <li class="{{isActiveRoute 'about'}}">
           <a class="{{isActiveRoute 'about'}}" href="{{pathFor route='about'}}">About</a>
@@ -49,12 +43,6 @@
             {{#if notificationCount}}
               <span class="chip blue lighten-4">{{notificationCount}}</span>
             {{/if}}
-              </a>
-            </li>
-            <li class="{{isActiveRoute 'memo.board'}}">
-              <a class="{{isActiveRoute 'memo.board'}}" href="{{pathFor route='memo.board'}}">
-                <i class="fa fa-tags"></i>
-                Labels
               </a>
             </li>
           {{else}}
