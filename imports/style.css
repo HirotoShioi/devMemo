@@ -48,13 +48,6 @@ nav .brand-logo{
     display: none;
   }
 }
-/* board*/
-.board{
-	padding:1px 0;
-}
-.board-label-wrapper{
-	width: 100%;
-}
 .label-bar-chip{
     display: inline-block;
     height: 29px;
@@ -78,14 +71,6 @@ nav .brand-logo{
 }
 .label-collection .label-text{
 	margin-right: 2px;
-}
-.board .row{
-	margin-bottom: 0px;
-}
-.board-editable h4{
-	color:#0d47a1;
-	cursor: pointer;
-	font-size: 1.7em;
 }
 .color-btn{
 	padding:8px 1em;
@@ -147,9 +132,6 @@ nav .brand-logo{
     height: 25px;
     text-align: center;
     cursor: pointer;
-}
-.board-uneditable h4{
-	color:#ff6f00;
 }
 .container {
     width: 85%;
@@ -372,29 +354,6 @@ legend{
 .hide-expired{
 	visibility: hidden;
 	top:-100%;
-}
-/*board form */
-.add-label-content{
-	margin-bottom: 15px;
-}
-.new-label{
-	position: relative;
-}
-.label-form-hide{
-	position: absolute;
-	top:0;
-	right: 3%;
-    font-size: 1.7em;
-}
-[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:after{
-	background-color: #1565C0;
-}
-/*board */
-.remove-label{
-	font-size: 0.7em;
-}
-.board-view-btn{
-	margin-top: 40px;
 }
 /*about page*/
 .about{
