@@ -6,7 +6,6 @@ import '../ui/layouts/HomeLayout.js';
 import '../ui/memo/Memos.js';
 import '../ui/memoDetail/MemoDetail.js';
 import '../ui/about/About.js';
-import '../ui/boards/Board.js';
 import '../ui/home/Home.js';
 import '../ui/labelDetail/LabelDetail.js';
 import '../ui/archive/Archive.js';
@@ -26,7 +25,7 @@ Router.onBeforeAction(function () {
     this.next();
   }
 },{
-	only:['memo.home', 'memo.detail', 'memo.board', 'labeldetail', 'memo.archive']
+	only:['memo.home', 'memo.detail', 'labeldetail', 'memo.archive']
 });
 
 Router.route('/home',function(){
@@ -54,12 +53,6 @@ Router.route('/about',function(){
 	this.render('About');
 },{
 	name:'about',
-});
-
-Router.route('/board',function(){
-	this.render('Board');
-},{
-	name:'memo.board',
 });
 
 Router.route('/archive',function(){
