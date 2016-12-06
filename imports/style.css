@@ -15,6 +15,7 @@ flex: 1 0 auto;
 .fa-close{
 	color: #ddd;
 	cursor: pointer;
+	transition: all 0.3s ease;
 }
 .fa-close:hover{
 	color:#cc0000;
@@ -64,49 +65,6 @@ nav .brand-logo{
     margin-top: 5px;
     margin-right: 5px;
     border-radius: 2px;
-    cursor: pointer;
-}
-.color-select-box{
-    position: absolute;
-    width: 188px;
-    height: 62px;
-    top: -75px;
-    left: 4%;
-    background-color: #fefefe;
-    padding: 5px;
-}
-.color-btn input[type=text]{
-	background-color: transparent;
-    border: none;
-    border-bottom: 1px solid #9e9e9e;
-    border-radius: 0;
-    outline: none;
-    height: 2em;
-    width: 70%;
-    margin:0;
-    font-size: 1rem;
-    padding: 0;
-    box-shadow: none;
-    box-sizing: content-box;
-    transition: all 0.3s;
-    float:right;
-}
-.color-select-box:hover{
-	background-color: #fefefe;
-}
-.color-chooser{
-	display: table-row;
-    height: 25px;
-    list-style: none;
-}
-.color-chooser li{
-	display: table-cell;
-}
-.color-chooser-color{
-	display: block;
-    width: 25px;
-    height: 25px;
-    text-align: center;
     cursor: pointer;
 }
 .container {
@@ -376,6 +334,10 @@ input#search[type=text]:focus:not([readonly]){
 	padding-bottom: 20px;
     font-size: 1.5em;
     color: #777;
+}
+.search-input-title .fa-plus-circle{
+	font-size: 1.3em;
+    line-height: 30px;
 }
 .search-bar-wrapper{
     transition: margin .25s ease;
@@ -736,4 +698,42 @@ nav .button-collapse i{
 	color:#cc0000;
 }.search-item .fa-pencil:hover{
 	color:#00c853;
+}
+.label-form{
+    position: absolute;
+    width: 90%;
+    right: 5%;
+    top: 5px;
+    z-index: 480;
+}
+.label-form .fa-close{
+	font-size: 1.4em;
+}
+.color-chooser{
+    display: table;
+    height: 0px;
+    list-style: none;
+    border-collapse: separate;
+    border-spacing: 10px 5px;
+    margin: 0;
+}
+.color-chooser li{
+	display: table-cell;
+}
+.color-select-box{
+    margin: 10px auto 20px;
+}
+.color-chooser-color{
+    width: 41px;
+    height: 41px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
+.color-chooser-color .fa-check{
+	position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 1.4em;
+    color: #fff
 }

@@ -1,7 +1,13 @@
 <template name="labelBar">
 	<div id="search-bar" class="search-nav-bar {{#if shouldSearchBarShow}}search-bar-show {{else}}search-bar-hidden{{/if}}">
+		{{#if labelFormShow}}
+			{{> labelForm labelFormShow=labelFormShow}}
+		{{/if}}
 		<div class="search-bar-wrapper">
-			<div class="search-input-title">Label</div>
+			<div class="search-input-title">
+				<span>Label</span>
+				<a href="" class="fa fa-plus-circle right"></a>
+			</div>
 			<input id="search" type="text" name="labelSearch" placeholder="Search...">
 		</div>
 		<div class="search-result">
