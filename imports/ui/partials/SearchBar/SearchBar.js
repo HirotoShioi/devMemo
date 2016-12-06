@@ -7,6 +7,7 @@ import './SearchBarItem.js';
 TemplateController('SearchBar',{
 	state:{
 		memoResultCount:0,
+		isSearching:false,
 		memoSearchLimit:10,
 		labelTitle:"Recently Used",
 	},
@@ -22,11 +23,13 @@ TemplateController('SearchBar',{
 			let regex = new RegExp(search,'i');
 			//need research on description ( full text search)
 			if(search){
+				this.state.isSearching = true;
 				this.state.labelTitle = "Search result";
 				return Memos.find({$or:[{name:regex},{description:regex}]}, {limit:this.state.memoSearchLimit, sort:{clicked:1}}).fetch();
 			}else{
 				this.state.labelTitle = "Frequently used";
-				return Memos.find({},{limit:this.state.memoSearchLimit, sort:{clicked:1}});
+				let query = {limit:this.state.memoSearchLimit, sort:{clicked:1}};
+				return Memos.find({},query);
 			}
 		},
 		labelTitle(){
@@ -44,7 +47,7 @@ TemplateController('SearchBar',{
 			}
 		},
 		noResult(){
-			if(this.state.memoResultCount == 0){
+			if(this.state.memoResultCount == 0 && this.state.isSearching){
 				return true;
 			}
 		},
