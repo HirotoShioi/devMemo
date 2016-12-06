@@ -563,6 +563,8 @@ nav .button-collapse i{
 }
 .search-nav-bar .collection .collection-item{
 	border:none;
+	background-color: transparent;
+	transition:all 0.3s ease;
 }
 .search-nav-bar .collection .collection-item:hover{
 	background-color: rgba(0,0,0,0.05);
@@ -728,6 +730,7 @@ nav .button-collapse i{
 	color: #777;
 	cursor: pointer;
 	transition:all 0.2s ease;
+	margin-right: 5px;
 }
 .search-item .fa-trash:hover{
 	color:#cc0000;
