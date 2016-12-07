@@ -4,6 +4,7 @@ import { Label } from '../../../api/label.js';
 import './labelBar.html';
 import './labelBarItem.js';
 import './labelForm.js';
+
 TemplateController('labelBar',{
 	state:{
 		labelSearchQuery:"",
@@ -11,7 +12,6 @@ TemplateController('labelBar',{
 		labelResultCount:0,
 		labelSearchLimit:20,
 		labelTitle:"Recently Used",
-		labelFormShow:false,
 	},
 
 	onCreated(){
@@ -22,9 +22,6 @@ TemplateController('labelBar',{
 	helpers:{
 		labelTitle(){
 			return this.state.labelTitle;
-		},
-		labelFormShow(){
-			return this.state.labelFormShow;
 		},
 		searchedLabels(){
 			let search = this.state.labelSearchQuery;
@@ -68,7 +65,7 @@ TemplateController('labelBar',{
 			return false;
 		},
 		'click .fa-plus-circle'(){
-			this.state.labelFormShow = true;
-		}
+			Session.set('labelFormShow',true);
+		},
 	}
 });

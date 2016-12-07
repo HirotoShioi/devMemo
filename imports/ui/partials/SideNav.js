@@ -33,6 +33,9 @@ TemplateController('SideNav',{
 			$('#afModal').closeModal();
 			Session.set('isSearching', false);
 			Session.set('labelBarShow',!Session.get('labelBarShow'));
+		},
+		'click .side-nav'(){
+			Session.set('labelFormShow',false);
 		}
 	}
 });

@@ -17,6 +17,7 @@ TemplateController('Overlay',{
 			Session.set('isSearchNavShown',false);
 			Session.set('isSearching',false);
 			Session.set('labelBarShow',false);
+			Session.set('labelFormShow',false);
 		},
 	},
 });

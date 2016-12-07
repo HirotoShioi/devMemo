@@ -700,11 +700,13 @@ nav .button-collapse i{
 	color:#00c853;
 }
 .label-form{
-    position: absolute;
+	position: absolute;
     width: 90%;
     right: 5%;
     top: 5px;
     z-index: 480;
+    padding: 10px;
+    transition: all 0.3s linear;
 }
 .label-form .fa-close{
 	font-size: 1.4em;
@@ -729,6 +731,8 @@ nav .button-collapse i{
     text-align: center;
     cursor: pointer;
     position: relative;
+    border-radius: 2px;
+    transition:all 0.3s ease;
 }
 .color-chooser-color .fa-check{
 	position: absolute;
