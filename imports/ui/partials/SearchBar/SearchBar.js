@@ -8,7 +8,7 @@ TemplateController('SearchBar',{
 	state:{
 		memoResultCount:0,
 		isSearching:false,
-		memoSearchLimit:10,
+		memoSearchLimit:7,
 		labelTitle:"Recently Used",
 	},
 
