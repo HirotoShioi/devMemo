@@ -43,6 +43,21 @@ Schemas.memos = new SimpleSchema({
 			type:"hidden"
 		}
 	},
+	provider_url:{
+		type:String,
+		optional:true,
+		regEx:SimpleSchema.RegEx.Url,
+		autoform:{
+			type:"hidden"
+		}		
+	},
+	provider_name:{
+		type:String,
+		optional:true,
+		autoform:{
+			type:"hidden"
+		}		
+	},
 	isFavorited:{
 		type:Boolean,
 		optional:true,
@@ -90,6 +105,13 @@ Schemas.memos = new SimpleSchema({
 			type:"hidden"
 		}
 	},
+	clickedAt:{
+		type:Date,
+		optional:true,
+		autoform:{
+			type:"hidden"
+		}		
+	},
 	expireIn:{
 		type:Number,
 		optional:true,
@@ -136,6 +158,7 @@ const updateMemoExpiration = function(id){
 			expiredAt: moment().add(expireIn,'days').format(),
 			expireIn:expireIn,
 			status:"active",
+			clickedAt: Date.now(),
 		},
 		$unset:{
 			notifiedToUser:'',
@@ -201,6 +224,8 @@ Meteor.methods({
 				name:data.title,
 				url:doc.url,
 				thumbnailUrl:data.thumbnail_url,
+				provider_url:data.provider_url,
+				provider_name:provider_name,
 				desc:data.description,
 				labelId:doc.labelId,
 				createdAt: moment().format(),
