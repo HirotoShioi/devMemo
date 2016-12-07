@@ -37,27 +37,18 @@ Schemas.label = new SimpleSchema({
 		autoValue:function(){
 			return new Date();
 		},
-		autoform:{
-			type:"hidden"
-		}
 	},
 	owner:{
 		type:String,
 		autoValue:function(){
 			return Meteor.userId();
 		},
-		autoform:{
-			type:"hidden"
-		}
 	},
 	username:{
 		type:String,
 		autoValue:function(){
 			return Meteor.user().username;
 		},
-		autoform:{
-			type:"hidden"
-		}
 	},
 });
 
