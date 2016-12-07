@@ -1,0 +1,33 @@
+<template name="labelBar">
+	<div id="search-bar" class="search-nav-bar {{#if shouldSearchBarShow}}search-bar-show {{else}}search-bar-hidden{{/if}}">
+		{{#if $.Session.get 'labelFormShow'}}
+			{{> labelForm labelFormShow=labelFormShow}}
+		{{/if}}
+		<div class="search-bar-wrapper">
+			<div class="search-input-title">
+				<span>Label</span>
+				<a href="" class="fa fa-plus-circle right"></a>
+			</div>
+			<input id="search" type="text" name="labelSearch" placeholder="Search...">
+		</div>
+		<div class="search-result">
+			{{#if $neq labelResultCount 0}}
+				<div class="search-result-title">
+					<span>Labels</span>
+					<a href="" class="right toggle-label-show">more</a>
+				</div>
+				<ul class="collection">
+				{{#each label in searchedLabels}}
+					{{> labelBarItem label=label}}
+				{{/each}}
+				</ul>
+			{{/if}}
+		</div>
+		{{#if noResult}}
+			<div class="not-found">
+				<i class="fa fa-search"></i>
+				<h4>No results found</h4>
+			</div>
+		{{/if}}
+	</div>
+</template>

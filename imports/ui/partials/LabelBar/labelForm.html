@@ -1,0 +1,35 @@
+<template name="labelForm">
+	{{labelFormShow}}
+	<div class="card-panel z-depth-1 label-form">
+		<i class="fa fa-close right"></i>
+		<form class="new-label">
+			<div class="input-field">
+				<input type="text" class="" name="label">
+				<label for="label">Label</label>
+			</div>
+			<div class="color-select-box">
+				<ul class="color-chooser">
+					{{#each labelColorsFirst}}
+						<li class="color-chooser-color {{#if $eq selectedColor value}} z-depth-2 {{/if}}"
+						 style="background-color:{{value}}" data="{{value}}">
+							{{#if $eq selectedColor value}}
+								<i class="fa fa-check" data="{{value}}"></i>
+							{{/if}}
+						</li>
+					{{/each}}
+				</ul>
+				<ul class="color-chooser">
+					{{#each labelColorsSecond}}
+						<li class="color-chooser-color {{#if $eq selectedColor value}} z-depth-2 {{/if}}"
+						 style="background-color:{{value}}" data="{{value}}">
+							{{#if $eq selectedColor value}}
+								<i class="fa fa-check" data="{{value}}"></i>
+							{{/if}}
+						</li>
+					{{/each}}
+				</ul>
+			</div>
+			<input type="submit" class="btn blue darken-3">
+		</form>
+	</div>
+</template>

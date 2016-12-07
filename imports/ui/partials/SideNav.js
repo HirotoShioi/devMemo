@@ -20,25 +20,22 @@ TemplateController('SideNav',{
 		'click .logout'(){
 			AccountsTemplates.logout();
 		},
-		'keyup [name="search"]'(event){
-			let value = event.target.value.trim();
-
-			if( value !== ''){
-				Session.set('isSearching', true);
-			}else{
-				Session.set('isSearching', false);
-			}
-			Session.set('searchQuery', value);
+		'click .link'(){
+			Session.set('isSearching', false);
+			Session.set('labelBarShow', false);
 		},
-		'focusout [name="search"]'(event){
-			if(!Session.get('isHoveringSearchBar')){
-				Session.set('isSearching', false);
-			}
+		'click .search-link'(){
+			$('#afModal').closeModal();
+			Session.set('labelBarShow', false);
+			Session.set('isSearching', !Session.get('isSearching'));
 		},
-		'focus [name="search"]'(event){
-			if(Session.get('searchQuery')){
-				Session.set('isSearching', true);
-			};
+		'click .label-link'(){
+			$('#afModal').closeModal();
+			Session.set('isSearching', false);
+			Session.set('labelBarShow',!Session.get('labelBarShow'));
+		},
+		'click .side-nav'(){
+			Session.set('labelFormShow',false);
 		}
 	}
 });

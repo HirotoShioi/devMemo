@@ -82,6 +82,10 @@ TemplateController('Memo',{
 	},
 
 	events:{
+		'click .edit-btn'(){
+			const labelName = Label.findOne({_id:this.data.labelId}).name;
+			Session.set('Title', {name:labelName});
+		},
 		'click .fa-close'(){
 			Meteor.call('deleteMemo',this.data._id);
 		},

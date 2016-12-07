@@ -12,7 +12,6 @@ TemplateController('LabelDetail', {
 		this.autorun(()=>{
 			this.subscribe('memoWithLabels',this.data._id);
 			this.subscribe('label');
-			Session.set('Title',Label.findOne({_id:this.data._id},{fields:{'name':1}}));
 		});
 	},
 

@@ -1,8 +1,11 @@
 <template name="MainLayout">
 	{{> autoformModals}}
 	{{> SideNav}}
-	{{#if shouldSearchBarShow}}
-		{{> SearchBar}}
+	{{#if currentUser}}
+		{{#if shouldSearchBarShow}}
+			{{> SearchBar}}
+			{{> labelBar}}
+		{{/if}}
 	{{/if}}
 	{{> Header}}
 		<main class="main-layout">

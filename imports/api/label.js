@@ -90,7 +90,7 @@ Meteor.methods({
 		Memos.update({labelId:id},
 		{
 			$unset:{labelId:""}
-		});
+		},{multi:true});
 	}
 });
 
@@ -98,4 +98,7 @@ Label.helpers({
 	memos(){
 		return Memos.find({labelId:this._id});
 	},
+	memoCount(){
+		return Memos.find({labelId:this._id}).count();
+	}
 });
