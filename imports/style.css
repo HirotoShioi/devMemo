@@ -301,7 +301,7 @@ footer.page-footer{
 
 /* sideNav */
 .side-nav{
-	z-index: 1005;
+	z-index: 801;
 }
 .side-nav .fa{
 	font-size: 1.3em;
