@@ -301,7 +301,7 @@ footer.page-footer{
 
 /* sideNav */
 .side-nav{
-	z-index: 1005;
+	z-index: 801;
 }
 .side-nav .fa{
 	font-size: 1.3em;
@@ -666,7 +666,7 @@ nav .button-collapse i{
     display: inline-block;
     height: 29px;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 13px;
     color: rgba(0, 0, 0, 0.6);
     line-height: 29px;
     padding: 0px 5px 0 12px;
