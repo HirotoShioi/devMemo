@@ -1,5 +1,5 @@
 import { TemplateController } from 'meteor/space:template-controller';
-import '../../style.css';
+import '../../stylesheets/style.less';
 import './MainLayout.html';
 import { rwindow } from 'meteor/gadicohen:reactive-window';
 //partials
