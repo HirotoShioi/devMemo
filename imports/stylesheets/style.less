@@ -49,50 +49,8 @@ nav .brand-logo{
     display: none;
   }
 }
-.color-btn{
-	padding:8px 1em;
-	 background-color: #fff;
-	 display: inline-block;
-	 min-width: 135px;
-	 max-width: 160px;
-	 cursor: pointer;
-}
-.color-box{
-    float: left;
-    height: 25px;
-    width: 25px;
-    background-color: #fff;
-    margin-top: 5px;
-    margin-right: 5px;
-    border-radius: 2px;
-    cursor: pointer;
-}
 .container {
     width: 85%;
-}
-/* new-memo */
-.new-memo-hide{
-	position: absolute;
-    right: 3%;
-    font-size: 2em;
-    top: 5%;
-}
-#insertNewMemoForm{
-	position: relative;
-}
-legend{
-	font-size: 2em;
-}
-.label-chip{
-    display: inline-block;
-    height: 40px;
-    font-size: 20px;
-    font-weight: 500;
-    color: rgba(0, 0, 0, 0.6);
-    line-height: 40px;
-    padding: 0 20px;
-    border-radius: 23px;
-    background-color: #e4e4e4;
 }
 /*Page Title */
 .page-title{
@@ -114,9 +72,9 @@ legend{
 .modal{
 	width: 40%;
 	max-height: 80%;
-}
-.modal .row{
-	margin-bottom: 0px;
+    .row{
+        margin-bottom: 0px;
+    }
 }
 @media (max-width: 991px) {
   .modal {
@@ -150,6 +108,10 @@ legend{
 	padding: 0 1em;
 }
 /* card */
+//memo
+.favicon{
+    width:14px;
+}
 .expire-progress{
 	position: absolute;
     width: 100%;
@@ -160,27 +122,33 @@ legend{
     display: block;
     z-index: 10;
     transition: all 0.4s ease;
+
+    .progress-bar{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        transition: width .3s linear;
+        width: 70%;
+    }
+
+    .progress-over-75{
+        background-color: #00c853;
+    }
+
+    .progress-over-50{
+        background-color: #aeea00;
+    }
+
+    .progress-over-25{
+        background-color: #ffab00;
+    }
+
+    .progress-over-0{
+        background-color: #dd2c00;
+    }
 }
-.progress-over-75{
-	background-color: #00c853;
-}
-.progress-over-50{
-	background-color: #aeea00;
-}
-.progress-over-25{
-	background-color: #ffab00;
-}
-.progress-over-0{
-	background-color: #dd2c00;
-}
-.expire-progress .progress-bar{
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    transition: width .3s linear;
-    width: 70%;
-}
+.expire-progress
 .show-progress-bar{
 	visibility: visible;
 	width: 100%;
@@ -189,84 +157,107 @@ legend{
 	visibility: hidden;
 	width: 0;
 }
-.card-image{
-	height: 135px;
-    overflow: hidden;
-}
-.card-image-url{
-	cursor: pointer;
-}
-.card-image img{
-	min-height: 130px;
-}
-.card-body{
-	position: relative;
-}
-.edit-btn{
-	font-size: 12px;
-	height:20px;
-	line-height: 20px;
-	padding:0 1em;
-	text-transform: none;
-	position: absolute;
-	right:-3%;
-	top:50%;
-}
-.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating)
-{
-	text-transform: lowercase;
+.card {
+    
+    .memo-tooltip{
+        position: absolute;
+        text-align: center;
+        bottom: -15%;
+        z-index: 2000;
+        padding: 6px;
+        width: 100%;
+        border-radius: 2px;
+        background: #333;
+        color: #fff;
+        visibility: hidden;
+        opacity: 0;
+        transition:all 0.2s linear;
+        &.tooltip-show{
+            opacity: 1;
+            bottom:-22%;
+            transition-delay: .5s;
+            visibility: visible;
+        }
+    }
+    .card-image{
+        height: 135px;
+        overflow: hidden;
+        img{
+            min-height: 130px;
+        }
+        .card-image-alt-icon{
+            font-size: 8em;
+            margin-top: 15px;
+            color: #999;
+            cursor: pointer;
+        }
+        .card-image-url{
+            cursor: pointer;
+        }
+    }
+    .card-action a:not(.btn):not(.btn-large):not(.btn-floating)
+    {
+        text-transform: lowercase;
+        margin-right: 0px;
+    }
+    .fa-close{
+        position: absolute;
+        top: 0%;
+        right: 1%;
+        color: #ddd;
+        font-size: 23px;
+        cursor: pointer;
+
+        &:hover{
+            color:#cc0000;
+        }
+    }
+    .card-action{
+        padding: 8px 10px;
+    }
+
+    .card-content{
+        padding:7px 12px;
+        .card-body{
+            position: relative;
+            .edit-btn{
+                font-size: 12px;
+                height:20px;
+                line-height: 20px;
+                padding:0 1em;
+                text-transform: none;
+                position: absolute;
+                right:-3%;
+                top:50%;
+            }
+        }
+    }
+
+    .card-option{
+        cursor: pointer;
+        font-size: 21px;
+        margin-right: 8px;
+        color:#777;
+        transition: color .3s ease;
+    }
+
+    .fa-heart{
+        color:#cc0000;
+    }
+
+    .fa-cog:hover{
+        color:#1565C0;
+    }
+
+    .fa-share-square:hover{
+        color:#26a69a;
+    }
 }
 .memo-favicon{
 	position: absolute;
     top: 18%;
     width: 20px;
     left: 7%;
-}
-.card-title{
-	font-size: 20px;
-	padding:12px;
-}
-.card .fa-close{
-	position: absolute;
-	top: 0%;
-	right: 1%;
-	color: #ddd;
-	font-size: 23px;
-	cursor: pointer;
-}
-.card .fa-close:hover{
-	color:#cc0000;
-}
-.card .card-action{
-	padding: 8px 10px;
-}
-.card-image-alt-icon{
-	font-size: 8em;
-    margin-top: 15px;
-    color: #999;
-    cursor: pointer;
-}
-.card .card-content{
-	padding:7px 12px;
-}
-.card .card-option{
-	cursor: pointer;
-	font-size: 21px;
-	margin-right: 8px;
-	color:#777;
-	transition: color .3s ease;
-}
-.card .fa-heart{
-	color:#cc0000;
-}
-.card .fa-cog:hover{
-	color:#1565C0;
-}
-.card .fa-share-square:hover{
-	color:#26a69a;
-}
-.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating){
-	margin-right: 0px;
 }
 .expired-memo-icon{
 	position: absolute;
@@ -375,66 +366,49 @@ nav .button-collapse i{
 .list-item{
 	background-color: transparent;
 	transition:all 0.3 ease;
-}
-.list-item:hover{
-	background-color:rgba(0,0,0,0.05);
-}
-.list-item .circle{
-	cursor: pointer;
-}
-.list-item .title{
-	cursor: pointer;
-}
-.list-item .chip{
-	font-size: 12px;
-    height: 20px;
-    line-height: 20px;
-    padding: 0 1em;
-    cursor: pointer;
-}
-.list-item .notify-item{
-	cursor: pointer;
-    font-size: 2em;
-    transition: all .3s ease;
-}
-.list-item .notify-item{
-	color:rgba(244,115,54,0.9);
-}
-.list-item .notify-item:hover{
-	color:rgb(0,200,83);
-}
-.archive-indicator{
-	font-size: 1.4em;
-    color: #777;
-}
-.list-item .expire-progress{
-	height: 2px;
-}
-.list-item p{
-	color:#777;
-}
-.favicon{
-	width:14px;
-}
-.memo-tooltip{
-	position: absolute;
-    text-align: center;
-    bottom: -15%;
-    z-index: 2000;
-    padding: 6px;
-    width: 100%;
-    border-radius: 2px;
-    background: #333;
-    color: #fff;
-    visibility: hidden;
-    opacity: 0;
-    transition:all 0.2s linear;
-}
-.tooltip-show{
-	opacity: 1;
-	bottom:-22%;
-	transition-delay: .5s;
-	visibility: visible;
+
+    p{
+        color:#777;
+    }
+
+    &:hover{
+        background-color:rgba(0,0,0,0.05);
+    }
+
+    .circle{
+        cursor: pointer;
+    }
+
+    .title{
+        cursor: pointer;
+    }
+
+    .chip{
+        font-size: 12px;
+        height: 20px;
+        line-height: 20px;
+        padding: 0 1em;
+        cursor: pointer;       
+    }
+
+    .notify-item{
+        cursor: pointer;
+        font-size: 2em;
+        transition: all .3s ease;
+        color:rgba(244,115,54,0.9);
+        &:hover{
+            color:rgb(0,200,83);
+        }
+    }
+
+    .archive-indicator{
+        font-size: 1.4em;
+        color: #777;
+    }
+
+    .expire-progress{
+        height: 2px;
+    }
 }
 /* detail */
 .card-detail-alt-icon{
@@ -741,21 +715,23 @@ nav .button-collapse i{
 	}
 }
 /* notification */
-.notification .collection{
-	margin: 0.5rem 0 1rem 0;
-    border: 1px solid #e0e0e0;
-}
-.notification .collection .should-notify{
-	background-color: #e1f5fe;
+.notification{
+    .collection{
+        margin: 0.5rem 0 1rem 0;
+        border: 1px solid #e0e0e0;
+        .should-notify{
+            background-color: #e1f5fe;
+        }
+    }
 }
 .no-notification{
 	text-align: center;
     font-size: 3em;
     color: #777;
-}
-.no-notification p{
-	margin:0;
-}
-.no-notification .fa-list-alt{
-	font-size: 2em;
+    p{
+        margin: 0;
+    }
+    .fa-list-alt{
+        font-size: 2em;
+    }
 }
