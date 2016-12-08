@@ -17,6 +17,10 @@
 			{{#if $eq formType 'EditLabel'}}
 				edit-label
 			{{/if}}
+
+			{{#if $eq formType 'EditMemoLabel'}}
+				edit-memo-label
+			{{/if}}
 	">
 		<div class="card-panel z-depth-1 modal-card">
 			<i class="fa fa-close right"></i>
@@ -34,6 +38,10 @@
 
 			{{#if $eq formType 'EditLabel'}}
 				{{> EditLabel}}
+			{{/if}}
+
+			{{#if $eq formType 'EditMemoLabel'}}
+				{{> EditMemoLabel}}
 			{{/if}}
 		</div>
 	</div>

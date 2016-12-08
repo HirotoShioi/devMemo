@@ -1,0 +1,6 @@
+<template name="EditMemoLabel">
+	<p class="form-title">{{memo.name}}</p>
+	<div class="modal-edit-wrapper">
+		{{> quickForm collection="Memos" doc=memo id="editMemoLabel" type="update" fields="labelId"}}
+	</div>
+</template>

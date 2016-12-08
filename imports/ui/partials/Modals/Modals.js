@@ -6,6 +6,7 @@ import './AddLabelForm.js';
 import './AddMemoForm.js';
 import './DeleteLabel.js';
 import './EditLabel.js';
+import './EditMemoLabel.js';
 
 TemplateController('Modals',{
 	helpers:{
