@@ -5,8 +5,10 @@ TemplateController('Overlay',{
 	helpers:{
 		shouldOverlayShow(){
 			if(Session.get('isShrinkedSideNavShown') || Session.get('isSearchNavShown') || Session.get('isSearching') || Session.get('labelBarShow')){
+				Session.set('overlayShow',true);
 				return true;
 			}else{
+				Session.set('overlayShow',false);
 				return false;
 			}
 		},
