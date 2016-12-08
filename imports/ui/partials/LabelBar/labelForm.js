@@ -1,7 +1,6 @@
 import { TemplateController } from 'meteor/space:template-controller';
 
 import './labelForm.html';
-
 TemplateController('labelForm',{
 	state:{
 		selectedColor:"#e4e4e4",

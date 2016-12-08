@@ -11,31 +11,12 @@ TemplateController('NewMemoModal',{
 
 	events:{
 		'click .addMemoModal'(){
-			Session.set('isSearching',false);
-			Session.set('cmDoc',undefined);
+			Session.set('showModal',true);
+			Session.set('modalFormType','AddMemo');
 		},
 	},
 });
-const hooksObject = {
-	before:{
-		insert:function(doc){
-			let isValidForm = AutoForm.validateForm("NewMemo");
-			if(isValidForm){
-				//reset
-				Session.set('isLoadingMemo',true);
-				Session.set('cmDoc',undefined);
-				this.resetForm();
-				$('#afModal').closeModal();
-				Meteor.call("addMemo",doc,(err,result)=>{
-					Session.set('isLoadingMemo', false);
-				});
-			}
-		}
-	},
-}
+
 Meteor.Spinner.options = {
 	color:"#fff"
 };
-AutoForm.hooks({
-  NewMemo: hooksObject
-});

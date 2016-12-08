@@ -1,9 +1,9 @@
 <template name="NewMemoModal">
-	{{#afModal classes="waves-effect btn white-text addMemoModal blue darken-3" collection="Memos" operation="insert" title="Add Memo" fields="url, labelId" formId="NewMemo"}}
+	<a href="" class="btn white-text waves-effect addMemoModal blue darken-3">
   	{{#if $.Session.get 'isLoadingMemo'}}
  		{{> spinner}}
  	{{else}}
  		Add memo
- 	{{/if}}
-	{{/afModal}}
+	{{/if}}
+	</a>
 </template>

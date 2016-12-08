@@ -4,7 +4,13 @@
 	<div class="{{#if modalShow}}show{{else}}hide{{/if}}-modal-form modal-form-wrapper">
 		<div class="card-panel z-depth-1 modal-card">
 			<i class="fa fa-close right"></i>
-			{{> AddLabelForm}}
+			{{#if $eq formType 'AddLabel'}}
+				{{> AddLabelForm}}
+			{{/if}}
+
+			{{#if $eq formType 'AddMemo'}}
+				{{> AddMemoForm}}
+			{{/if}}
 		</div>
 	</div>
 </template>
