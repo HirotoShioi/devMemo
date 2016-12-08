@@ -1,0 +1,47 @@
+.list-item{
+	background-color: transparent;
+	transition:all 0.3 ease;
+
+    p{
+        color:#777;
+    }
+
+    &:hover{
+        background-color:rgba(0,0,0,0.05);
+    }
+
+    .circle{
+        cursor: pointer;
+    }
+
+    .title{
+        cursor: pointer;
+    }
+
+    .chip{
+        font-size: 12px;
+        height: 20px;
+        line-height: 20px;
+        padding: 0 1em;
+        cursor: pointer;       
+    }
+
+    .notify-item{
+        cursor: pointer;
+        font-size: 2em;
+        transition: all .3s ease;
+        color:rgba(244,115,54,0.9);
+        &:hover{
+            color:rgb(0,200,83);
+        }
+    }
+
+    .archive-indicator{
+        font-size: 1.4em;
+        color: #777;
+    }
+
+    .expire-progress{
+        height: 2px;
+    }
+}
