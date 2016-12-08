@@ -120,8 +120,13 @@ TemplateController('Memo',{
 			window.open(`https://twitter.com/intent/tweet?text=From my memo "${this.data.name}"&url=${this.data.url}`);
 		},
 		'click .archive-memo'(){
-			this.state.isMemoExpired = true;
-			Meteor.call('archiveMemo', this.data);
+			if(this.data.status == "active"){
+				this.state.isMemoExpired = true;
+				Meteor.call('archiveMemo', this.data);
+			}else{
+				this.state.isMemoExpired = false;
+				Meteor.call('memoUrlClicked', this.data);
+			}
 		}
 	},
 });
