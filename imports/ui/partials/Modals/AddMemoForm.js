@@ -17,7 +17,7 @@ TemplateController('AddMemoForm',{
 			return this.state.selectedLabelId;
 		},
 		labels(){
-			let labels = Label.find({},{limit:10});
+			let labels = Label.find({},{limit:10, sort:{createdAt: -1}});
 			this.state.selectedLabelId =  labels.fetch()[0]._id;
 			return labels;
 		},

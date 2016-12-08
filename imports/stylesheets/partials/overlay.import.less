@@ -1,7 +1,6 @@
 
 .overlay{
 	position: fixed;
-    z-index: 0;
     top: -100px;
     left: 0;
     bottom: 0;
@@ -10,7 +9,7 @@
     width: 100%;
     background: #000;
     display: block;
-    transition:all 0.2s linear;
+    transition:opacity 0.2s linear;
     &.hide-overlay{
         visibility: hidden;
         opacity: 0;
@@ -18,11 +17,11 @@
     &.sidebar-overlay{
         visibility: visible;
         z-index: 500;
-        opacity: 0.3;
+        opacity: 0.7;
     }
     &.modal-overlay{
         visibility: visible;
         z-index: 1000;
-        opacity: 0.3;
+        opacity: 0.5;
     }
 }
