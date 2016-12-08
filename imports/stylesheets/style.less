@@ -87,9 +87,9 @@ nav .brand-logo{
 /* landing page */
 .home-main{
 	margin-top: 40px;
-}
-.home-main h1{
-	margin: 0;
+    h1{
+        margin: 0;
+    }
 }
 .about-content{
 	margin-top: 40px;
@@ -120,6 +120,15 @@ nav .brand-logo{
     z-index: 10;
     transition: all 0.4s ease;
 
+    &.show-progress-bar{
+        visibility: visible;
+        width: 100%;
+    }
+    &.hide-progress-bar{
+        visibility: hidden;
+        width: 0;
+    }
+
     .progress-bar{
         position: absolute;
         top: 0;
@@ -145,15 +154,7 @@ nav .brand-logo{
         background-color: #dd2c00;
     }
 }
-.expire-progress
-.show-progress-bar{
-	visibility: visible;
-	width: 100%;
-}
-.hide-progress-bar{
-	visibility: hidden;
-	width: 0;
-}
+
 .card {
 
     .memo-tooltip{
@@ -427,6 +428,18 @@ nav .button-collapse i{
     visibility: hidden;
     overflow-x: hidden;
 
+    &.search-bar-show{
+        left: 240px;
+        width: 340px;
+        visibility: visible;
+        transition: all 0.3s ease;
+    }
+    &.search-bar-hidden{
+        left: 0px;
+        width: 240px;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
     .not-found{
         display: flex;
         justify-content: center;
@@ -614,18 +627,6 @@ nav .button-collapse i{
     left:0px;
   }
 }
-.search-bar-show{
-	left: 240px;
-	width: 340px;
-	visibility: visible;
-    transition: all 0.3s ease;
-}
-.search-bar-hidden{
-	left: 0px;
-	width: 240px;
-	visibility: hidden;
-	transition: all 0.3s ease;
-}
 .nav-icon{
 	line-height: 64px;
 	font-size: 27px;
@@ -633,15 +634,23 @@ nav .button-collapse i{
 	height: 64px;
 	cursor: pointer;
 }
-.fa-arrow-left{
-	color: #777;
-}
 .search-nav-wrapper{
 	width: 100%;
 	position: absolute;
 	z-index: 1003;
 	background-color: #fefefe;
 	transition:all 0.2s ease;
+    &.show-search-nav{
+        visibility: visible;
+        top:0;
+    }
+    &.hide-search-nav{
+        visibility: hidden;
+        top: -64px;
+    }
+    .fa-arrow-left{
+        color: #777;
+    }
     .nav-search{
             left: 50%;
         -webkit-transform: translateX(-50%);
@@ -690,14 +699,7 @@ nav .button-collapse i{
         }
     }
 }
-.show-search-nav{
-	visibility: visible;
-	top:0;
-}
-.hide-search-nav{
-	visibility: hidden;
-	top: -64px;
-}
+
 @media (max-width: 750px) {
 	.search-nav-wrapper input[type=text]{
 		width: 70%;
@@ -711,7 +713,7 @@ nav .button-collapse i{
 		width: 100%;
 	}
 }
-/* notification */
+/* Archive */
 .notification{
     .collection{
         margin: 0.5rem 0 1rem 0;
