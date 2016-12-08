@@ -111,10 +111,6 @@ TemplateController('Memo',{
 			this.state.isMemoExpired = false;
 			window.open(this.data.url);
 		},
-		'click .expired-memo-icon'(){
-			Meteor.call('memoUrlClicked', this.data);
-			this.state.isMemoExpired = false;
-		},
 		'click .card-image-alt-icon'(){
 			Meteor.call('memoUrlClicked', this.data);
 			this.state.isMemoExpired = false;
