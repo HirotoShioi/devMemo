@@ -13,6 +13,10 @@
 			{{#if $eq formType 'DeleteLabel'}}
 				delete-label
 			{{/if}}
+
+			{{#if $eq formType 'EditLabel'}}
+				edit-label
+			{{/if}}
 	">
 		<div class="card-panel z-depth-1 modal-card">
 			<i class="fa fa-close right"></i>
@@ -26,6 +30,10 @@
 
 			{{#if $eq formType 'DeleteLabel'}}
 				{{> DeleteLabel}}
+			{{/if}}
+
+			{{#if $eq formType 'EditLabel'}}
+				{{> EditLabel}}
 			{{/if}}
 		</div>
 	</div>

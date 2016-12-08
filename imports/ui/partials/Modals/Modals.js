@@ -5,6 +5,7 @@ import { resetModalForm } from './modalHelper.js';
 import './AddLabelForm.js';
 import './AddMemoForm.js';
 import './DeleteLabel.js';
+import './EditLabel.js';
 
 TemplateController('Modals',{
 	helpers:{

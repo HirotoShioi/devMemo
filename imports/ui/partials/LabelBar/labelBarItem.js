@@ -26,6 +26,11 @@ TemplateController('labelBarItem',{
 			Session.set('modalFormType','DeleteLabel');
 			Session.set('deleteLabelId', this.data.label._id);
 		},
+		'click .fa-pencil'(){
+			Session.set('showModal',true);
+			Session.set('modalFormType','EditLabel');
+			Session.set('editLabelId', this.data.label._id);
+		},
 		'mouseover .search-item'(){
 			this.state.shouldOptionShow = true;
 		},
