@@ -1,0 +1,24 @@
+
+.lean-overlay{
+	background: #fff;
+}
+.overlay{
+	position: fixed;
+    z-index: 500;
+    top: -100px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 125%;
+    width: 100%;
+    background: #fff;
+    opacity: 0;
+    display: none;
+    will-change:opacity;
+}
+.overlay-show{
+	z-index: 500;
+    display: block;
+    opacity: 0.5;
+    transition: all 0.3s ease-in;
+}

@@ -1,0 +1,120 @@
+.card {
+
+    .memo-tooltip{
+        position: absolute;
+        text-align: center;
+        bottom: -15%;
+        z-index: 2000;
+        padding: 6px;
+        width: 100%;
+        border-radius: 2px;
+        background: #333;
+        color: #fff;
+        visibility: hidden;
+        opacity: 0;
+        transition:all 0.2s linear;
+        &.tooltip-show{
+            opacity: 1;
+            bottom:-22%;
+            transition-delay: .5s;
+            visibility: visible;
+        }
+    }
+    .card-image{
+        height: 135px;
+        overflow: hidden;
+        img{
+            min-height: 130px;
+        }
+        .card-image-alt-icon{
+            font-size: 8em;
+            margin-top: 15px;
+            color: #999;
+            cursor: pointer;
+        }
+        .card-image-url{
+            cursor: pointer;
+        }
+    }
+    .card-action a:not(.btn):not(.btn-large):not(.btn-floating)
+    {
+        text-transform: lowercase;
+        margin-right: 0px;
+    }
+    .fa-close{
+        position: absolute;
+        top: 0%;
+        right: 1%;
+        color: #ddd;
+        font-size: 23px;
+        cursor: pointer;
+
+        &:hover{
+            color:#cc0000;
+        }
+    }
+    .card-action{
+        padding: 8px 10px;
+    }
+
+    .card-content{
+        padding:7px 12px;
+        .card-body{
+            position: relative;
+            .favicon{
+                width:14px;
+            }
+            .edit-btn{
+                font-size: 12px;
+                height:20px;
+                line-height: 20px;
+                padding:0 1em;
+                text-transform: none;
+                position: absolute;
+                right:-3%;
+                top:50%;
+            }
+        }
+    }
+
+    .card-option{
+        cursor: pointer;
+        font-size: 21px;
+        margin-right: 8px;
+        color:#777;
+        transition: color .3s ease;
+    }
+
+    .fa-heart{
+        color:#cc0000;
+    }
+
+    .fa-cog:hover{
+        color:#1565C0;
+    }
+
+    .fa-share-square:hover{
+        color:#26a69a;
+    }
+}
+.expired-memo-icon{
+	position: absolute;
+    padding:34px 0;
+    width: 100%;
+    height: 135px;
+    right: 0%;
+    z-index: 100;
+    font-size: 5.5em;
+    background-color: rgba(255,255,255,0.6);
+    color: rgba(244,115,54,0.9);
+    cursor: pointer;
+    transition:all .2s linear;
+    &.show-expired{
+        visibility: visible;
+        top:0;
+    }
+    &.hide-expired{
+        visibility: hidden;
+        top:-100%;
+    }
+}
