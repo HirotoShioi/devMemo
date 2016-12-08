@@ -18,6 +18,11 @@ TemplateController('SingleList',{
 	},
 
 	helpers:{
+		shouldShowExpiration(){
+			if(this.data.shouldShowExpiration && this.data.memo.status == "expired"){
+				return true;
+			};
+		},
 		shouldExpireProgressbarShow(){
 			if(this.data.memo.isFavorited == true){
 				this.state.shouldExpireProgressbarShow = false;

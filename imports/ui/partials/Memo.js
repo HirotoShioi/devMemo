@@ -11,6 +11,7 @@ TemplateController('Memo',{
 		progressBarColor:'over-75',
 		progressRate:0,
 		isMemoExpired:false,
+		shouldToolTipShow:true,
 	},
 
 	onCreated(){
@@ -22,6 +23,14 @@ TemplateController('Memo',{
 	helpers:{
 		isHovered(){
 			return this.state.isHovered;
+		},
+		shouldToolTipShow(){
+			if(this.data.status == "expired" || this.data.provider_url == null){
+				this.state.shouldToolTipShow = false;
+			}else{
+				this.state.shouldToolTipShow = true;
+			}
+			return this.state.shouldToolTipShow;
 		},
 		shouldExpireProgressbarShow(){
 			if(this.data.isFavorited == true){
@@ -111,10 +120,6 @@ TemplateController('Memo',{
 			this.state.isMemoExpired = false;
 			window.open(this.data.url);
 		},
-		'click .expired-memo-icon'(){
-			Meteor.call('memoUrlClicked', this.data);
-			this.state.isMemoExpired = false;
-		},
 		'click .card-image-alt-icon'(){
 			Meteor.call('memoUrlClicked', this.data);
 			this.state.isMemoExpired = false;
@@ -124,8 +129,13 @@ TemplateController('Memo',{
 			window.open(`https://twitter.com/intent/tweet?text=From my memo "${this.data.name}"&url=${this.data.url}`);
 		},
 		'click .archive-memo'(){
-			this.state.isMemoExpired = true;
-			Meteor.call('archiveMemo', this.data);
+			if(this.data.status == "active"){
+				this.state.isMemoExpired = true;
+				Meteor.call('archiveMemo', this.data);
+			}else{
+				this.state.isMemoExpired = false;
+				Meteor.call('memoUrlClicked', this.data);
+			}
 		}
 	},
 });

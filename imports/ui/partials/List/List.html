@@ -3,7 +3,7 @@
     <div class="col l8 s12 offset-l2">
         <ul class="collection">
           {{#each memo in memos}}
-            {{> SingleList memo=memo shouldNotify=false}}
+            {{> SingleList memo=memo shouldNotify=false shouldShowExpiration=true}}
           {{/each}}
         </ul>
     </div>
