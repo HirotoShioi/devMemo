@@ -11,11 +11,22 @@ import '../partials/SearchBar/SearchBar.js';
 import '../partials/LabelBar/labelBar.js';
 
 TemplateController('MainLayout',{
+	state:{
+		shouldBlur:false,
+	},
 	onCreated(){
 		Session.set('shouldHeaderBeShownAtFullWindow',true);
 	},
 
 	helpers:{
+		shouldBlur(){
+			if(Session.get('overlayShow')){
+				this.state.shouldBlur = true;
+			}else{
+				this.state.shouldBlur = false;
+			}
+			return this.state.shouldBlur;
+		},
 		shouldSearchBarShow(){
 			if(rwindow.$width() >= 992){
 				if(Session.get('isSearchNavShown') || Session.get('isShrinkedSideNavShown')){
@@ -25,6 +36,7 @@ TemplateController('MainLayout',{
 			}
 			if(rwindow.$width() <= 992){
 				if(Session.get('isSearching') || Session.get('labelBarShow')){
+					this.state.shouldBlur = false;
 					Session.set('isSearching',false);
 					Session.set('labelBarShow',false);
 				}
