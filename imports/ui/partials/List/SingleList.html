@@ -1,25 +1,27 @@
 <template name="SingleList">
     <li class=" {{#if shouldNotify}}should-notify{{/if}} collection-item list-item avatar">
-      <div class="expire-progress {{#if shouldExpireProgressbarShow}}show{{else}}hide{{/if}}-progress-bar">
-        <div class="progress-bar progress-{{progressBarColor}}" style="width:{{expireStatus}}%"></div>
+      <div class="{{#if shouldShowExpiration}}memo-expired{{/if}}">
+        <div class="expire-progress {{#if shouldExpireProgressbarShow}}show{{else}}hide{{/if}}-progress-bar">
+          <div class="progress-bar progress-{{progressBarColor}}" style="width:{{expireStatus}}%"></div>
+        </div>
+        {{#if memo.thumbnailUrl}}
+          <img src="{{memo.thumbnailUrl}}" alt="" class="circle">
+        {{else}}
+          <i class="fa fa-file circle"></i>
+        {{/if}}
+        <span class="title">
+          {{memo.name}}
+        </span>
+        <span class="chip" style="background-color:{{memo.label.color}}">
+           {{memo.label.name}}
+        </span>
+        {{#if isMemoExpired}}
+          <i class="fa fa-archive archive-indicator"></i>
+        {{/if}}
+        <p>
+          {{memo.provider_url}}
+        </p>
       </div>
-      {{#if memo.thumbnailUrl}}
-        <img src="{{memo.thumbnailUrl}}" alt="" class="circle">
-      {{else}}
-        <i class="fa fa-file circle"></i>
-      {{/if}}
-      <span class="title">
-        {{memo.name}}
-      </span>
-      <span class="chip" style="background-color:{{memo.label.color}}">
-         {{memo.label.name}}
-      </span>
-      {{#if isMemoExpired}}
-        <i class="fa fa-archive archive-indicator"></i>
-      {{/if}}
-      <p>
-        {{memo.provider_url}}
-      </p>
        <a class="secondary-content">
        {{#if shouldOptionButtonShow}}
          {{#if isMemoExpired}}
