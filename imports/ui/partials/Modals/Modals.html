@@ -1,0 +1,10 @@
+<template name="Modals">
+	<div class="{{#if modalShow}}modal-overlay{{else}}hide-overlay{{/if}} overlay">
+	</div>
+	<div class="{{#if modalShow}}show{{else}}hide{{/if}}-modal-form modal-form-wrapper">
+		<div class="card-panel z-depth-1 modal-card">
+			<i class="fa fa-close right"></i>
+			{{> AddLabelForm}}
+		</div>
+	</div>
+</template>

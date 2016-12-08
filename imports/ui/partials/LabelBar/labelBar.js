@@ -66,6 +66,7 @@ TemplateController('labelBar',{
 		},
 		'click .fa-plus-circle'(){
 			Session.set('labelFormShow',true);
+			Session.set('showModal',true);
 		},
 	}
 });

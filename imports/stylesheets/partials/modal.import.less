@@ -16,3 +16,57 @@
     width: 80%;
   }
 }
+.modal-card{
+  margin: 0 auto;
+}
+.color-chooser{
+    display: table;
+    height: 0px;
+    list-style: none;
+    border-collapse: separate;
+    border-spacing: 10px 5px;
+    margin: 0;
+}
+.color-chooser li{
+    display: table-cell;
+}
+.color-select-box{
+    width: 280px;
+    margin: 10px auto 20px;
+}
+.color-chooser-color{
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    border-radius: 2px;
+    transition:all 0.3s ease;
+}
+.color-chooser-color .fa-check{
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 1.4em;
+    color: #fff
+}
+.modal-card .fa-close{
+        font-size: 1.4em;
+}
+.hide-modal-form{
+}
+.modal-form-wrapper{
+  z-index: 1500;
+  position: fixed;
+  margin: auto;
+  left:0;
+  right:0;
+  padding: 0;
+  width: 25%;
+  transition:all 0.3s ease;
+  display: none;
+  &.show-modal-form{
+    display: block;
+    top: 10%;
+  }
+}
