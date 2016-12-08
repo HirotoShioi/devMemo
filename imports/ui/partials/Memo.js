@@ -11,6 +11,7 @@ TemplateController('Memo',{
 		progressBarColor:'over-75',
 		progressRate:0,
 		isMemoExpired:false,
+		shouldToolTipShow:true,
 	},
 
 	onCreated(){
@@ -22,6 +23,14 @@ TemplateController('Memo',{
 	helpers:{
 		isHovered(){
 			return this.state.isHovered;
+		},
+		shouldToolTipShow(){
+			if(this.data.status == "expired" || this.data.provider_url == null){
+				this.state.shouldToolTipShow = false;
+			}else{
+				this.state.shouldToolTipShow = true;
+			}
+			return this.state.shouldToolTipShow;
 		},
 		shouldExpireProgressbarShow(){
 			if(this.data.isFavorited == true){
