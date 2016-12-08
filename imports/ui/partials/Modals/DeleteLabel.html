@@ -1,0 +1,11 @@
+<template name="DeleteLabel">
+	<p class="form-title">Delete Label</p>
+	<p class="delete-text">
+		Are you sure you want to delete
+		<span class="chip" style="background-color:{{label.color}}">
+			{{label.name}}
+		</span>?
+	</p>
+	<button class="btn white black-text btn-flat delete-label-btn">Confirm</button>
+	<button class="btn white black-text btn-flat cancel">Cancel</button>
+</template>

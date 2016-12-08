@@ -1,9 +1,11 @@
 import { TemplateController } from 'meteor/space:template-controller';
 import './Modals.html';
-
+import { resetModalForm } from './modalHelper.js';
 //modals
 import './AddLabelForm.js';
 import './AddMemoForm.js';
+import './DeleteLabel.js';
+
 TemplateController('Modals',{
 	helpers:{
 		modalShow(){
@@ -15,10 +17,10 @@ TemplateController('Modals',{
 	},
 	events:{
 		'click .fa-close'(){
-			Session.set('showModal',false);
+			resetModalForm();
 		},
 		'click .overlay'(){
-			Session.set('showModal',false);
+			resetModalForm();
 		},
 	},
 });

@@ -1,5 +1,5 @@
 import { TemplateController } from 'meteor/space:template-controller';
-
+import { resetModalForm }from './modalHelper.js';
 import './AddMemoForm.html';
 import { Label } from '../../../api/label.js';
 TemplateController('AddMemoForm',{
@@ -55,7 +55,7 @@ const hooksObject = {
 	Meteor.call('addMemo',memoDoc,(err,result)=>{
 		Session.set('isLoadingMemo', false);
 		if(!err){
-
+			resetModalForm();
 		}
 	});
 	this.done();
