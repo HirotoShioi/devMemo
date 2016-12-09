@@ -18,7 +18,14 @@ TemplateController('LabelDetail', {
 	helpers:{
 		memos(){
 			Session.set('Title',Label.findOne({_id:this.data._id},{fields:{'name':1}}));
-			let memos = Memos.find({labelId:this.data._id});
+
+			let query = {
+				labelId:this.data._id
+			};
+			if(Session.get('hideExpired')){
+				query.status = "active";
+			}
+			let memos = Memos.find(query);
 			return memos;
 		},
 	},
