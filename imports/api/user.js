@@ -12,6 +12,10 @@ Schema.userSettings = new SimpleSchema({
 			return 3;
 		},
 	},
+	recentChosenLabel:{
+		type:String,
+		optional:true,
+	},
 });
 Schema.User = new SimpleSchema({
 	username:{

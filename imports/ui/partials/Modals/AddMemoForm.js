@@ -3,23 +3,26 @@ import { resetModalForm }from './modalHelper.js';
 import './AddMemoForm.html';
 import { Label } from '../../../api/label.js';
 TemplateController('AddMemoForm',{
-	state:{
-		selectedLabelId:''
-	},
 	onCreated(){
 		this.autorun(()=>{
 			this.subscribe('label');
 		});
+		const recentlyChosenLabel = Meteor.user().profile.recentChosenLabel;
+		let initialLabel;
+		if(! recentlyChosenLabel){
+			initialLabel = Label.findOne()._id;
+		}else{
+			initialLabel = recentlyChosenLabel;
+		}
+		Session.set('addMemoSelectedLabelId', initialLabel);
 	},
 
 	helpers:{
 		selectedLabelId(){
-			return this.state.selectedLabelId;
+			return Session.get('addMemoSelectedLabelId');
 		},
 		labels(){
 			let labels = Label.find({},{limit:10, sort:{createdAt: -1}});
-			this.state.selectedLabelId =  labels.fetch()[0]._id;
-			Session.set('addMemoSelectedLabelId', this.state.selectedLabelId);
 			return labels;
 		},
 		schema(){
@@ -37,8 +40,7 @@ TemplateController('AddMemoForm',{
 	events:{
 		'click .label-select'(event){
 			const selectedLabelId = event.target.attributes.data.value;
-			this.state.selectedLabelId =  selectedLabelId;
-			Session.set('addMemoSelectedLabelId', this.state.selectedLabelId);
+			Session.set('addMemoSelectedLabelId', selectedLabelId);
 		},
 	}
 });
