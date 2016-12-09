@@ -10,9 +10,10 @@ import '../partials/PageTitle.js';
 
 TemplateController('LabelDetail', {
 	onCreated(){
-		this.autorun(()=>{
-			this.subscribe('memoWithLabels',this.data._id);
-			this.subscribe('label');
+		const self = this;
+		self.autorun(()=>{
+			self.subscribe('memoWithLabels',self.data._id);
+			self.subscribe('label');
 		});
 	},
 

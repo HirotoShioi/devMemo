@@ -15,8 +15,9 @@ TemplateController('Memo',{
 	},
 
 	onCreated(){
-		this.autorun(()=>{
-			this.subscribe('label');
+		const self = this;
+		self.autorun(()=>{
+			self.subscribe('label');
 		});
 	},
 
@@ -98,7 +99,6 @@ TemplateController('Memo',{
 		},
 		'click .edit-btn'(){
 			const labelName = Label.findOne({_id:this.data.labelId}).name;
-			Session.set('Title', {name:labelName});
 		},
 		'click .fa-close'(){
 			Meteor.call('deleteMemo',this.data._id);

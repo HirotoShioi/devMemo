@@ -38,8 +38,9 @@ Meteor.publish('memos',function(search){
       projection = { limit: 100, sort: { createdAt: -1 } };
 
   if ( search ) {
-    const regex = new RegExp( search, 'i' );
+    let regex = new RegExp( search, 'i' );
     query.name = regex;
   }
+  console.log(query);
   return Memos.find(query,projection);
 });

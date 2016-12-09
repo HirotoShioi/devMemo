@@ -11,16 +11,14 @@ import '../partials/ViewBtn.js';
 
 TemplateController('Memos',{
 	onCreated(){
-		Session.set("Title",{name:"Home"});
-
-		this.autorun(()=>{
-			this.subscribe('memos');
+		var self = this;
+		self.autorun(()=>{
+			self.subscribe('memos',Session.get('searchQuery'));
 		});
 	},
 
 	helpers:{
 		memos(){
-			const today = moment().toDate();
 			return Memos.find({},{sort:{createdAt:-1}});
 		},
 	},

@@ -10,5 +10,9 @@ TemplateController('ViewBtn',{
 		'click .list-view'(){
 			Session.set('ListMode',true);
 		},
+		'click .filled-in'(event){
+			let isChecked = event.target.checked;
+			Session.set('showAll', isChecked);
+		}
 	},
 });

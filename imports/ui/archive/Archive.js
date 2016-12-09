@@ -6,8 +6,9 @@ import { moment } from 'meteor/momentjs:moment';
 
 TemplateController('Archive',{
 	onCreated(){
-		this.autorun(()=>{
-			this.subscribe('memos',);
+		const self = this;
+		self.autorun(()=>{
+			self.subscribe('memos',);
 		});
 	},
 

@@ -14,7 +14,7 @@ TemplateController('SearchBar',{
 
 	onCreated(){
 		this.autorun(()=>{
-			this.subscribe('memos',Session.get('searchQuery'));//for search query!
+			this.subscribe('memos');//for search query!
 		});
 	},
 	helpers:{
