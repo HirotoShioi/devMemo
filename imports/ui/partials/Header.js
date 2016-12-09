@@ -6,7 +6,7 @@ import { Memos } from '../../api/memos.js';
 TemplateController('Header',{
 
 	onCreated(){
-		var self = this;
+		const self = this;
 		self.autorun(()=>{
 			self.subscribe('memos');
 		});

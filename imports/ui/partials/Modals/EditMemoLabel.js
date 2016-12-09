@@ -8,8 +8,9 @@ TemplateController('EditMemoLabel',{
 		memo:{}
 	},
 	onCreated(){
-		this.autorun(()=>{
-			this.subscribe('memos');
+		const self = this;
+		self.autorun(()=>{
+			self.subscribe('memos');
 		});
 	},
 	helpers:{

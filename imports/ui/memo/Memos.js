@@ -11,15 +11,24 @@ import '../partials/ViewBtn.js';
 
 TemplateController('Memos',{
 	onCreated(){
-		var self = this;
+		const self = this;
 		self.autorun(()=>{
-			self.subscribe('memos',Session.get('searchQuery'));
+			self.subscribe('memos');
 		});
 	},
 
 	helpers:{
 		memos(){
-			return Memos.find({},{sort:{createdAt:-1}});
+			let search = Session.get('searchQuery');
+			let query = {};
+			if(search){
+				let regex = new RegExp(search,'i');
+				query.name = regex;
+			}
+			if(!Session.get('showAll')){
+				query.status = "active";
+			}
+			return Memos.find(query,{sort:{createdAt:-1}});
 		},
 	},
 });

@@ -4,8 +4,9 @@ import './NewMemoModal.js';
 import { Memos } from '../../api/memos.js';
 TemplateController('SideNav',{
 	onCreated(){
-		this.autorun(()=>{
-			this.subscribe('memos');
+		const self = this;
+		self.autorun(()=>{
+			self.subscribe('memos');
 		});
 	},
 

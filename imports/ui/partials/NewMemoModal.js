@@ -4,7 +4,7 @@ import { Label } from '../../api/label.js';
 
 TemplateController('NewMemoModal',{
 	onCreated(){
-		var self = this;
+		const self = this;
 		self.autorun(()=>{
 			self.subscribe('label');
 		});

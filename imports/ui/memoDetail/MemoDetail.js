@@ -8,7 +8,7 @@ TemplateController('MemoDetail',{
 	},
 
 	onCreated(){
-		var self = this;
+		const self = this;
 	 	self.autorun(()=>{
 	 		self.subscribe('singleMemo',self.data._id);
 	 		self.state.memos = Memos.findOne({_id:self.data._id});
