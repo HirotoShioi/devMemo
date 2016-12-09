@@ -3,7 +3,7 @@ import { Memos } from '../../api/memos.js';
 import { moment } from 'meteor/momentjs:moment';
 
 import './Memos.html';
-
+import '../partials/PageTitle.js';
 //partials
 import '../partials/Memo.js';
 import '../partials/List/List.js';

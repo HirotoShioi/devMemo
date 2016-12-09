@@ -12,7 +12,6 @@ TemplateController('MemoDetail',{
 	 		this.subscribe('singleMemo',this.data._id);
 	 		this.state.memos = Memos.findOne({_id:this.data._id});
 	 	});
-	 	Session.set('Title',{name:"Detail"});
 	},
 
 	helpers:{

@@ -9,7 +9,6 @@ TemplateController('Archive',{
 		this.autorun(()=>{
 			this.subscribe('memos',);
 		});
-		Session.set('Title',{name:"Archive"});
 	},
 
 	helpers:{

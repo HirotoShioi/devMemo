@@ -18,7 +18,6 @@ TemplateController('labelBarItem',{
 		'click .title'(){
 			const label = this.data.label;
 			Session.set('labelBarShow',false);
-			Session.set('Title',{name:label.name});
 			Router.go('label.detail',{ labelId:label._id});
 		},
 		'click .fa-trash'(){

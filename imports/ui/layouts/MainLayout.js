@@ -5,7 +5,6 @@ import { rwindow } from 'meteor/gadicohen:reactive-window';
 //partials
 import '../partials/Header.js';
 import '../partials/SideNav.js';
-import '../partials/PageTitle.js';
 import '../partials/Overlay.js';
 import '../partials/SearchBar/SearchBar.js';
 import '../partials/LabelBar/labelBar.js';
