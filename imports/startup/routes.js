@@ -2,6 +2,8 @@
 import '../ui/layouts/MainLayout.js';
 import '../ui/layouts/HomeLayout.js';
 
+//loading
+import '../ui/partials/Loading.html';
 //pages
 import '../ui/memo/Memos.js';
 import '../ui/memoDetail/MemoDetail.js';
@@ -14,7 +16,8 @@ import { Memos } from '../api/memos.js';
 import { Label } from '../api/memos.js';
 import '../api/user.js';
 Router.configure({
-  layoutTemplate: 'MainLayout'
+  layoutTemplate: 'MainLayout',
+  loadingTemplate: 'Loading',
 });
 
 Router.onBeforeAction(function () {

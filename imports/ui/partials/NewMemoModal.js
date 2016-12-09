@@ -1,7 +1,7 @@
 import './NewMemoModal.html';
 import { TemplateController } from 'meteor/space:template-controller';
 import { Label } from '../../api/label.js';
-
+import './Loading.js';
 TemplateController('NewMemoModal',{
 	onCreated(){
 		const self = this;
@@ -12,12 +12,19 @@ TemplateController('NewMemoModal',{
 
 	events:{
 		'click .addMemoModal'(){
+
 			Session.set('showModal',true);
 			Session.set('formType','AddMemo');
 		},
 	},
+
+	helpers:{
+		isDisabled(){
+			return Session.get('isLoadingMemo');
+		}
+	}
 });
 
 Meteor.Spinner.options = {
-	color:"#fff"
+	color:"#000"
 };

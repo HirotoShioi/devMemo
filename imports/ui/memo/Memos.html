@@ -2,6 +2,11 @@
 	<div class="container main-content">
 		{{> ViewBtn}}
 		 <div class="list-group">
+		 {{#if loading}}
+		 	<div class="loading-wrapper center">
+		 		{{> Loading size="big"}}
+		 	</div>
+		{{else}}
 		 	{{#if $.Session.get 'ListMode'}}
 		 		<div class="row">
 		 			{{> List memos=memos}}
@@ -15,6 +20,7 @@
 					 	{{/each}}
 				 </div>
 		 	{{/if}}
+		 {{/if}}
 		 </div>
 	</div>
 </Template>

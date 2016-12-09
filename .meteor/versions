@@ -95,7 +95,6 @@ mpowaga:string-template@0.1.0
 mrt:isolate-value@2.0.2
 msavin:jetsetter@2.0.0
 msavin:mongol@2.0.1
-multiply:iron-router-progress@1.0.2
 npm-bcrypt@0.8.7
 npm-mongo@1.4.44_1
 observe-sequence@1.0.12

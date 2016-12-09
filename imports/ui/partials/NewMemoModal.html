@@ -1,7 +1,9 @@
 <template name="NewMemoModal">
-	<a href="" class="btn white-text waves-effect addMemoModal blue darken-3">
+	<a class="btn white-text waves-effect addMemoModal blue darken-3 {{#if isDisabled}}disabled{{/if}}">
   	{{#if $.Session.get 'isLoadingMemo'}}
- 		{{> spinner}}
+  	<span class="spinner-container">
+  		{{> Loading size="null"}}
+  	</span>
  	{{else}}
  		Add memo
 	{{/if}}
