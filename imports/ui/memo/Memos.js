@@ -3,7 +3,6 @@ import { Memos } from '../../api/memos.js';
 import { moment } from 'meteor/momentjs:moment';
 
 import './Memos.html';
-import '../partials/PageTitle.js';
 //partials
 import '../partials/Memo.js';
 import '../partials/List/List.js';
@@ -21,14 +20,10 @@ TemplateController('Memos',{
 		memos(){
 			let search = Session.get('searchQuery');
 			let query = {};
-			if(search){
-				let regex = new RegExp(search,'i');
-				query.name = regex;
-			}
-			if(!Session.get('showAll')){
+			if(Session.get('hideExpired')){
 				query.status = "active";
 			}
-			return Memos.find(query,{sort:{createdAt:-1}});
+			return Memos.find(query,{sort:{status:1,createdAt:-1}});
 		},
 	},
 });

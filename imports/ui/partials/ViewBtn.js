@@ -12,7 +12,7 @@ TemplateController('ViewBtn',{
 		},
 		'click .filled-in'(event){
 			let isChecked = event.target.checked;
-			Session.set('showAll', isChecked);
+			Session.set('hideExpired', isChecked);
 		}
 	},
 });

@@ -11,6 +11,7 @@ TemplateController('PageTitle',{
 			let searchValue = event.target.search.value.trim();
 			Session.set('searchQuery', searchValue);
 			event.target.search.value = '';
+			Router.go('memo.home');
 		}
 	}
 });
