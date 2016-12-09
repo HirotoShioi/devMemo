@@ -184,6 +184,7 @@ Meteor.methods({
 				desc:data.description,
 				labelId:doc.labelId,
 				createdAt: moment().format(),
+				clickedAt:moment().format(),
 				expiredAt:moment().add(expireIn, 'days').format(),
 				expireIn: expireIn,
 				owner: Meteor.userId(),

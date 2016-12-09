@@ -12,14 +12,14 @@
         <span class="title">
           {{memo.name}}
         </span>
-        <span class="chip" style="background-color:{{memo.label.color}}">
-           {{memo.label.name}}
-        </span>
         {{#if isMemoExpired}}
           <i class="fa fa-archive archive-indicator"></i>
         {{/if}}
         <p>
-          {{memo.provider_url}}
+          {{memo.provider_url}} <br>
+          <span class="chip" style="background-color:{{memo.label.color}}">
+             {{memo.label.name}}
+          </span>
         </p>
       </div>
        <a class="secondary-content">

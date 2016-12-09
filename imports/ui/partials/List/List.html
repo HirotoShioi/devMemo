@@ -1,6 +1,6 @@
 <template name="List">
 	<div class="memos-list">
-    <div class="col l8 s12 offset-l2">
+    <div class="col s9">
         <ul class="collection">
           {{#each memo in memos}}
             {{> SingleList memo=memo shouldNotify=false shouldShowExpiration=true}}

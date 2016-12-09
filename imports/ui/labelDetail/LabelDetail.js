@@ -25,7 +25,7 @@ TemplateController('LabelDetail', {
 			if(Session.get('hideExpired')){
 				query.status = "active";
 			}
-			let memos = Memos.find(query);
+			let memos = Memos.find(query,{sort:{clickedAt:-1}});
 			return memos;
 		},
 	},

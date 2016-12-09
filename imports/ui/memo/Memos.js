@@ -36,7 +36,7 @@ TemplateController('Memos',{
 			if(Session.get('hideExpired')){
 				query.status = "active";
 			}
-			return Memos.find(query,{sort:{status:1,createdAt:-1}});
+			return Memos.find(query,{sort:{status:1,clickedAt:-1}});
 		},
 	},
 });
