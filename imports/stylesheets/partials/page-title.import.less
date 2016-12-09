@@ -1,9 +1,35 @@
 /*Page Title */
-.page-title{
-	color:#fff;
-	height: 64px;
-    h4 {
-        line-height: 64px;
-        margin: 0;
+.page-title-nav{
+	.search-wrapper{
+	    width: 300px;
+	    position: relative;
+	    float: left;
+		.search{
+			color:#000;
+		    background: #fff;
+		    border-radius: 2px;
+		    margin: 10px 0;
+		    opacity: 0.4;
+		    transition: opacity 0.3s ease;
+		    border-bottom: none;
+		    padding: 0 36px 0 10px;
+		    width: 80%;
+		}
+	    input.search[type=text]:focus:not([readonly]){
+	    	opacity: 1;
+	        border-bottom: 1px solid #dedede;
+	        box-shadow: none;
+	    }
+	    .fa-search{
+		    position: absolute;
+		    height: 64px;
+		    line-height: 64px;
+		    color: #ddd;
+		    right: 20px;
+		    top:0;
+	    }
+	}
+    .fa{
+    	font-size: 1.5em;
     }
 }
