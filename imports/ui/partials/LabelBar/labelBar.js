@@ -65,7 +65,7 @@ TemplateController('labelBar',{
 		},
 		'click .fa-plus-circle'(){
 			Session.set('showModal',true);
-			Session.set('modalFormType','AddLabel');
+			Session.set('formType','AddLabel');
 		},
 	}
 });

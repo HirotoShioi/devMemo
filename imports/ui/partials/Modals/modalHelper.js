@@ -1,7 +1,6 @@
 export const resetModalForm = function(){
 	Session.set('showModal',false);
-	Session.set('modalFormType',null);
-	Session.set('modalFormType',null);
+	Session.set('formType',null);
 	//ids
 	Session.set('deleteLabelId',null);
 	Session.set('addMemoSelectedLabelId',null);

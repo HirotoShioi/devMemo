@@ -12,7 +12,7 @@ TemplateController('NewMemoModal',{
 	events:{
 		'click .addMemoModal'(){
 			Session.set('showModal',true);
-			Session.set('modalFormType','AddMemo');
+			Session.set('formType','AddMemo');
 		},
 	},
 });

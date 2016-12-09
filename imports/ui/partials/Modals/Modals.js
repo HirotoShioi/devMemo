@@ -14,7 +14,7 @@ TemplateController('Modals',{
 			return Session.get('showModal');
 		},
 		formType(){
-			return Session.get('modalFormType');
+			return Session.get('formType');
 		}
 	},
 	events:{
