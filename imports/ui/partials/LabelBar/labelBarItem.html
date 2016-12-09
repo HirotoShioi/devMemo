@@ -6,10 +6,8 @@
       </span>
       <div class="secondary-content">
 		{{#if shouldOptionShow}}
-			{{#afModal classes="fa fa-pencil option-icon" title="Edit Label" collection="Label" operation="update" doc=label._id fields="name" formId="updateStatus"}}
-			{{/afModal}}
-			{{#afModal classes="fa fa-trash option-icon" title="Delete Label" collection="Label" operation="remove" doc=label._id fields="name" formId="deleteStatus"}}
-			{{/afModal}}
+      <i class="fa fa-pencil option-icon"></i>
+      <i class="fa fa-trash option-icon"></i>
 		{{/if}}
       </div>
     </li>

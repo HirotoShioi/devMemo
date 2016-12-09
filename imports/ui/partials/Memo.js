@@ -91,6 +91,11 @@ TemplateController('Memo',{
 	},
 
 	events:{
+		'click .fa-cog'(){
+			Session.set('showModal',true);
+			Session.set('editMemoLabelId', this.data._id);
+			Session.set('formType', 'EditMemoLabel');
+		},
 		'click .edit-btn'(){
 			const labelName = Label.findOne({_id:this.data.labelId}).name;
 			Session.set('Title', {name:labelName});

@@ -38,9 +38,7 @@
       		  </div>
           </div>
           <div class="card-action">
-              {{#afModal title=name collection="Memos" operation="update" doc=_id fields="labelId" formId="updateMemo"}}
-                <i class="fa fa-cog card-option"></i>
-              {{/afModal}}
+              <i class="fa fa-cog card-option"></i>
               <i class="fa fa-share-square card-option" aria-hidden="true"></i>
               <i class="fa heart {{#if shouldFavoriteHightlight}}fa-heart{{ else }}fa-heart-o{{/if}}  card-option"></i>
               <i class="fa fa-archive archive-memo card-option {{#if isMemoExpired}}memo-archived{{/if}}"></i>

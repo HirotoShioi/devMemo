@@ -14,7 +14,7 @@ TemplateController('Overlay',{
 		},
 	},
 	events:{
-		'click .overlay-show'(){
+		'click .sidebar-overlay'(){
 			Session.set('isShrinkedSideNavShown',false);
 			Session.set('isSearchNavShown',false);
 			Session.set('isSearching',false);

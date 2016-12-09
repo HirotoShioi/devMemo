@@ -1,24 +1,27 @@
 
-.lean-overlay{
-	background: #fff;
-}
 .overlay{
 	position: fixed;
-    z-index: 500;
     top: -100px;
     left: 0;
     bottom: 0;
     right: 0;
     height: 125%;
     width: 100%;
-    background: #fff;
-    opacity: 0;
-    display: none;
-    will-change:opacity;
-}
-.overlay-show{
-	z-index: 500;
+    background: #000;
     display: block;
-    opacity: 0.3;
-    transition: all 0.3s ease-in;
+    transition:opacity 0.2s linear;
+    &.hide-overlay{
+        visibility: hidden;
+        opacity: 0;
+    }
+    &.sidebar-overlay{
+        visibility: visible;
+        z-index: 500;
+        opacity: 0.5;
+    }
+    &.modal-overlay{
+        visibility: visible;
+        z-index: 1000;
+        opacity: 0.5;
+    }
 }

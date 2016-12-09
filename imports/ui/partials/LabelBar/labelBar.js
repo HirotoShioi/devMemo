@@ -3,7 +3,6 @@ import { Label } from '../../../api/label.js';
 
 import './labelBar.html';
 import './labelBarItem.js';
-import './labelForm.js';
 
 TemplateController('labelBar',{
 	state:{
@@ -65,7 +64,8 @@ TemplateController('labelBar',{
 			return false;
 		},
 		'click .fa-plus-circle'(){
-			Session.set('labelFormShow',true);
+			Session.set('showModal',true);
+			Session.set('formType','AddLabel');
 		},
 	}
 });

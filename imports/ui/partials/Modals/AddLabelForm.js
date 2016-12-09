@@ -1,8 +1,8 @@
 import { TemplateController } from 'meteor/space:template-controller';
+import { resetModalForm } from './modalHelper.js';
+import './AddLabelForm.html';
 
-import './labelForm.html';
-
-TemplateController('labelForm',{
+TemplateController('AddLabelForm',{
 	state:{
 		selectedColor:"#e4e4e4",
 		labelColorsFirst:[
@@ -67,7 +67,7 @@ TemplateController('labelForm',{
 			// Clear form
 			target.label.value = '';
 			this.state.selectedColor = "#e4e4e4";
-			Session.set('labelFormShow', false);
+			resetModalForm();
 		},
 	}
 });

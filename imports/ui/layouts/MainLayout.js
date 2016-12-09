@@ -9,7 +9,7 @@ import '../partials/PageTitle.js';
 import '../partials/Overlay.js';
 import '../partials/SearchBar/SearchBar.js';
 import '../partials/LabelBar/labelBar.js';
-
+import '../partials/Modals/Modals.js';
 TemplateController('MainLayout',{
 	state:{
 		shouldBlur:false,

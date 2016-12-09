@@ -1,8 +1,5 @@
 <template name="labelBar">
 	<div id="search-bar" class="search-nav-bar {{#if shouldSearchBarShow}}search-bar-show {{else}}search-bar-hidden{{/if}}">
-		{{#if $.Session.get 'labelFormShow'}}
-			{{> labelForm labelFormShow=labelFormShow}}
-		{{/if}}
 		<div class="search-bar-header-wrapper">
 			<div class="search-input-title">
 				<span>Label</span>

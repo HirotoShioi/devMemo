@@ -190,6 +190,9 @@ Meteor.methods({
 				username:Meteor.user().username,
 			});
 		}
+
+		//update user's recently used label
+		Meteor.users.update({_id:this.userId},{$set:{'profile.recentChosenLabel':doc.labelId}});
 	},
 	checkNotify(){
 		const today = moment().toDate();

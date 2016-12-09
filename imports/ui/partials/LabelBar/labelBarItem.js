@@ -21,6 +21,16 @@ TemplateController('labelBarItem',{
 			Session.set('Title',{name:label.name});
 			Router.go('label.detail',{ labelId:label._id});
 		},
+		'click .fa-trash'(){
+			Session.set('showModal',true);
+			Session.set('formType','DeleteLabel');
+			Session.set('deleteLabelId', this.data.label._id);
+		},
+		'click .fa-pencil'(){
+			Session.set('showModal',true);
+			Session.set('formType','EditLabel');
+			Session.set('editLabelId', this.data.label._id);
+		},
 		'mouseover .search-item'(){
 			this.state.shouldOptionShow = true;
 		},
