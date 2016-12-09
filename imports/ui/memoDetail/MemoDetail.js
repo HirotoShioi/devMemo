@@ -13,6 +13,7 @@ TemplateController('MemoDetail',{
 	 		self.subscribe('singleMemo',self.data._id);
 	 		self.state.memos = Memos.findOne({_id:self.data._id});
 	 	});
+	 	Session.set('Title',{name:"Detail"});
 	},
 
 	helpers:{

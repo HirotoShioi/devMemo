@@ -14,6 +14,7 @@ TemplateController('Memos',{
 		self.autorun(()=>{
 			self.subscribe('memos');
 		});
+		Session.set("Title",{name:"Home"});
 	},
 
 	helpers:{

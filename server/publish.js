@@ -16,20 +16,6 @@ Meteor.publish('label', function(){
 	return Label.find({owner:this.userId});
 });
 
-//publication for the board
-Meteor.publishComposite('labelWithMemos',{
-	find:function(){
-		return Label.find({owner:this.userId});
-	},
-	children:[
-		{
-			find:function(label){
-				return Memos.find({ owner:this.userId, statusId:label._id},{sort:{createdAt:-1}});
-			}
-		},
-	]
-});
-
 //Memo publication with query options
 Meteor.publish('memos',function(search){
   check( search, Match.OneOf( String, null, undefined ) );

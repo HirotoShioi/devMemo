@@ -11,15 +11,15 @@ TemplateController('LabelDetail', {
 	onCreated(){
 		const self = this;
 		self.autorun(()=>{
-			self.subscribe('memoWithLabels',self.data._id);
 			self.subscribe('label');
+			self.subscribe('memos');
 		});
 	},
-
 	helpers:{
 		memos(){
-			let lists = Memos.find({labelId:this.data._id});
-			return lists;
+			Session.set('Title',Label.findOne({_id:this.data._id},{fields:{'name':1}}));
+			let memos = Memos.find({labelId:this.data._id});
+			return memos;
 		},
 	},
 });
