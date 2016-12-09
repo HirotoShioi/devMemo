@@ -4,8 +4,9 @@ import { TemplateController } from 'meteor/space:template-controller';
 
 TemplateController('SearchNavBar',{
 	onCreated(){
-		this.autorun(()=>{
-			this.subscribe('memos',Session.get('searchQuery'));//for search query!
+		const self = this;
+		self.autorun(()=>{
+			self.subscribe('memos');//for search query!
 		});
 	},
 	helpers:{

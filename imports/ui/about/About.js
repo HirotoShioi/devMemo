@@ -2,8 +2,6 @@ import './About.html';
 import $ from 'meteor/jquery';
 import { TemplateController } from 'meteor/space:template-controller';
 
-import '../partials/PageTitle.js';
-
 TemplateController('About',{
 	onCreated(){
 		Session.set('Title',{name:"About"});

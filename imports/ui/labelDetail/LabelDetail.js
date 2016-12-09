@@ -9,16 +9,24 @@ import '../partials/ViewBtn.js';
 
 TemplateController('LabelDetail', {
 	onCreated(){
-		this.autorun(()=>{
-			this.subscribe('memoWithLabels',this.data._id);
-			this.subscribe('label');
+		const self = this;
+		self.autorun(()=>{
+			self.subscribe('label');
+			self.subscribe('memos');
 		});
 	},
-
 	helpers:{
 		memos(){
-			let lists = Memos.find({labelId:this.data._id});
-			return lists;
+			Session.set('Title',Label.findOne({_id:this.data._id},{fields:{'name':1}}));
+
+			let query = {
+				labelId:this.data._id
+			};
+			if(Session.get('hideExpired')){
+				query.status = "active";
+			}
+			let memos = Memos.find(query);
+			return memos;
 		},
 	},
 });

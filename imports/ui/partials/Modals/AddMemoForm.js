@@ -4,8 +4,9 @@ import './AddMemoForm.html';
 import { Label } from '../../../api/label.js';
 TemplateController('AddMemoForm',{
 	onCreated(){
-		this.autorun(()=>{
-			this.subscribe('label');
+		const self = this;
+		self.autorun(()=>{
+			self.subscribe('label');
 		});
 		const recentlyChosenLabel = Meteor.user().profile.recentChosenLabel;
 		let initialLabel;

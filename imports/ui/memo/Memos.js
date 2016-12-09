@@ -3,7 +3,6 @@ import { Memos } from '../../api/memos.js';
 import { moment } from 'meteor/momentjs:moment';
 
 import './Memos.html';
-
 //partials
 import '../partials/Memo.js';
 import '../partials/List/List.js';
@@ -11,17 +10,21 @@ import '../partials/ViewBtn.js';
 
 TemplateController('Memos',{
 	onCreated(){
-		Session.set("Title",{name:"Home"});
-
-		this.autorun(()=>{
-			this.subscribe('memos');
+		const self = this;
+		self.autorun(()=>{
+			self.subscribe('memos');
 		});
+		Session.set("Title",{name:"Home"});
 	},
 
 	helpers:{
 		memos(){
-			const today = moment().toDate();
-			return Memos.find({},{sort:{createdAt:-1}});
+			let search = Session.get('searchQuery');
+			let query = {};
+			if(Session.get('hideExpired')){
+				query.status = "active";
+			}
+			return Memos.find(query,{sort:{status:1,createdAt:-1}});
 		},
 	},
 });

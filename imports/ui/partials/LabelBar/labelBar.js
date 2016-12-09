@@ -14,8 +14,9 @@ TemplateController('labelBar',{
 	},
 
 	onCreated(){
-		this.autorun(()=>{
-			this.subscribe('label', );
+		const self = this;
+		self.autorun(()=>{
+			self.subscribe('label');
 		});
 	},
 	helpers:{

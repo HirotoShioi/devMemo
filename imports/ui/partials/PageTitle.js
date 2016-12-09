@@ -5,6 +5,6 @@ TemplateController('PageTitle',{
 	helpers:{
 		title(){
 			return Session.get('Title');
-		},
+		}
 	},
 });

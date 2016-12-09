@@ -16,20 +16,6 @@ Meteor.publish('label', function(){
 	return Label.find({owner:this.userId});
 });
 
-//publication for the board
-Meteor.publishComposite('labelWithMemos',{
-	find:function(){
-		return Label.find({owner:this.userId});
-	},
-	children:[
-		{
-			find:function(label){
-				return Memos.find({ owner:this.userId, statusId:label._id},{sort:{createdAt:-1}});
-			}
-		},
-	]
-});
-
 //Memo publication with query options
 Meteor.publish('memos',function(search){
   check( search, Match.OneOf( String, null, undefined ) );
@@ -38,8 +24,9 @@ Meteor.publish('memos',function(search){
       projection = { limit: 100, sort: { createdAt: -1 } };
 
   if ( search ) {
-    const regex = new RegExp( search, 'i' );
+    let regex = new RegExp( search, 'i' );
     query.name = regex;
   }
+  console.log(query);
   return Memos.find(query,projection);
 });

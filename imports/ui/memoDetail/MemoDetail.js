@@ -8,9 +8,10 @@ TemplateController('MemoDetail',{
 	},
 
 	onCreated(){
-	 	this.autorun(()=>{
-	 		this.subscribe('singleMemo',this.data._id);
-	 		this.state.memos = Memos.findOne({_id:this.data._id});
+		const self = this;
+	 	self.autorun(()=>{
+	 		self.subscribe('singleMemo',self.data._id);
+	 		self.state.memos = Memos.findOne({_id:self.data._id});
 	 	});
 	 	Session.set('Title',{name:"Detail"});
 	},

@@ -6,8 +6,9 @@ import { moment } from 'meteor/momentjs:moment';
 
 TemplateController('Archive',{
 	onCreated(){
-		this.autorun(()=>{
-			this.subscribe('memos',);
+		const self = this;
+		self.autorun(()=>{
+			self.subscribe('memos',);
 		});
 		Session.set('Title',{name:"Archive"});
 	},
@@ -18,7 +19,7 @@ TemplateController('Archive',{
 			return notifiyItems;
 		},
 		archived(){
-			let archivedItems =  Memos.find({status:"expired"},{sort:{expiredAt:-1}});
+			let archivedItems =  Memos.find({status:"expired", notifiedToUser:true},{sort:{expiredAt:-1}});
 			return archivedItems;
 		},
 		notifyCount(){
