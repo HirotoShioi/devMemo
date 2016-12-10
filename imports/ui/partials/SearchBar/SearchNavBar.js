@@ -27,6 +27,7 @@ TemplateController('SearchNavBar',{
 		'click .fa-arrow-left'(){
 			Session.set('isSearchNavShown',false);
 			Session.set('searchQuery','');
+			return false;
 		},
 	},
 });

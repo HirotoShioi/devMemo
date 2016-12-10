@@ -93,13 +93,16 @@ TemplateController('SingleList',{
 		'click .title'(){
 			Meteor.call('memoUrlClicked', this.data.memo);
 			window.open(this.data.memo.url);
+			return false;
 		},
-		'click .circle'(){
+		'click .collection-url'(){
 			Meteor.call('memoUrlClicked', this.data.memo);
 			window.open(this.data.memo.url);
+			return false;
 		},
 		'click .chip'(){
 			Router.go('label.detail',{labelId:this.data.memo.labelId});
+			return false;
 		},
 		'mouseover .list-item'(){
 			this.state.shouldOptionButtonShow = true;

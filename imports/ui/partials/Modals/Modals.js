@@ -20,6 +20,7 @@ TemplateController('Modals',{
 	events:{
 		'click .fa-close'(){
 			resetModalForm();
+			return false;
 		},
 		'click .overlay'(){
 			resetModalForm();

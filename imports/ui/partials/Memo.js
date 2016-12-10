@@ -124,11 +124,7 @@ TemplateController('Memo',{
 			Meteor.call('memoUrlClicked', this.data);
 			this.state.isMemoExpired = false;
 			window.open(this.data.url);
-		},
-		'click .card-image-alt-icon'(){
-			Meteor.call('memoUrlClicked', this.data);
-			this.state.isMemoExpired = false;
-			window.open(this.data.url);
+			return false;
 		},
 		'click .fa-share-square'(){
 			window.open(`https://twitter.com/intent/tweet?text=From my memo "${this.data.name}"&url=${this.data.url}`);

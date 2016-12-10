@@ -30,6 +30,12 @@ TemplateController('labelBarItem',{
 			Session.set('formType','EditLabel');
 			Session.set('editLabelId', this.data.label._id);
 		},
+		'click .label-bar-chip'(){
+			const label = this.data.label;
+			Session.set('labelBarShow',false);
+			Router.go('label.detail',{ labelId:label._id});
+			return false;
+		},
 		'mouseover .search-item'(){
 			this.state.shouldOptionShow = true;
 		},

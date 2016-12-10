@@ -1,9 +1,9 @@
 <template name="labelBarItem">
     <li class="collection-item search-item">
-      <span class="title label-bar-chip" style="background-color:{{label.color}}">
+      <a href="{{pathFor 'label.detail'}}" class="title label-bar-chip" style="background-color:{{label.color}}">
       	<span class="label-text">{{label.name}}</span>
       	<span class="counter-chip">{{label.memoCount}}</span>
-      </span>
+      </a>
       <div class="secondary-content">
 		{{#if shouldOptionShow}}
       <i class="fa fa-pencil option-icon"></i>
