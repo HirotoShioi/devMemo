@@ -1,22 +1,30 @@
 <template name="MemoDetail">
 	<div class="container about-content">
-		<div class="row">
-			<div class="center">
-				{{#if memo.thumbnailUrl}}
-					<img class="responsive-img memo-detail-image" src="{{memo.thumbnailUrl}}" alt="{{memo.desc}}">	
-				{{else}}
-					<i class="fa fa-file-text-o card-detail-alt-icon" aria-hidden="true"></i>
-				{{/if}}
+		{{#if Template.subscriptionsReady}}
+			<div class="row">
+				<div class="center">
+					{{#if memo.thumbnailUrl}}
+						<img class="responsive-img memo-detail-image" src="{{memo.thumbnailUrl}}" alt="{{memo.desc}}">
+					{{else}}
+						<i class="fa fa-file-text-o card-detail-alt-icon" aria-hidden="true"></i>
+					{{/if}}
+				</div>
+				<div class="col s12">
+					<h5>{{memo.name}}</h5>
+					<p>
+						<a class="memo-detail-url" href="{{memo.url}}">{{memo.url}}</a>
+					</p>
+					<p class="caption">
+						{{memo.desc}}
+					</p>
+				</div>
 			</div>
-			<div class="col s12">
-				<h5>{{memo.name}}</h5>
-				<p>
-					<a class="memo-detail-url" href="{{memo.url}}">{{memo.url}}</a>
-				</p>
-				<p class="caption">
-					{{memo.desc}}
-				</p>
+		{{else}}
+			<div class="loading-wrapper valign-wrapper">
+				<div class="center valign">
+					{{> Loading size="big"}}
+				</div>
 			</div>
-		</div>	
+		{{/if}}
 	</div>
 </template>

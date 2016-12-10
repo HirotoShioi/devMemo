@@ -10,26 +10,15 @@ import '../partials/ViewBtn.js';
 
 TemplateController('Memos',{
 
-	state:{
-		loading:true,
-	},
-
 	onCreated(){
 		const self = this;
 		self.autorun(()=>{
-			self.subscribe('memos', ()=>{
-				setTimeout(()=>{
-					this.state.loading = false;
-				},300);
-			});
+			self.subscribe('memos');
 		});
 		Session.set("Title",{name:"Home"});
 	},
 
 	helpers:{
-		loading(){
-			return this.state.loading;
-		},
 		memos(){
 			let search = Session.get('searchQuery');
 			let query = {};

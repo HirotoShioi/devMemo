@@ -6,6 +6,7 @@ import './LabelDetail.html';
 import '../partials/Memo.js';
 import '../partials/List/List.js';
 import '../partials/ViewBtn.js';
+import '../partials/Loading.js';
 
 TemplateController('LabelDetail', {
 	onCreated(){

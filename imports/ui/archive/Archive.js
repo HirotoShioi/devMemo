@@ -1,8 +1,10 @@
-import './Archive.html';
 import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../api/memos.js';
-import '../partials/List/SingleList.js';
 import { moment } from 'meteor/momentjs:moment';
+
+import '../partials/Loading.js';
+import '../partials/List/SingleList.js';
+import './Archive.html';
 
 TemplateController('Archive',{
 	onCreated(){
