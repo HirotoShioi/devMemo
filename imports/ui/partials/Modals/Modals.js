@@ -9,7 +9,14 @@ import './EditLabel.js';
 import './EditMemoLabel.js';
 
 TemplateController('Modals',{
+
 	helpers:{
+		overlayShow(){
+			if(Session.get('showModal')){
+				Session.set('modalOverlayShow',true);
+			}
+			return Session.get('modalOverlayShow');
+		},
 		modalShow(){
 			return Session.get('showModal');
 		},
@@ -20,6 +27,7 @@ TemplateController('Modals',{
 	events:{
 		'click .fa-close'(){
 			resetModalForm();
+			return false;
 		},
 		'click .overlay'(){
 			resetModalForm();

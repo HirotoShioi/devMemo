@@ -1,20 +1,34 @@
 <Template name="Memos">
 	<div class="container main-content">
 		{{> ViewBtn}}
-		 <div class="list-group">
-		 	{{#if $.Session.get 'ListMode'}}
-		 		<div class="row">
-		 			{{> List memos=memos}}
-		 		</div>
-		 	{{else}}
-				 <div class="row">
-					 	{{#each memos}}
-					 		{{> Memo}}
-					 	{{else}}
-					 		<h4 class="grey-text">No memo found</h4>
-					 	{{/each}}
-				 </div>
-		 	{{/if}}
-		 </div>
+		{{#if Template.subscriptionsReady}}
+			 <div class="list-group">
+				 {{#if loading}}
+				 	<div class="loading-wrapper center">
+				 		{{> Loading size="big"}}
+				 	</div>
+				{{else}}
+				 	{{#if $.Session.get 'ListMode'}}
+				 		<div class="row">
+				 			{{> List memos=memos}}
+				 		</div>
+				 	{{else}}
+						 <div class="row">
+							 	{{#each memos}}
+							 		{{> Memo}}
+							 	{{else}}
+							 		<h4 class="grey-text">No memo found</h4>
+							 	{{/each}}
+						 </div>
+				 	{{/if}}
+				 {{/if}}
+			 </div>
+		{{else}}
+			<div class="loading-wrapper valign-wrapper">
+				<div class="center valign">
+					{{> Loading size="big"}}
+				</div>
+			</div>
+		{{/if}}
 	</div>
 </Template>

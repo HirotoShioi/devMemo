@@ -53,15 +53,17 @@ TemplateController('AddLabelForm',{
 				Bert.alert("Invalid Color", 'danger', 'growl-top-right');
 				return;
 			}
-				const labelObj = {
-					label:labelName,
-					color:this.state.selectedColor
-				};
-				Meteor.call('addLabel',labelObj,(err,result)=>{
+			const labelObj = {
+				label:labelName,
+				color:this.state.selectedColor
+			};
+
+			Meteor.call('addLabel',labelObj,(err,result)=>{
 				if(err){
 					Bert.alert( err.reason, 'danger', 'growl-top-right');
 				};
 				if(!err){
+					resetModalForm();
 				}
 			});
 			// Clear form

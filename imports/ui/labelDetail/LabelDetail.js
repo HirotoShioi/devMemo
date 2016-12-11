@@ -6,6 +6,7 @@ import './LabelDetail.html';
 import '../partials/Memo.js';
 import '../partials/List/List.js';
 import '../partials/ViewBtn.js';
+import '../partials/Loading.js';
 
 TemplateController('LabelDetail', {
 	onCreated(){
@@ -25,7 +26,7 @@ TemplateController('LabelDetail', {
 			if(Session.get('hideExpired')){
 				query.status = "active";
 			}
-			let memos = Memos.find(query);
+			let memos = Memos.find(query,{sort:{status:1, clickedAt:-1}});
 			return memos;
 		},
 	},

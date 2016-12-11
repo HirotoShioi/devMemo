@@ -10,7 +10,6 @@
 .fa-pencil{
 	font-size: 0.7em;
 	color: #ddd;
-	cursor: pointer;
   &:hover{
     color:#ffeb3b;
   }
@@ -20,4 +19,18 @@
 	margin-left: auto;
     left: auto;
     right: auto;
+}
+@media (max-width: 830px) {
+  .view-btn-wrapper {
+    width: 30%;
+  }
+}
+.spinner-container{
+	width: 100%;
+	height: 100%;
+	.preloader-wrapper{
+	position: absolute;
+    top: 10%;
+    right: 40%;
+	}
 }

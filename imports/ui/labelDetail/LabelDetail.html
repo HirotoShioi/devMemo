@@ -1,6 +1,7 @@
 <template name="LabelDetail">
 	<div class="container main-content">
-			{{> ViewBtn}}
+		{{> ViewBtn}}
+		{{#if Template.subscriptionsReady}}
 		 	{{#if $.Session.get 'ListMode'}}
 		 		<div class="row">
 		 			{{> List memos=memos}}
@@ -14,5 +15,12 @@
 					 	{{/each}}
 				 </div>
 		 	{{/if}}
+		{{else}}
+			<div class="loading-wrapper valign-wrapper">
+				<div class="center valign">
+					{{> Loading size="big"}}
+				</div>
+			</div>
+		{{/if}}
 	</div>
 </template>

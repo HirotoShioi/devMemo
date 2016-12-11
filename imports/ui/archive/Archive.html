@@ -1,7 +1,8 @@
 <template name="Archive">
 	<div class="container main-content notification">
+		{{#if Template.subscriptionsReady}}
 		<div class="row">
-			<div class="col l8 s12 offset-l2">
+			<div class="col m10 s12 offset-m1">
 				{{#if archiveCount}}
 					{{#if notifyCount}}
 					<h5>Recently Expired</h5>
@@ -25,5 +26,12 @@
 				{{/if}}
 			</div>
 		</div>
+		{{else}}
+			<div class="loading-wrapper valign-wrapper">
+				<div class="center valign">
+					{{> Loading size="big"}}
+				</div>
+			</div>
+		{{/if}}
 	</div>
 </template>

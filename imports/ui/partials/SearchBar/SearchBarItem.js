@@ -6,7 +6,7 @@ TemplateController('SearchBarItem', {
 		'click .search-item'(){
 			Meteor.call('memoUrlClicked', this.data);
 			window.open(this.data.url);
-			Session.set('isSearching', false);
+			return false;
 		}
 	}
 });

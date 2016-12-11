@@ -29,7 +29,7 @@ TemplateController('SearchBar',{
 				return Memos.find({$or:[{name:regex},{description:regex}]}, {limit:this.state.memoSearchLimit, sort:{clicked:1}}).fetch();
 			}else{
 				this.state.labelTitle = "Frequently used";
-				let projection = {limit:this.state.memoSearchLimit, sort:{clicked:1}};
+				let projection = {limit:this.state.memoSearchLimit, sort:{clickedAt:-1}};
 				return Memos.find({},projection);
 			}
 		},

@@ -15,6 +15,12 @@
 				</div>
 			</div>
 		</div>
-		<input type="submit" class="btn blue darken-3">
+		<button type="submit" class="btn blue darken-3 {{#if isLoading}}disabled{{/if}}">
+			{{#if isLoading}}
+				{{> Loading size="small"}}
+			{{else}}
+				Add memo
+			{{/if}}
+		</button>
 	{{/autoForm}}
 </template>

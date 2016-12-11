@@ -34,6 +34,7 @@ TemplateController('Header',{
 		'click .fa-search'(){
 			Session.set('searchQuery','');
 			Session.set('isSearchNavShown',true);
+			return false;
 		}
 	}
 });

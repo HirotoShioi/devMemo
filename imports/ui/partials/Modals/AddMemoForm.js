@@ -1,6 +1,7 @@
 import { TemplateController } from 'meteor/space:template-controller';
 import { resetModalForm }from './modalHelper.js';
 import './AddMemoForm.html';
+import '../../partials/Loading.js';
 import { Label } from '../../../api/label.js';
 TemplateController('AddMemoForm',{
 	onCreated(){
@@ -8,17 +9,12 @@ TemplateController('AddMemoForm',{
 		self.autorun(()=>{
 			self.subscribe('label');
 		});
-		const recentlyChosenLabel = Meteor.user().profile.recentChosenLabel;
-		let initialLabel;
-		if(! recentlyChosenLabel){
-			initialLabel = Label.findOne()._id;
-		}else{
-			initialLabel = recentlyChosenLabel;
-		}
-		Session.set('addMemoSelectedLabelId', initialLabel);
 	},
 
 	helpers:{
+		isLoading(){
+			return Session.get('isLoadingModal');
+		},
 		selectedLabelId(){
 			return Session.get('addMemoSelectedLabelId');
 		},
@@ -53,13 +49,13 @@ const hooksObject = {
 		url:insertDoc.url,
 		labelId:labelId
 	};
-	this.resetForm();
-	Session.set('isLoadingMemo',true);
+	Session.set('isLoadingModal',true);
 	Session.set('showModal',false);
 	Meteor.call('addMemo',memoDoc,(err,result)=>{
-		Session.set('isLoadingMemo', false);
 		if(!err){
+			Session.set('isLoadingModal', false);
 			resetModalForm();
+			this.resetForm();
 		}
 	});
 	this.done();

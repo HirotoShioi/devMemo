@@ -8,11 +8,13 @@
             <div class="expire-progress {{#if shouldExpireProgressbarShow}}show{{else}}hide{{/if}}-progress-bar">
               <div class="progress-bar progress-{{progressBarColor}}" style="width:{{expireStatus}}%"></div>
             </div>
-            {{#if thumbnailUrl}}
-      			<img class="card-image-url" src="{{thumbnailUrl}}">
-            {{else}}
-              <i class="fa fa-file-text-o card-image-alt-icon" aria-hidden="true"></i>
-            {{/if}}
+            <a href="{{url}}" class="card-image-url">
+             {{#if thumbnailUrl}}
+                <img src="{{thumbnailUrl}}">
+              {{else}}
+                <i class="fa fa-file-text-o card-image-alt-icon" aria-hidden="true"></i>
+              {{/if}}
+            </a>
     		　 </div>
     		  <div class="card-content">
               {{#if isOwner}}
