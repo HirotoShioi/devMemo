@@ -1,6 +1,9 @@
 <template name="EditMemoLabel">
 	<p class="form-title">{{memo.name}}</p>
 	<div class="modal-edit-wrapper">
-		{{> quickForm collection="Memos" doc=memo id="editMemoLabel" type="update" fields="labelId"}}
+		{{#autoForm collection="Memos" doc=label id="editLabel" type="update"}}
+			{{> afQuickField name="labelId"}}
+			<input type="submit" class="btn blue darken-3">
+		{{/autoForm}}
 	</div>
 </template>

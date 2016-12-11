@@ -2,7 +2,7 @@
 	<div class="{{#if overlayShow}}modal-overlay{{else}}hide-overlay{{/if}} overlay">
 	</div>
 		<div class="{{#if $eq formType 'AddLabel'}}show-modal{{/if}} modal-form-wrapper add-label">
-			<div class="card-panel z-depth-2 modal-card">
+			<div class="card-panel modal-card">
 				<i class="fa fa-close right"></i>
 				{{> AddLabelForm}}
 			</div>
@@ -30,7 +30,7 @@
 		</div>
 
 		<div class="{{#if $eq formType 'EditMemoLabel'}}show-modal{{/if}} modal-form-wrapper edit-memo-label">
-			<div class="card-panel z-depth-1 modal-card">
+			<div class="card-panel z-depth-2 modal-card">
 				<i class="fa fa-close right"></i>
 				{{> EditMemoLabel}}
 			</div>

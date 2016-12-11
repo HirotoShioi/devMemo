@@ -31,7 +31,3 @@ TemplateController('NewMemoModal',{
 		}
 	}
 });
-
-Meteor.Spinner.options = {
-	color:"#000"
-};

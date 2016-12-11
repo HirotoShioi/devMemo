@@ -1,4 +1,7 @@
 export const resetModalForm = function(){
+	if(Session.get('isLoadingModal')){
+		return;
+	}
 	Session.set('showModal',false);
 	Session.set('formType',null);
 	//ids
