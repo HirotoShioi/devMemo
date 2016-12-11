@@ -26,12 +26,10 @@ TemplateController('SideNav',{
 			Session.set('labelBarShow', false);
 		},
 		'click .search-link'(){
-			$('#afModal').closeModal();
 			Session.set('labelBarShow', false);
 			Session.set('isSearching', !Session.get('isSearching'));
 		},
 		'click .label-link'(){
-			$('#afModal').closeModal();
 			Session.set('isSearching', false);
 			Session.set('labelBarShow',!Session.get('labelBarShow'));
 		},
