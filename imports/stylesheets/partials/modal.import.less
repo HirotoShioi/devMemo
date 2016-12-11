@@ -62,11 +62,15 @@
   left:0;
   right:0;
   padding: 0;
-  transition:all 0.3s ease;
-  display: none;
+  transition:all 0.2s linear;
+  display: block;
   max-height: 80%;
-  &.show-modal-form{
-    display: block;
+  opacity: 0;
+  visibility: hidden;
+  top:0;
+  &.show-modal{
+    visibility: visible;
+    opacity: 1;
     top: 10%;
   }
 }

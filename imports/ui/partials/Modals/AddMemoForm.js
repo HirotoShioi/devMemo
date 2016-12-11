@@ -8,16 +8,8 @@ TemplateController('AddMemoForm',{
 		self.autorun(()=>{
 			self.subscribe('label');
 		});
-		const recentlyChosenLabel = Meteor.user().profile.recentChosenLabel;
-		let initialLabel;
-		if(! recentlyChosenLabel){
-			initialLabel = Label.findOne()._id;
-		}else{
-			initialLabel = recentlyChosenLabel;
-		}
-		Session.set('addMemoSelectedLabelId', initialLabel);
 	},
-
+	
 	helpers:{
 		selectedLabelId(){
 			return Session.get('addMemoSelectedLabelId');

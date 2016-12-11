@@ -1,44 +1,38 @@
 <template name="Modals">
-	<div class="{{#if modalShow}}modal-overlay{{else}}hide-overlay{{/if}} overlay">
+	<div class="{{#if overlayShow}}modal-overlay{{else}}hide-overlay{{/if}} overlay">
 	</div>
-	<div class="{{#if modalShow}}show{{else}}hide{{/if}}-modal-form modal-form-wrapper
-			{{#if $eq formType 'AddLabel'}}
-				add-label
-			{{/if}}
-			{{#if $eq formType 'AddMemo'}}
-				add-memo
-			{{/if}}
-			{{#if $eq formType 'DeleteLabel'}}
-				delete-label
-			{{/if}}
-			{{#if $eq formType 'EditLabel'}}
-				edit-label
-			{{/if}}
-			{{#if $eq formType 'EditMemoLabel'}}
-				edit-memo-label
-			{{/if}}
-	">
-		<div class="card-panel z-depth-1 modal-card">
-			<i class="fa fa-close right"></i>
-			{{#if $eq formType 'AddLabel'}}
+		<div class="{{#if $eq formType 'AddLabel'}}show-modal{{/if}} modal-form-wrapper add-label">
+			<div class="card-panel z-depth-2 modal-card">
+				<i class="fa fa-close right"></i>
 				{{> AddLabelForm}}
-			{{/if}}
-
-			{{#if $eq formType 'AddMemo'}}
-				{{> AddMemoForm}}
-			{{/if}}
-
-			{{#if $eq formType 'DeleteLabel'}}
-				{{> DeleteLabel}}
-			{{/if}}
-
-			{{#if $eq formType 'EditLabel'}}
-				{{> EditLabel}}
-			{{/if}}
-
-			{{#if $eq formType 'EditMemoLabel'}}
-				{{> EditMemoLabel}}
-			{{/if}}
+			</div>
 		</div>
-	</div>
+
+		<div class="{{#if $eq formType 'AddMemo'}}show-modal{{/if}} modal-form-wrapper add-memo">
+			<div class="card-panel z-depth-2 modal-card">
+				<i class="fa fa-close right"></i>
+				{{> AddMemoForm}}
+			</div>
+		</div>
+
+		<div class="{{#if $eq formType 'DeleteLabel'}}show-modal{{/if}} modal-form-wrapper delete-label">
+			<div class="card-panel z-depth-2 modal-card">
+				<i class="fa fa-close right"></i>
+				{{> DeleteLabel}}
+			</div>
+		</div>
+
+		<div class="{{#if $eq formType 'EditLabel'}}show-modal{{/if}} modal-form-wrapper edit-label">
+			<div class="card-panel z-depth-2 modal-card">
+				<i class="fa fa-close right"></i>
+				{{> EditLabel}}
+			</div>
+		</div>
+
+		<div class="{{#if $eq formType 'EditMemoLabel'}}show-modal{{/if}} modal-form-wrapper edit-memo-label">
+			<div class="card-panel z-depth-1 modal-card">
+				<i class="fa fa-close right"></i>
+				{{> EditMemoLabel}}
+			</div>
+		</div>
 </template>

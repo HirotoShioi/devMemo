@@ -12,7 +12,14 @@ TemplateController('NewMemoModal',{
 
 	events:{
 		'click .addMemoModal'(){
-
+			const recentlyChosenLabel = Meteor.user().profile.recentChosenLabel;
+			let initialLabel;
+			if(! recentlyChosenLabel){
+				initialLabel = Label.findOne()._id;
+			}else{
+				initialLabel = recentlyChosenLabel;
+			}
+			Session.set('addMemoSelectedLabelId', initialLabel);
 			Session.set('showModal',true);
 			Session.set('formType','AddMemo');
 		},

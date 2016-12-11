@@ -9,7 +9,14 @@ import './EditLabel.js';
 import './EditMemoLabel.js';
 
 TemplateController('Modals',{
+
 	helpers:{
+		overlayShow(){
+			if(Session.get('showModal')){
+				Session.set('modalOverlayShow',true);
+			}
+			return Session.get('modalOverlayShow');
+		},
 		modalShow(){
 			return Session.get('showModal');
 		},
