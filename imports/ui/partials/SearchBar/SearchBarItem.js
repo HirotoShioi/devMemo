@@ -8,5 +8,13 @@ TemplateController('SearchBarItem', {
 			window.open(this.data.url);
 			return false;
 		}
+	},
+
+	helpers:{
+		providerUrl(){
+			let url = this.data.provider_url;
+			let urlNoProtocol = url.replace(/^https?\:\/\//i, "");
+			return urlNoProtocol;
+		}
 	}
 });
