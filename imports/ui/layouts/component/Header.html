@@ -29,7 +29,7 @@
       </ul>
        <ul id="slide-out" class="side-nav  {{#if $.Session.get 'isShrinkedSideNavShown'}}sidenav-active {{else}} sidenav-inactive {{/if}}">
           {{#if currentUser}}
-            {{> NewMemoModal}}
+            {{> AddMemoButton}}
             <li class="{{isActiveRoute 'memo.home'}}">
               <a class="{{isActiveRoute 'memo.home'}}" href="{{pathFor route='memo.home'}}">
                 <i class="fa fa-sticky-note"></i>

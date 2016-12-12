@@ -5,7 +5,7 @@
 				<a href="{{pathFor route='memo.home'}}"><span>DevMemo</span></a>
 			</li>
 				{{#if currentUser}}
-				{{> NewMemoModal}}
+				{{> AddMemoButton}}
 					<li class="{{isActiveRoute 'memo.home'}} link">
 						<a href="{{pathFor route='memo.home'}}" class="waves-effect {{isActiveRoute 'memo.home'}}">
 							<i class="fa fa-sticky-note"></i>

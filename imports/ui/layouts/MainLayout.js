@@ -3,13 +3,13 @@ import '../../stylesheets/style.less';
 import './MainLayout.html';
 import { rwindow } from 'meteor/gadicohen:reactive-window';
 //partials
-import '../partials/Header.js';
-import '../partials/SideNav.js';
+import './component/Header.js';
+import './component/SideNav.js';
+import './component/PageTitle.js';
 import '../partials/Overlay.js';
 import '../partials/SearchBar/SearchBar.js';
 import '../partials/LabelBar/labelBar.js';
 import '../partials/Modals/Modals.js';
-import '../partials/PageTitle.js';
 
 TemplateController('MainLayout',{
 	onCreated(){
