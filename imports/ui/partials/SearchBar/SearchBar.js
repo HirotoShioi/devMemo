@@ -30,7 +30,7 @@ TemplateController('SearchBar',{
 				this.state.memoResultCount = Memos.find({$or:[{name:regex},{provider_url:regex}]}, {limit:this.state.memoSearchLimit, sort:{clicked:1}}).count();
 				return Memos.find({$or:[{name:regex},{provider_url:regex}]}, {limit:this.state.memoSearchLimit, sort:{clicked:1}}).fetch();
 			}else{
-				this.state.labelTitle = "Frequently used";
+				this.state.labelTitle = "Recently used";
 				let projection = {limit:this.state.memoSearchLimit, sort:{clickedAt:-1}};
 				return Memos.find({},projection);
 			}
