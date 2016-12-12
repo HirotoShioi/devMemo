@@ -24,8 +24,20 @@ Schemas.label = new SimpleSchema({
 	name:{
 		type:String,
 		label:"name",
-		max:15,
+		max:10,
 	},
+    name_sort: {
+        type: String,
+        optional: true,
+        autoValue: function() {
+            var name = this.field("name");
+            if (name.isSet) {
+                return name.value.toLowerCase();
+            } else {
+                this.unset();
+            }
+        }
+    },
 	color:{
 		type:String,
 		optional:true,
