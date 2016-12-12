@@ -19,7 +19,7 @@
         {{/if}}
         <p>
           {{memo.provider_url}} <br>
-          <a href="{{pathFor 'label.detail'}}" class="chip" style="background-color:{{memo.label.color}}">
+          <a href="{{pathFor 'label.detail' data=memo}}" class="chip" style="background-color:{{memo.label.color}}">
              {{memo.label.name}}
           </a>
         </p>
