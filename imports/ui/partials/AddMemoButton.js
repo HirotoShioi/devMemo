@@ -1,8 +1,8 @@
-import './NewMemoModal.html';
+import './AddMemoButton.html';
 import { TemplateController } from 'meteor/space:template-controller';
 import { Label } from '../../api/label.js';
 import './Loading.js';
-TemplateController('NewMemoModal',{
+TemplateController('AddMemoButton',{
 	onCreated(){
 		const self = this;
 		self.autorun(()=>{

@@ -1,6 +1,6 @@
 import { TemplateController } from 'meteor/space:template-controller';
 import './SideNav.html';
-import '../../partials/NewMemoModal.js';
+import '../../partials/AddMemoButton.js';
 import { Memos } from '../../../api/memos.js';
 
 TemplateController('SideNav',{

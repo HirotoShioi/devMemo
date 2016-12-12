@@ -1,8 +1,8 @@
-import './ViewBtn.html';
+import './ViewOptions.html';
 
 import { TemplateController } from 'meteor/space:template-controller';
 
-TemplateController('ViewBtn',{
+TemplateController('ViewOptions',{
 	helpers:{
 		check(){
 			return Session.get('hideExpired');

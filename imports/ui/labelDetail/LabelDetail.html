@@ -1,6 +1,6 @@
 <template name="LabelDetail">
 	<div class="container main-content">
-		{{> ViewBtn}}
+		{{> ViewOptions}}
 		{{#if Template.subscriptionsReady}}
 			{{#InfiniteScroll hasMoreContent=hasMoreContent eventName="labelDetailScrollEvent"}}
 				{{#if $.Session.get 'ListMode'}}
