@@ -5,8 +5,14 @@ import { moment } from 'meteor/momentjs:moment';
 import '../partials/Loading.js';
 import '../partials/List/SingleList.js';
 import './Archive.html';
+import '../partials/InfiniteScroll/InfiniteScroll.js';
 
 TemplateController('Archive',{
+	state:{
+		limit:12,
+		memoCount:0,
+	},
+
 	onCreated(){
 		const self = this;
 		self.autorun(()=>{
@@ -21,7 +27,7 @@ TemplateController('Archive',{
 			return notifiyItems;
 		},
 		archived(){
-			let archivedItems =  Memos.find({status:"expired", notifiedToUser:true},{sort:{expiredAt:-1}});
+			let archivedItems =  Memos.find({status:"expired", notifiedToUser:true},{limit:this.state.limit, sort:{expiredAt:-1}});
 			return archivedItems;
 		},
 		notifyCount(){
@@ -34,11 +40,26 @@ TemplateController('Archive',{
 		},
 		archiveCount(){
 			let archiveCount = Memos.find({status:"expired"},{sort:{expiredAt:-1}}).count();
+			this.state.memoCount = archiveCount;
 			if(archiveCount == 0){
 				return false;
 			}else{
 				return true;
 			}
 		},
+		hasMoreContent(){
+			if(this.state.memoCount > this.state.limit){
+				return true;
+			}
+		}
 	},
+
+	events:{
+		'memoScrollEvent'(){
+			const self = this;
+			Meteor.setTimeout(()=>{
+				self.state.limit += 20;
+			},300);
+		},
+	}
 });

@@ -2,19 +2,29 @@
 	<div class="container main-content">
 		{{> ViewBtn}}
 		{{#if Template.subscriptionsReady}}
-		 	{{#if $.Session.get 'ListMode'}}
-		 		<div class="row">
-		 			{{> List memos=memos}}
-		 		</div>
-		 	{{else}}
-				 <div class="row">
-					 	{{#each memos}}
-					 		{{> Memo}}
-					 	{{else}}
-					 		<h3>No Memo Available!</h3>
-					 	{{/each}}
-				 </div>
-		 	{{/if}}
+			{{#InfiniteScroll hasMoreContent=hasMoreContent eventName="labelDetailScrollEvent"}}
+				{{#if $.Session.get 'ListMode'}}
+					<div class="row">
+						<div class="memos-list">
+							<div class="col m10 s12 offset-m1">
+							    <ul class="collection">
+							      {{#each memo in memos}}
+							        {{> SingleList memo=memo shouldNotify=false shouldShowExpiration=true}}
+							      {{/each}}
+							    </ul>
+							</div>
+						</div>
+					</div>
+				{{else}}
+					 <div class="row">
+						{{#each memos}}
+							{{> Memo}}
+						{{else}}
+							<h3>No Memo Available!</h3>
+						{{/each}}
+					 </div>
+				{{/if}}
+			{{/InfiniteScroll}}
 		{{else}}
 			<div class="loading-wrapper valign-wrapper">
 				<div class="center valign">
