@@ -13,8 +13,10 @@ TemplateController('SearchBarItem', {
 	helpers:{
 		providerUrl(){
 			let url = this.data.provider_url;
-			let urlNoProtocol = url.replace(/^https?\:\/\//i, "");
-			return urlNoProtocol;
+			if(url){
+				let urlNoProtocol = url.replace(/^https?\:\/\//i, "");
+				return urlNoProtocol;
+			}
 		}
 	}
 });
