@@ -1,14 +1,15 @@
 <template name="labelBarItem">
-    <li class="collection-item search-item">
-      <a href="{{pathFor 'label.detail'}}" class="title label-bar-chip" style="background-color:{{label.color}}">
-      	<span class="label-text">{{label.name}}</span>
-      	<span class="counter-chip">{{label.memoCount}}</span>
-      </a>
-      <div class="secondary-content">
-		{{#if shouldOptionShow}}
-      <i class="fa fa-pencil option-icon"></i>
-      <i class="fa fa-trash option-icon"></i>
-		{{/if}}
-      </div>
-    </li>
+  <li class="collection-item search-item">
+    <a href="{{pathFor route='label.detail' data=labelId}}"
+      class="title label-bar-chip" style="background-color:{{label.color}}">
+	   <span class="label-text">{{label.name}}</span>
+	   <span class="counter-chip">{{label.memoCount}}</span>
+    </a>
+    <div class="secondary-content">
+      {{#if shouldOptionShow}}
+        <i class="fa fa-pencil option-icon"></i>
+        <i class="fa fa-trash option-icon"></i>
+      {{/if}}
+    </div>
+  </li>
 </template>

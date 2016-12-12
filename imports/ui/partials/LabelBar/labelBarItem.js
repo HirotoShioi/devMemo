@@ -9,6 +9,12 @@ TemplateController('labelBarItem',{
 	},
 
 	helpers:{
+		labelId(){
+			const labelId = {
+				labelId:this.data.label._id
+			};
+			return labelId;
+		},
 		shouldOptionShow(){
 			return this.state.shouldOptionShow;
 		},
