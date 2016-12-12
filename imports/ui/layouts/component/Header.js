@@ -1,7 +1,7 @@
 import './Header.html';
 import { TemplateController } from 'meteor/space:template-controller';
-import './SearchBar/SearchNavBar.js';
-import { Memos } from '../../api/memos.js';
+import '../../partials/SearchBar/SearchNavBar.js';
+import { Memos } from '../../../api/memos.js';
 
 TemplateController('Header',{
 
