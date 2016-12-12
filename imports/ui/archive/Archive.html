@@ -13,11 +13,13 @@
 					</ul>
 					{{/if}}
 					<h5>Archived</h5>
-					<ul class="collection">
-					{{#each archivedItem in archived}}
-						{{> SingleList memo=archivedItem shouldNotify=false}}
-					{{/each}}
-					</ul>
+					{{#InfiniteScroll hasMoreContent=hasMoreContent eventName="memoScrollEvent"}}
+						<ul class="collection">
+						{{#each archivedItem in archived}}
+							{{> SingleList memo=archivedItem shouldNotify=false}}
+						{{/each}}
+						</ul>
+					{{/InfiniteScroll}}
 				{{else}}
 					<div class="no-notification">
 						<i class="fa fa-list-alt"></i>

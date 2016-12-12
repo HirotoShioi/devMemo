@@ -40,7 +40,7 @@ TemplateController('Memos',{
 	},
 
 	events:{
-		'invoiceScrollEvent'(event) {
+		'memoScrollEvent'(event) {
 			const self = this;
 			Meteor.setTimeout(()=>{
 				self.state.limit += 20;

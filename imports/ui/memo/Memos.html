@@ -13,7 +13,7 @@
 				 			{{> List memos=memos}}
 				 		</div>
 				 	{{else}}
-				 		{{#InfiniteScroll hasMoreContent=hasMoreContent eventName="invoiceScrollEvent"}}
+				 		{{#InfiniteScroll hasMoreContent=hasMoreContent eventName="memoScrollEvent"}}
 						 <div class="row">
 							 	{{#each memos}}
 							 		{{> Memo}}
