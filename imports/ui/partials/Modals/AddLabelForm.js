@@ -4,24 +4,23 @@ import './AddLabelForm.html';
 
 TemplateController('AddLabelForm',{
 	state:{
-		selectedColor:"#e4e4e4",
 		labelColorsFirst:[
-			{value:"#ff5252"},
-			{value:"#ff4081"},
-			{value:"#e040fb"},
-			{value:"#b388ff"},
-			{value:"#8c9eff"},
-		],
-		labelColorsSecond:[
 			{value:"#40c4ff"},
 			{value:"#18ffff"},
 			{value:"#64ffda"},
 			{value:"#69f0ae"},
 			{value:"#b2ff59"},
 		],
+		labelColorsSecond:[
+			{value:"#ff5252"},
+			{value:"#ff4081"},
+			{value:"#e040fb"},
+			{value:"#b388ff"},
+			{value:"#8c9eff"},
+		],
 	},
 	onRendered(){
-		Session.set('addLabelSelectedColor', "#e4e4e4");
+		Session.set('addLabelSelectedColor', "#40c4fff");
 	},
 	helpers:{
 		labelColorsFirst(){
@@ -73,7 +72,7 @@ const hooksObject = {
 	});
 	this.done();
 	},
-}
+};
 AutoForm.hooks({
   addLabel: hooksObject
 });
