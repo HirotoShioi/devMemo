@@ -26,7 +26,7 @@ TemplateController('Memo',{
 			return this.state.isHovered;
 		},
 		shouldToolTipShow(){
-			if(this.data.status == "expired" || this.data.provider_url == null){
+			if(this.data.provider_url == null){
 				this.state.shouldToolTipShow = false;
 			}else{
 				this.state.shouldToolTipShow = true;
