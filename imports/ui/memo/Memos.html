@@ -3,17 +3,20 @@
 		{{> ViewBtn}}
 		{{#if Template.subscriptionsReady}}
 			 <div class="list-group">
-				 {{#if loading}}
-				 	<div class="loading-wrapper center">
-				 		{{> Loading size="big"}}
-				 	</div>
-				{{else}}
+				{{#InfiniteScroll hasMoreContent=hasMoreContent eventName="memoScrollEvent"}}
 				 	{{#if $.Session.get 'ListMode'}}
 				 		<div class="row">
-				 			{{> List memos=memos}}
+							<div class="memos-list">
+							    <div class="col m10 s12 offset-m1">
+							        <ul class="collection">
+							          {{#each memo in memos}}
+							            {{> SingleList memo=memo shouldNotify=false shouldShowExpiration=true}}
+							          {{/each}}
+							        </ul>
+							    </div>
+							</div>
 				 		</div>
-				 	{{else}}
-				 		{{#InfiniteScroll hasMoreContent=hasMoreContent eventName="memoScrollEvent"}}
+					{{else}}
 						 <div class="row">
 							 	{{#each memos}}
 							 		{{> Memo}}
@@ -21,9 +24,8 @@
 							 		<h4 class="grey-text">No memo found</h4>
 							 	{{/each}}
 						 </div>
-						{{/InfiniteScroll}}
-				 	{{/if}}
-				 {{/if}}
+					 {{/if}}
+				{{/InfiniteScroll}}
 			 </div>
 		{{else}}
 			<div class="loading-wrapper valign-wrapper">

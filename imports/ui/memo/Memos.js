@@ -6,7 +6,7 @@ import './Memos.html';
 import '../partials/InfiniteScroll/InfiniteScroll.js';
 //partials
 import '../partials/Memo.js';
-import '../partials/List/List.js';
+import '../partials/List/SingleList.js';
 import '../partials/ViewBtn.js';
 
 TemplateController('Memos',{
