@@ -20,7 +20,9 @@ TemplateController('AddLabelForm',{
 			{value:"#b2ff59"},
 		],
 	},
-
+	onRendered(){
+		Session.set('addLabelSelectedColor', "#e4e4e4");
+	},
 	helpers:{
 		labelColorsFirst(){
 			return this.state.labelColorsFirst;
@@ -29,7 +31,17 @@ TemplateController('AddLabelForm',{
 			return this.state.labelColorsSecond;
 		},
 		selectedColor(){
-			return this.state.selectedColor;
+			return Session.get('addLabelSelectedColor');
+		},
+		schema(){
+			const schema = new SimpleSchema({
+				name:{
+					type:String,
+					label:"Name",
+					max:10,
+				},
+			});
+			return schema;
 		},
 	},
 	events:{
@@ -38,38 +50,30 @@ TemplateController('AddLabelForm',{
 		},
 		'click .color-chooser-color'(event){
 			const selectedColor = event.target.attributes.data.value;
-			this.state.selectedColor = selectedColor;
-		},
-		'submit .new-label'(event){
-		    // Prevent default browser form submit
-		    event.preventDefault();
-
-		    // Get value from form element
-		    const target = event.target;
-		    const labelName = target.label.value;
-
-		    const colorRegExp = /^#([0-9a-f]{6}|[0-9a-f]{3})$/i;
-		    if(!colorRegExp.test(this.state.selectedColor)){
-				Bert.alert("Invalid Color", 'danger', 'growl-top-right');
-				return;
-			}
-			const labelObj = {
-				label:labelName,
-				color:this.state.selectedColor
-			};
-
-			Meteor.call('addLabel',labelObj,(err,result)=>{
-				if(err){
-					Bert.alert( err.reason, 'danger', 'growl-top-right');
-				};
-				if(!err){
-					resetModalForm();
-				}
-			});
-			// Clear form
-			target.label.value = '';
-			this.state.selectedColor = "#e4e4e4";
-			resetModalForm();
+			Session.set('addLabelSelectedColor', selectedColor);
 		},
 	}
+});
+const hooksObject = {
+	onSubmit: function(insertDoc, updateDoc, currentDoc) {
+	this.event.preventDefault();
+	let labelColor = Session.get('addLabelSelectedColor');
+	let labelDoc = {
+		name:insertDoc.name,
+		color:labelColor,
+	};
+	Session.set('isLoadingModal',true);
+	Session.set('showModal',false);
+	Meteor.call('addLabel',labelDoc,(err,result)=>{
+		if(!err){
+			Session.set('isLoadingModal', false);
+			resetModalForm();
+			this.resetForm();
+		}
+	});
+	this.done();
+	},
+}
+AutoForm.hooks({
+  addLabel: hooksObject
 });

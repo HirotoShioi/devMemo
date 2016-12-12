@@ -62,7 +62,7 @@ Meteor.methods({
 		}
 
 		Label.insert({
-			name:labelObj.label,
+			name:labelObj.name,
 			color:labelObj.color,
 			createdAt:new Date(),
 			owner: Meteor.userId(),

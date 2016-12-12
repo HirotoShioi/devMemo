@@ -1,10 +1,7 @@
 <template name="AddLabelForm">
 	<p class="form-title">Add Label</p>
-	<form class="new-label">
-		<div class="input-field">
-			<input type="text" class="" name="label">
-			<label for="label">Label</label>
-		</div>
+	{{#autoForm id="addLabel" autocomplete="off" schema=schema}}
+		{{>afQuickField name="name"}}
 		<div class="color-select-box">
 			<ul class="color-chooser">
 				{{#each labelColorsFirst}}
@@ -28,5 +25,5 @@
 			</ul>
 		</div>
 		<input type="submit" class="btn blue darken-3">
-	</form>
+	{{/autoForm}}
 </template>
