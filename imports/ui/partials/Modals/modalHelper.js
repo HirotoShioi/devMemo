@@ -6,6 +6,7 @@ export const resetModalForm = function(){
 	Session.set('formType',null);
 	//ids
 	setTimeout(()=>{
+		Session.set('addLabelSelectedColor',"#40c4ff");
 		Session.set('deleteLabelId',null);
 		Session.set('addMemoSelectedLabelId',null);
 		Session.set('editLabelId', null);
