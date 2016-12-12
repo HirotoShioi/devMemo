@@ -20,7 +20,7 @@ TemplateController('AddLabelForm',{
 		],
 	},
 	onRendered(){
-		Session.set('addLabelSelectedColor', "#40c4fff");
+		Session.set('addLabelSelectedColor', "#40c4ff");
 	},
 	helpers:{
 		labelColorsFirst(){
@@ -61,11 +61,9 @@ const hooksObject = {
 		name:insertDoc.name,
 		color:labelColor,
 	};
-	Session.set('isLoadingModal',true);
 	Session.set('showModal',false);
 	Meteor.call('addLabel',labelDoc,(err,result)=>{
 		if(!err){
-			Session.set('isLoadingModal', false);
 			resetModalForm();
 			this.resetForm();
 		}
