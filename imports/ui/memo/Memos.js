@@ -11,7 +11,7 @@ import '../partials/ViewBtn.js';
 
 TemplateController('Memos',{
 	state:{
-		limit:12,
+		limit:16,
 		memoCount:0,
 	},
 	onCreated(){
