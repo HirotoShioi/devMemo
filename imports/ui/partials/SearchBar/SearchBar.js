@@ -26,7 +26,9 @@ TemplateController('SearchBar',{
 			if(search){
 				this.state.isSearching = true;
 				this.state.labelTitle = "Search result";
-				return Memos.find({$or:[{name:regex},{description:regex}]}, {limit:this.state.memoSearchLimit, sort:{clicked:1}}).fetch();
+				console.log(search);
+				this.state.memoResultCount = Memos.find({$or:[{name:regex},{provider_url:regex}]}, {limit:this.state.memoSearchLimit, sort:{clicked:1}}).count();
+				return Memos.find({$or:[{name:regex},{provider_url:regex}]}, {limit:this.state.memoSearchLimit, sort:{clicked:1}}).fetch();
 			}else{
 				this.state.labelTitle = "Frequently used";
 				let projection = {limit:this.state.memoSearchLimit, sort:{clickedAt:-1}};
@@ -40,12 +42,7 @@ TemplateController('SearchBar',{
 			return Session.get('isSearching');
 		},
 		memoResultCount(){
-			let search = Session.get('searchQuery');
-			let regex = new RegExp(search,'i');
-			if(search){
-				this.state.memoResultCount = Memos.find({$or:[{name:regex},{description:regex}]}).count();
-				return this.state.memoResultCount;
-			}
+			return this.state.memoResultCount;
 		},
 		noResult(){
 			if(this.state.memoResultCount == 0 && this.state.isSearching){

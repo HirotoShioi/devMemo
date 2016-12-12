@@ -5,17 +5,15 @@
 			<input id="search" type="text" name="search" placeholder="Search...">
 		</div>
 		<div class="search-result">
-			{{#if $neq memoResultCount 0}}
-				<ul class="collection">
-				<div class="search-result-title">
-					{{labelTitle}}
-					<a href="" class="right toggle-memo-show">more</a>
-				</div>
-				{{#each searchedMemos}}
-					{{> SearchBarItem}}
-				{{/each}}
-				</ul>
-			{{/if}}
+			<ul class="collection">
+			<div class="search-result-title">
+				{{labelTitle}}
+				<a href="" class="right toggle-memo-show">more</a>
+			</div>
+			{{#each searchedMemos}}
+				{{> SearchBarItem}}
+			{{/each}}
+			</ul>
 		</div>
 		{{#if noResult}}
 			<div class="not-found">
