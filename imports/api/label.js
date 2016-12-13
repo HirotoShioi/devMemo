@@ -8,6 +8,9 @@ export const Label = new Mongo.Collection('Label');
 
 Label.allow({
 	update:function(userId,doc){
+		if(Meteor.user().profile.defaultLabelId == doc._id){
+			return false;
+		}
 		return !!userId;
 	},
 	remove:function(userId,doc){
