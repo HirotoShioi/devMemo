@@ -64,7 +64,9 @@ Schemas.label = new SimpleSchema({
 	},
 	canEdit:{
 		type:Boolean,
-		defaultValue:false,
+		autoValue:function(){
+			return true;
+		},
 	},
 });
 
