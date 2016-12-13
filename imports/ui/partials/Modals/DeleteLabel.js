@@ -27,8 +27,8 @@ TemplateController('DeleteLabel',{
 		},
 		'click .delete-label-btn'(){
 			Meteor.call('removeLabel',this.state.label._id,(err,result)=>{
+				resetModalForm();
 				if(!err){
-					resetModalForm();
 				}
 			});
 		},

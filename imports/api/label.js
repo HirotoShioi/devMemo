@@ -88,8 +88,8 @@ Meteor.methods({
 	'removeLabel'(id){
 		check(id,String);
 		const label = Label.findOne(id);
-
-		if(this.userId !== label.owner){
+		const defaultLabelId = Meteor.user().profile.defaultLabelId;
+		if(this.userId !== label.owner || defaultLabelId == id){
 			throw new Meteor.Error('not authorized');
 		}
 
