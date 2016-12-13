@@ -3,19 +3,19 @@
 		{{#if Template.subscriptionsReady}}
 			<div class="row">
 				<div class="center">
-					{{#if memo.thumbnailUrl}}
-						<img class="responsive-img memo-detail-image" src="{{memo.thumbnailUrl}}" alt="{{memo.desc}}">
+					{{#if state.memo.thumbnailUrl}}
+						<img class="responsive-img memo-detail-image" src="{{state.memo.thumbnailUrl}}" alt="{{state.memo.desc}}">
 					{{else}}
 						<i class="fa fa-file-text-o card-detail-alt-icon" aria-hidden="true"></i>
 					{{/if}}
 				</div>
 				<div class="col s12">
-					<h5>{{memo.name}}</h5>
+					<h5>{{state.memo.name}}</h5>
 					<p>
-						<a class="memo-detail-url" href="{{memo.url}}">{{memo.url}}</a>
+						<a class="memo-detail-url" href="{{memo.url}}">{{state.memo.url}}</a>
 					</p>
 					<p class="caption">
-						{{memo.desc}}
+						{{state.memo.desc}}
 					</p>
 				</div>
 			</div>

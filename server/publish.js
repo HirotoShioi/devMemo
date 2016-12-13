@@ -27,6 +27,5 @@ Meteor.publish('memos',function(search){
     let regex = new RegExp( search, 'i' );
     query.name = regex;
   }
-  console.log(query);
   return Memos.find(query,projection);
 });

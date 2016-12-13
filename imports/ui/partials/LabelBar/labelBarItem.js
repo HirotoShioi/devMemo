@@ -15,9 +15,6 @@ TemplateController('labelBarItem',{
 			};
 			return labelId;
 		},
-		shouldOptionShow(){
-			return this.state.shouldOptionShow;
-		},
 	},
 
 	events:{

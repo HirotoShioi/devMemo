@@ -23,12 +23,6 @@ TemplateController('AddLabelForm',{
 		Session.set('addLabelSelectedColor', "#40c4ff");
 	},
 	helpers:{
-		labelColorsFirst(){
-			return this.state.labelColorsFirst;
-		},
-		labelColorsSecond(){
-			return this.state.labelColorsSecond;
-		},
 		selectedColor(){
 			return Session.get('addLabelSelectedColor');
 		},

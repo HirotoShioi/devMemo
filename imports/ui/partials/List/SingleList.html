@@ -2,7 +2,7 @@
     <li class=" {{#if shouldNotify}}should-notify{{/if}} collection-item list-item avatar">
       <div class="{{#if shouldShowExpiration}}memo-expired{{/if}}">
         <div class="expire-progress {{#if shouldExpireProgressbarShow}}show{{else}}hide{{/if}}-progress-bar">
-          <div class="progress-bar progress-{{progressBarColor}}" style="width:{{expireStatus}}%"></div>
+          <div class="progress-bar progress-{{progressBarColor}}" style="width:{{state.progressRate}}%"></div>
         </div>
         <a href="{{memo.url}}" class="collection-url">
           {{#if memo.thumbnailUrl}}
@@ -25,7 +25,7 @@
         </p>
       </div>
        <a class="secondary-content">
-       {{#if shouldOptionButtonShow}}
+       {{#if state.shouldOptionButtonShow}}
          {{#if isMemoExpired}}
             <i class="fa fa-refresh notify-item"></i>
         {{else}}

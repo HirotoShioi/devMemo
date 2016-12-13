@@ -2,11 +2,11 @@
 	<div class="col l3 m6 s12">
 		<div class="card {{#if isMemoExpired}}memo-expired{{else}}{{/if}} hoverable">
           {{#if shouldToolTipShow}}
-            <div class="memo-tooltip center truncate {{#if isHovered}}tooltip-show{{/if}}">{{provider_url}}</div>
+            <div class="memo-tooltip center truncate {{#if state.isHovered}}tooltip-show{{/if}}">{{provider_url}}</div>
           {{/if}}
         	  <div class="card-image center">
             <div class="expire-progress {{#if shouldExpireProgressbarShow}}show{{else}}hide{{/if}}-progress-bar">
-              <div class="progress-bar progress-{{progressBarColor}}" style="width:{{expireStatus}}%"></div>
+              <div class="progress-bar progress-{{state.progressBarColor}}" style="width:{{expireStatus}}%"></div>
             </div>
             <a href="{{url}}" class="card-image-url">
              {{#if thumbnailUrl}}

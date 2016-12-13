@@ -35,14 +35,8 @@ TemplateController('SearchBar',{
 				return Memos.find({},projection);
 			}
 		},
-		labelTitle(){
-			return this.state.labelTitle;
-		},
 		shouldSearchBarShow(){
 			return Session.get('isSearching');
-		},
-		memoResultCount(){
-			return this.state.memoResultCount;
 		},
 		noResult(){
 			if(this.state.memoResultCount == 0 && this.state.isSearching){

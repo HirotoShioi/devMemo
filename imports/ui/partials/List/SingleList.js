@@ -30,9 +30,6 @@ TemplateController('SingleList',{
 			}
 			return this.state.shouldExpireProgressbarShow;
 		},
-		shouldOptionButtonShow(){
-			return this.state.shouldOptionButtonShow;
-		},
 		isOwner(){
 			return (Meteor.userId() === this.data.memo.owner);
 		},
@@ -43,9 +40,6 @@ TemplateController('SingleList',{
 			if(this.data.shouldNotify){
 				return !this.data.memo.notifiedToUser;
 			}
-		},
-		expireStatus(){
-			return this.state.progressRate;
 		},
 		progressBarColor(){
 				const expireDate = moment(this.data.memo.expiredAt);

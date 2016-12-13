@@ -10,7 +10,6 @@ TemplateController('labelBar',{
 		isSearching:false,
 		labelResultCount:0,
 		labelSearchLimit:20,
-		labelTitle:"Recently Used",
 	},
 
 	onCreated(){
@@ -20,9 +19,6 @@ TemplateController('labelBar',{
 		});
 	},
 	helpers:{
-		labelTitle(){
-			return this.state.labelTitle;
-		},
 		searchedLabels(){
 			let search = this.state.labelSearchQuery;
 			let regex = new RegExp(search,'i');
