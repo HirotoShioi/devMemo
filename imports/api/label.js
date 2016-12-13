@@ -62,6 +62,10 @@ Schemas.label = new SimpleSchema({
 			return Meteor.user().username;
 		},
 	},
+	canEdit:{
+		type:Boolean,
+		defaultValue:false,
+	},
 });
 
 Label.attachSchema(Schemas.label);
