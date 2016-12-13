@@ -4,7 +4,7 @@
 		{{>afQuickField name="name"}}
 		<div class="color-select-box">
 			<ul class="color-chooser">
-				{{#each labelColorsFirst}}
+				{{#each state.labelColorsFirst}}
 					<li class="color-chooser-color {{#if $eq selectedColor value}} z-depth-2 {{/if}}"
 					 style="background-color:{{value}}" data="{{value}}">
 						{{#if $eq selectedColor value}}
@@ -14,7 +14,7 @@
 				{{/each}}
 			</ul>
 			<ul class="color-chooser">
-				{{#each labelColorsSecond}}
+				{{#each state.labelColorsSecond}}
 					<li class="color-chooser-color {{#if $eq selectedColor value}} z-depth-2 {{/if}}"
 					 style="background-color:{{value}}" data="{{value}}">
 						{{#if $eq selectedColor value}}

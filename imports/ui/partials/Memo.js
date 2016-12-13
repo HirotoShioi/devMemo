@@ -22,9 +22,6 @@ TemplateController('Memo',{
 	},
 
 	helpers:{
-		isHovered(){
-			return this.state.isHovered;
-		},
 		shouldToolTipShow(){
 			if(this.data.provider_url == null){
 				this.state.shouldToolTipShow = false;
@@ -50,9 +47,6 @@ TemplateController('Memo',{
 		},
 		shouldFavoriteHightlight(){
 			return ( this.state.shouldHeartHightlight || this.data.isFavorited );
-		},
-		progressBarColor(){
-			return this.state.progressBarColor;
 		},
 		isMemoExpired(){
 			if(this.data.status == "expired" && this.data.isFavorited === false){
