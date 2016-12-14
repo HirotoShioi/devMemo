@@ -1,24 +1,46 @@
 import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../api/memos.js';
 import { moment } from 'meteor/momentjs:moment';
+import { ReactiveDict } from 'meteor/reactive-dict';
 
 import '../partials/Loading.js';
 import '../partials/List/SingleList.js';
 import './Archive.html';
 import '../partials/InfiniteScroll/loadingIndicator.js';
-
+import '../layouts/component/PageTitle.js';
+const session = new ReactiveDict('Archive');
 TemplateController('Archive',{
 	state:{
-		limit:12,
+		scrollTarget:'.main-container',
 		memoCount:0,
 	},
-
+	private:{
+		INITIAL_RESULTS_LIMIT:20,
+	},
 	onCreated(){
+		this.session = session;
+	    this.session.setDefault('resultsLimit', this.INITIAL_RESULTS_LIMIT);
+	    this.session.setDefault('resultsCount', 0);
+	    this.session.setDefault('scrollPosition', 0);
+
 		const self = this;
 		self.autorun(()=>{
 			self.subscribe('memos',);
+			let query = {};
+			query = {status:"expired", notifiedToUser:true};
+			let counts  =  Memos.find(query).count();
+			this.session.set('resultsCount',counts);
 		});
 		Session.set('Title',{name:"Archive"});
+	},
+
+	onRendered(){
+	    this.session.set('resultsLimit', this.INITIAL_RESULTS_LIMIT);
+	    const scrollTarget = $(this.state.scrollTarget);
+	    scrollTarget.scrollTop(this.session.get('scrollPosition'));
+	    scrollTarget.on('scroll', () => {
+	      this.session.set('scrollPosition', scrollTarget.scrollTop());
+	    });
 	},
 
 	helpers:{
@@ -27,7 +49,7 @@ TemplateController('Archive',{
 			return notifiyItems;
 		},
 		archived(){
-			let archivedItems =  Memos.find({status:"expired", notifiedToUser:true},{limit:this.state.limit, sort:{expiredAt:-1}});
+			let archivedItems =  Memos.find({status:"expired", notifiedToUser:true},{limit:this.session.get('resultsLimit'), sort:{expiredAt:-1}});
 			return archivedItems;
 		},
 		notifyCount(){
@@ -39,8 +61,7 @@ TemplateController('Archive',{
 			}
 		},
 		archiveCount(){
-			let archiveCount = Memos.find({status:"expired"},{sort:{expiredAt:-1}}).count();
-			this.state.memoCount = archiveCount;
+			let archiveCount = this.session.get('resultsCount');
 			if(archiveCount == 0){
 				return false;
 			}else{
@@ -48,18 +69,16 @@ TemplateController('Archive',{
 			}
 		},
 		hasMoreContent(){
-			if(this.state.memoCount > this.state.limit){
-				return true;
-			}
+			return this.session.get('resultsLimit') < this.session.get('resultsCount');
 		}
 	},
 
 	events:{
-		'memoScrollEvent'(){
+		'loadingIndicatorBecameVisible'(){
 			const self = this;
-			Meteor.setTimeout(()=>{
-				self.state.limit += 20;
-			},300);
+			setTimeout(()=>{
+				self.session.set('resultsLimit', session.get('resultsLimit')+ 20);
+			},500);
 		},
 	}
 });

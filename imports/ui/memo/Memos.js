@@ -56,8 +56,6 @@ TemplateController('Memos',{
 			return Memos.find(query,{limit:this.session.get('resultsLimit'), sort:{status:1,clickedAt:-1}});
 		},
 		hasMoreContent(){
-			console.log(this.session.get('resultsLimit'));
-			console.log(this.session.get('resultsCount'));
 			return this.session.get('resultsLimit') < this.session.get('resultsCount');
 		},
 	},

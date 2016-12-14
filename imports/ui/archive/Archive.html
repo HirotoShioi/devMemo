@@ -1,5 +1,7 @@
 <template name="Archive">
-	<div class="container main-content notification">
+	<div class="main-container notification">
+		{{> PageTitle}}
+		<div class="main-content">
 		{{#if Template.subscriptionsReady}}
 		<div class="row">
 			<div class="col m10 s12 offset-m1">
@@ -13,13 +15,13 @@
 					</ul>
 					{{/if}}
 					<h5>Archived</h5>
-					{{#InfiniteScroll hasMoreContent=hasMoreContent eventName="memoScrollEvent"}}
 						<ul class="collection">
 						{{#each archivedItem in archived}}
 							{{> SingleList memo=archivedItem shouldNotify=false}}
 						{{/each}}
 						</ul>
-					{{/InfiniteScroll}}
+					{{> loadingIndicator scrollTargetSelector=state.scrollTarget
+            showIndicator=hasMoreContent}}
 				{{else}}
 					<div class="no-notification">
 						<i class="fa fa-list-alt"></i>
@@ -35,5 +37,6 @@
 				</div>
 			</div>
 		{{/if}}
+		</div>
 	</div>
 </template>

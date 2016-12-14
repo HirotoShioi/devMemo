@@ -25,10 +25,6 @@ TemplateController('loadingIndicator', {
       if (!target.length) return;
       let scrollPosition = $(this.props.scrollTargetSelector).scrollTop();
       let isIndicatorVisibleOnPage = (target.offset().top) < $(window).height();
-       console.log("here");
-       console.log("offset()top");
-       console.log(target.offset().top);
-       console.log($(window).height());
       if (isIndicatorVisibleOnPage) {
         this.triggerEvent('loadingIndicatorBecameVisible', scrollPosition);
       }
