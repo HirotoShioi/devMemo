@@ -5,7 +5,7 @@ import { moment } from 'meteor/momentjs:moment';
 import '../partials/Loading.js';
 import '../partials/List/SingleList.js';
 import './Archive.html';
-import '../partials/InfiniteScroll/InfiniteScroll.js';
+import '../partials/InfiniteScroll/loadingIndicator.js';
 
 TemplateController('Archive',{
 	state:{

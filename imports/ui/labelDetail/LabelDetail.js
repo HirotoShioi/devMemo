@@ -7,7 +7,7 @@ import '../partials/Memo.js';
 import '../partials/List/SingleList.js';
 import '../partials/ViewOptions.js';
 import '../partials/Loading.js';
-import '../partials/InfiniteScroll/InfiniteScroll.js';
+import '../partials/InfiniteScroll/loadingIndicator.js';
 
 TemplateController('LabelDetail', {
 	state:{

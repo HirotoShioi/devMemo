@@ -1,0 +1,9 @@
+<template name="loadingIndicator">
+	<div class="loading-indicator" style="height:100px; position:relative;">
+		  {{#if props.showIndicator}}
+			<div class="center">
+				{{> Loading size="big"}}
+			</div>
+		{{/if}}
+	</div>
+</template>
