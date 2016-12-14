@@ -41,6 +41,7 @@ space:template-controller
 sacha:spin
 gadicohen:reactive-window
 momentjs:moment
-
+reactive-dict
 percolate:synced-cron
 less
+underscore
