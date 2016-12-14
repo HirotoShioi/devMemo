@@ -32,7 +32,7 @@ TemplateController('Memos',{
 			if(Session.get('hideExpired')){
 				query.status = "active";
 			}
-			let counts  =  Memos.find(query,{sort:{status:1,clickedAt:-1}}).count();
+			let counts  =  Memos.find(query).count();
 			this.session.set('resultsCount',counts);
 		});
 		Session.set("Title",{name:"Home"});

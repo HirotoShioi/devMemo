@@ -12,7 +12,6 @@ const session = new ReactiveDict('Archive');
 TemplateController('Archive',{
 	state:{
 		scrollTarget:'.main-container',
-		memoCount:0,
 	},
 	private:{
 		INITIAL_RESULTS_LIMIT:20,
