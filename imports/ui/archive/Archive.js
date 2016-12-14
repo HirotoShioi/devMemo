@@ -20,7 +20,6 @@ TemplateController('Archive',{
 		this.session = session;
 	    this.session.setDefault('resultsLimit', this.INITIAL_RESULTS_LIMIT);
 	    this.session.setDefault('resultsCount', 0);
-	    this.session.setDefault('scrollPosition', 0);
 
 		const self = this;
 		self.autorun(()=>{
@@ -35,11 +34,6 @@ TemplateController('Archive',{
 
 	onRendered(){
 	    this.session.set('resultsLimit', this.INITIAL_RESULTS_LIMIT);
-	    const scrollTarget = $(this.state.scrollTarget);
-	    scrollTarget.scrollTop(this.session.get('scrollPosition'));
-	    scrollTarget.on('scroll', () => {
-	      this.session.set('scrollPosition', scrollTarget.scrollTop());
-	    });
 	},
 
 	helpers:{
