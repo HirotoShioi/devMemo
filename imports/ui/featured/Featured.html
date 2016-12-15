@@ -8,19 +8,31 @@
 				<li class="collection-item">
 					<span class="title">Favorites</span>
 					<div class="row">
-
+						{{#each favoriteMemos}}
+							{{> Memo}}
+						{{else}}
+							<span class="grey-text">No favorites!</span>
+						{{/each}}
 					</div>
 				</li>
 				<li class="collection-item">
-					<span class="title">Recently Added</span>
+					<span class="title">Recently Viewed</span>
 					<div class="row">
-
+						{{#each recentMemos}}
+							{{> Memo}}
+						{{else}}
+							<span class="grey-text">No memos added</span>
+						{{/each}}
 					</div>
 				</li>
 				<li class="collection-item">
 					<span class="title">Recommended</span>
 					<div class="row">
-
+						{{#each recommendMemos}}
+							{{> Memo}}
+						{{else}}
+							<span class="grey-text">No recommendation</span>
+						{{/each}}
 					</div>
 				</li>
 			</ul>
