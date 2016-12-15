@@ -195,6 +195,33 @@ Meteor.methods({
 		//update user's recently used label
 		Meteor.users.update({_id:this.userId},{$set:{'profile.recentChosenLabel':doc.labelId}});
 	},
+	getRecommend(){
+		if(Meteor.isServer){
+			const result = Memos.aggregate([
+			{
+				$match:{
+					owner:this.userId,
+					clickedAt:{$gte:moment().subtract(5, 'days').toDate()}
+				}
+			},
+			{
+				$group:{
+					_id:'$labelId',
+					result:{$sum:1}
+				}
+			},
+			{
+				$sort:{
+					result:-1,
+				}
+			},
+			{
+				$limit:3
+			}
+			]);
+			return result[0];
+		}
+	},
 	checkNotify(){
 		const today = moment().toDate();
 		const findExpiredMemoQuery = {expiredAt:{"$lt":today}, status:"active" };
