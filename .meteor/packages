@@ -45,3 +45,4 @@ reactive-dict
 percolate:synced-cron
 less
 underscore
+meteorhacks:aggregate

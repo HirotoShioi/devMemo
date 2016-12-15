@@ -1,0 +1,51 @@
+<template name="Featured">
+	<div class="main-container notification">
+		{{> PageTitle}}
+		<div class="main-content">
+		{{#if Template.subscriptionsReady}}
+		<div class="featured-collection">
+			<ul class="collection">
+				<li class="collection-item">
+					<span class="title">Favorites</span>
+					<div class="row">
+						{{#each favoriteMemos}}
+							{{> Memo}}
+						{{else}}
+							<span class="grey-text">No favorites!</span>
+						{{/each}}
+					</div>
+				</li>
+				<li class="collection-item">
+					<span class="title">Recently Viewed</span>
+					<div class="row">
+						{{#each recentMemos}}
+							{{> Memo}}
+						{{else}}
+							<span class="grey-text">No memos added</span>
+						{{/each}}
+					</div>
+				</li>
+				<li class="collection-item">
+					<span class="title">Recommended
+						<span class="chip" style="background-color:{{recommendLabel.color}};">{{recommendLabel.name}}</span>
+					</span>
+					<div class="row">
+						{{#each recommendMemos}}
+							{{> Memo}}
+						{{else}}
+							<span class="grey-text">No recommendation</span>
+						{{/each}}
+					</div>
+				</li>
+			</ul>
+		</div>
+		{{else}}
+			<div class="loading-wrapper valign-wrapper">
+				<div class="center valign">
+					{{> Loading size="big"}}
+				</div>
+			</div>
+		{{/if}}
+		</div>
+	</div>
+</template>
