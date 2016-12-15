@@ -15,6 +15,11 @@
                 <i class="fa fa-file-text-o card-image-alt-icon" aria-hidden="true"></i>
               {{/if}}
             </a>
+              <div class="card-action {{#if state.isHovered}}tooltip-show{{/if}}">
+                <i class="fa fa-cog card-option"></i>
+                <i class="fa heart {{#if shouldFavoriteHightlight}}fa-heart{{ else }}fa-heart-o{{/if}}  card-option"></i>
+                <i class="fa fa-archive archive-memo card-option {{#if isMemoExpired}}memo-archived{{/if}}"></i>
+              </div>
     		　 </div>
     		  <div class="card-content">
               {{#if isOwner}}
@@ -38,12 +43,6 @@
                 	  </a>
                 {{/if}}
       		  </div>
-          </div>
-          <div class="card-action">
-              <i class="fa fa-cog card-option"></i>
-              <i class="fa fa-share-square card-option" aria-hidden="true"></i>
-              <i class="fa heart {{#if shouldFavoriteHightlight}}fa-heart{{ else }}fa-heart-o{{/if}}  card-option"></i>
-              <i class="fa fa-archive archive-memo card-option {{#if isMemoExpired}}memo-archived{{/if}}"></i>
           </div>
         </div>
 	</div>
