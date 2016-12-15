@@ -20,6 +20,14 @@ TemplateController('Featured',{
 		self.autorun(()=>{
 			self.subscribe('memos');
 		});
+		Meteor.call('getRecommend',(err,result)=>{
+			if(err){
+				console.log(err.reason);
+			}
+			if(!err){
+				self.state.recommendLabels = result;
+			}
+		});
 	},
 
 	helpers:{
@@ -42,15 +50,8 @@ TemplateController('Featured',{
 		},
 		recommendMemos(){
 			const self = this;
-			Meteor.call('getRecommend',(err,result)=>{
-				if(err){
-					console.log(err.reason);
-				}
-				if(!err){
-					self.state.recommendLabels = result;
-				}
-			});
 			let query = {
+				status:"expired",
 				labelId:self.state.recommendLabels._id
 			};
 			return Memos.find(query,{limit:4, sort:{clicked:-1}});

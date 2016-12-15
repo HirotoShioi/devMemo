@@ -201,7 +201,7 @@ Meteor.methods({
 			{
 				$match:{
 					owner:this.userId,
-					clickedAt:{$gte:moment().subtract(5, 'days').toDate()}
+					clickedAt:{$gte:moment().subtract(7, 'days').toDate()}
 				}
 			},
 			{
@@ -219,7 +219,7 @@ Meteor.methods({
 				$limit:3
 			}
 			]);
-			return result[0];
+			return result[Math.floor(Math.random()*result.length)];
 		}
 	},
 	checkNotify(){
