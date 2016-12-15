@@ -1,6 +1,6 @@
 <Template name="Memo">
 	<div class="col l3 m6 s12">
-		<div class="card {{#if isMemoExpired}}memo-expired{{else}}{{/if}} hoverable">
+		<div class="card hoverable">
           {{#if shouldToolTipShow}}
             <div class="memo-tooltip center truncate {{#if state.isHovered}}tooltip-show{{/if}}">{{provider_url}}</div>
           {{/if}}
