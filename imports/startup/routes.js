@@ -97,6 +97,6 @@ AccountsTemplates.configureRoute('signIn', {
     redirect: function(){
         var user = Meteor.user();
         if (user)
-          Router.go('memo.home');
+          Router.go('memo.featured');
     }
 });
