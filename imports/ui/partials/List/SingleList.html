@@ -14,9 +14,6 @@
         <a href="{{memo.url}}" class="title">
           {{memo.name}}
         </a>
-        {{#if isMemoExpired}}
-          <i class="fa fa-archive archive-indicator"></i>
-        {{/if}}
         <p>
           {{memo.provider_url}} <br>
           <a href="{{pathFor 'label.detail' data=memo}}" class="chip" style="background-color:{{memo.label.color}}">
@@ -24,14 +21,5 @@
           </a>
         </p>
       </div>
-       <a class="secondary-content">
-       {{#if state.shouldOptionButtonShow}}
-         {{#if isMemoExpired}}
-            <i class="fa fa-refresh notify-item"></i>
-        {{else}}
-            <i class="fa fa-archive notify-item"></i>
-        {{/if}}
-      {{/if}}
-       </a>
    </li>
 </template>

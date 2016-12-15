@@ -15,7 +15,9 @@
               <div class="card-action {{#if state.isHovered}}tooltip-show{{/if}}">
                 <i class="fa fa-cog card-option"></i>
                 <i class="fa heart {{#if shouldFavoriteHightlight}}fa-heart{{ else }}fa-heart-o{{/if}}  card-option"></i>
-                <i class="fa fa-archive archive-memo card-option {{#if isMemoExpired}}memo-archived{{/if}}"></i>
+                {{#if shouldArchiveShow}}
+                  <i class="fa fa-archive archive-memo card-option"></i>
+                {{/if}}
               </div>
     		　 </div>
     		  <div class="card-content">

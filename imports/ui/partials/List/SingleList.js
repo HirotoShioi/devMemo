@@ -6,7 +6,6 @@ import { moment } from 'meteor/momentjs:moment';
 TemplateController('SingleList',{
 	state:{
 		shouldExpireProgressbarShow:false,
-		shouldOptionButtonShow:false,
 		progressBarColor:'over-75',
 		progressRate:0,
 	},
@@ -68,22 +67,9 @@ TemplateController('SingleList',{
 				this.state.progressRate = progressRate;
 			return this.state.progressBarColor;
 		},
-		isMemoExpired(){
-			if(this.data.memo.status == "expired" && this.data.memo.isFavorited === false){
-				return true;
-			}else{
-				return false;
-			}
-		}
 	},
 
 	events:{
-		'click .fa-close'(){
-			Meteor.call('deleteMemo',this.data.memo._id);
-		},
-		'click .fa-refresh'(){
-			Meteor.call('memoUrlClicked', this.data.memo);
-		},
 		'click .title'(){
 			Meteor.call('memoUrlClicked', this.data.memo);
 			window.open(this.data.memo.url);
@@ -109,9 +95,6 @@ TemplateController('SingleList',{
 		'mouseout .list-item'(){
 			this.state.shouldOptionButtonShow = false;
 			this.state.shouldExpireProgressbarShow = false;
-		},
-		'click .fa-archive'(){
-			Meteor.call('archiveMemo', this.data.memo);
 		},
 	}
 });
