@@ -6,6 +6,12 @@
 			</li>
 				{{#if currentUser}}
 				{{> AddMemoButton}}
+					<li class="{{isActiveRoute 'memo.featured'}} link">
+						<a href="{{pathFor route='memo.featured'}}" class="waves-effect {{isActiveRoute 'memo.featured'}}">
+							<i class="fa fa-rocket"></i>
+							Featured
+						</a>
+					</li>
 					<li class="{{isActiveRoute 'memo.home'}} link">
 						<a href="{{pathFor route='memo.home'}}" class="waves-effect {{isActiveRoute 'memo.home'}}">
 							<i class="fa fa-sticky-note"></i>
