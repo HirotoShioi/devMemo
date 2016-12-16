@@ -5,6 +5,7 @@ import { check } from 'meteor/check';
 import { Label } from './label.js';
 import { moment } from 'meteor/momentjs:moment';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { memoClicked } from './memoClicked.js';
 export const Memos = new Mongo.Collection('memos');
 
 var Schemas = {};
@@ -159,6 +160,21 @@ Meteor.methods({
 		}else{
 			Memos.update({_id:doc._id},{$inc: {clicked:1}});
 		}
+
+		const labelId = doc.labelId;
+		let label = {};
+		if(labelId){
+			label = Label.findOne({_id:labelId});
+		}else{
+			label.name = "none";
+		}
+
+		memoClicked.insert({
+			clickedAt:Date.now(),
+			labelId:labelId,
+			labelName:label.name,
+			memoId:doc._id,
+		});
 		updateMemoExpiration(doc._id);
 	},
 	addMemo(doc){
