@@ -123,7 +123,7 @@ const updateMemoExpiration = function(id){
 });
 };
 
-const logMemoClicked = (memoId, labelId) =>{
+const logMemoClicked = (userId, memoId, labelId) =>{
 	let label = {};
 	if(labelId){
 		label = Label.findOne({_id:labelId});
@@ -131,7 +131,7 @@ const logMemoClicked = (memoId, labelId) =>{
 		label.name = "none";
 	}
 	memoClicked.insert({
-		userId:this.userId,
+		userId:userId,
 		clickedAt:moment().toDate(),
 		labelId:labelId,
 		labelName:label.name,
@@ -178,7 +178,7 @@ Meteor.methods({
 			Memos.update({_id:doc._id},{$inc: {clicked:1}});
 		}
 
-		logMemoClicked(doc._id, doc.labelId);
+		logMemoClicked(this.userId, doc._id, doc.labelId);
 		updateMemoExpiration(doc._id);
 	},
 	addMemo(doc){
@@ -211,7 +211,7 @@ Meteor.methods({
 				owner: Meteor.userId(),
 				username:Meteor.user().username,
 			},(err,memoId)=>{
-				logMemoClicked(memoId,doc.labelId);
+				logMemoClicked(this.userId, memoId,doc.labelId);
 			});
 		}
 
@@ -223,7 +223,7 @@ Meteor.methods({
 			const result = memoClicked.aggregate([
 			{
 				$match:{
-					owner:this.userId,
+					userId:this.userId,
 					clickedAt:{$gte:moment().subtract(7, 'days').toDate()}
 				}
 			},
@@ -239,9 +239,10 @@ Meteor.methods({
 				}
 			},
 			{
-				$limit:3
+				$limit:5
 			}
 			]);
+			console.log(result);
 			return result[Math.floor(Math.random()*result.length)];
 		}
 	},

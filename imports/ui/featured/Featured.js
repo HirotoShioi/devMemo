@@ -11,7 +11,7 @@ const session = new ReactiveDict('Featured');
 
 TemplateController('Featured',{
 	state:{
-		recommendLabels:''
+		recommendCount:0,
 	},
 	onCreated(){
 		this.session = session;
@@ -27,6 +27,7 @@ TemplateController('Featured',{
 			}
 			if(!err){
 				self.state.recommendLabels = result;
+				self.state.recommendCount = Memos.find({labelId:result._id}).count();
 			}
 		});
 	},
@@ -46,14 +47,19 @@ TemplateController('Featured',{
 			return Memos.find(query,{limit:this.session.get('resultsLimit'), sort:{clickedAt:-1}});
 		},
 		recommendLabel(){
+			if(this.state.recommendCount <= 0){
+				return;
+			}
 			let label = Label.findOne({_id:this.state.recommendLabels._id});
 			return label;
 		},
 		recommendMemos(){
-			const self = this;
+			if(this.state.recommendCount <= 0){
+				return;
+			}
 			let query = {
 				status:"expired",
-				labelId:self.state.recommendLabels._id
+				labelId:this.state.recommendLabels._id
 			};
 			return Memos.find(query,{limit:4, sort:{clicked:-1}});
 		},
