@@ -2,6 +2,7 @@ import './SingleList.html';
 import { TemplateController } from 'meteor/space:template-controller';
 import { Label } from '../../../api/label.js'
 import { moment } from 'meteor/momentjs:moment';
+import { Meteor } from 'meteor/meteor';
 
 TemplateController('SingleList',{
 	state:{
@@ -78,10 +79,6 @@ TemplateController('SingleList',{
 		'click .collection-url'(){
 			Meteor.call('memoUrlClicked', this.data.memo);
 			window.open(this.data.memo.url);
-			return false;
-		},
-		'click .chip'(){
-			Router.go('label.detail',{labelId:this.data.memo.labelId});
 			return false;
 		},
 		'mouseover .list-item'(){

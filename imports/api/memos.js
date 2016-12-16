@@ -4,6 +4,7 @@ import { HTTP } from 'meteor/http';
 import { check } from 'meteor/check';
 import { Label } from './label.js';
 import { moment } from 'meteor/momentjs:moment';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 export const Memos = new Mongo.Collection('memos');
 
 var Schemas = {};

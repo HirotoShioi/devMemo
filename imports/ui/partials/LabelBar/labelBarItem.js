@@ -1,6 +1,5 @@
 import { TemplateController } from 'meteor/space:template-controller';
 import { Label } from '../../../api/label.js';
-
 import './labelBarItem.html';
 
 TemplateController('labelBarItem',{
@@ -21,7 +20,6 @@ TemplateController('labelBarItem',{
 		'click .title'(){
 			const label = this.data.label;
 			Session.set('labelBarShow',false);
-			Router.go('label.detail',{ labelId:label._id});
 		},
 		'click .fa-trash'(){
 			Session.set('showModal',true);
@@ -36,8 +34,6 @@ TemplateController('labelBarItem',{
 		'click .label-bar-chip'(){
 			const label = this.data.label;
 			Session.set('labelBarShow',false);
-			Router.go('label.detail',{ labelId:label._id});
-			return false;
 		},
 		'mouseover .search-item'(){
 			this.state.shouldOptionShow = true;

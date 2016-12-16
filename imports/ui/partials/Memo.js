@@ -2,7 +2,7 @@ import './Memo.html';
 import { TemplateController } from 'meteor/space:template-controller';
 import { Label } from '../../api/label.js';
 import { moment } from 'meteor/momentjs:moment';
-
+import { Meteor } from 'meteor/meteor';
 TemplateController('Memo',{
 	state:{
 		isHovered:false,
@@ -110,9 +110,6 @@ TemplateController('Memo',{
 			this.state.isMemoExpired = false;
 			window.open(this.data.url);
 			return false;
-		},
-		'click .fa-share-square'(){
-			window.open(`https://twitter.com/intent/tweet?text=From my memo "${this.data.name}"&url=${this.data.url}`);
 		},
 		'click .archive-memo'(){
 			if(this.data.status == "active"){

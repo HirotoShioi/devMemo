@@ -4,6 +4,7 @@ import { moment } from 'meteor/momentjs:moment';
 import { Memos } from '../imports/api/memos.js';
 import { Accounts } from 'meteor/accounts-base';
 import { Label } from '../imports/api/label.js';
+import { SyncedCron } from 'meteor/percolate:synced-cron';
 import '../imports/api/user.js';
   Accounts.onCreateUser(function(options, user) {
   	Label.insert({

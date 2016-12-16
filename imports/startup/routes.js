@@ -15,6 +15,9 @@ import '../ui/featured/Featured.js';
 
 import { Memos } from '../api/memos.js';
 import { Label } from '../api/memos.js';
+import { Router } from 'meteor/iron:router';
+import { Meteor } from 'meteor/meteor';
+import { AccountsTemplates } from 'meteor/useraccounts:core';
 import '../api/user.js';
 Router.configure({
   layoutTemplate: 'MainLayout',

@@ -1,4 +1,5 @@
 import { TemplateController } from 'meteor/space:template-controller';
+import { AutoForm } from 'meteor/aldeed:autoform';
 import './EditMemoLabel.html';
 import { Memos } from '../../../api/memos.js';
 import { resetModalForm } from './modalHelper.js';

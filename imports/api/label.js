@@ -1,7 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Memos } from './memos.js';
 
 export const Label = new Mongo.Collection('Label');
