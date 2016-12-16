@@ -1,5 +1,8 @@
 import { TemplateController } from 'meteor/space:template-controller';
 import { resetModalForm } from './modalHelper.js';
+import { Meteor } from 'meteor/meteor';
+import { AutoForm } from 'meteor/aldeed:autoform';
+
 import './AddLabelForm.html';
 
 TemplateController('AddLabelForm',{

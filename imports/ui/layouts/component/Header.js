@@ -2,7 +2,7 @@ import './Header.html';
 import { TemplateController } from 'meteor/space:template-controller';
 import '../../partials/SearchBar/SearchNavBar.js';
 import { Memos } from '../../../api/memos.js';
-
+import { AccountsTemplates } from 'meteor/useraccounts:core';
 TemplateController('Header',{
 
 	onCreated(){

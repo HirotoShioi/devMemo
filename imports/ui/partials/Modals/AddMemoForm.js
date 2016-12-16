@@ -5,6 +5,9 @@ import '../../partials/Loading.js';
 import { Label } from '../../../api/label.js';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
+import { AutoForm } from 'meteor/aldeed:autoform';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+
 TemplateController('AddMemoForm',{
 	onCreated(){
 		const self = this;

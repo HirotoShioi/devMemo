@@ -2,7 +2,7 @@ import { TemplateController } from 'meteor/space:template-controller';
 import { resetModalForm } from './modalHelper.js';
 import './DeleteLabel.html';
 import { Label } from '../../../api/label.js';
-
+import { Meteor } from 'meteor/meteor';
 TemplateController('DeleteLabel',{
 	state:{
 		label:{},
