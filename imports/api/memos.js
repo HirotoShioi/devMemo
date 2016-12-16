@@ -122,6 +122,23 @@ const updateMemoExpiration = function(id){
 		}
 });
 };
+
+const logMemoClicked = (memoId, labelId) =>{
+	let label = {};
+	if(labelId){
+		label = Label.findOne({_id:labelId});
+	}else{
+		label.name = "none";
+	}
+	memoClicked.insert({
+		userId:this.userId,
+		clickedAt:moment().toDate(),
+		labelId:labelId,
+		labelName:label.name,
+		memoId:memoId,
+	});
+};
+
 //Methods
 Meteor.methods({
 	deleteMemo(id){
@@ -161,20 +178,7 @@ Meteor.methods({
 			Memos.update({_id:doc._id},{$inc: {clicked:1}});
 		}
 
-		const labelId = doc.labelId;
-		let label = {};
-		if(labelId){
-			label = Label.findOne({_id:labelId});
-		}else{
-			label.name = "none";
-		}
-
-		memoClicked.insert({
-			clickedAt:Date.now(),
-			labelId:labelId,
-			labelName:label.name,
-			memoId:doc._id,
-		});
+		logMemoClicked(doc._id, doc.labelId);
 		updateMemoExpiration(doc._id);
 	},
 	addMemo(doc){
@@ -206,6 +210,8 @@ Meteor.methods({
 				expireIn: expireIn,
 				owner: Meteor.userId(),
 				username:Meteor.user().username,
+			},(err,memoId)=>{
+				logMemoClicked(memoId,doc.labelId);
 			});
 		}
 
@@ -214,7 +220,7 @@ Meteor.methods({
 	},
 	getRecommend(){
 		if(Meteor.isServer){
-			const result = Memos.aggregate([
+			const result = memoClicked.aggregate([
 			{
 				$match:{
 					owner:this.userId,

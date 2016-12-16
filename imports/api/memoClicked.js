@@ -8,6 +8,10 @@ export const memoClicked = new Mongo.Collection('memoClicked');
 var Schemas = {};
 
 Schemas.memoClicked = new SimpleSchema({
+	userId:{
+		type:String,
+		optional:true,
+	},
 	labelId:{
 		type:String,
 		optional:true,
