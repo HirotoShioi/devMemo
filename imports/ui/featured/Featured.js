@@ -11,11 +11,17 @@ const session = new ReactiveDict('Featured');
 
 TemplateController('Featured',{
 	state:{
-		recommendCount:0,
+		recentCount:0,
+		favoriteCount:0,
+	},
+	private:{
+		initialResult:8,
+		incrementBy:8,
 	},
 	onCreated(){
 		this.session = session;
-		this.session.setDefault('resultsLimit', 8);
+		this.session.setDefault('recentResultsLimit',this.initialResult);
+		this.session.setDefault('favoriteResultsLimit',this.initialResult);
 		Session.set('Title',{name:"Featured"});
 		const self = this;
 		self.autorun(()=>{
@@ -37,14 +43,16 @@ TemplateController('Featured',{
 			let query = {
 				isFavorited:true,
 			};
-			return Memos.find(query,{limit:this.session.get('resultsLimit'), sort:{createdAt:-1}});
+			this.state.favoriteCount = Memos.find(query).count();
+			return Memos.find(query,{limit:this.session.get('favoriteResultsLimit'), sort:{createdAt:-1}});
 		},
 		recentMemos(){
 			let query = {
 				status:"active",
 				isFavorited:false,
 			};
-			return Memos.find(query,{limit:this.session.get('resultsLimit'), sort:{clickedAt:-1}});
+			this.state.recentCount = Memos.find(query).count();
+			return Memos.find(query,{limit:this.session.get('recentResultsLimit'), sort:{clickedAt:-1}});
 		},
 		recommendLabel(){
 			if(this.state.recommendCount <= 0){
@@ -63,5 +71,26 @@ TemplateController('Featured',{
 			};
 			return Memos.find(query,{limit:4, sort:{clicked:-1}});
 		},
-	}
+		recentHasMoreContent(){
+			return this.session.get('recentResultsLimit') < this.state.recentCount;
+		},
+		favoriteHasMoreContent(){
+			return this.session.get('favoriteResultsLimit') < this.state.favoriteCount;
+		},
+	},
+
+	events:{
+		'click .show-more-recent'(){
+			this.session.set('recentResultsLimit', this.session.get('recentResultsLimit') + this.incrementBy);
+		},
+		'click .hide-recent'(){
+			this.session.set('recentResultsLimit', this.initialResult);
+		},
+		'click .show-more-favorite'(){
+			this.session.set('favoriteResultsLimit', this.session.get('favoriteResultsLimit') + this.incrementBy);
+		},
+		'click .hide-favorite'(){
+			this.session.set('favoriteResultsLimit', this.initialResult);
+		},
+	},
 });
