@@ -1,29 +1,9 @@
 .card {
-    .memo-tooltip{
-        position: absolute;
-        text-align: center;
-        bottom: -15%;
-        z-index: 2000;
-        padding: 6px;
-        width: 100%;
-        border-radius: 2px;
-        background: #333;
-        color: #fff;
-        visibility: hidden;
-        opacity: 0;
-        transition:all 0.2s linear;
-        &.tooltip-show{
-            opacity: 1;
-            bottom:-22%;
-            transition-delay: .5s;
-            visibility: visible;
-        }
-    }
     .card-image{
-        height: 135px;
+        height: 140px;
         overflow: hidden;
         img{
-            min-height: 130px;
+            min-height: 140px;
         }
         .card-image-alt-icon{
             font-size: 8em;
@@ -48,7 +28,20 @@
         }
     }
     .card-action{
-        padding: 8px 10px;
+        visibility: hidden;
+        padding: 3px 10px;
+        position: absolute;
+        width: 100%;
+        text-align: left;
+        background-color: rgba(0,0,0,0.4);
+        opacity:0;
+        bottom: -20px;
+        transition:all 0.2s linear;
+        &.tooltip-show{
+            bottom: 0;
+            opacity: 1;
+            visibility: visible;
+        }
     }
 
     .card-content{
@@ -75,22 +68,29 @@
         cursor: pointer;
         font-size: 21px;
         margin-right: 8px;
-        color:#777;
+        color:#fefefe;
         transition: color .3s ease;
     }
 
     .fa-heart{
-        color:#cc0000;
+        color:#ED4956;
     }
 
     .fa-cog:hover{
         color:#1565C0;
     }
 
-    .fa-share-square:hover{
-        color:#26a69a;
+    .fa-archive:hover{
+        color:#FFEB3B;
     }
-    .memo-archived{
-        color:rgba(244,115,54,0.9);
-    }
+}
+@media (max-width: 600px) {
+  .card {
+        .card-image{
+            height: 170px;
+            img{
+                min-height: 170px;
+            }
+        }
+  }
 }

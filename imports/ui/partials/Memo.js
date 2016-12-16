@@ -22,14 +22,6 @@ TemplateController('Memo',{
 	},
 
 	helpers:{
-		shouldToolTipShow(){
-			if(this.data.provider_url == null){
-				this.state.shouldToolTipShow = false;
-			}else{
-				this.state.shouldToolTipShow = true;
-			}
-			return this.state.shouldToolTipShow;
-		},
 		shouldExpireProgressbarShow(){
 			if(this.data.isFavorited == true){
 				this.state.shouldExpireProgressbarShow = false;
@@ -48,13 +40,12 @@ TemplateController('Memo',{
 		shouldFavoriteHightlight(){
 			return ( this.state.shouldHeartHightlight || this.data.isFavorited );
 		},
-		isMemoExpired(){
-			if(this.data.status == "expired" && this.data.isFavorited === false){
-				this.state.isMemoExpired = true;
+		shouldArchiveShow(){
+			if(this.data.status == "active" && this.data.isFavorited === false){
+				return true;
 			}else{
-				this.state.isMemoExpired = false;
+				return false;
 			}
-			return this.state.isMemoExpired;
 		},
 		expireStatus(){
 			const expireDate = moment(this.data.expiredAt);
