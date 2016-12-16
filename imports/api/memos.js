@@ -224,8 +224,13 @@ Meteor.methods({
 			{
 				$match:{
 					userId:this.userId,
-					clickedAt:{$gte:moment().subtract(7, 'days').toDate()}
 				}
+			},
+			{
+				$sort:{createdAt:-1},
+			},
+			{
+				$limit:30,
 			},
 			{
 				$group:{
