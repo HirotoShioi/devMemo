@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Memos } from '../imports/api/memos.js';
 import { Label } from '../imports/api/label.js';
+import { memoClicked } from '../imports/api/memoClicked.js';
 import { check, Match } from 'meteor/check';
 
 Meteor.publish('singleMemo',function(id){

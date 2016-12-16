@@ -5,6 +5,7 @@ import { check } from 'meteor/check';
 import { Label } from './label.js';
 import { moment } from 'meteor/momentjs:moment';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { memoClicked } from './memoClicked.js';
 export const Memos = new Mongo.Collection('memos');
 
 var Schemas = {};
@@ -121,6 +122,23 @@ const updateMemoExpiration = function(id){
 		}
 });
 };
+
+const logMemoClicked = (userId, memoId, labelId) =>{
+	let label = {};
+	if(labelId){
+		label = Label.findOne({_id:labelId});
+	}else{
+		label.name = "none";
+	}
+	memoClicked.insert({
+		userId:userId,
+		clickedAt:moment().toDate(),
+		labelId:labelId,
+		labelName:label.name,
+		memoId:memoId,
+	});
+};
+
 //Methods
 Meteor.methods({
 	deleteMemo(id){
@@ -159,6 +177,8 @@ Meteor.methods({
 		}else{
 			Memos.update({_id:doc._id},{$inc: {clicked:1}});
 		}
+
+		logMemoClicked(this.userId, doc._id, doc.labelId);
 		updateMemoExpiration(doc._id);
 	},
 	addMemo(doc){
@@ -190,6 +210,8 @@ Meteor.methods({
 				expireIn: expireIn,
 				owner: Meteor.userId(),
 				username:Meteor.user().username,
+			},(err,memoId)=>{
+				logMemoClicked(this.userId, memoId,doc.labelId);
 			});
 		}
 
@@ -198,12 +220,17 @@ Meteor.methods({
 	},
 	getRecommend(){
 		if(Meteor.isServer){
-			const result = Memos.aggregate([
+			const result = memoClicked.aggregate([
 			{
 				$match:{
-					owner:this.userId,
-					clickedAt:{$gte:moment().subtract(7, 'days').toDate()}
+					userId:this.userId,
 				}
+			},
+			{
+				$sort:{createdAt:-1},
+			},
+			{
+				$limit:30,
 			},
 			{
 				$group:{
@@ -217,9 +244,10 @@ Meteor.methods({
 				}
 			},
 			{
-				$limit:3
+				$limit:5
 			}
 			]);
+			console.log(result);
 			return result[Math.floor(Math.random()*result.length)];
 		}
 	},
