@@ -61,11 +61,11 @@ const hooksObject = {
     };
     Session.set('showModal', false);
     Meteor.call('addLabel', labelDoc, (err, result)=>{
+      resetModalForm();
       if (err) {
         return;
       }
       if (result) {
-        resetModalForm();
         this.resetForm();
       }
     });
