@@ -211,6 +211,34 @@ Meteor.methods({
     // update user's recently used label
     Meteor.users.update({_id: this.userId}, {$set: {'profile.recentChosenLabel': doc.labelId}});
   },
+  getClicksByDate() {
+    const self = this;
+    self.result = [];
+    if (Meteor.isServer) {
+      const result = memoClicked.aggregate([
+        {
+          $match: {
+            userId: this.userId,
+          }
+        },
+        {
+          $group: {
+            _id: { labelId: '$labelId', year: {$year: '$clickedAt'}, month: {$month: '$clickedAt'}, day: {$dayOfMonth: '$clickedAt'} },
+            count: {$sum: 1}
+          },
+        },
+        {
+          $group: {
+            _id: { year: '$_id.year', month: '$_id.month', day: '$_id.day' },
+            labels: {$push: {id: "$_id.labelId", count: '$count'} }
+          }
+        }
+      ]);
+      self.result = result;
+      console.log(result);
+    }
+    return self.result;
+  },
   getRecommend() {
     const self = this;
     self.result = {};

@@ -11,6 +11,7 @@ import '../ui/about/About.js';
 import '../ui/home/Home.js';
 import '../ui/labelDetail/LabelDetail.js';
 import '../ui/featured/Featured.js';
+import '../ui/statistics/Statistics';
 
 import { Memos } from '../api/memos.js';
 import { Label } from '../api/memos.js';
@@ -31,7 +32,7 @@ Router.onBeforeAction(function() {
     this.next();
   }
 }, {
-  only: ['memo.home', 'memo.detail', 'labeldetail', 'memo.archive', 'memo.featured']
+  only: ['memo.home', 'memo.detail', 'labeldetail', 'memo.featured', 'memo.statistics']
 });
 
 Router.route('/home', function() {
@@ -73,6 +74,12 @@ Router.route('/featured', function() {
   this.render('Featured');
 }, {
   name: "memo.featured",
+});
+
+Router.route('/statistics', function() {
+  this.render('Statistics');
+}, {
+  name: "memo.statistics",
 });
 // account routing
 // Routes
