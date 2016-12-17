@@ -31,7 +31,7 @@ Router.onBeforeAction(function() {
     this.next();
   }
 }, {
-  only: ['memo.home', 'memo.detail', 'labeldetail', 'memo.archive', 'memo.featured']
+  only: ['memo.home', 'memo.detail', 'labeldetail', 'memo.featured']
 });
 
 Router.route('/home', function() {
