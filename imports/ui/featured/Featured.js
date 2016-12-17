@@ -71,6 +71,7 @@ TemplateController('Featured', {
       }
       let query = {
         status: "expired",
+        isFavorited: false,
         labelId: this.state.recommendLabels._id
       };
       return Memos.find(query, {limit: 4, sort: {clicked: -1}});

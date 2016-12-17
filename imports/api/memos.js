@@ -162,11 +162,6 @@ Meteor.methods({
       isFavorited = false;
     }
 
-    // if false, turn to true and update expiredAt
-    if (isFavorited === true) {
-      updateMemoExpiration(doc._id);
-    }
-
     Memos.update({_id: doc._id}, {$set: {isFavorited: !doc.isFavorited}});
   },
   memoUrlClicked(doc) {
