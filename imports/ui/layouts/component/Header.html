@@ -16,14 +16,9 @@
         </li>
       	<li class="{{isActiveRoute 'memo.home'}}">
           <a class="{{isActiveRoute 'memo.home'}}" href="{{pathFor route='memo.home'}}">Memos</a>
-        </li>
-        <li class="{{isActiveRoute 'memo.archive'}}">
-          <a href="{{pathFor route='memo.archive'}}" class="waves-effect {{isActiveRoute 'memo.archive'}}">
-            Archive
-        {{#if notificationCount}}
-          <span class="chip blue lighten-4">{{notificationCount}}</span>
-        {{/if}}
-          </a>
+          {{#if notificationCount}}
+            <span class="chip blue lighten-4">{{notificationCount}}</span>
+          {{/if}}
         </li>
       	{{/if}}
         <li class="{{isActiveRoute 'about'}}">
@@ -43,15 +38,9 @@
               <a class="{{isActiveRoute 'memo.home'}}" href="{{pathFor route='memo.home'}}">
                 <i class="fa fa-sticky-note"></i>
                 Memos
-              </a>
-            </li>
-            <li class="{{isActiveRoute 'memo.archive'}}">
-              <a href="{{pathFor route='memo.archive'}}" class="waves-effect {{isActiveRoute 'memo.archive'}}">
-                <i class="fa fa-archive"></i>
-                Archive
-            {{#if notificationCount}}
-              <span class="chip blue lighten-4">{{notificationCount}}</span>
-            {{/if}}
+                {{#if notificationCount}}
+                  <span class="chip blue lighten-4">{{notificationCount}}</span>
+                {{/if}}
               </a>
             </li>
           {{else}}

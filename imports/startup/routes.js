@@ -39,13 +39,16 @@ Router.route('/home', function() {
   this.layout('HomeLayout');
   this.render('Home');
 }, {
-  name: 'home'
+  name: 'home',
 });
 
 Router.route('/', function() {
   this.render('Memos');
 }, {
   name: 'memo.home',
+  onStop: function() {
+    Meteor.call('expiredMemoNotified');
+  },
 });
 
 Router.route('/detail/:_id', function() {
@@ -56,19 +59,10 @@ Router.route('/detail/:_id', function() {
   name: 'memo.detail',
 });
 
-Router.route('/about', function() { 
+Router.route('/about', function() {
   this.render('About');
 }, {
   name: 'about',
-});
-
-Router.route('/archive', function() {
-  this.render('Archive');
-}, {
-  name: 'memo.archive',
-  onStop: function() {
-    Meteor.call('expiredMemoNotified');
-  },
 });
 
 Router.route('/label/:labelId', function() {
