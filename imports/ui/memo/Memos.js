@@ -14,11 +14,11 @@ const session = new ReactiveDict('Memos');
 
 TemplateController('Memos', {
   state: {
-	  scrollTarget: '.main-container',
-	  memoCount: 0,
+    scrollTarget: '.main-container',
+    memoCount: 0,
   },
   private: {
-	  INITIAL_RESULTS_LIMIT: 20,
+    INITIAL_RESULTS_LIMIT: 20,
   },
   onCreated() {
     this.session = session;
@@ -27,16 +27,16 @@ TemplateController('Memos', {
     const self = this;
     self.autorun(()=>{
       self.subscribe('memos');
-	  let query = {};
-	  if (Session.get('hideExpired')) { query.status = "active";}
-	  let counts  =  Memos.find(query).count();
-	  this.session.set('resultsCount', counts);
+      let query = {};
+      if (Session.get('hideExpired')) { query.status = "active";}
+      let counts  =  Memos.find(query).count();
+      this.session.set('resultsCount', counts);
     });
     Session.set("Title", {name: "Home"});
   },
 
   onRendered() {
-	  this.session.set('resultsLimit', this.INITIAL_RESULTS_LIMIT);
+    this.session.set('resultsLimit', this.INITIAL_RESULTS_LIMIT);
   },
 
   helpers: {

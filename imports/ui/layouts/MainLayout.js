@@ -14,26 +14,26 @@ import '../partials/Modals/Modals.js';
 
 TemplateController('MainLayout', {
   onCreated() {
-	  Session.set('shouldHeaderBeShownAtFullWindow', true);
+    Session.set('shouldHeaderBeShownAtFullWindow', true);
   },
 
   helpers: {
-	  shouldSearchBarShow() {
-    if (rwindow.$width() >= 992) {
-      if (Session.get('isSearchNavShown') || Session.get('isShrinkedSideNavShown')) {
-        Session.set('isShrinkedSideNavShown', false);
-        Session.set('isSearchNavShown', false);
+    shouldSearchBarShow() {
+      if (rwindow.$width() >= 992) {
+        if (Session.get('isSearchNavShown') || Session.get('isShrinkedSideNavShown')) {
+          Session.set('isShrinkedSideNavShown', false);
+          Session.set('isSearchNavShown', false);
+        }
       }
-    }
-    if (rwindow.$width() <= 992) {
-      if (Session.get('isSearching') || Session.get('labelBarShow')) {
-        Session.set('isSearching', false);
-        Session.set('labelBarShow', false);
+      if (rwindow.$width() <= 992) {
+        if (Session.get('isSearching') || Session.get('labelBarShow')) {
+          Session.set('isSearching', false);
+          Session.set('labelBarShow', false);
+        }
+        return false;
+      } else {
+        return true;
       }
-      return false;
-    } else {
-      return true;
-    }
-  },
+    },
   }
 });

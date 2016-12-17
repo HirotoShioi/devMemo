@@ -14,28 +14,28 @@ TemplateController('Header', {
   },
   helpers: {
     title() {
-		  return Session.get('Title');
+      return Session.get('Title');
     },
     notificationCount() {
       notifyCount = Memos.find({notifiedToUser: false}).count();
-	  return notifyCount;
+      return notifyCount;
     },
   },
 
   events: {
     'click .toggle-sidenav'() {
-		  Session.set('isShrinkedSideNavShown', !Session.get('isShrinkedSideNavShown'));
+      Session.set('isShrinkedSideNavShown', !Session.get('isShrinkedSideNavShown'));
     },
     'click #slide-out a'() {
       Session.set('isShrinkedSideNavShown', false);
     },
     'click .logout'() {
-		  AccountsTemplates.logout();
+      AccountsTemplates.logout();
     },
     'click .fa-search'() {
       Session.set('searchQuery', '');
-	  Session.set('isSearchNavShown', true);
-	  return false;
+      Session.set('isSearchNavShown', true);
+      return false;
     },
   }
 });

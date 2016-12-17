@@ -5,12 +5,12 @@ import { Session } from 'meteor/session';
 
 TemplateController('About', {
   onCreated() {
-	  Session.set('Title', {name: "About"});
+    Session.set('Title', {name: "About"});
   },
   onRendered() {
-	  this.autorun(()=>{
-		  this.$('.toc-wrapper').pushpin({ top: this.$('.toc-wrapper').offset().top });
-		  this.$('.scrollspy').scrollSpy();
-  });
+    this.autorun(()=>{
+      this.$('.toc-wrapper').pushpin({ top: this.$('.toc-wrapper').offset().top });
+      this.$('.scrollspy').scrollSpy();
+    });
   },
 });

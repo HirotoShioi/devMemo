@@ -17,21 +17,21 @@ TemplateController('Archive', {
   },
 
   private: {
-	  INITIAL_RESULTS_LIMIT: 20,
+    INITIAL_RESULTS_LIMIT: 20,
   },
 
   onCreated() {
-	  this.session = session;
-	  this.session.setDefault('resultsLimit', this.INITIAL_RESULTS_LIMIT);
-	  this.session.setDefault('resultsCount', 0);
+    this.session = session;
+    this.session.setDefault('resultsLimit', this.INITIAL_RESULTS_LIMIT);
+    this.session.setDefault('resultsCount', 0);
 
     const self = this;
     self.autorun(()=>{
       self.subscribe('memos');
       let query = {};
-	  query = {status: "expired", notifiedToUser: true};
+      query = {status: "expired", notifiedToUser: true};
       let counts  =  Memos.find(query).count();
-	  this.session.set('resultsCount', counts);
+      this.session.set('resultsCount', counts);
     });
     Session.set('Title', {name: "Archive"});
   },
@@ -54,7 +54,7 @@ TemplateController('Archive', {
       if (notifiyCount === 0) {
         return false;
       } else {
-	    return true;
+        return true;
       }
     },
     archiveCount() {
@@ -74,7 +74,7 @@ TemplateController('Archive', {
     'loadingIndicatorBecameVisible'() {
       const self = this;
       setTimeout(()=>{
-		  self.session.set('resultsLimit', session.get('resultsLimit')+ 20);
+        self.session.set('resultsLimit', session.get('resultsLimit') + 20);
       }, 500);
     },
   }

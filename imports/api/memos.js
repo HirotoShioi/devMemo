@@ -37,73 +37,73 @@ Schemas.memos = new SimpleSchema({
     optional: true,
   },
   provider_url: {
-	  type: String,
-	  optional: true,
-	  regEx: SimpleSchema.RegEx.Url,
+    type: String,
+    optional: true,
+    regEx: SimpleSchema.RegEx.Url,
   },
   provider_name: {
-	  type: String,
-	  optional: true,
+    type: String,
+    optional: true,
   },
   isFavorited: {
-	  type: Boolean,
-	  optional: true,
-	  defaultValue: false,
+    type: Boolean,
+    optional: true,
+    defaultValue: false,
   },
   tags: {
-	  type: String,
-	  label: "Tag",
-	  optional: true
+    type: String,
+    label: "Tag",
+    optional: true
   },
   clicked: {
-	  type: Number,
-	  defaultValue: 0,
+    type: Number,
+    defaultValue: 0,
   },
   labelId: {
-	  type: String,
-	  label: "Label",
-	  optional: true,
-	  autoform: {
-		  type: "select-radio",
-		  options: function() {
-			  return Label.find({owner: Meteor.userId()}, {sort: {createdAt: -1}}).map(function(c) {
-				  return {label: c.name, value: c._id};
-  			});
-		  }
-  }
+    type: String,
+    label: "Label",
+    optional: true,
+    autoform: {
+      type: "select-radio",
+      options: function() {
+        return Label.find({owner: Meteor.userId()}, {sort: {createdAt: -1}}).map(function(c) {
+          return {label: c.name, value: c._id};
+        });
+      }
+    }
   },
   createdAt: {
-	  type: Date,
-	  optional: true,
+    type: Date,
+    optional: true,
   },
   expiredAt: {
-	  type: Date,
-	  optional: true,
+    type: Date,
+    optional: true,
   },
   clickedAt: {
-	  type: Date,
-	  optional: true,
+    type: Date,
+    optional: true,
   },
   expireIn: {
-	  type: Number,
-	  optional: true,
+    type: Number,
+    optional: true,
   },
   owner: {
-	  type: String,
-	  optional: true,
+    type: String,
+    optional: true,
   },
   username: {
-	  type: String,
-	  optional: true,
+    type: String,
+    optional: true,
   },
   notifiedToUser: {
-	  type: Boolean,
-	  optional: true,
+    type: Boolean,
+    optional: true,
   },
   status: {
-	  type: String,
-	  defaultValue: "active",
-	  optional: true,
+    type: String,
+    defaultValue: "active",
+    optional: true,
   },
 });
 Memos.attachSchema(Schemas.memos);
@@ -111,12 +111,12 @@ Memos.attachSchema(Schemas.memos);
 const updateMemoExpiration = function(id) {
   const expireIn = Meteor.user().profile.memoExpireIn;
   Memos.update({_id: id}, {
-	  $set: {
-		  expiredAt: moment().add(expireIn, 'days').format(),
-		  expireIn: expireIn,
-		  status: "active",
-		  clickedAt: Date.now(),
-  },
+    $set: {
+      expiredAt: moment().add(expireIn, 'days').format(),
+      expireIn: expireIn,
+      status: "active",
+      clickedAt: Date.now(),
+    },
     $unset: {
       notifiedToUser: '',
     }
@@ -127,17 +127,17 @@ const updateMemoExpiration = function(id) {
 const logMemoClicked = (userId, memoId, labelId) =>{
   let label = {};
   if (labelId) {
-	  label = Label.findOne({_id: labelId});
+    label = Label.findOne({_id: labelId});
   } else {
-	  label.name = "none";
+    label.name = "none";
   }
 
   memoClicked.insert({
-	  userId: userId,
-	  clickedAt: moment().toDate(),
-	  labelId: labelId,
-	  labelName: label.name,
-	  memoId: memoId,
+    userId: userId,
+    clickedAt: moment().toDate(),
+    labelId: labelId,
+    labelName: label.name,
+    memoId: memoId,
   });
 };
 
@@ -162,9 +162,9 @@ Meteor.methods({
       isFavorited = false;
     }
 
-		// if false, turn to true and update expiredAt
+    // if false, turn to true and update expiredAt
     if (isFavorited === true) {
-	  updateMemoExpiration(doc._id);
+      updateMemoExpiration(doc._id);
     }
 
     Memos.update({_id: doc._id}, {$set: {isFavorited: !doc.isFavorited}});
@@ -193,43 +193,45 @@ Meteor.methods({
 
     if (Meteor.isServer) {
       const expireIn = Meteor.user().profile.memoExpireIn;
-	  const result = HTTP.call('GET', "https://api.embedly.com/1/oembed", {
-    params: {
-      key: Meteor.settings.embedApiKey,
-	  url: doc.url
-    }
-  });
+      const result = HTTP.call('GET', "https://api.embedly.com/1/oembed", {
+        params: {
+          key: Meteor.settings.embedApiKey,
+          url: doc.url
+        }
+      });
       console.log(result);
       const data = result.data;
-	  Memos.insert({
-		  name: data.title,
-		  url: doc.url,
-		  thumbnailUrl: data.thumbnail_url,
-		  provider_url: data.provider_url,
-		  provider_name: data.provider_name,
-		  desc: data.description,
-		  labelId: doc.labelId,
-		  createdAt: moment().format(),
-		  clickedAt: moment().format(),
-		  expiredAt: moment().add(expireIn, 'days').format(),
-		  expireIn: expireIn,
-		  owner: Meteor.userId(),
-		  username: Meteor.user().username,
-  }, (err, memoId)=>{
-    logMemoClicked(this.userId, memoId, doc.labelId);
-  });
+      Memos.insert({
+        name: data.title,
+        url: doc.url,
+        thumbnailUrl: data.thumbnail_url,
+        provider_url: data.provider_url,
+        provider_name: data.provider_name,
+        desc: data.description,
+        labelId: doc.labelId,
+        createdAt: moment().format(),
+        clickedAt: moment().format(),
+        expiredAt: moment().add(expireIn, 'days').format(),
+        expireIn: expireIn,
+        owner: Meteor.userId(),
+        username: Meteor.user().username,
+      }, (err, memoId)=>{
+        logMemoClicked(this.userId, memoId, doc.labelId);
+      });
     }
 
-		// update user's recently used label
+    // update user's recently used label
     Meteor.users.update({_id: this.userId}, {$set: {'profile.recentChosenLabel': doc.labelId}});
   },
   getRecommend() {
+    const self = this;
+    self.result = {};
     if (Meteor.isServer) {
       const result = memoClicked.aggregate([
-		  {
+        {
           $match: {
-			  userId: this.userId,
-		  }
+            userId: this.userId,
+          }
         },
         {
           $sort: {createdAt: -1},
@@ -239,35 +241,36 @@ Meteor.methods({
         },
         {
           $group: {
-			  _id: '$labelId',
-			  result: {$sum: 1}
+            _id: '$labelId',
+            result: {$sum: 1}
           }
         },
         {
           $sort: {
-			  result: -1,
+            result: -1,
           }
         },
         {
           $limit: 5
         }
       ]);
-	    return result[Math.floor(Math.random() * result.length)];
+      self.result = result[Math.floor(Math.random() * result.length)];
     }
+    return self.result;
   },
   checkNotify() {
-	  const today = moment().toDate();
-	  const findExpiredMemoQuery = {expiredAt: {"$lt": today}, status: "active" };
-	  const needNotificationMemoCount = Memos.find(findExpiredMemoQuery).count();
-	  console.log(`${needNotificationMemoCount} memos needs to be notified to users`);
-	  Memos.update(findExpiredMemoQuery, {$set: {status: "expired", notifiedToUser: false}}, {multi: true});
+    const today = moment().toDate();
+    const findExpiredMemoQuery = {expiredAt: {"$lt": today}, status: "active" };
+    const needNotificationMemoCount = Memos.find(findExpiredMemoQuery).count();
+    console.log(`${needNotificationMemoCount} memos needs to be notified to users`);
+    Memos.update(findExpiredMemoQuery, {$set: {status: "expired", notifiedToUser: false}}, {multi: true});
   },
   expiredMemoNotified() {
-	  if (!this.userId) {throw new Meteor.Error('not authorized');}
+    if (!this.userId) {throw new Meteor.Error('not authorized');}
     Memos.update({owner: this.userId, notifiedToUser: false, status: "expired"}, {$set: {notifiedToUser: true}}, {multi: true});
   },
   archiveMemo(doc) {
-	  check(doc, Object);
+    check(doc, Object);
 
     if (this.userId !== doc.owner) {
       throw new Meteor.Error("not authorized");
