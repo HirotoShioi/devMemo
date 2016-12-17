@@ -10,7 +10,6 @@ import '../ui/memoDetail/MemoDetail.js';
 import '../ui/about/About.js';
 import '../ui/home/Home.js';
 import '../ui/labelDetail/LabelDetail.js';
-import '../ui/archive/Archive.js';
 import '../ui/featured/Featured.js';
 
 import { Memos } from '../api/memos.js';
