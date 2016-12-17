@@ -36,7 +36,9 @@ TemplateController('labelBarItem',{
 			Session.set('labelBarShow',false);
 		},
 		'mouseover .search-item'(){
-			this.state.shouldOptionShow = true;
+			if(this.data.label.canEdit){
+				this.state.shouldOptionShow = true;
+			}
 		},
 		'mouseout .search-item'(){
 			this.state.shouldOptionShow = false;

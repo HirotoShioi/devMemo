@@ -14,7 +14,10 @@ import '../imports/api/user.js';
   		createdAt:new Date(),
   		owner:user._id,
   		username:user.username,
-  	},{getAutoValues:false});
+      canEdit:false,
+    },{getAutoValues:false},(err,defaultLabelId)=>{
+      Meteor.users.update({_id:user._id},{$set: {'profile.defaultLabelId': defaultLabelId}});
+    });
   	return user;
   });
 

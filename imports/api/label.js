@@ -8,6 +8,9 @@ export const Label = new Mongo.Collection('Label');
 
 Label.allow({
 	update:function(userId,doc){
+		if(Meteor.user().profile.defaultLabelId == doc._id){
+			return false;
+		}
 		return !!userId;
 	},
 	remove:function(userId,doc){
@@ -62,6 +65,12 @@ Schemas.label = new SimpleSchema({
 			return Meteor.user().username;
 		},
 	},
+	canEdit:{
+		type:Boolean,
+		autoValue:function(){
+			return true;
+		},
+	},
 });
 
 Label.attachSchema(Schemas.label);
@@ -84,8 +93,8 @@ Meteor.methods({
 	'removeLabel'(id){
 		check(id,String);
 		const label = Label.findOne(id);
-
-		if(this.userId !== label.owner){
+		const defaultLabelId = Meteor.user().profile.defaultLabelId;
+		if(this.userId !== label.owner || defaultLabelId == id){
 			throw new Meteor.Error('not authorized');
 		}
 

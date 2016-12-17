@@ -16,6 +16,10 @@ Schema.userSettings = new SimpleSchema({
 		type:String,
 		optional:true,
 	},
+	defaultLabelId:{
+		type:String,
+		optional:true,
+	},
 });
 Schema.User = new SimpleSchema({
 	username:{
