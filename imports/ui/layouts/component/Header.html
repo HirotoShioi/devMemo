@@ -16,9 +16,6 @@
         </li>
       	<li class="{{isActiveRoute 'memo.home'}}">
           <a class="{{isActiveRoute 'memo.home'}}" href="{{pathFor route='memo.home'}}">Memos</a>
-          {{#if notificationCount}}
-            <span class="chip blue lighten-4">{{notificationCount}}</span>
-          {{/if}}
         </li>
       	{{/if}}
         <li class="{{isActiveRoute 'about'}}">
@@ -38,9 +35,6 @@
               <a class="{{isActiveRoute 'memo.home'}}" href="{{pathFor route='memo.home'}}">
                 <i class="fa fa-sticky-note"></i>
                 Memos
-                {{#if notificationCount}}
-                  <span class="chip blue lighten-4">{{notificationCount}}</span>
-                {{/if}}
               </a>
             </li>
           {{else}}

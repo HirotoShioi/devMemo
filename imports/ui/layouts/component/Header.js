@@ -18,10 +18,6 @@ TemplateController('Header', {
     title() {
       return Session.get('Title');
     },
-    notificationCount() {
-      notifyCount = Memos.find({notifiedToUser: false}).count();
-      return notifyCount;
-    },
   },
 
   events: {

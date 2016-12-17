@@ -45,9 +45,6 @@ Router.route('/', function() {
   this.render('Memos');
 }, {
   name: 'memo.home',
-  onStop: function() {
-    Meteor.call('expiredMemoNotified');
-  },
 });
 
 Router.route('/detail/:_id', function() {
