@@ -1,97 +1,102 @@
-import './SingleList.html';
 import { TemplateController } from 'meteor/space:template-controller';
-import { Label } from '../../../api/label.js'
+import { Label } from '../../../api/label.js';
 import { moment } from 'meteor/momentjs:moment';
 import { Meteor } from 'meteor/meteor';
 
-TemplateController('SingleList',{
-	state:{
-		shouldExpireProgressbarShow:false,
-		progressBarColor:'over-75',
-		progressRate:0,
-	},
+import './SingleList.html';
 
-	onCreated(){
-		const self = this;
-		self.autorun(()=>{
-			self.subscribe('label');
-		});
-	},
+TemplateController('SingleList', {
+  state: {
+    shouldExpireProgressbarShow: false,
+    progressBarColor: 'over-75',
+    progressRate: 0,
+  },
 
-	helpers:{
-		shouldShowExpiration(){
-			if(this.data.shouldShowExpiration && this.data.memo.status == "expired"){
-				return true;
-			};
-		},
-		shouldExpireProgressbarShow(){
-			if(this.data.memo.isFavorited == true){
-				this.state.shouldExpireProgressbarShow = false;
-			}
-			return this.state.shouldExpireProgressbarShow;
-		},
-		isOwner(){
-			return (Meteor.userId() === this.data.memo.owner);
-		},
-		faviconUrl(){
-			return `http://www.google.com/s2/favicons?domain=${this.data.memo.url}`;
-		},
-		shouldNotify(){
-			if(this.data.shouldNotify){
-				return !this.data.memo.notifiedToUser;
-			}
-		},
-		progressBarColor(){
-				const expireDate = moment(this.data.memo.expiredAt);
-				const today = moment().format();
-				const progress = expireDate.diff(today, 'hours');
-				const expireLimit = this.data.memo.expireIn*24;
-				let progressRate = 0;
-				progressRate = Math.floor((progress / expireLimit) * 100);
+  onCreated() {
+    const self = this;
+    self.autorun(()=>{
+      self.subscribe('label');
+    });
+  },
 
-				if(progressRate > 100){
-					progressRate = 100;
-				}
-				if(progressRate <= 0){
-					progressRate = 0;
-				}
+  helpers: {
+    shouldShowExpiration() {
+      if (this.data.shouldShowExpiration && this.data.memo.status === "expired") {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    shouldExpireProgressbarShow() {
+      if (this.data.memo.isFavorited === true) {
+        this.state.shouldExpireProgressbarShow = false;
+      }
+      return this.state.shouldExpireProgressbarShow;
+    },
+    isOwner() {
+      return (Meteor.userId() === this.data.memo.owner);
+    },
+    faviconUrl() {
+      return `http://www.google.com/s2/favicons?domain=${this.data.memo.url}`;
+    },
+    shouldNotify() {
+      if (this.data.shouldNotify) {
+        return !this.data.memo.notifiedToUser;
+      } else {
+        return false;
+      }
+    },
+    progressBarColor() {
+      const expireDate = moment(this.data.memo.expiredAt);
+      const today = moment().format();
+      const progress = expireDate.diff(today, 'hours');
+      const expireLimit = this.data.memo.expireIn * 24;
+      let progressRate = 0;
+      progressRate = Math.floor((progress / expireLimit) * 100);
 
-				if(progressRate >= 75){
-					this.state.progressBarColor = 'over-75';
-				}else if(progressRate >= 50){
-					this.state.progressBarColor = 'over-50';
-				}else if(progressRate >= 25){
-					this.state.progressBarColor = 'over-25';
-				}else{
-					this.state.progressBarColor = 'over-0';
-				}
-				this.state.progressRate = progressRate;
-			return this.state.progressBarColor;
-		},
-	},
+      if (progressRate > 100) {
+        progressRate = 100;
+      }
+      if (progressRate <= 0) {
+        progressRate = 0;
+      }
 
-	events:{
-		'click .title'(){
-			Meteor.call('memoUrlClicked', this.data.memo);
-			window.open(this.data.memo.url);
-			return false;
-		},
-		'click .collection-url'(){
-			Meteor.call('memoUrlClicked', this.data.memo);
-			window.open(this.data.memo.url);
-			return false;
-		},
-		'mouseover .list-item'(){
-			this.state.shouldOptionButtonShow = true;
-			const memo = this.data.memo;
-			if(memo.status == "expired" || memo.isFavorited == true){
-				return;
-			}
-			this.state.shouldExpireProgressbarShow = true;
-		},
-		'mouseout .list-item'(){
-			this.state.shouldOptionButtonShow = false;
-			this.state.shouldExpireProgressbarShow = false;
-		},
-	}
+      if (progressRate >= 75) {
+        this.state.progressBarColor = 'over-75';
+      } else if (progressRate >= 50) {
+        this.state.progressBarColor = 'over-50';
+      } else if (progressRate >= 25) {
+        this.state.progressBarColor = 'over-25';
+      } else {
+        this.state.progressBarColor = 'over-0';
+      }
+      this.state.progressRate = progressRate;
+      return this.state.progressBarColor;
+    },
+  },
+
+  events: {
+    'click .title'() {
+      Meteor.call('memoUrlClicked', this.data.memo);
+      window.open(this.data.memo.url);
+      return false;
+    },
+    'click .collection-url'() {
+      Meteor.call('memoUrlClicked', this.data.memo);
+      window.open(this.data.memo.url);
+      return false;
+    },
+    'mouseover .list-item'() {
+      this.state.shouldOptionButtonShow = true;
+      const memo = this.data.memo;
+      if (memo.status === "expired" || memo.isFavorited === true) {
+        return;
+      }
+      this.state.shouldExpireProgressbarShow = true;
+    },
+    'mouseout .list-item'() {
+      this.state.shouldOptionButtonShow = false;
+      this.state.shouldExpireProgressbarShow = false;
+    },
+  }
 });
