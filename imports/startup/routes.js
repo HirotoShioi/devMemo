@@ -1,10 +1,10 @@
-//layout
+// layout
 import '../ui/layouts/MainLayout.js';
 import '../ui/layouts/HomeLayout.js';
 
-//loading
+// loading
 import '../ui/partials/Loading.html';
-//pages
+// pages
 import '../ui/memo/Memos.js';
 import '../ui/memoDetail/MemoDetail.js';
 import '../ui/about/About.js';
@@ -24,82 +24,82 @@ Router.configure({
   loadingTemplate: 'Loading',
 });
 
-Router.onBeforeAction(function () {
+Router.onBeforeAction(function() {
 
   if (!Meteor.userId()) {
     Router.go('home');
   } else {
     this.next();
   }
-},{
-	only:['memo.home', 'memo.detail', 'labeldetail', 'memo.archive', 'memo.featured']
+}, {
+  only: ['memo.home', 'memo.detail', 'labeldetail', 'memo.archive', 'memo.featured']
 });
 
-Router.route('/home',function(){
-	this.layout('HomeLayout');
-	this.render('Home');
-},{
-	name:'home'
+Router.route('/home', function() {
+  this.layout('HomeLayout');
+  this.render('Home');
+}, {
+  name: 'home'
 });
 
-Router.route('/',function(){
-	this.render('Memos');
-},{
-	name:'memo.home',
+Router.route('/', function() {
+  this.render('Memos');
+}, {
+  name: 'memo.home',
 });
 
-Router.route('/detail/:_id',function(){
-	this.render('MemoDetail',{
-		data:{_id:this.params._id}
-	});
-},{
-	name:'memo.detail',
+Router.route('/detail/:_id', function() {
+  this.render('MemoDetail', {
+	  data: {_id: this.params._id}
+  });
+}, {
+  name: 'memo.detail',
 });
 
-Router.route('/about',function(){
-	this.render('About');
-},{
-	name:'about',
+Router.route('/about', function() { 
+  this.render('About');
+}, {
+  name: 'about',
 });
 
-Router.route('/archive',function(){
-	this.render('Archive');
-},{
-	name:'memo.archive',
-	onStop:function(){
-		Meteor.call('expiredMemoNotified');
-	},
+Router.route('/archive', function() {
+  this.render('Archive');
+}, {
+  name: 'memo.archive',
+  onStop: function() {
+    Meteor.call('expiredMemoNotified');
+  },
 });
 
-Router.route('/label/:labelId', function(){
-	this.render('LabelDetail',{
-		data:{ _id:this.params.labelId }
-	});
-},{
-	name:'label.detail',
+Router.route('/label/:labelId', function() {
+  this.render('LabelDetail', {
+	  data: { _id: this.params.labelId }
+  });
+}, {
+  name: 'label.detail',
 });
 
-Router.route('/featured', function(){
-	this.render('Featured');
-},{
-	name:"memo.featured",
+Router.route('/featured', function() {
+  this.render('Featured');
+}, {
+  name: "memo.featured",
 });
-//account routing
-//Routes
+// account routing
+// Routes
 AccountsTemplates.configure({
-	defaultLayout:'HomeLayout',
-	onLogoutHook:function(){
-		Router.go('home');
-	},
+  defaultLayout: 'HomeLayout',
+  onLogoutHook: function() {
+    Router.go('home');
+  },
 });
+
 AccountsTemplates.configureRoute('enrollAccount');
 AccountsTemplates.configureRoute('resetPwd');
 AccountsTemplates.configureRoute('signUp');
 
 AccountsTemplates.configureRoute('signIn', {
-    redirect: function(){
-        var user = Meteor.user();
-        if (user)
-          Router.go('memo.featured');
-    }
+  redirect: function() {
+	  let user = Meteor.user();
+	  if (user) Router.go('memo.featured');
+  }
 });
