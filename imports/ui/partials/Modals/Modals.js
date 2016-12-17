@@ -1,5 +1,4 @@
 import { TemplateController } from 'meteor/space:template-controller';
-import './Modals.html';
 import { resetModalForm } from './modalHelper.js';
 import { Session } from 'meteor/session';
 // modals
@@ -8,6 +7,8 @@ import './AddMemoForm.js';
 import './DeleteLabel.js';
 import './EditLabel.js';
 import './EditMemoLabel.js';
+
+import './Modals.html';
 
 TemplateController('Modals', {
 

@@ -1,6 +1,7 @@
-import './SearchBarItem.html';
 import { TemplateController } from 'meteor/space:template-controller';
 import { Meteor } from 'meteor/meteor';
+
+import './SearchBarItem.html';
 
 TemplateController('SearchBarItem', {
   events: {

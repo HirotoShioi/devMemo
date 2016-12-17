@@ -1,7 +1,8 @@
-import './About.html';
 import { $ } from 'meteor/jquery';
 import { TemplateController } from 'meteor/space:template-controller';
 import { Session } from 'meteor/session';
+
+import './About.html';
 
 TemplateController('About', {
   onCreated() {

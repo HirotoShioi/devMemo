@@ -1,10 +1,12 @@
-import './AddMemoButton.html';
 import { TemplateController } from 'meteor/space:template-controller';
 import { Label } from '../../api/label.js';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 
+import './AddMemoButton.html';
+
 import './Loading.js';
+
 TemplateController('AddMemoButton', {
   onCreated() {
     const self = this;

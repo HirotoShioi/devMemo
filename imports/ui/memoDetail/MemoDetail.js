@@ -2,6 +2,7 @@ import './MemoDetail.html';
 import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../api/memos.js';
 import { Session } from 'meteor/session';
+
 import '../partials/Loading.js';
 
 TemplateController('MemoDetail', {

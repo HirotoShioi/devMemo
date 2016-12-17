@@ -1,8 +1,9 @@
-import './SingleList.html';
 import { TemplateController } from 'meteor/space:template-controller';
 import { Label } from '../../../api/label.js';
 import { moment } from 'meteor/momentjs:moment';
 import { Meteor } from 'meteor/meteor';
+
+import './SingleList.html';
 
 TemplateController('SingleList', {
   state: {

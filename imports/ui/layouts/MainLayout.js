@@ -1,7 +1,6 @@
 import { TemplateController } from 'meteor/space:template-controller';
 import { Session } from 'meteor/session';
 import '../../stylesheets/style.less';
-import './MainLayout.html';
 import { rwindow } from 'meteor/gadicohen:reactive-window';
 // partials
 import './component/Header.js';
@@ -11,6 +10,8 @@ import '../partials/Overlay.js';
 import '../partials/SearchBar/SearchBar.js';
 import '../partials/LabelBar/labelBar.js';
 import '../partials/Modals/Modals.js';
+
+import './MainLayout.html';
 
 TemplateController('MainLayout', {
   onCreated() {

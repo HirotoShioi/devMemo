@@ -1,9 +1,10 @@
 import { TemplateController } from 'meteor/space:template-controller';
-import './EditLabel.html';
 import { Label } from '../../../api/label.js';
 import { AutoForm } from 'meteor/aldeed:autoform';
 import { resetModalForm } from './modalHelper.js';
 import { Session } from 'meteor/session';
+
+import './EditLabel.html';
 
 TemplateController('EditLabel', {
   state: {

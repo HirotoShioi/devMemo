@@ -5,9 +5,10 @@ import { Session } from 'meteor/session';
 
 import '../partials/Loading.js';
 import '../partials/List/SingleList.js';
-import './Archive.html';
 import '../partials/InfiniteScroll/loadingIndicator.js';
 import '../layouts/component/PageTitle.js';
+
+import './Archive.html';
 
 const session = new ReactiveDict('Archive');
 

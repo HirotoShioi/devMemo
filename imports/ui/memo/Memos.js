@@ -2,10 +2,11 @@ import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../api/memos.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Session } from 'meteor/session';
-import '../partials/Loading.js';
 import './Memos.html';
-import '../partials/InfiniteScroll/loadingIndicator.js';
+
 // partials
+import '../partials/InfiniteScroll/loadingIndicator.js';
+import '../partials/Loading.js';
 import '../partials/Memo.js';
 import '../partials/List/SingleList.js';
 import '../partials/ViewOptions.js';

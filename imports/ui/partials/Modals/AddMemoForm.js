@@ -1,13 +1,15 @@
 import { TemplateController } from 'meteor/space:template-controller';
 import { resetModalForm } from './modalHelper.js';
-import './AddMemoForm.html';
-import '../../partials/Loading.js';
 import { Label } from '../../../api/label.js';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
 import { AutoForm } from 'meteor/aldeed:autoform';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Session } from 'meteor/session';
+
+import '../../partials/Loading.js';
+
+import './AddMemoForm.html';
 
 TemplateController('AddMemoForm', {
   onCreated() {

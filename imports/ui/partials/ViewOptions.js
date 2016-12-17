@@ -1,6 +1,7 @@
-import './ViewOptions.html';
 import { Session } from 'meteor/session';
 import { TemplateController } from 'meteor/space:template-controller';
+
+import './ViewOptions.html';
 
 TemplateController('ViewOptions', {
   helpers: {

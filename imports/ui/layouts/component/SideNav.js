@@ -1,9 +1,11 @@
 import { TemplateController } from 'meteor/space:template-controller';
-import './SideNav.html';
-import '../../partials/AddMemoButton.js';
 import { Memos } from '../../../api/memos.js';
 import { AccountsTemplates } from 'meteor/useraccounts:core';
 import { Session } from 'meteor/session';
+
+import '../../partials/AddMemoButton.js';
+
+import './SideNav.html';
 
 TemplateController('SideNav', {
   onCreated() {

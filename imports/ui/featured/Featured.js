@@ -1,4 +1,3 @@
-import './Featured.html';
 import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../api/memos.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
@@ -9,6 +8,8 @@ import { Label } from '../../api/label.js';
 import '../partials/Loading.js';
 import '../layouts/component/PageTitle.js';
 import '../partials/Memo.js';
+
+import './Featured.html';
 
 const session = new ReactiveDict('Featured');
 

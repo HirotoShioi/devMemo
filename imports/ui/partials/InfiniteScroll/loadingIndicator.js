@@ -1,10 +1,12 @@
-import './loadingIndicator.html';
-
 import { TemplateController } from 'meteor/space:template-controller';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import '../Loading.js';
 import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
+
+import '../Loading.js';
+
+import './loadingIndicator.html';
+
 TemplateController('loadingIndicator', {
 
   props: new SimpleSchema({

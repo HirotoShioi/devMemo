@@ -1,5 +1,6 @@
 import { TemplateController } from 'meteor/space:template-controller';
 import { Session } from 'meteor/session';
+
 import './labelBarItem.html';
 
 TemplateController('labelBarItem', {
