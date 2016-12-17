@@ -14,13 +14,13 @@ const session = new ReactiveDict('Featured');
 
 TemplateController('Featured', {
   state: {
-	  recentCount: 0,
-	  favoriteCount: 0,
+    recentCount: 0,
+    favoriteCount: 0,
   },
 
   private: {
-	  initialResult: 8,
-	  incrementBy: 8,
+    initialResult: 8,
+    incrementBy: 8,
   },
   onCreated() {
     this.session = session;
@@ -45,18 +45,18 @@ TemplateController('Featured', {
   helpers: {
     favoriteMemos() {
       let query = {
-		  isFavorited: true,
-		  };
-		  this.state.favoriteCount = Memos.find(query).count();
-		  return Memos.find(query, {limit: this.session.get('favoriteResultsLimit'), sort: {createdAt: -1}});
+        isFavorited: true,
+      };
+      this.state.favoriteCount = Memos.find(query).count();
+      return Memos.find(query, {limit: this.session.get('favoriteResultsLimit'), sort: {createdAt: -1}});
     },
     recentMemos() {
       let query = {
-		  status: "active",
-		  isFavorited: false,
+        status: "active",
+        isFavorited: false,
       };
-	  this.state.recentCount = Memos.find(query).count();
-	  return Memos.find(query, {limit: this.session.get('recentResultsLimit'), sort: {clickedAt: -1}});
+      this.state.recentCount = Memos.find(query).count();
+      return Memos.find(query, {limit: this.session.get('recentResultsLimit'), sort: {clickedAt: -1}});
     },
     recommendLabel() {
       if (this.state.recommendCount <= 0) {

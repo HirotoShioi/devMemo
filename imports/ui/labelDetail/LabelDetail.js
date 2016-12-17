@@ -29,11 +29,11 @@ TemplateController('LabelDetail', {
     const self = this;
     self.autorun(()=>{
       self.subscribe('label');
-	  self.subscribe('memos');
-	  let query = { labelId: self.data._id };
-	  if (Session.get('hideExpired')) {
-    query.status = "active";
-  }
+      self.subscribe('memos');
+      let query = { labelId: self.data._id };
+      if (Session.get('hideExpired')) {
+        query.status = "active";
+      }
       let counts  =  Memos.find(query).count();
       this.session.set('resultsCount', counts);
     });
@@ -45,14 +45,14 @@ TemplateController('LabelDetail', {
 
   helpers: {
     memos() {
-	  Session.set('Title', Label.findOne({_id: this.data._id}, {fields: {'name': 1}}));
-	  let query = {
-		  labelId: this.data._id};
+      Session.set('Title', Label.findOne({_id: this.data._id}, {fields: {'name': 1}}));
+      let query = {
+        labelId: this.data._id};
       if (Session.get('hideExpired')) {
-		  query.status = "active";
+        query.status = "active";
       }
-	  let memos = Memos.find(query, {limit: this.session.get('resultsLimit'), sort: {status: 1, clickedAt: -1}});
-	  return memos;
+      let memos = Memos.find(query, {limit: this.session.get('resultsLimit'), sort: {status: 1, clickedAt: -1}});
+      return memos;
     },
     hasMoreContent() {
       return this.session.get('resultsLimit') < this.session.get('resultsCount');

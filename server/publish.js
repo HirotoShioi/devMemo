@@ -20,7 +20,7 @@ Meteor.publish('label', function() {
 });
 
 // Memo publication with query options
-Meteor.publish('memos',function(search) {
+Meteor.publish('memos', function(search) {
   check( search, Match.OneOf( String, null, undefined ) );
 
   let query      = { owner: this.userId },

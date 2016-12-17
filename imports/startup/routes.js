@@ -50,7 +50,7 @@ Router.route('/', function() {
 
 Router.route('/detail/:_id', function() {
   this.render('MemoDetail', {
-	  data: {_id: this.params._id}
+    data: {_id: this.params._id}
   });
 }, {
   name: 'memo.detail',
@@ -73,7 +73,7 @@ Router.route('/archive', function() {
 
 Router.route('/label/:labelId', function() {
   this.render('LabelDetail', {
-	  data: { _id: this.params.labelId }
+    data: { _id: this.params.labelId }
   });
 }, {
   name: 'label.detail',
@@ -99,7 +99,7 @@ AccountsTemplates.configureRoute('signUp');
 
 AccountsTemplates.configureRoute('signIn', {
   redirect: function() {
-	  let user = Meteor.user();
-	  if (user) Router.go('memo.featured');
+    let user = Meteor.user();
+    if (user) Router.go('memo.featured');
   }
 });
