@@ -13,6 +13,15 @@
 						{{else}}
 							<span class="grey-text">No favorites!</span>
 						{{/each}}
+						{{#if $gt state.favoriteCount 8}}
+							<div class="col s12 center">
+								{{#if favoriteHasMoreContent}}
+									<button class="btn white black-text show-more-favorite">More</button>
+								{{else}}
+									<button class="btn white black-text hide-favorite">Hide</button>
+								{{/if}}
+							</div>
+						{{/if}}
 					</div>
 				</li>
 				<li class="collection-item">
@@ -23,10 +32,19 @@
 						{{else}}
 							<span class="grey-text">No memos added</span>
 						{{/each}}
+						{{#if $gt state.recentCount 8}}
+							<div class="col s12 center">
+								{{#if recentHasMoreContent}}
+									<button class="btn white black-text show-more-recent">More</button>
+								{{else}}
+									<button class="btn white black-text hide-recent">Hide</button>
+								{{/if}}
+							</div>
+						{{/if}}
 					</div>
 				</li>
 				<li class="collection-item">
-					<span class="title">Recommended
+					<span class="title">For you
 						<span class="chip" style="background-color:{{recommendLabel.color}};">{{recommendLabel.name}}</span>
 					</span>
 					<div class="row">
