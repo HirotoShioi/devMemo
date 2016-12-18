@@ -3,7 +3,7 @@ import { Memos } from '../../api/memos.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Session } from 'meteor/session';
 import { i18n } from 'meteor/anti:i18n';
-import './Memos.html';
+import './Gallery.html';
 
 // partials
 import '../partials/InfiniteScroll/loadingIndicator.js';
@@ -12,9 +12,9 @@ import '../partials/Memo.js';
 import '../partials/List/SingleList.js';
 import '../partials/ViewOptions.js';
 import '../layouts/component/PageTitle.js';
-const session = new ReactiveDict('Memos');
+const session = new ReactiveDict('Gallery');
 
-TemplateController('Memos', {
+TemplateController('Gallery', {
   state: {
     scrollTarget: '.main-container',
     memoCount: 0,

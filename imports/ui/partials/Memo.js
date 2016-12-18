@@ -25,7 +25,7 @@ TemplateController('Memo', {
 
   helpers: {
     shouldExpireProgressbarShow() {
-      if (this.data.isFavorited === true) {
+      if (this.data.isFavorited === true || this.data.status === "expired") {
         this.state.shouldExpireProgressbarShow = false;
       }
       return this.state.shouldExpireProgressbarShow;

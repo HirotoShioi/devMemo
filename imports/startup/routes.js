@@ -5,12 +5,12 @@ import '../ui/layouts/HomeLayout.js';
 // loading
 import '../ui/partials/Loading.html';
 // pages
-import '../ui/memo/Memos.js';
+import '../ui/gallery/Gallery.js';
 import '../ui/memoDetail/MemoDetail.js';
 import '../ui/about/About.js';
-import '../ui/home/Home.js';
+import '../ui/landing/Landing.js';
 import '../ui/labelDetail/LabelDetail.js';
-import '../ui/featured/Featured.js';
+import '../ui/home/Home.js';
 
 import { Memos } from '../api/memos.js';
 import { Label } from '../api/memos.js';
@@ -26,23 +26,23 @@ Router.configure({
 Router.onBeforeAction(function() {
 
   if (!Meteor.userId()) {
-    Router.go('home');
+    Router.go('landing');
   } else {
     this.next();
   }
 }, {
-  only: ['memo.home', 'memo.detail', 'labeldetail', 'memo.featured']
+  only: ['memo.home', 'memo.detail', 'labeldetail', 'memo.gallery']
 });
 
-Router.route('/home', function() {
+Router.route('/landing', function() {
   this.layout('HomeLayout');
-  this.render('Home');
+  this.render('Landing');
 }, {
-  name: 'home',
+  name: 'landing',
 });
 
 Router.route('/', function() {
-  this.render('Memos');
+  this.render('Home');
 }, {
   name: 'memo.home',
 });
@@ -69,10 +69,10 @@ Router.route('/label/:labelId', function() {
   name: 'label.detail',
 });
 
-Router.route('/featured', function() {
-  this.render('Featured');
+Router.route('/gallery', function() {
+  this.render('Gallery');
 }, {
-  name: "memo.featured",
+  name: "memo.gallery",
 });
 // account routing
 // Routes
@@ -91,6 +91,6 @@ AccountsTemplates.configureRoute('signIn', {
   name: "atSignIn",
   redirect: function() {
     let user = Meteor.user();
-    if (user) Router.go('memo.featured');
+    if (user) Router.go('memo.home');
   }
 });

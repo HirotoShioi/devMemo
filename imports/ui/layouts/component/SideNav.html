@@ -2,18 +2,18 @@
 	<header>
 		<ul class="side-nav fixed grey lighten-5">
 			<li class="brand-logo">
-				<a href="{{pathFor route='memo.featured'}}"><span>DevMemo</span></a>
+				<a href="{{pathFor route='memo.home'}}"><span>DevMemo</span></a>
 			</li>
 				{{#if currentUser}}
 				{{> AddMemoButton}}
-					<li class="{{isActiveRoute 'memo.featured'}} link">
-						<a href="{{pathFor route='memo.featured'}}" class="waves-effect {{isActiveRoute 'memo.featured'}}">
-							<i class="fa fa-rocket"></i>
+					<li class="{{isActiveRoute 'memo.home'}} link">
+						<a href="{{pathFor route='memo.home'}}" class="waves-effect {{isActiveRoute 'memo.home'}}">
+							<i class="fa fa-home"></i>
 							{{i18n 'sideNav.featured'}}
 						</a>
 					</li>
-					<li class="{{isActiveRoute 'memo.home'}} link">
-						<a href="{{pathFor route='memo.home'}}" class="waves-effect {{isActiveRoute 'memo.home'}}">
+					<li class="{{isActiveRoute 'memo.gallery'}} link">
+						<a href="{{pathFor route='memo.gallery'}}" class="waves-effect {{isActiveRoute 'memo.gallery'}}">
 							<i class="fa fa-sticky-note"></i>
 							{{i18n 'sideNav.memos'}}
 						</a>

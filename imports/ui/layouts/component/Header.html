@@ -11,13 +11,13 @@
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li>{{> atNavButton }}</li>
       	{{#if currentUser}}
-        <li class="{{isActiveRoute 'memo.featured'}}">
-          <a class="{{isActiveRoute 'memo.featured'}}" href="{{pathFor route='memo.featured'}}">
+        <li class="{{isActiveRoute 'memo.home'}}">
+          <a class="{{isActiveRoute 'memo.home'}}" href="{{pathFor route='memo.home'}}">
             {{i18n 'sideNav.featured'}}
           </a>
         </li>
-      	<li class="{{isActiveRoute 'memo.home'}}">
-          <a class="{{isActiveRoute 'memo.home'}}" href="{{pathFor route='memo.home'}}">
+      	<li class="{{isActiveRoute 'memo.gallery'}}">
+          <a class="{{isActiveRoute 'memo.gallery'}}" href="{{pathFor route='memo.gallery'}}">
             {{i18n 'sideNav.memos'}}
           </a>
         </li>
@@ -31,14 +31,14 @@
        <ul id="slide-out" class="side-nav  {{#if $.Session.get 'isShrinkedSideNavShown'}}sidenav-active {{else}} sidenav-inactive {{/if}}">
           {{#if currentUser}}
             {{> AddMemoButton}}
-            <li class="{{isActiveRoute 'memo.featured'}}">
-              <a class="{{isActiveRoute 'memo.featured'}}" href="{{pathFor route='memo.featured'}}">
-                <i class="fa fa-rocket"></i>
+            <li class="{{isActiveRoute 'memo.home'}}">
+              <a class="{{isActiveRoute 'memo.home'}}" href="{{pathFor route='memo.home'}}">
+                <i class="fa fa-home"></i>
                 {{i18n 'sideNav.featured'}}
               </a>
             </li>
-            <li class="{{isActiveRoute 'memo.home'}}">
-              <a class="{{isActiveRoute 'memo.home'}}" href="{{pathFor route='memo.home'}}">
+            <li class="{{isActiveRoute 'memo.gallery'}}">
+              <a class="{{isActiveRoute 'memo.gallery'}}" href="{{pathFor route='memo.gallery'}}">
                 <i class="fa fa-sticky-note"></i>
                 {{i18n 'sideNav.memos'}}
               </a>
