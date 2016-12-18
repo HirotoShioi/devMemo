@@ -6,6 +6,7 @@ import { Label } from './label.js';
 import { moment } from 'meteor/momentjs:moment';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { memoClicked } from './memoClicked.js';
+import { i18n } from 'meteor/anti:i18n';
 export const Memos = new Mongo.Collection('memos');
 
 let Schemas = {};
@@ -19,7 +20,7 @@ Memos.allow({
 Schemas.memos = new SimpleSchema({
   name: {
     type: String,
-    label: "Name",
+    label: function() { return i18n('collection.memos.name');},
     optional: true,
   },
   url: {
@@ -33,7 +34,7 @@ Schemas.memos = new SimpleSchema({
   },
   desc: {
     type: String,
-    label: "Description",
+    label: function() { return i18n('collection.memos.description');},
     optional: true,
   },
   provider_url: {
@@ -61,7 +62,7 @@ Schemas.memos = new SimpleSchema({
   },
   labelId: {
     type: String,
-    label: "Label",
+    label: function() { return i18n('collection.memos.label');},
     optional: true,
     autoform: {
       type: "select-radio",

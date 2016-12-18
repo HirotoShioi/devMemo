@@ -1,5 +1,5 @@
 <template name="AddMemoForm">
-	<p class="form-title">{{i18n 'forms.title.addMemo'}}</p>
+	<p class="form-title">{{i18n 'forms.addMemo.title'}}</p>
 	{{#autoForm id="addMemo" autocomplete="off" schema=schema}}
 		{{>afQuickField name="url"}}
 		<div class="label-select-wrapper">
@@ -19,7 +19,7 @@
 			{{#if isLoading}}
 				{{> Loading size="small"}}
 			{{else}}
-				{{i18n 'forms.submit.addMemo'}}
+				{{i18n 'forms.addMemo.submit'}}
 			{{/if}}
 		</button>
 	{{/autoForm}}

@@ -65,15 +65,25 @@ i18n.map('en', {
   },
 
   forms: {
-    title: {
-      addLabel: 'Add Label',
-      addMemo: 'Add Memo',
-      deleteLabel: 'Delete Label',
-      editLabel: 'Edit Label',
+    addLabel: {
+      title: 'Add Label',
+      submit: 'Add memo',
     },
-    submit: {
-      addMemo: 'Add memo',
-    }
+
+    addMemo: {
+      title: 'Add memo',
+      submit: 'Add memo',
+    },
+
+    editLabel: {
+      title: 'Edit Label',
+    },
+
+    deleteLabel: {
+      title: 'Delete Label',
+      messages: 'Are you sure you want to delete',
+      submit: 'Delete',
+    },
   },
 
   memo: {

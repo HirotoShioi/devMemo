@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { AutoForm } from 'meteor/aldeed:autoform';
 import { Session } from 'meteor/session';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-
+import { i18n } from 'meteor/anti:i18n';
 import './AddLabelForm.html';
 
 TemplateController('AddLabelForm', {
@@ -35,7 +35,7 @@ TemplateController('AddLabelForm', {
       const schema = new SimpleSchema({
         name: {
           type: String,
-          label: "Name",
+          label: function() {return i18n('collection.label.name');},
           max: 10,
         },
       });
