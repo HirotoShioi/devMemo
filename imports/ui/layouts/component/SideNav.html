@@ -9,39 +9,39 @@
 					<li class="{{isActiveRoute 'memo.featured'}} link">
 						<a href="{{pathFor route='memo.featured'}}" class="waves-effect {{isActiveRoute 'memo.featured'}}">
 							<i class="fa fa-rocket"></i>
-							Featured
+							{{i18n 'sideNav.featured'}}
 						</a>
 					</li>
 					<li class="{{isActiveRoute 'memo.home'}} link">
 						<a href="{{pathFor route='memo.home'}}" class="waves-effect {{isActiveRoute 'memo.home'}}">
 							<i class="fa fa-sticky-note"></i>
-							Memos
+							{{i18n 'sideNav.memos'}}
 						</a>
 					</li>
 					<li class="search-link">
 						<a class="waves-effect">
 							<i class="fa fa-search"></i>
-							Search
+							{{i18n 'sideNav.search'}}
 						</a>
 					</li>
 					<li class="label-link">
 						<a class="waves-effect">
 							<i class="fa fa-tags"></i>
-							Labels
+							{{i18n 'sideNav.labels'}}
 						</a>
 					</li>
 					<li class="link">
-			      		<a class="waves-effect red-text logout auth-link">Logout<i class="fa fa-sign-out" aria-hidden="true"></i></a>
+								<a class="waves-effect red-text logout auth-link">{{i18n 'accounts.signOut'}}<i class="fa fa-sign-out" aria-hidden="true"></i></a>
 			      	</li>
 		      	{{else}}
 		      		<li>
-		      			<a href="{{pathFor route='atSignIn'}}" class="waves-effect auth-link">Sign In <i class="fa fa-sign-in"></i></a>
+		      			<a href="{{pathFor route='atSignIn'}}" class="waves-effect auth-link">{{i18n 'accounts.signIn'}}<i class="fa fa-sign-in"></i></a>
 		      		</li>
 		      	{{/if}}
 				<li class="{{isActiveRoute 'about'}} link">
 					<a href="{{pathFor route='about'}}" class="waves-effect">
 						<i class="fa fa-info"></i>
-						About
+						{{i18n 'sideNav.about'}}
 					</a>
 			</li>
 		</ul>

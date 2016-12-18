@@ -33,9 +33,9 @@
                 	  {{name}}
                 	  	</p>
                 {{else}}
-                	  	<p class="grey-text">No title</p>
+                	  	<p class="grey-text">{{i18n 'memo.noTitle'}}</p>
                 {{/if}}
-                	  <a href="{{pathFor route='memo.detail'}}">more</a>
+                	  <a href="{{pathFor route='memo.detail'}}">{{i18n 'memo.more'}}</a>
                 {{#if hasLabel}}
                 	  <a href="{{pathFor route='label.detail'}}" class="chip edit-btn" style="background-color:{{label.color}}">
   							       {{label.name}}

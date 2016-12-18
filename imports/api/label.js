@@ -2,8 +2,8 @@ import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { i18n } from 'meteor/anti:i18n';
 import { Memos } from './memos.js';
-
 export const Label = new Mongo.Collection('Label');
 
 Label.allow({
@@ -23,7 +23,7 @@ let Schemas = {};
 Schemas.label = new SimpleSchema({
   name: {
     type: String,
-    label: "name",
+    label: function() {return i18n('collection.label.name');},
     max: 10,
   },
   name_sort: {

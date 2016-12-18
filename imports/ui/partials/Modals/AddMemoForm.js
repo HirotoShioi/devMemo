@@ -6,7 +6,7 @@ import { Meteor } from 'meteor/meteor';
 import { AutoForm } from 'meteor/aldeed:autoform';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Session } from 'meteor/session';
-
+import { i18n } from 'meteor/anti:i18n';
 import '../../partials/Loading.js';
 
 import './AddMemoForm.html';
@@ -73,7 +73,7 @@ const hooksObject = {
       if (!err) {
         Bert.alert({
           type: "success",
-          message: "Memo Added",
+          message: i18n('forms.addMemo.success'),
           style: "growl-top-right"
         });
       }

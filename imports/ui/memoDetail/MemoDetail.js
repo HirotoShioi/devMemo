@@ -1,7 +1,8 @@
 import './MemoDetail.html';
 import { TemplateController } from 'meteor/space:template-controller';
-import { Memos } from '../../api/memos.js';
+import { i18n } from 'meteor/anti:i18n';
 import { Session } from 'meteor/session';
+import { Memos } from '../../api/memos.js';
 
 import '../partials/Loading.js';
 
@@ -16,7 +17,7 @@ TemplateController('MemoDetail', {
       self.subscribe('singleMemo', self.data._id);
       self.state.memo = Memos.findOne({_id: self.data._id});
     });
-    Session.set('Title', {name: "Detail"});
+    Session.set('Title', {name: i18n('pageTitle.memoDetail')});
   },
 
   events: {

@@ -1,5 +1,5 @@
 <template name="EditLabel">
-	<p class="form-title">Edit Label</p>
+	<p class="form-title">{{i18n 'forms.editLabel.title'}}</p>
 	<div class="modal-edit-wrapper">
 		{{#autoForm collection="Label" doc=label id="editLabel" type="update"}}
 			{{> afQuickField name="name"}}

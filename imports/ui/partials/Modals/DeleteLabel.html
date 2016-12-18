@@ -1,10 +1,10 @@
 <template name="DeleteLabel">
-	<p class="form-title">Delete Label</p>
+	<p class="form-title">{{i18n 'forms.deleteLabel.title'}}</p>
 	<p class="delete-text">
-		Are you sure you want to delete
+		{{i18n 'forms.deleteLabel.messages'}}
 		<span class="chip" style="background-color:{{label.color}}">
 			{{label.name}}
 		</span>?
 	</p>
-	<button class="btn red delete-label-btn">Delete</button>
+	<button class="btn red delete-label-btn">{{i18n 'forms.deleteLabel.submit'}}</button>
 </template>

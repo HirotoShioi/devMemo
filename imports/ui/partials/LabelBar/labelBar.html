@@ -2,15 +2,15 @@
 	<div id="search-bar" class="search-nav-bar {{#if shouldSearchBarShow}}search-bar-show {{else}}search-bar-hidden{{/if}}">
 		<div class="search-bar-header-wrapper">
 			<div class="search-input-title">
-				<span>Label</span>
+				<span>{{i18n 'label.title'}}</span>
 				<a href="#" class="fa fa-plus-circle right"></a>
 			</div>
-			<input id="search" type="text" name="labelSearch" placeholder="Search...">
+			<input id="search" type="text" name="labelSearch" placeholder="{{i18n 'search.placeholder'}}...">
 		</div>
 		<div class="search-result">
 			{{#if $neq labelResultCount 0}}
 				<div class="search-result-title">
-					<span>Labels</span>
+					<span>{{i18n 'label.title'}}</span>
 					<a href="#" class="right toggle-label-show">more</a>
 				</div>
 				<ul class="collection">
@@ -23,7 +23,7 @@
 		{{#if noResult}}
 			<div class="not-found">
 				<i class="fa fa-search"></i>
-				<h4>No results found</h4>
+				<h4>{{i18n 'search.noResultsFound'}}</h4>
 			</div>
 		{{/if}}
 	</div>

@@ -1,14 +1,14 @@
 <template name="SearchBar">
 	<div id="search-bar" class="search-nav-bar {{#if shouldSearchBarShow}}search-bar-show {{else}}search-bar-hidden{{/if}}">
 		<div class="search-bar-header-wrapper">
-			<div class="search-input-title">Search</div>
-			<input id="search" type="text" name="search" placeholder="Search...">
+			<div class="search-input-title">{{i18n 'search.title'}}</div>
+			<input id="search" type="text" name="search" placeholder="{{i18n 'search.placeholder'}}..." autocomplete="off">
 		</div>
 		<div class="search-result">
 			<ul class="collection">
 			<div class="search-result-title">
 				{{state.labelTitle}}
-				<a href="" class="right toggle-memo-show">more</a>
+				<a href="" class="right toggle-memo-show">{{i18n 'search.more'}}</a>
 			</div>
 			{{#each searchedMemos}}
 				{{> SearchBarItem}}
@@ -18,7 +18,7 @@
 		{{#if noResult}}
 			<div class="not-found">
 				<i class="fa fa-search"></i>
-				<h4>No results found</h4>
+				<h4>{{i18n 'search.noResultsFound'}}</h4>
 			</div>
 		{{/if}}
 	</div>

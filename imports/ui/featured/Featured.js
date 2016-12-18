@@ -3,8 +3,8 @@ import { Memos } from '../../api/memos.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
+import { i18n } from 'meteor/anti:i18n';
 import { Label } from '../../api/label.js';
-
 import '../partials/Loading.js';
 import '../layouts/component/PageTitle.js';
 import '../partials/Memo.js';
@@ -27,7 +27,7 @@ TemplateController('Featured', {
     this.session = session;
     this.session.setDefault('recentResultsLimit', this.initialResult);
     this.session.setDefault('favoriteResultsLimit', this.initialResult);
-    Session.set('Title', {name: "Featured"});
+    Session.set('Title', {name: i18n('pageTitle.featured')});
     const self = this;
     self.autorun(()=>{
       self.subscribe('memos');
