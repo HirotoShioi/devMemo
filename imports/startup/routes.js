@@ -88,6 +88,7 @@ AccountsTemplates.configureRoute('resetPwd');
 AccountsTemplates.configureRoute('signUp');
 
 AccountsTemplates.configureRoute('signIn', {
+  name: "atSignIn",
   redirect: function() {
     let user = Meteor.user();
     if (user) Router.go('memo.featured');

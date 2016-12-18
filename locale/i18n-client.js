@@ -1,6 +1,7 @@
 i18n.map('en', {
 
   home: {
+    gettingStarted: 'Getting Started',
     subtitle: 'Make your bookmarking fun',
     easyToUse: {
       title: 'Easy to use',
@@ -77,7 +78,7 @@ i18n.map('en', {
     addMemo: {
       title: 'Add bookmark',
       submit: 'Add',
-      success: 'Bookmark Added',
+      success: 'Bookmark added',
     },
 
     editLabel: {
@@ -99,6 +100,7 @@ i18n.map('en', {
 
 i18n.map('ja', {
   home: {
+    gettingStarted: 'DevMemoを始める',
     subtitle: 'ブックマークを楽しく',
     easyToUse: {
       title: '簡単な操作',
@@ -116,7 +118,7 @@ i18n.map('ja', {
 
   feature: {
     favorites: 'お気に入り',
-    recentlyViewed: '最近閲覧した',
+    recentlyViewed: '最近見た',
     forYou: 'あなたへのおすすめ',
     noFavorite: 'お気に入りを追加しよう',
     noRecent: '最近追加したものはありません',
@@ -132,7 +134,7 @@ i18n.map('ja', {
 
   pageTitle: {
     featured: 'ホーム',
-    memos: 'メモ',
+    memos: 'ギャラリー',
     memoDetail: 'メモ詳細',
   },
 
@@ -169,13 +171,13 @@ i18n.map('ja', {
 
   forms: {
     addLabel: {
-      title: 'ラベル追加',
+      title: 'ラベルを追加する',
     },
 
     addMemo: {
-      title: 'ブックマーク追加',
+      title: 'ブックマークを追加する',
       submit: '追加',
-      success: 'ブックマークは追加されました',
+      success: 'ブックマークが追加されました',
     },
 
     editLabel: {
