@@ -28,7 +28,7 @@ SyncedCron.add({
     Meteor.call('checkExpiration');
   }
 });
-Meteor.startup(() => {
+
+Meteor.startup(function() {
   SyncedCron.start();
-  // code to run on server at startup
 });
