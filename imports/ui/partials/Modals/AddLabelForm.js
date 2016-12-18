@@ -36,7 +36,7 @@ TemplateController('AddLabelForm', {
         name: {
           type: String,
           label: function() {return i18n('collection.label.name');},
-          max: 10,
+          max: 15,
         },
       });
       return schema;
