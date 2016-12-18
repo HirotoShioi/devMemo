@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { AutoForm } from 'meteor/aldeed:autoform';
 import { Session } from 'meteor/session';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+
 import './AddLabelForm.html';
 
 TemplateController('AddLabelForm', {

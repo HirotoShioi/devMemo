@@ -20,13 +20,6 @@ TemplateController('SingleList', {
   },
 
   helpers: {
-    shouldShowExpiration() {
-      if (this.data.shouldShowExpiration && this.data.memo.status === "expired") {
-        return true;
-      } else {
-        return false;
-      }
-    },
     shouldExpireProgressbarShow() {
       if (this.data.memo.isFavorited === true) {
         this.state.shouldExpireProgressbarShow = false;
@@ -38,13 +31,6 @@ TemplateController('SingleList', {
     },
     faviconUrl() {
       return `http://www.google.com/s2/favicons?domain=${this.data.memo.url}`;
-    },
-    shouldNotify() {
-      if (this.data.shouldNotify) {
-        return !this.data.memo.notifiedToUser;
-      } else {
-        return false;
-      }
     },
     progressBarColor() {
       const expireDate = moment(this.data.memo.expiredAt);

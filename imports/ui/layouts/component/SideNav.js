@@ -15,13 +15,6 @@ TemplateController('SideNav', {
     });
   },
 
-  helpers: {
-    notificationCount() {
-      notifyCount = Memos.find({notifiedToUser: false}).count();
-      return notifyCount;
-    },
-  },
-
   events: {
     'click .logout'() {
       AccountsTemplates.logout();

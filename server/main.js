@@ -19,13 +19,13 @@ Accounts.onCreateUser(function(options, user) {
 
 // jobs
 SyncedCron.add({
-  name: 'Find notification needed memos',
+  name: 'Find expired memos',
   schedule: function(parser) {
     // parser is a later.parse object
     return parser.text('every 5 seconds');
   },
   job: function() {
-    Meteor.call('checkNotify');
+    Meteor.call('checkExpiration');
   }
 });
 Meteor.startup(() => {

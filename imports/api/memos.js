@@ -96,10 +96,6 @@ Schemas.memos = new SimpleSchema({
     type: String,
     optional: true,
   },
-  notifiedToUser: {
-    type: Boolean,
-    optional: true,
-  },
   status: {
     type: String,
     defaultValue: "active",
@@ -116,9 +112,6 @@ const updateMemoExpiration = function(id) {
       expireIn: expireIn,
       status: "active",
       clickedAt: Date.now(),
-    },
-    $unset: {
-      notifiedToUser: '',
     }
   });
 
@@ -218,6 +211,34 @@ Meteor.methods({
     // update user's recently used label
     Meteor.users.update({_id: this.userId}, {$set: {'profile.recentChosenLabel': doc.labelId}});
   },
+  getClicksByDate() {
+    const self = this;
+    self.result = [];
+    if (Meteor.isServer) {
+      const result = memoClicked.aggregate([
+        {
+          $match: {
+            userId: this.userId,
+          }
+        },
+        {
+          $group: {
+            _id: { labelId: '$labelId', year: {$year: '$clickedAt'}, month: {$month: '$clickedAt'}, day: {$dayOfMonth: '$clickedAt'} },
+            count: {$sum: 1}
+          },
+        },
+        {
+          $group: {
+            _id: { year: '$_id.year', month: '$_id.month', day: '$_id.day' },
+            labels: {$push: {id: "$_id.labelId", count: '$count'} }
+          }
+        }
+      ]);
+      self.result = result;
+      console.log(result);
+    }
+    return self.result;
+  },
   getRecommend() {
     const self = this;
     self.result = {};
@@ -253,16 +274,12 @@ Meteor.methods({
     }
     return self.result;
   },
-  checkNotify() {
+  checkExpiration() {
     const today = moment().toDate();
     const findExpiredMemoQuery = {expiredAt: {"$lt": today}, status: "active" };
-    const needNotificationMemoCount = Memos.find(findExpiredMemoQuery).count();
-    console.log(`${needNotificationMemoCount} memos needs to be notified to users`);
-    Memos.update(findExpiredMemoQuery, {$set: {status: "expired", notifiedToUser: false}}, {multi: true});
-  },
-  expiredMemoNotified() {
-    if (!this.userId) {throw new Meteor.Error('not authorized');}
-    Memos.update({owner: this.userId, notifiedToUser: false, status: "expired"}, {$set: {notifiedToUser: true}}, {multi: true});
+    const expireCount = Memos.find(findExpiredMemoQuery).count();
+    console.log(`${expireCount} were expired`);
+    Memos.update(findExpiredMemoQuery, {$set: {status: "expired"}}, {multi: true});
   },
   archiveMemo(doc) {
     check(doc, Object);
@@ -271,7 +288,7 @@ Meteor.methods({
       throw new Meteor.Error("not authorized");
     }
     const today = moment().toDate();
-    Memos.update({_id: doc._id}, {$set: {expiredAt: today, status: "expired", isFavorited: false, notifiedToUser: true}});
+    Memos.update({_id: doc._id}, {$set: {expiredAt: today, status: "expired", isFavorited: false}});
   }
 });
 

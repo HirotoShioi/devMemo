@@ -30,15 +30,12 @@
 							Labels
 						</a>
 					</li>
-					<li class="{{isActiveRoute 'memo.archive'}} link">
-					<a href="{{pathFor route='memo.archive'}}" class="waves-effect {{isActiveRoute 'memo.archive'}}">
-						<i class="fa fa-archive"></i>
-						Archive
-							{{#if notificationCount}}
-								<span class="chip blue lighten-4">{{notificationCount}}</span>
-							{{/if}}
-			      		</a>
-			      	</li>
+					<li class="{{isActiveRoute 'memo.statistics'}} link">
+						<a href="{{pathFor route='memo.statistics'}}" class="waves-effect {{isActiveRoute 'memo.statistics'}}">
+							<i class="fa fa-bar-chart"></i>
+							Statistics
+						</a>
+					</li>
 					<li class="link">
 			      		<a class="waves-effect red-text logout auth-link">Logout<i class="fa fa-sign-out" aria-hidden="true"></i></a>
 			      	</li>
