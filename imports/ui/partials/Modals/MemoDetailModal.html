@@ -4,7 +4,12 @@
       <span class="card-title">{{memo.name}}</span>
     </div>
     <div class="card-content">
-      <p>{{truncate}}</p>
+      <p>
+        {{truncate}}
+        <span class="chip right" style="background-color:{{state.label.color}}">
+            {{state.label.name}}
+        </span>
+      </p>
        <a href="{{pathFor route='memo.detail' data=state.memo}}">{{i18n 'memo.more'}}</a>
     </div>
     <div class="card-action">
