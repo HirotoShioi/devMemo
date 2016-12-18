@@ -1,6 +1,6 @@
 i18n.map('en', {
 
-  home: {
+  landing: {
     gettingStarted: 'Getting Started',
     subtitle: 'Make your bookmarking fun',
     easyToUse: {
@@ -17,7 +17,7 @@ i18n.map('en', {
     }
   },
 
-  feature: {
+  home: {
     favorites: 'Favorites',
     recentlyViewed: 'Recently Viewed',
     forYou: 'For You',
@@ -28,7 +28,7 @@ i18n.map('en', {
     hide: 'hide',
   },
 
-  memos: {
+  gallery: {
     hideExpired: 'Hide old boookmark',
     noMemoFound: 'No bookmark found'
   },
@@ -99,7 +99,7 @@ i18n.map('en', {
 });
 
 i18n.map('ja', {
-  home: {
+  landing: {
     gettingStarted: 'DevMemoを始める',
     subtitle: 'ブックマークを楽しく',
     easyToUse: {
@@ -116,7 +116,7 @@ i18n.map('ja', {
     }
   },
 
-  feature: {
+  home: {
     favorites: 'お気に入り',
     recentlyViewed: '最近見た',
     forYou: 'あなたへのおすすめ',
@@ -127,7 +127,7 @@ i18n.map('ja', {
     hide: '隠す',
   },
 
-  memos: {
+  gallery: {
     hideExpired: '過去のブックマークを隠す',
     noMemoFound: 'メモは見つかりませんでした'
   },

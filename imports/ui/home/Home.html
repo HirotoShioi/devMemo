@@ -3,25 +3,25 @@
 		{{> PageTitle}}
 		<div class="main-content">
 		{{#if Template.subscriptionsReady}}
-		<div class="featured-collection">
+		<div class="home-collection">
 			<ul class="collection">
 				<li class="collection-item">
-					<span class="title">{{i18n 'feature.favorites'}}</span>
+					<span class="title">{{i18n 'home.favorites'}}</span>
 					<div class="row">
 						{{#each favoriteMemos}}
 							{{> Memo}}
 						{{else}}
-							<span class="grey-text">{{i18n 'feature.noFavorite'}}</span>
+							<span class="grey-text">{{i18n 'home.noFavorite'}}</span>
 						{{/each}}
 						{{#if $gt state.favoriteCount 8}}
 							<div class="col s12 center">
 								{{#if favoriteHasMoreContent}}
 									<button class="btn white black-text show-more-favorite">
-										{{i18n 'feature.more'}}
+										{{i18n 'home.more'}}
 									</button>
 								{{else}}
 									<button class="btn white black-text hide-favorite">
-										{{i18n 'feature.hide'}}
+										{{i18n 'home.hide'}}
 									</button>
 								{{/if}}
 							</div>
@@ -29,22 +29,22 @@
 					</div>
 				</li>
 				<li class="collection-item">
-					<span class="title">{{i18n 'feature.recentlyViewed'}}</span>
+					<span class="title">{{i18n 'home.recentlyViewed'}}</span>
 					<div class="row">
 						{{#each recentMemos}}
 							{{> Memo}}
 						{{else}}
-							<span class="grey-text">{{i18n 'feature.noRecent'}}</span>
+							<span class="grey-text">{{i18n 'home.noRecent'}}</span>
 						{{/each}}
 						{{#if $gt state.recentCount 8}}
 							<div class="col s12 center">
 								{{#if recentHasMoreContent}}
 									<button class="btn white black-text show-more-recent">
-										{{i18n 'feature.more'}}
+										{{i18n 'home.more'}}
 									</button>
 								{{else}}
 									<button class="btn white black-text hide-recent">
-										{{i18n 'feature.hide'}}
+										{{i18n 'home.hide'}}
 									</button>
 								{{/if}}
 							</div>
@@ -52,14 +52,14 @@
 					</div>
 				</li>
 				<li class="collection-item">
-					<span class="title">{{i18n 'feature.forYou'}}
+					<span class="title">{{i18n 'home.forYou'}}
 						<span class="chip" style="background-color:{{recommendLabel.color}};">{{recommendLabel.name}}</span>
 					</span>
 					<div class="row">
 						{{#each recommendMemos}}
 							{{> Memo}}
 						{{else}}
-							<span class="grey-text">{{i18n 'feature.noRecommend'}}</span>
+							<span class="grey-text">{{i18n 'home.noRecommend'}}</span>
 						{{/each}}
 					</div>
 				</li>
