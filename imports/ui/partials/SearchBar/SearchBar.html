@@ -2,7 +2,7 @@
 	<div id="search-bar" class="search-nav-bar {{#if shouldSearchBarShow}}search-bar-show {{else}}search-bar-hidden{{/if}}">
 		<div class="search-bar-header-wrapper">
 			<div class="search-input-title">{{i18n 'search.title'}}</div>
-			<input id="search" type="text" name="search" placeholder="Search...">
+			<input id="search" type="text" name="search" placeholder="{{i18n 'search.placeholder'}}..." autocomplete="off">
 		</div>
 		<div class="search-result">
 			<ul class="collection">

@@ -20,22 +20,27 @@ i18n.map('en', {
     favorites: 'Favorites',
     recentlyViewed: 'Recently Viewed',
     forYou: 'For You',
+    noFavorite: 'Add your favorites here',
+    noRecent: 'No recent bookmark',
+    noRecommend: 'No recommendation',
+    more: 'more',
+    hide: 'hide',
   },
 
   memos: {
-    hideExpired: 'Hide Expired',
-    noMemoFound: 'No memo found'
+    hideExpired: 'Hide old boookmark',
+    noMemoFound: 'No bookmark found'
   },
 
   pageTitle: {
-    featured: 'Featured',
-    memos: 'memo',
+    featured: 'Home',
+    memos: 'Bookmarks',
     memoDetail: 'details',
   },
 
   search: {
     title: 'Search',
-    searchInput: 'SearchInput',
+    placeholder: 'Search',
     frequentlyUsed: 'Frequently Used',
     searchResult: 'Search result',
     noResultsFound: 'No results found',
@@ -47,9 +52,9 @@ i18n.map('en', {
   },
 
   sideNav: {
-    addMemo: 'addMemo',
-    featured: 'Featured',
-    memos: 'Memos',
+    addMemo: 'Bookmark',
+    featured: 'Home',
+    memos: 'Gallery',
     search: 'Search',
     labels: 'Labels',
     about: 'About',
@@ -67,12 +72,12 @@ i18n.map('en', {
   forms: {
     addLabel: {
       title: 'Add Label',
-      submit: 'Add memo',
     },
 
     addMemo: {
-      title: 'Add memo',
-      submit: 'Add memo',
+      title: 'Add bookmark',
+      submit: 'Add',
+      success: 'Bookmark Added',
     },
 
     editLabel: {
@@ -93,5 +98,99 @@ i18n.map('en', {
 });
 
 i18n.map('ja', {
+  home: {
+    subtitle: 'ブックマークを楽しく',
+    easyToUse: {
+      title: '簡単な操作',
+      description: 'DevMemoはブラウザのブックマークのように簡単に操作できます',
+    },
+    wellDesigned: {
+      title: '洗練されたデザイン',
+      description: 'Materializeフレームワークを利用した洗練されたデザイン',
+    },
+    realTime: {
+      title: 'リアルタイム',
+      description: `Meteorのリアルタイム性を利用することにより、デスクトップアプリのような操作性を感じられます`,
+    }
+  },
 
+  feature: {
+    favorites: 'お気に入り',
+    recentlyViewed: '最近閲覧した',
+    forYou: 'あなたへのおすすめ',
+    noFavorite: 'お気に入りを追加しよう',
+    noRecent: '最近追加したものはありません',
+    noRecommend: 'オススメはまた今度',
+    more: 'もっと見る',
+    hide: '隠す',
+  },
+
+  memos: {
+    hideExpired: '過去のブックマークを隠す',
+    noMemoFound: 'メモは見つかりませんでした'
+  },
+
+  pageTitle: {
+    featured: 'ホーム',
+    memos: 'メモ',
+    memoDetail: 'メモ詳細',
+  },
+
+  search: {
+    title: '検索',
+    placeholder: '検索する',
+    frequentlyUsed: 'よく使う',
+    searchResult: '検索結果',
+    noResultsFound: '見つかりませんでした',
+    more: 'more',
+  },
+
+  label: {
+    title: 'ラベル',
+  },
+
+  sideNav: {
+    addMemo: 'ブックマーク',
+    featured: 'ホーム',
+    memos: 'ギャラリー',
+    search: '探す',
+    labels: 'ラベル',
+    about: '概要',
+  },
+
+  accounts: {
+    signIn: 'サインイン',
+    signOut: 'サインアウト',
+  },
+
+  footer: {
+    footerText: 'Made with Meteor'
+  },
+
+  forms: {
+    addLabel: {
+      title: 'ラベル追加',
+    },
+
+    addMemo: {
+      title: 'ブックマーク追加',
+      submit: '追加',
+      success: 'ブックマークは追加されました',
+    },
+
+    editLabel: {
+      title: 'ラベル名変更',
+    },
+
+    deleteLabel: {
+      title: 'ラベル削除',
+      messages: 'このラベルを削除してもいいですか',
+      submit: '削除',
+    },
+  },
+
+  memo: {
+    noTitle: 'タイトルなし',
+    more: 'more',
+  }
 });

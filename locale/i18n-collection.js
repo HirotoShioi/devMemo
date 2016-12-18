@@ -12,4 +12,14 @@ i18n.map('en', {
 });
 
 i18n.map('ja', {
+  collection: {
+    label: {
+      name: '名前',
+    },
+    memos: {
+      label: 'ラベル',
+      description: '詳細',
+      name: 'タイトル',
+    }
+  }
 });
