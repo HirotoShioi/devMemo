@@ -26,7 +26,7 @@ Router.configure({
 Router.onBeforeAction(function() {
 
   if (!Meteor.userId()) {
-    Router.go('landing');
+    Router.go('Landing');
   } else {
     this.next();
   }
@@ -38,7 +38,7 @@ Router.route('/landing', function() {
   this.layout('HomeLayout');
   this.render('Landing');
 }, {
-  name: 'landing',
+  name: 'Landing',
 });
 
 Router.route('/', function() {
@@ -79,7 +79,7 @@ Router.route('/gallery', function() {
 AccountsTemplates.configure({
   defaultLayout: 'HomeLayout',
   onLogoutHook: function() {
-    Router.go('home');
+    Router.go('Landing');
   },
 });
 
