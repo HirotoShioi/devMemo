@@ -1,6 +1,5 @@
 <template name="SingleList">
-    <li class=" {{#if shouldNotify}}should-notify{{/if}} collection-item list-item avatar">
-      <div class="{{#if shouldShowExpiration}}memo-expired{{/if}}">
+    <li class="collection-item list-item avatar">
         <div class="expire-progress {{#if shouldExpireProgressbarShow}}show{{else}}hide{{/if}}-progress-bar">
           <div class="progress-bar progress-{{progressBarColor}}" style="width:{{state.progressRate}}%"></div>
         </div>
@@ -20,6 +19,5 @@
              {{memo.label.name}}
           </a>
         </p>
-      </div>
    </li>
 </template>
