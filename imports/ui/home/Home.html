@@ -1,7 +1,7 @@
 <template name="Home">
 		<section class="landing-page-section center">
 			<h1 class="header">DevMemo</h1>
-			<h4 class="light">Manage your bookmarks smart</h4>
+			<h4 class="light">{{i18n 'home.subtitle'}}</h4>
 			<a href="{{pathFor route='about'}}" class="waves-effect btn btn-lg blue darken-3">Getting Started</a>
 		</section>
 		<section class="landing-page-section light-blue lighten-5">
@@ -12,8 +12,8 @@
 							<h2 class="center blue-text">
 								<i class="fa fa-user"></i>
 							</h2>
-							<h5 class="center">Easy to use</h5>
-							<p class="light">DevMemo is easy to use. It is as same as bookmarking in your browser.</p>
+							<h5 class="center">{{i18n 'home.easyToUse.title'}}</h5>
+							<p class="light">{{i18n 'home.easyToUse.description'}}</p>
 						</div>
 					</div>
 					<div class="col m4">
@@ -21,8 +21,8 @@
 							<h2 class="center blue-text">
 								<i class="fa fa-picture-o"></i>
 							</h2>
-							<h5 class="center">Well Designed</h5>
-							<p class="light">Using the Materialize css framework, DevMemo is well-designed</p>
+							<h5 class="center">{{i18n 'home.wellDesigned.title'}}</h5>
+							<p class="light">{{i18n 'home.wellDesigned.description'}}</p>
 						</div>
 					</div>
 					<div class="col m4">
@@ -30,8 +30,8 @@
 							<h2 class="center blue-text">
 								<i class="fa fa-refresh"></i>
 							</h2>
-							<h5 class="center">Realtime</h5>
-							<p class="light">Using Meteor's realtime data transaction, you'll feel as though you're using desktop app.</p>
+							<h5 class="center">{{i18n 'home.realTime.title'}}</h5>
+							<p class="light">{{i18n 'home.realTime.description'}}</p>
 						</div>
 					</div>
 				</div>

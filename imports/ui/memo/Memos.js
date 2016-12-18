@@ -2,6 +2,7 @@ import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../api/memos.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Session } from 'meteor/session';
+import { i18n } from 'meteor/anti:i18n';
 import './Memos.html';
 
 // partials
@@ -33,7 +34,7 @@ TemplateController('Memos', {
       let counts  =  Memos.find(query).count();
       this.session.set('resultsCount', counts);
     });
-    Session.set("Title", {name: "Home"});
+    Session.set("Title", {name: i18n('pageTitle.memos')});
   },
 
   onRendered() {

@@ -1,4 +1,5 @@
 import { TemplateController } from 'meteor/space:template-controller';
+import { i18n } from 'meteor/anti:i18n';
 import { Memos } from '../../../api/memos.js';
 
 import './SearchBar.html';
@@ -9,7 +10,7 @@ TemplateController('SearchBar', {
     memoResultCount: 0,
     isSearching: false,
     memoSearchLimit: 7,
-    labelTitle: "Recently Used",
+    labelTitle: i18n('search.frequentlyUsed'),
   },
 
   onCreated() {
@@ -25,11 +26,11 @@ TemplateController('SearchBar', {
       // need research on description ( full text search)
       if (search) {
         this.state.isSearching = true;
-        this.state.labelTitle = "Search result";
+        this.state.labelTitle = i18n('search.searchResult');
         this.state.memoResultCount = Memos.find({$or: [{name: regex}, {provider_url: regex}]}, {limit: this.state.memoSearchLimit, sort: {clicked: 1}}).count();
         return Memos.find({$or: [{name: regex}, {provider_url: regex}]}, {limit: this.state.memoSearchLimit, sort: {clicked: 1}}).fetch();
       } else {
-        this.state.labelTitle = "Frequently used";
+        this.state.labelTitle = i18n('search.frequentlyUsed');
         let projection = {limit: this.state.memoSearchLimit, sort: {clicked: 1}};
         return Memos.find({}, projection);
       }

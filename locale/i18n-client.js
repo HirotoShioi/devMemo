@@ -1,16 +1,40 @@
 i18n.map('en', {
+
+  home: {
+    subtitle: 'Make your bookmarking fun',
+    easyToUse: {
+      title: 'Easy to use',
+      description: 'DevMemo is easy to use. It is as same as bookmarking in you browser.',
+    },
+    wellDesigned: {
+      title: 'Well Designed',
+      description: 'Using the Materialize css framework, DevMemo is well-designed',
+    },
+    realTime: {
+      title: 'Reactive',
+      description: `Using Meteor reactivity, you'll feel as though you're using desktop app.`,
+    }
+  },
+
   feature: {
     favorites: 'Favorites',
     recentlyViewed: 'Recently Viewed',
     forYou: 'For You',
   },
 
-  memo: {
+  memos: {
     hideExpired: 'Hide Expired',
+    noMemoFound: 'No memo found'
+  },
+
+  pageTitle: {
+    featured: 'Featured',
+    memos: 'memo',
+    memoDetail: 'details',
   },
 
   search: {
-    search: 'Search',
+    title: 'Search',
     searchInput: 'SearchInput',
     frequentlyUsed: 'Frequently Used',
     searchResult: 'Search result',
@@ -19,7 +43,7 @@ i18n.map('en', {
   },
 
   label: {
-    label: 'Label',
+    title: 'Label',
   },
 
   sideNav: {
@@ -34,6 +58,27 @@ i18n.map('en', {
   accounts: {
     signIn: 'Sign in',
     signOut: 'Sign out',
+  },
+
+  footer: {
+    footerText: 'Made with Meteor'
+  },
+
+  forms: {
+    title: {
+      addLabel: 'Add Label',
+      addMemo: 'Add Memo',
+      deleteLabel: 'Delete Label',
+      editLabel: 'Edit Label',
+    },
+    submit: {
+      addMemo: 'Add memo',
+    }
+  },
+
+  memo: {
+    noTitle: 'No title',
+    more: 'more',
   }
 });
 
