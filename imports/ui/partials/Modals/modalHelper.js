@@ -6,6 +6,7 @@ export const resetModalForm = function() {
   }
   Session.set('showModal', false);
   Session.set('formType', null);
+  Session.set('showMemoDetail', false);
   // ids
   setTimeout(()=>{
     Session.set('addLabelSelectedColor', "#40c4ff");
@@ -14,5 +15,6 @@ export const resetModalForm = function() {
     Session.set('editLabelId', null);
     Session.set('editMemoLabelId', null);
     Session.set('modalOverlayShow', false);
+    Session.set('MemoDetailId', false);
   }, 300);
 };

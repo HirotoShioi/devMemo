@@ -54,8 +54,6 @@
 .modal-card .fa-close{
         font-size: 1.4em;
 }
-.hide-modal-form{
-}
 .modal-form-wrapper{
   z-index: 1500;
   position: fixed;
@@ -86,7 +84,7 @@
   width: 330px;
 }
 .add-memo{
-  width: 520px;
+  width: 500px;
 }
 .delete-label{
   width: 370px;
@@ -100,6 +98,9 @@
 }
 .edit-memo-label{
   width: 370px;
+}
+.memo-detail-modal{
+  width: 420px;
 }
 .form-title{
     font-size: 25px;
@@ -117,4 +118,27 @@
 }
 .modal-edit-wrapper form{
   margin-top: 15px;
+}
+
+.memo-detail-modal{
+    .card-image{
+        max-height:300px;
+        overflow:hidden;
+    }
+    .card-content{
+        padding:15px 20px;
+    }
+    .card-action{
+        padding:15px 20px;
+        .fa{
+            font-size:1.5em;
+            color:#777;
+        }
+    }
+    .card-title{
+        width: 100%;
+        background: rgba(0,0,0,0.5);
+        font-size:16px;
+        padding:10px !important;
+    }
 }

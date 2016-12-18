@@ -105,9 +105,9 @@ TemplateController('Memo', {
       Meteor.call('updateFavorite', this.data);
     },
     'click .card-image-url'() {
-      Meteor.call('memoUrlClicked', this.data);
-      this.state.isMemoExpired = false;
-      window.open(this.data.url);
+      Session.set('showModal', true);
+      Session.set('MemoDetailId', this.data._id);
+      Session.set('showMemoDetail', true);
       return false;
     },
     'click .archive-memo'() {
