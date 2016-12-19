@@ -93,7 +93,6 @@ i18n.map('en', {
   },
 
   memo: {
-    noTitle: 'No title',
     more: 'more',
   }
 });
@@ -192,7 +191,6 @@ i18n.map('ja', {
   },
 
   memo: {
-    noTitle: 'タイトルなし',
     more: 'more',
   }
 });

@@ -120,8 +120,8 @@ TemplateController('Memo', {
       }
     },
     'click .card-link'() {
-      Meteor.call('memoUrlClicked', this.state.memo);
-      window.open(this.state.memo.url, '_blank');
+      Meteor.call('memoUrlClicked', this.data);
+      window.open(this.data.url, '_blank');
       return false;
     },
   },

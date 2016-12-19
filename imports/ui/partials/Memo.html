@@ -1,7 +1,7 @@
 <Template name="Memo">
-	<div class="col l3 m6 s12 memo-card-wrapper">
-		<div class="card hoverable">
-        	  <div class="card-image center">
+  <div class="col l3 m6 s12 memo-card-wrapper">
+    <div class="card hoverable">
+            <div class="card-image center">
             <div class="expire-progress {{#if shouldExpireProgressbarShow}}show{{else}}hide{{/if}}-progress-bar">
               <div class="progress-bar progress-{{state.progressBarColor}}" style="width:{{expireStatus}}%"></div>
             </div>
@@ -19,30 +19,32 @@
                   <i class="fa fa-archive archive-memo card-option"></i>
                 {{/if}}
               </div>
-    		　 </div>
-    		  <div class="card-content">
+        　 </div>
+          <div class="card-content">
               {{#if isOwner}}
-              	<i class="fa fa-close"></i>
+                <i class="fa fa-close"></i>
               {{/if}}
-      		  <div class="card-body">
-  	            {{#if name}}             
-                	  <a href="{{url}}" class="truncate card-link">
-      				    	{{#if faviconUrl}}
-      				    		<img class="favicon" src="{{faviconUrl}}" alt="">
-      				    	{{/if}}			 
-                	  {{name}}
-                	  	</a>
+            <div class="card-body">
+                <a href="{{url}}" class="card-link">
+                {{#if name}}
+                  <span class="truncate">
+                    {{#if faviconUrl}}
+                      <img class="favicon" src="{{faviconUrl}}" alt="">
+                    {{/if}}
+                    {{name}}
+                  </span>
                 {{else}}
-                	  	<p class="grey-text">{{i18n 'memo.noTitle'}}</p>
+                  <p class="">{{url}}</p>
                 {{/if}}
-                	  <a href="{{pathFor route='memo.detail'}}">{{i18n 'memo.more'}}</a>
+                </a>
+                    <a href="{{pathFor route='memo.detail'}}">{{i18n 'memo.more'}}</a>
                 {{#if hasLabel}}
-                	  <a href="{{pathFor route='label.detail'}}" class="chip edit-btn" style="background-color:{{label.color}}">
-  							       {{label.name}}
-                	  </a>
+                    <a href="{{pathFor route='label.detail'}}" class="chip edit-btn" style="background-color:{{label.color}}">
+                       {{label.name}}
+                    </a>
                 {{/if}}
-      		  </div>
+            </div>
           </div>
         </div>
-	</div>
+  </div>
 </Template>
