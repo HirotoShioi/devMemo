@@ -1,12 +1,18 @@
 <template name="MemoDetailModal">
   <div class="card-image">
-    <img src="{{memo.thumbnailUrl}}">
+      {{#if memo.thumbnailUrl}}
+        <img src="{{memo.thumbnailUrl}}">
+      {{else}}
+      <div class="alt-image-wrapper valign-wrapper">
+          <i class="fa fa-file-text-o valign" style="color:{{state.label.color}}"></i>
+      </div>
+      {{/if}}
       <span class="card-title">{{memo.name}}</span>
     </div>
     <div class="card-content">
       <p>
         {{truncate}}
-        <span class="chip right" style="background-color:{{state.label.color}}">
+        <span class="chip right" style="background:{{state.label.color}}">
             {{state.label.name}}
         </span>
       </p>
