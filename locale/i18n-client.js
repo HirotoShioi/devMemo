@@ -134,7 +134,7 @@ i18n.map('ja', {
   pageTitle: {
     featured: 'ホーム',
     memos: 'ギャラリー',
-    memoDetail: 'メモ詳細',
+    memoDetail: '詳細',
   },
 
   search: {
