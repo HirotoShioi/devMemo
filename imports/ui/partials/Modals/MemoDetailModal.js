@@ -53,10 +53,21 @@ TemplateController('MemoDetailModal', {
         return false;
       }
     },
+    labelId() {
+      if (this.state.label) {
+        const labelObj = {labelId: this.state.label._id};
+        return labelObj;
+      } else {
+        return false;
+      }
+    }
   },
 
   events: {
     'click .more-detail'() {
+      resetModalForm();
+    },
+    'click .detail-chip'() {
       resetModalForm();
     },
     'click .fa-cog'() {
