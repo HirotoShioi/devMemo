@@ -45,7 +45,7 @@ TemplateController('Gallery', {
     memos() {
       let query = {};
       if (Session.get('hideExpired')) { query.status = "active"; }
-      return Memos.find(query, {limit: this.session.get('resultsLimit'), sort: {status: 1, createdAt: -1}});
+      return Memos.find(query, {limit: this.session.get('resultsLimit'), sort: {createdAt: -1}});
     },
     hasMoreContent() {
       return this.session.get('resultsLimit') < this.session.get('resultsCount');
