@@ -24,7 +24,7 @@ Schemas.label = new SimpleSchema({
   name: {
     type: String,
     label: function() {return i18n('collection.label.name');},
-    max: 10,
+    max: 15,
   },
   name_sort: {
     type: String,

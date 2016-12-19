@@ -36,7 +36,7 @@ TemplateController('Home', {
       if (err) {
         return;
       }
-      if (!err) {
+      if (result) {
         self.state.recommendLabels = result;
         self.state.recommendCount = Memos.find({labelId: result._id}).count();
       }
@@ -60,7 +60,7 @@ TemplateController('Home', {
       return Memos.find(query, {limit: this.session.get('recentResultsLimit'), sort: {clickedAt: -1}});
     },
     recommendLabel() {
-      if (this.state.recommendCount <= 0) {
+      if (!this.state.recommendLabels) {
         return false;
       }
       let label = Label.findOne({_id: this.state.recommendLabels._id});
@@ -73,8 +73,10 @@ TemplateController('Home', {
       let query = {
         status: "expired",
         isFavorited: false,
-        labelId: this.state.recommendLabels._id
       };
+      if (this.state.recommendLabels) {
+        query.labelId = this.state.recommendLabels._id;
+      }
       return Memos.find(query, {limit: 4, sort: {clicked: -1}});
     },
     recentHasMoreContent() {

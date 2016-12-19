@@ -35,4 +35,10 @@
 				{{> EditMemoLabel}}
 			</div>
 		</div>
+
+		<div class="{{#if $.Session.get 'showMemoDetail'}}show-modal{{/if}} modal-form-wrapper memo-detail-modal">
+			<div class="card">
+				{{> MemoDetailModal}}
+			</div>
+		</div>
 </template>

@@ -1,0 +1,32 @@
+<template name="MemoDetailModal">
+  <div class="card-image">
+    <a href="{{memo.url}}" class="card-image-url">
+      {{#if memo.thumbnailUrl}}
+        <img src="{{memo.thumbnailUrl}}">
+      {{else}}
+      <div class="alt-image-wrapper valign-wrapper">
+          <i class="fa fa-file-text-o valign" style="color:{{state.label.color}}"></i>
+      </div>
+      {{/if}}
+      <span class="card-title">{{memo.name}}</span>
+    </a>
+  </div>
+  <div class="card-content">
+    <p>
+      {{truncate}}
+      {{#if state.label}}
+      <a href="{{pathFor route='label.detail' data=labelId}}" class="chip right detail-chip" style="background:{{state.label.color}}">
+          {{state.label.name}}
+      </a>
+      {{/if}}
+    </p>
+      <a href="{{pathFor route='memo.detail' data=state.memo}}" class="more-detail">{{i18n 'memo.more'}}</a>
+  </div>
+  <div class="card-action">
+    <i class="fa fa-cog card-option"></i>
+    <i class="fa heart {{#if shouldFavoriteHightlight}}fa-heart{{ else }}fa-heart-o{{/if}}  card-option"></i>
+    {{#if shouldArchiveShow}}
+      <i class="fa fa-archive archive-memo card-option"></i>
+    {{/if}}
+  </div>
+</template>

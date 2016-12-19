@@ -6,8 +6,9 @@ import './SearchBarItem.html';
 TemplateController('SearchBarItem', {
   events: {
     'click .search-item'() {
-      Meteor.call('memoUrlClicked', this.data);
-      window.open(this.data.url);
+      Session.set('showModal', true);
+      Session.set('MemoDetailId', this.data._id);
+      Session.set('showMemoDetail', true);
       return false;
     }
   },

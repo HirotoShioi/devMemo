@@ -7,6 +7,7 @@ import './AddMemoForm.js';
 import './DeleteLabel.js';
 import './EditLabel.js';
 import './EditMemoLabel.js';
+import './MemoDetailModal.js';
 
 import './Modals.html';
 
