@@ -12,9 +12,6 @@ TemplateController('EditMemoLabel', {
   },
   onCreated() {
     const self = this;
-    self.autorun(()=>{
-      self.subscribe('memos');
-    });
   },
   helpers: {
     memo() {

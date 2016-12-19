@@ -12,9 +12,6 @@ TemplateController('EditLabel', {
   },
   onCreated() {
     const self = this;
-    self.autorun(()=>{
-      self.subscribe('label');
-    });
   },
   helpers: {
     label() {
