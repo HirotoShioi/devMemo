@@ -118,6 +118,11 @@ TemplateController('Memo', {
         this.state.isMemoExpired = false;
         Meteor.call('memoUrlClicked', this.data);
       }
-    }
+    },
+    'click .card-link'() {
+      Meteor.call('memoUrlClicked', this.state.memo);
+      window.open(this.state.memo.url, '_blank');
+      return false;
+    },
   },
 });

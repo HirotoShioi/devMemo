@@ -26,12 +26,12 @@
               {{/if}}
       		  <div class="card-body">
   	            {{#if name}}             
-                	  <p class="truncate">
+                	  <a href="{{url}}" class="truncate card-link">
       				    	{{#if faviconUrl}}
       				    		<img class="favicon" src="{{faviconUrl}}" alt="">
       				    	{{/if}}			 
                 	  {{name}}
-                	  	</p>
+                	  	</a>
                 {{else}}
                 	  	<p class="grey-text">{{i18n 'memo.noTitle'}}</p>
                 {{/if}}
