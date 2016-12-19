@@ -56,6 +56,9 @@ TemplateController('MemoDetailModal', {
   },
 
   events: {
+    'click .more-detail'() {
+      resetModalForm();
+    },
     'click .fa-cog'() {
       Session.set('showMemoDetail', false);
       Session.set('showModal', true);
@@ -77,6 +80,11 @@ TemplateController('MemoDetailModal', {
       } else {
         Meteor.call('memoUrlClicked', this.state.memo);
       }
+    },
+    'click .card-image-url'() {
+      Meteor.call('memoUrlClicked', this.state.memo);
+      window.open(this.state.memo.url, '_blank');
+      return false;
     },
   },
 });
