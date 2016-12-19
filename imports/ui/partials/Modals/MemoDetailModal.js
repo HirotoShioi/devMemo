@@ -1,7 +1,7 @@
 import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../../api/memos.js';
 import { Session } from 'meteor/session';
-
+import { resetModalForm } from './modalHelper.js';
 import './MemoDetailModal.html';
 
 TemplateController('MemoDetailModal', {
@@ -36,18 +36,32 @@ TemplateController('MemoDetailModal', {
       }
     },
     shouldArchiveShow() {
-      if (this.state.memo.status === "active" && this.state.memo.isFavorited === false) {
-        return true;
+      if (this.state.memo) {
+        if (this.state.memo.status === "active" && this.state.memo.isFavorited === false) {
+          return true;
+        } else {
+          return false;
+        }
       } else {
         return false;
       }
     },
     shouldFavoriteHightlight() {
-      return ( this.state.shouldHeartHightlight || this.state.memo.isFavorited );
+      if (this.state.memo) {
+        return ( this.state.shouldHeartHightlight || this.state.memo.isFavorited );
+      } else {
+        return false;
+      }
     },
   },
 
   events: {
+    'click .fa-cog'() {
+      Session.set('showMemoDetail', false);
+      Session.set('showModal', true);
+      Session.set('editMemoLabelId', this.state.memo._id);
+      Session.set('formType', 'EditMemoLabel');
+    },
     'mouseover .heart'() {
       this.state.shouldHeartHightlight = true;
     },
@@ -56,6 +70,13 @@ TemplateController('MemoDetailModal', {
     },
     'click .heart'() {
       Meteor.call('updateFavorite', this.state.memo);
+    },
+    'click .archive-memo'() {
+      if (this.state.memo.status === "active") {
+        Meteor.call('archiveMemo', this.state.memo);
+      } else {
+        Meteor.call('memoUrlClicked', this.state.memo);
+      }
     },
   },
 });
