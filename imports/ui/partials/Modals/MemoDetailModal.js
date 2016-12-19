@@ -65,9 +65,11 @@ TemplateController('MemoDetailModal', {
 
   events: {
     'click .more-detail'() {
+      Session.set('isSearching', false);
       resetModalForm();
     },
     'click .detail-chip'() {
+      Session.set('isSearching', false);
       resetModalForm();
     },
     'click .fa-cog'() {
