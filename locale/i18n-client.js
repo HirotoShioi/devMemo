@@ -52,6 +52,14 @@ i18n.map('en', {
     title: 'Label',
   },
 
+  settings: {
+    title: "Settings",
+    language: {
+      label: "Language Settings",
+    },
+    save: "Save settings",
+  },
+
   sideNav: {
     addMemo: 'Bookmark',
     featured: 'Home',
@@ -59,6 +67,7 @@ i18n.map('en', {
     search: 'Search',
     labels: 'Labels',
     about: 'About',
+    settings: 'Settings',
   },
 
   accounts: {
@@ -150,6 +159,14 @@ i18n.map('ja', {
     title: 'ラベル',
   },
 
+  settings: {
+    title: "設定",
+    language: {
+      label: "言語設定",
+    },
+    save: "設定を保存する",
+  },
+
   sideNav: {
     addMemo: 'ブックマーク',
     featured: 'ホーム',
@@ -157,6 +174,7 @@ i18n.map('ja', {
     search: '探す',
     labels: 'ラベル',
     about: '概要',
+    settings: '設定',
   },
 
   accounts: {

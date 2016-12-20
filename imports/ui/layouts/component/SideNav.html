@@ -30,9 +30,19 @@
 							{{i18n 'sideNav.labels'}}
 						</a>
 					</li>
-					<li class="link">
-								<a class="waves-effect red-text logout auth-link">{{i18n 'accounts.signOut'}}<i class="fa fa-sign-out" aria-hidden="true"></i></a>
-			      	</li>
+					<div class="auth-link">
+						{{#if state.showBottomNav}}
+							<li class="bottom-nav link">
+								<a href="{{pathFor route='settings'}}" class="waves-effect"><i class="fa fa-cogs" aria-hidden="true"></i>{{i18n 'sideNav.settings'}}</a>
+							</li>
+							<li class="bottom-nav">
+								<a class="waves-effect logout"><i class="fa fa-sign-out" aria-hidden="true"></i>{{i18n 'accounts.signOut'}}</a>
+							</li>
+						{{/if}}
+						<li class="bottom-nav">
+							<a class="waves-effect z-depth-1 user"><i class="fa fa-user" aria-hidden="true"></i>{{username}}</a>
+						</li>
+					</div>
 		      	{{else}}
 		      		<li>
 		      			<a href="{{pathFor route='atSignIn'}}" class="waves-effect auth-link">{{i18n 'accounts.signIn'}}<i class="fa fa-sign-in"></i></a>
