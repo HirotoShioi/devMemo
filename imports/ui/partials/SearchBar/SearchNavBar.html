@@ -3,7 +3,7 @@
 		<i class="nav-icon fa fa-arrow-left left"></i>
 		<input type="text" name="search"
 		 id="nav-search" class="nav-search"
-		  placeholder="Search..." value="{{$.Session.get 'searchQuery'}}">
+		  placeholder="Search..." value="{{$.Session.get 'searchQuery'}}" autocomplete="off">
 		  <ul class="collection">
 		  {{#each searchedMemos}}
 		  	{{> SearchBarItem}}

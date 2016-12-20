@@ -10,7 +10,6 @@
                 font-size: 8em;
                 margin-top: 15px;
                 color: #999;
-                opacity: 0.8;
             }
         }
         .card-action a:not(.btn):not(.btn-large):not(.btn-floating)
@@ -94,11 +93,29 @@
 .memo-card-wrapper{
     .card {
             .card-image{
-                height: 170px;
+                height: 200px;
                 img{
-                    min-height: 170px;
+                    min-height: 200px;
+                }
+                .card-image-alt-icon{
+                    font-size: 10em;
                 }
             }
     }
 }
+}
+@media (min-width:1380px){
+    .memo-card-wrapper{
+        .card {
+            .card-image{
+                height: 200px;
+                img{
+                    min-height: 200px;
+                }
+                .card-image-alt-icon{
+                    font-size: 10em;
+                }
+            }
+        }
+    }
 }

@@ -12,9 +12,6 @@ TemplateController('DeleteLabel', {
   },
   onCreated() {
     const self = this;
-    self.autorun(()=>{
-      self.subscribe('label');
-    });
   },
   helpers: {
     label() {

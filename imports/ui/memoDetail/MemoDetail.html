@@ -1,5 +1,7 @@
 <template name="MemoDetail">
-	<div class="container about-content">
+	<div class="main-container">
+		{{> PageTitle}}
+		<div class="main-content about-content">
 		{{#if Template.subscriptionsReady}}
 			<div class="row">
 				<div class="center">
@@ -26,5 +28,6 @@
 				</div>
 			</div>
 		{{/if}}
+		</div>
 	</div>
 </template>

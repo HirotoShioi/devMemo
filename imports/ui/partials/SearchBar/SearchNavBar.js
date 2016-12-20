@@ -16,7 +16,7 @@ TemplateController('SearchNavBar', {
       let regex = new RegExp(search, 'i');
       // need research on description ( full text search)
       if (search) {
-        return Memos.find({$or: [{name: regex}, {provider_url: regex}]}).fetch();
+        return Memos.find({$or: [{name: regex}, {provider_url: regex}]}, {limit: 4}).fetch();
       } else {
         return false;
       }

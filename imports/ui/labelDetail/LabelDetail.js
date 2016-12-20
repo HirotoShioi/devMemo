@@ -19,7 +19,7 @@ TemplateController('LabelDetail', {
   },
 
   private: {
-    INITIAL_RESULTS_LIMIT: 20,
+    INITIAL_RESULTS_LIMIT: 40,
   },
 
   onCreated() {
@@ -63,7 +63,7 @@ TemplateController('LabelDetail', {
     'loadingIndicatorBecameVisible'() {
       const self = this;
       setTimeout(()=> {
-        self.session.set('resultsLimit', session.get('resultsLimit') + 20);
+        self.session.set('resultsLimit', session.get('resultsLimit') + 40);
       }, 500);
     },
   }

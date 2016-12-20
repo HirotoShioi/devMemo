@@ -14,9 +14,6 @@ import './AddMemoForm.html';
 TemplateController('AddMemoForm', {
   onCreated() {
     const self = this;
-    self.autorun(()=>{
-      self.subscribe('label');
-    });
   },
 
   helpers: {

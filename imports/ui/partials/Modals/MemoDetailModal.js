@@ -12,9 +12,6 @@ TemplateController('MemoDetailModal', {
   },
   onCreated() {
     const self = this;
-    self.autorun(()=>{
-      self.subscribe('memos');
-    });
   },
   helpers: {
     memo() {

@@ -20,7 +20,7 @@ TemplateController('Gallery', {
     memoCount: 0,
   },
   private: {
-    INITIAL_RESULTS_LIMIT: 20,
+    INITIAL_RESULTS_LIMIT: 40,
   },
   onCreated() {
     this.session = session;
@@ -45,7 +45,7 @@ TemplateController('Gallery', {
     memos() {
       let query = {};
       if (Session.get('hideExpired')) { query.status = "active"; }
-      return Memos.find(query, {limit: this.session.get('resultsLimit'), sort: {status: 1, createdAt: -1}});
+      return Memos.find(query, {limit: this.session.get('resultsLimit'), sort: {createdAt: -1}});
     },
     hasMoreContent() {
       return this.session.get('resultsLimit') < this.session.get('resultsCount');
@@ -56,7 +56,7 @@ TemplateController('Gallery', {
     'loadingIndicatorBecameVisible'() {
       const self = this;
       setTimeout(()=>{
-        self.session.set('resultsLimit', session.get('resultsLimit') + 20);
+        self.session.set('resultsLimit', session.get('resultsLimit') + 40);
       }, 500);
     },
   }
