@@ -34,12 +34,15 @@ if (Meteor.isClient) {
   syncI18nAndTAPi18nT9n();
   i18n.setLanguage(userLang);
 
-  // code to run on server at startup
-  Deps.autorun(function() {
-    if (this.userId) {
+  Meteor.startup(function() {
+    Deps.autorun(function() {
       let lang = "ja";
+      if (Meteor.user()) {
+        lang = Meteor.user().lang();
+        console.log("We got a user, so set his saved language", Meteor.userId(), lang);
+      }
       i18n.setLanguage(lang);
       moment.locale(lang);
-    }
+    });
   });
 }
