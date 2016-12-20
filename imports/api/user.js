@@ -14,6 +14,12 @@ Schema.userSettings = new SimpleSchema({
     type: String,
     optional: true,
   },
+  language: {
+    type: String,
+    optional: true,
+    defaultValue: "ja",
+    allowedValues: ["ja", "en"],
+  }
 });
 
 Schema.User = new SimpleSchema({
