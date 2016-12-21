@@ -179,7 +179,6 @@ Meteor.methods({
     if (!this.userId) {
       throw new Meteor.Error('not authorized');
     }
-
     if (Meteor.isServer) {
       const expireIn = Meteor.user().profile.memoExpireIn;
       const result = HTTP.call('GET', "https://api.embedly.com/1/oembed", {
@@ -188,7 +187,6 @@ Meteor.methods({
           url: doc.url
         }
       });
-      console.log(result);
       const data = result.data;
       Memos.insert({
         name: data.title,
@@ -207,6 +205,9 @@ Meteor.methods({
       }, (err, memoId)=>{
         logMemoClicked(this.userId, memoId, doc.labelId);
       });
+
+      return result;
+
     }
 
     // update user's recently used label
