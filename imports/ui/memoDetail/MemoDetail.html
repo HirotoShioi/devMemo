@@ -1,6 +1,10 @@
 <template name="MemoDetail">
 	<div class="main-container">
-		{{> PageTitle}}
+        <div class="page-title hide-on-med-and-down z-depth-1">
+            <div class="container">
+                <h4 style="">{{i18n 'pageTitle.memoDetail'}}</h4>
+            </div>
+        </div>
 		<div class="main-content about-content">
 		{{#if Template.subscriptionsReady}}
 			<div class="row">

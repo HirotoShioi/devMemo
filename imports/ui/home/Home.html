@@ -1,6 +1,10 @@
 <template name="Home">
 	<div class="main-container">
-		{{> PageTitle}}
+    <div class="page-title hide-on-med-and-down z-depth-1">
+      <div class="container">
+        <h4 style="">{{i18n 'pageTitle.home'}}</h4>
+      </div>
+    </div>
 		<div class="main-content">
 		{{#if Template.subscriptionsReady}}
 		<div class="home-collection">

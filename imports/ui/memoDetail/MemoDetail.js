@@ -3,7 +3,6 @@ import { TemplateController } from 'meteor/space:template-controller';
 import { i18n } from 'meteor/anti:i18n';
 import { Session } from 'meteor/session';
 import { Memos } from '../../api/memos.js';
-import '../layouts/component/PageTitle';
 import '../partials/Loading.js';
 
 TemplateController('MemoDetail', {

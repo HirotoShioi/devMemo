@@ -6,7 +6,6 @@ import { Session } from 'meteor/session';
 import { i18n } from 'meteor/anti:i18n';
 import { Label } from '../../api/label.js';
 import '../partials/Loading.js';
-import '../layouts/component/PageTitle.js';
 import '../partials/Memo.js';
 
 import './Home.html';

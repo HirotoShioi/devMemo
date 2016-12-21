@@ -34,8 +34,8 @@ i18n.map('en', {
   },
 
   pageTitle: {
-    featured: 'Home',
-    memos: 'Bookmarks',
+    home: 'Home',
+    gallery: 'Gallery',
     memoDetail: 'details',
   },
 
@@ -141,8 +141,8 @@ i18n.map('ja', {
   },
 
   pageTitle: {
-    featured: 'ホーム',
-    memos: 'ギャラリー',
+    home: 'ホーム',
+    gallery: 'ギャラリー',
     memoDetail: '詳細',
   },
 
