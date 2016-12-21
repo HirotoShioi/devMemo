@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { check } from 'meteor/check';
 let Schema = {};
 
 Schema.userSettings = new SimpleSchema({
@@ -14,6 +15,12 @@ Schema.userSettings = new SimpleSchema({
     type: String,
     optional: true,
   },
+  language: {
+    type: String,
+    optional: true,
+    defaultValue: "ja",
+    allowedValues: ["ja", "en"],
+  }
 });
 
 Schema.User = new SimpleSchema({
@@ -58,5 +65,18 @@ Meteor.users.attachSchema(Schema.User);
 Meteor.users.helpers({
   profile() {
     return this.profile;
+  },
+  lang() {
+    return this.profile.language || 'ja';
+  },
+});
+
+Meteor.methods({
+  changeLanguage(doc) {
+    check(doc, Object);
+    if (!this.userId) {
+      throw new Meteor.Error('not authorized');
+    }
+    Meteor.users.update({_id: this.userId}, {$set: {'profile.language': doc.language}});
   }
 });

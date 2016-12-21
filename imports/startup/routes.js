@@ -1,6 +1,7 @@
 // layout
 import '../ui/layouts/MainLayout.js';
 import '../ui/layouts/HomeLayout.js';
+import '../ui/layouts/LoginLayout.js';
 
 // loading
 import '../ui/partials/Loading.html';
@@ -11,6 +12,7 @@ import '../ui/about/About.js';
 import '../ui/landing/Landing.js';
 import '../ui/labelDetail/LabelDetail.js';
 import '../ui/home/Home.js';
+import '../ui/settings/Settings.js';
 
 import { Memos } from '../api/memos.js';
 import { Label } from '../api/memos.js';
@@ -31,7 +33,7 @@ Router.onBeforeAction(function() {
     this.next();
   }
 }, {
-  only: ['memo.home', 'memo.detail', 'labeldetail', 'memo.gallery']
+  only: ['memo.home', 'memo.detail', 'labeldetail', 'memo.gallery', 'settings']
 });
 
 Router.route('/landing', function() {
@@ -74,10 +76,16 @@ Router.route('/gallery', function() {
 }, {
   name: "memo.gallery",
 });
+
+Router.route('/settings', function() {
+  this.render('Settings');
+}, {
+  name: "settings",
+});
 // account routing
 // Routes
 AccountsTemplates.configure({
-  defaultLayout: 'HomeLayout',
+  defaultLayout: 'LoginLayout',
   onLogoutHook: function() {
     Router.go('Landing');
   },
