@@ -18,5 +18,20 @@ AccountsTemplates.addFields([
     re: /.+@(.+){2,}\.(.+){2,}/,
     errStr: 'Invalid email',
   },
-  pwd
+  pwd,
 ]);
+AccountsTemplates.addField({
+  _id: "language",
+  type: "select",
+  displayName: "Language",
+  select: [
+    {
+      text: "日本語",
+      value: "ja",
+    },
+    {
+      text: "English",
+      value: "en",
+    },
+  ],
+});
