@@ -1,4 +1,5 @@
 import { AccountsTemplates } from 'meteor/useraccounts:core';
+import { i18n } from 'meteor/anti:i18n';
 
 let pwd = AccountsTemplates.removeField('password');
 AccountsTemplates.removeField('email');
@@ -23,7 +24,7 @@ AccountsTemplates.addFields([
 AccountsTemplates.addField({
   _id: "language",
   type: "select",
-  displayName: "Language",
+  displayName: function() {return i18n("settings.language.label");},
   select: [
     {
       text: "日本語",
