@@ -1,6 +1,7 @@
 // layout
 import '../ui/layouts/MainLayout.js';
 import '../ui/layouts/HomeLayout.js';
+import '../ui/layouts/LoginLayout.js';
 
 // loading
 import '../ui/partials/Loading.html';
@@ -84,7 +85,7 @@ Router.route('/settings', function() {
 // account routing
 // Routes
 AccountsTemplates.configure({
-  defaultLayout: 'HomeLayout',
+  defaultLayout: 'LoginLayout',
   onLogoutHook: function() {
     Router.go('Landing');
   },
