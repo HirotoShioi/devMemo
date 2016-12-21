@@ -14,6 +14,9 @@ let Schemas = {};
 Memos.allow({
   update: function(userId) {
     return !!userId;
+  },
+  insert: function(userId) {
+    return !!userId;
   }
 });
 // schemas
@@ -151,6 +154,9 @@ Meteor.methods({
   updateFavorite(doc) {
     check(doc, Object);
 
+    if (!Meteor.userId()) {
+      throw new Meteor.Error('not authorized');
+    }
     let isFavorited = doc.isFavorited;
     if (isFavorited === undefined) {
       isFavorited = false;
@@ -176,9 +182,11 @@ Meteor.methods({
   },
   addMemo(doc) {
     check(doc, Object);
-    if (!this.userId) {
+    if (!Meteor.userId()) {
       throw new Meteor.Error('not authorized');
     }
+    const self = this;
+    self.result = {};
     if (Meteor.isServer) {
       const expireIn = Meteor.user().profile.memoExpireIn;
       const result = HTTP.call('GET', "https://api.embedly.com/1/oembed", {
@@ -188,6 +196,10 @@ Meteor.methods({
         }
       });
       const data = result.data;
+      self.result = {
+        statusCode: data.statusCode,
+        provider_url: data.provider_url
+      };
       Memos.insert({
         name: data.title,
         url: doc.url,
@@ -206,7 +218,7 @@ Meteor.methods({
         logMemoClicked(this.userId, memoId, doc.labelId);
       });
 
-      return result;
+      return self.result;
 
     }
 

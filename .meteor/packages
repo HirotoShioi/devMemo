@@ -55,3 +55,5 @@ shell-server
 practicalmeteor:mocha
 xolvio:cleaner
 dburles:factory
+practicalmeteor:chai@2.1.0_1
+hwillson:stub-collections
