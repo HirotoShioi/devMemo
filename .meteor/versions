@@ -25,6 +25,7 @@ cfs:http-methods@0.0.32
 check@1.2.4
 coffeescript@1.11.1_4
 dburles:collection-helpers@1.1.0
+dburles:factory@1.1.0
 ddp@1.2.5
 ddp-client@1.2.9
 ddp-common@1.2.8
@@ -49,6 +50,7 @@ hot-code-push@1.0.4
 html-tools@1.0.11
 htmljs@1.0.11
 http@1.2.10
+hwillson:stub-collections@1.0.3
 id-map@1.0.9
 iron:controller@1.0.12
 iron:core@1.0.11
@@ -105,6 +107,11 @@ npm-mongo@2.2.11_2
 observe-sequence@1.0.14
 ordered-dict@1.0.9
 percolate:synced-cron@1.3.2
+practicalmeteor:chai@2.1.0_1
+practicalmeteor:loglevel@1.2.0_2
+practicalmeteor:mocha@2.4.5_6
+practicalmeteor:mocha-core@1.0.1
+practicalmeteor:sinon@1.14.1_2
 promise@0.8.8
 raix:eventemitter@0.1.3
 raix:handlebar-helpers@0.2.5
@@ -134,6 +141,7 @@ templating-compiler@1.2.15
 templating-runtime@1.2.15
 templating-tools@1.0.5
 themeteorchef:bert@2.1.1
+tmeasday:test-reporter-helpers@0.2.1
 tracker@1.1.1
 ui@1.0.12
 underscore@1.0.10
@@ -143,4 +151,5 @@ useraccounts:iron-routing@1.14.2
 useraccounts:materialize@1.14.2
 webapp@1.3.12
 webapp-hashing@1.0.9
+xolvio:cleaner@0.3.1
 zimme:active-route@2.3.2

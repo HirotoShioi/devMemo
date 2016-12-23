@@ -51,3 +51,9 @@ gwendall:simple-schema-i18n@0.2.1
 anti:i18n@0.4.3
 softwarerero:accounts-t9n
 shell-server
+
+practicalmeteor:mocha
+xolvio:cleaner
+dburles:factory
+practicalmeteor:chai@2.1.0_1
+hwillson:stub-collections
