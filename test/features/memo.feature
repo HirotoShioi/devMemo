@@ -1,5 +1,4 @@
 Feature:Memo
-
   Scenario: Add Memo
     Given that I am a user
     When I login as a user

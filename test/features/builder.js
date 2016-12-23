@@ -14,3 +14,20 @@ export const getLabel = function(labelObj) {
   }, labelObj );
   return label;
 };
+
+export const getMemo = function(query) {
+  let memo = server.execute( (obj) => {
+    const { Memos } = require('/imports/api/memos.js');
+    return Memos.findOne(obj);
+  }, query);
+  return memo;
+};
+
+export const createMemo = function(memoObj) {
+  let memo = server.execute( (obj) => {
+    const { Memos } = require('/imports/api/memos.js');
+    Memos.insert(obj);
+    return Memos.findOne(obj);
+  }, memoObj );
+  return memo;
+};

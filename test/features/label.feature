@@ -1,4 +1,3 @@
-@watch
 Feature: Label
 
   Scenario: Add Label
@@ -10,6 +9,7 @@ Feature: Label
     And I submit label form
     Then I should see my new label "Mozart"
 
+@watch
   Scenario: Edit Label
     Given that I am a user
     And I have a label "Beethoven"

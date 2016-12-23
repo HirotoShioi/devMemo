@@ -1,5 +1,7 @@
 import { waitAndSetValue, waitAndClickButton } from './webdriver';
 import { user } from './userInfo';
+import { getMemo, createMemo} from './builder';
+
 module.exports = function() {
   this.Before( function() {
     this.url = "https://youtube.com";
@@ -22,24 +24,26 @@ module.exports = function() {
 
   this.Then(/^I should see "([^"]*)" is added to my memo$/, function(url) {
     client.pause(3000);
-    let getMemo = server.execute( (searchUrl, ownerUserId) => {
-      const { Memos } = require('/imports/api/memos.js');
-      return Memos.findOne({ url: searchUrl, owner: ownerUserId });
-    }, url, user.userId );
-    expect(getMemo.url).to.equal(url);
+    const query = {
+      url: url,
+      owner: user.userId
+    };
+    let memo = getMemo(query);
+    expect(memo.url).to.equal(url);
   });
 
   this.Given(/^I have memo "([^"]*)"$/, function(url) {
-    this.memo = server.execute( (insertUrl, ownerUserId) => {
-      const { Memos } = require('/imports/api/memos.js');
-      Memos.insert({url: insertUrl, owner: ownerUserId,  isFavorited: false});
-      return Memos.findOne({url: insertUrl, owner: ownerUserId});
-    }, url, user.userId );
+    const labelObj = {
+      url: url,
+      owner: user.userId,
+      isFavorited: false,
+    };
+    this.memo = createMemo(labelObj);
   });
 
   this.When(/^I click memo$/, function() {
-    client.waitForVisible(`#${this.memo._id}`, 3000);
-    client.click(`#${this.memo._id}`);
+    client.waitForVisible(`#card-${this.memo._id}`, 3000);
+    client.click(`#card-${this.memo._id}`);
   });
 
   this.When(/^I press heart icon$/, function() {
@@ -48,24 +52,26 @@ module.exports = function() {
   });
 
   this.Then(/^my memo "([^"]*)" should be favorited$/, function(url) {
-    this.memo = server.execute( (searchUrl, ownerUserId) => {
-      const { Memos } = require('/imports/api/memos.js');
-      return Memos.findOne({ url: searchUrl, owner: ownerUserId });
-    }, url, user.userId );
-    expect(this.memo.isFavorited).to.equal(true);
+    const query = {
+      url: url,
+      owner: user.userId
+    };
+    let memo = getMemo(query);
+    expect(memo.isFavorited).to.equal(true);
   });
 
   this.When(/^I click label$/, function() {
-    waitAndClickButton("." + this.label._id);
+    waitAndClickButton(`.label-${this.label._id}`);
   });
 
   this.Then(/^I should see "([^"]*)" with label "([^"]*)" added to my memo$/, function(url, labelName) {
     client.pause(3000);
-    let getMemo = server.execute( (searchUrl, label, ownerUserId) => {
-      const { Memos } = require('/imports/api/memos.js');
-      return Memos.findOne({ url: searchUrl, owner: ownerUserId, labelId: label});
-    }, url, this.label._id, user.userId );
-    expect(getMemo.url).to.equal(url);
-    expect(getMemo.labelId).to.equal(this.label._id);
+    const query = {
+      url: url,
+      owner: user.userId,
+    };
+    let memo = getMemo(query);
+    expect(memo.url).to.equal(url);
+    expect(memo.labelId).to.equal(this.label._id);
   });
 };

@@ -22,7 +22,7 @@ module.exports = function() {
   });
 
   this.Then(/^I should see my new label "([^"]*)"$/, function(labelName) {
-    client.pause(400);
+    client.pause(300);
     waitAndClickButton('#label-bar');
     let query = {
       name: labelName,
@@ -42,7 +42,7 @@ module.exports = function() {
 
   this.When(/^I press edit label$/, function() {
     client.pause(300);
-    client.click("#" + this.label._id);
+    client.click(`#label-${this.label._id}`);
     waitAndClickButton('.label-edit');
   });
 
@@ -66,7 +66,7 @@ module.exports = function() {
 
   this.When(/^I press delete label$/, function() {
     client.pause(300);
-    client.click("#" + this.label._id);
+    client.click(`#label-${this.label._id}`);
     waitAndClickButton('.label-delete');
   });
 

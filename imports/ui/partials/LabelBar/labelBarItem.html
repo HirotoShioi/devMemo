@@ -1,5 +1,5 @@
 <template name="labelBarItem">
-  <li class="collection-item search-item label-item" id="{{label._id}}">
+  <li class="collection-item search-item label-item" id="label-{{label._id}}">
     <a href="{{pathFor route='label.detail' data=labelId}}"
       class="title label-bar-chip" style="background-color:{{label.color}}">
 	   <span class="label-text">{{label.name}}</span>

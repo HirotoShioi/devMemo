@@ -6,7 +6,7 @@
 			<div class="row">
 				<div class="col s12">
 				{{#each label in labels}}
-					<a href="" class=" {{label._id}} chip label-select hoverable {{#if $eq selectedLabelId label._id}} selected-label z-depth-2 {{/if}}" 
+					<a href="" class="label-{{label._id}} chip label-select hoverable {{#if $eq selectedLabelId label._id}} selected-label z-depth-2 {{/if}}" 
 					style="background-color:{{label.color}}" data="{{label._id}}">
 					{{#if $eq selectedLabelId label._id}} <i class="fa fa-check"></i> {{/if}}
 						{{label.name}}
