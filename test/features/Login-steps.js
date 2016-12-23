@@ -5,6 +5,10 @@ module.exports = function() {
   "use strict";
 
   this.Before(function() {
+    browser.setViewportSize({
+      width: 1280,
+      height: 1040,
+    });
     this.accounts = {
       logout() {
         client

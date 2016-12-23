@@ -27,4 +27,36 @@ module.exports = function() {
     }, labelName, userId );
     expect(getLabel.name).to.equal(labelName);
   });
+
+  this.Given(/^have a label "([^"]*)"$/, function(labelName) {
+    this.label = server.execute((name, userId)=>{
+      const { Label } = require('/imports/api/label.js');
+      Label.insert({name: name, owner: userId});
+      return Label.findOne({name: name, owner: userId});
+    }, labelName, user.userId);
+  });
+
+  this.When(/^I press edit label$/, function() {
+    client.pause(300);
+    client.click(`#${this.label._id}`);
+    waitAndClickButton('.label-edit');
+  });
+
+  this.When(/^I change the name to "([^"]*)"$/, function(labelName) {
+    client.pause(150);
+    waitAndSetValue("#editLabel input[name=name]", labelName);
+  });
+
+  this.When(/^I submit the edit form$/, function() {
+    client.submitForm("#editLabel");
+  });
+
+  this.Then(/^I should see my label changed to "([^"]*)"$/, function(labelName) {
+    const userId = user.userId;
+    let getLabel = server.execute( (label, ownerUserId) => {
+      const { Label } = require('/imports/api/label.js');
+      return Label.findOne({ name: label, owner: ownerUserId });
+    }, labelName, userId );
+    expect(getLabel.name).to.equal(labelName);
+  });
 };
