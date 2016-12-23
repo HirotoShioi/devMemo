@@ -11,6 +11,7 @@ module.exports = function() {
   });
   this.When(/^I fill in the form with label name "([^"]*)"$/, function(labelName) {
     waitAndSetValue("input[name=labelName]", labelName);
+    client.click(`li[data="#ff5252"]`);
   });
 
   this.When(/^I submit label form$/, function() {

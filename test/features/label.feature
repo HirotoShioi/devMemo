@@ -1,4 +1,5 @@
 Feature: Label
+@watch
   Scenario: Add Label
     Given that I am a user
     When I Login as a user
@@ -18,7 +19,6 @@ Feature: Label
     And I submit the edit form
     Then I should see my label changed to "Ludvig"
 
-@watch
   Scenario: Delete Label
     Given that I am a user
     And have a label "Beethoven"
