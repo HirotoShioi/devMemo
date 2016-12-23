@@ -84,4 +84,13 @@ module.exports = function() {
     const isModalVisible = client.waitForVisible(`#modal-card-${memo._id}`, 3000);
     expect(isModalVisible).to.equal(true);
   });
+
+  this.When(/^I click more$/, function() {
+    waitAndClickButton(".memo-detail");
+  });
+
+  this.Then(/^I should see memo detail view$/, function() {
+    const isDetailViewVisible = client.waitForVisible("#memo-detail-content", 3000);
+    expect(isDetailViewVisible).to.equal(true);
+  });
 };

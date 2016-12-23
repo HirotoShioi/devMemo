@@ -37,7 +37,7 @@
                   <p class="truncate">{{url}}</p>
                 {{/if}}
                 </a>
-                    <a href="{{pathFor route='memo.detail'}}">{{i18n 'memo.more'}}</a>
+                    <a class="memo-detail" href="{{pathFor route='memo.detail'}}">{{i18n 'memo.more'}}</a>
                 {{#if hasLabel}}
                     <a href="{{pathFor route='label.detail'}}" class="chip edit-btn" style="background-color:{{label.color}}">
                        {{label.name}}
