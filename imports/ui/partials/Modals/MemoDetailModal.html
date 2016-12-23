@@ -1,5 +1,5 @@
 <template name="MemoDetailModal">
-  <div class="card-image">
+  <div id="modal-card-{{memo._id}}" class="card-image">
     <a href="{{memo.url}}" class="card-image-url">
       {{#if memo.thumbnailUrl}}
         <img src="{{memo.thumbnailUrl}}">

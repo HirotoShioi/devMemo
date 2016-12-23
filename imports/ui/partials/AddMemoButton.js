@@ -20,7 +20,7 @@ TemplateController('AddMemoButton', {
       const recentlyChosenLabel = Meteor.user().profile.recentChosenLabel;
       let initialLabel;
       const labelCount = Label.find().count();
-      if (labelCount <= 0){
+      if (labelCount <= 0) {
         initialLabel = null;
       } else {
         if (! recentlyChosenLabel) {
@@ -35,8 +35,8 @@ TemplateController('AddMemoButton', {
     },
   },
 
-  helpers:{
-    isDisabled(){
+  helpers: {
+    isDisabled() {
       return Session.get('isLoadingMemo');
     }
   }

@@ -74,4 +74,14 @@ module.exports = function() {
     expect(memo.url).to.equal(url);
     expect(memo.labelId).to.equal(this.label._id);
   });
+
+  this.Then(/^I should see memo detail modal of "([^"]*)"$/, function (url) {
+    const query = {
+      url: url,
+      owner: user.userId,
+    };
+    let memo = getMemo(query);
+    const isModalVisible = client.waitForVisible(`#modal-card-${memo._id}`, 3000);
+    expect(isModalVisible).to.equal(true);
+  });
 };
