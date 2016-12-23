@@ -56,7 +56,7 @@ module.exports = function() {
   });
 
   this.When(/^I click label$/, function() {
-    waitAndClickButton(`.${this.label._id}`);
+    waitAndClickButton("." + this.label._id);
   });
 
   this.Then(/^I should see "([^"]*)" with label "([^"]*)" added to my memo$/, function(url, labelName) {

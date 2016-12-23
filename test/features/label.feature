@@ -1,4 +1,6 @@
+@watch
 Feature: Label
+
   Scenario: Add Label
     Given that I am a user
     When I login as a user

@@ -1,6 +1,9 @@
 import {  waitAndClickButton, waitAndSetValue } from './webdriver';
 import { user } from './userInfo';
+import { getLabel, createLabel } from './builder';
+
 module.exports = function() {
+
   this.Before(function() {
   });
   this.After(function() {
@@ -19,27 +22,27 @@ module.exports = function() {
   });
 
   this.Then(/^I should see my new label "([^"]*)"$/, function(labelName) {
-    const userId = user.userId;
     client.pause(400);
     waitAndClickButton('#label-bar');
-    let getLabel = server.execute( (label, ownerUserId) => {
-      const { Label } = require('/imports/api/label.js');
-      return Label.findOne({ name: label, owner: ownerUserId });
-    }, labelName, userId );
-    expect(getLabel.name).to.equal(labelName);
+    let query = {
+      name: labelName,
+      owner: user.userId
+    };
+    let label = getLabel(query);
+    expect(label.name).to.equal(labelName);
   });
 
   this.Given(/^I have a label "([^"]*)"$/, function(labelName) {
-    this.label = server.execute((name, userId)=>{
-      const { Label } = require('/imports/api/label.js');
-      Label.insert({name: name, owner: userId});
-      return Label.findOne({name: name, owner: userId});
-    }, labelName, user.userId);
+    const labelObj = {
+      name: labelName,
+      owner: user.userId
+    };
+    this.label = createLabel(labelObj);
   });
 
   this.When(/^I press edit label$/, function() {
     client.pause(300);
-    client.click(`#${this.label._id}`);
+    client.click("#" + this.label._id);
     waitAndClickButton('.label-edit');
   });
 
@@ -53,16 +56,17 @@ module.exports = function() {
   });
 
   this.Then(/^I should see my label changed to "([^"]*)"$/, function(labelName) {
-    let getLabel = server.execute( (label, ownerUserId) => {
-      const { Label } = require('/imports/api/label.js');
-      return Label.findOne({ name: label, owner: ownerUserId });
-    }, labelName, user.userId );
-    expect(getLabel.name).to.equal(labelName);
+    const query = {
+      name: labelName,
+      owner: user.userId
+    };
+    let label = getLabel(query);
+    expect(label.name).to.equal(labelName);
   });
 
   this.When(/^I press delete label$/, function() {
     client.pause(300);
-    client.click(`#${this.label._id}`);
+    client.click("#" + this.label._id);
     waitAndClickButton('.label-delete');
   });
 
@@ -71,19 +75,13 @@ module.exports = function() {
     waitAndClickButton('.delete-label-btn');
   });
 
-  this.Then(/^I should see my label deleted$/, function() {
-    let getLabelCount = server.execute( (label, ownerUserId) => {
-      const { Label } = require('/imports/api/label.js');
-      return Label.find({ name: label, owner: ownerUserId }).count();
-    }, labelName, userId );
-    expect(getLabelCount).to.equal(0);
-  });
-
   this.Then(/^I should see my label "([^"]*)" deleted$/, function(labelName) {
-    let getLabelCount = server.execute( (label, ownerUserId) => {
-      const { Label } = require('/imports/api/label.js');
-      return Label.find({ name: label, owner: ownerUserId }).count();
-    }, labelName, user.userId );
-    expect(getLabelCount).to.equal(0);
+    client.pause(300);
+    const query = {
+      name: labelName,
+      owner: user.userId
+    };
+    let label = getLabel(query);
+    expect(label).to.equal(undefined);
   });
 };
