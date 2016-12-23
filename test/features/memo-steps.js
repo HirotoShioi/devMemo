@@ -52,6 +52,8 @@ module.exports = function() {
       url: url,
       owner: user.userId,
       isFavorited: false,
+      name: url,
+      provider_url: url,
     };
     this.memo = createMemo(labelObj);
   });
@@ -96,7 +98,7 @@ module.exports = function() {
     expect(memo.labelId).to.equal(this.label._id);
   });
 
-  this.Then(/^I should see memo detail modal of "([^"]*)"$/, function (url) {
+  this.Then(/^I should see memo detail modal of "([^"]*)"$/, function(url) {
     const query = {
       url: url,
       owner: user.userId,
@@ -113,5 +115,14 @@ module.exports = function() {
   this.Then(/^I should see memo detail view$/, function() {
     const isDetailViewVisible = client.waitForVisible("#memo-detail-content", 3000);
     expect(isDetailViewVisible).to.equal(true);
+  });
+
+  this.When(/^I search for "([^"]*)"$/, function(url) {
+    client.pause(300);
+    waitAndSetValue('input[name=memoSearch]', url);
+  });
+
+  this.Then(/^I should have a search result of the memo$/, function() {
+    client.waitForVisible(`#memo-bar-item-${this.memo._id}`);
   });
 };

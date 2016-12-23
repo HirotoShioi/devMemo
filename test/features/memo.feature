@@ -16,7 +16,7 @@ Feature:Memo
     And I click label
     And I submit
     Then I should see "https://www.youtube.com" with label "Music" added to my memo
-@watch
+
   Scenario Outline: Toggle favorite Memo
     Given that I am a user
     And I have memo "https://www.youtube.com" with state of <State>
@@ -43,3 +43,12 @@ Feature:Memo
     When I login as a user
     And I click more
     Then I should see memo detail view
+  
+@watch
+  Scenario: Search memo
+    Given that I am a user
+    And I have memo "https://www.youtube.com"
+    When I login as a user
+    And I press "search-bar"
+    And I search for "https://www.youtube.com"
+    Then I should have a search result of the memo
