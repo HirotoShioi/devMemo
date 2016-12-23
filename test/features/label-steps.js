@@ -52,11 +52,36 @@ module.exports = function() {
   });
 
   this.Then(/^I should see my label changed to "([^"]*)"$/, function(labelName) {
-    const userId = user.userId;
     let getLabel = server.execute( (label, ownerUserId) => {
       const { Label } = require('/imports/api/label.js');
       return Label.findOne({ name: label, owner: ownerUserId });
-    }, labelName, userId );
+    }, labelName, user.userId );
     expect(getLabel.name).to.equal(labelName);
+  });
+
+  this.When(/^I press delete label$/, function() {
+    client.pause(300);
+    client.click(`#${this.label._id}`);
+    waitAndClickButton('.label-delete');
+  });
+
+  this.When(/^I submit the delete form$/, function() {
+    client.pause(300);
+    waitAndClickButton('.delete-label-btn');
+  });
+
+  this.Then(/^I should see my label deleted$/, function() {
+    let getLabelCount = server.execute( (label, ownerUserId) => {
+      const { Label } = require('/imports/api/label.js');
+      return Label.find({ name: label, owner: ownerUserId }).count();
+    }, labelName, userId );
+    expect(getLabelCount).to.equal(0);
+  });
+  this.Then(/^I should see my label "([^"]*)" deleted$/, function(labelName) {
+    let getLabelCount = server.execute( (label, ownerUserId) => {
+      const { Label } = require('/imports/api/label.js');
+      return Label.find({ name: label, owner: ownerUserId }).count();
+    }, labelName, user.userId );
+    expect(getLabelCount).to.equal(0);
   });
 };

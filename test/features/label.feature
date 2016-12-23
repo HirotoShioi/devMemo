@@ -8,7 +8,6 @@ Feature: Label
     And I submit label form
     Then I should see my new label "Mozart"
 
-@watch
   Scenario: Edit Label
     Given that I am a user
     And have a label "Beethoven"
@@ -18,3 +17,13 @@ Feature: Label
     And I change the name to "Ludvig"
     And I submit the edit form
     Then I should see my label changed to "Ludvig"
+
+@watch
+  Scenario: Delete Label
+    Given that I am a user
+    And have a label "Beethoven"
+    When I Login as a user
+    And I press "label-bar"
+    And I press delete label
+    And I submit the delete form
+    Then I should see my label "Beethoven" deleted
