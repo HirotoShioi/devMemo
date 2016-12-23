@@ -1,8 +1,7 @@
 Feature: Label
-@watch
   Scenario: Add Label
     Given that I am a user
-    When I Login as a user
+    When I login as a user
     And I press "label-bar"
     And I press "add-label"
     And I fill in the form with label name "Mozart"
@@ -11,8 +10,8 @@ Feature: Label
 
   Scenario: Edit Label
     Given that I am a user
-    And have a label "Beethoven"
-    When I Login as a user
+    And I have a label "Beethoven"
+    When I login as a user
     And I press "label-bar"
     And I press edit label
     And I change the name to "Ludvig"
@@ -21,8 +20,8 @@ Feature: Label
 
   Scenario: Delete Label
     Given that I am a user
-    And have a label "Beethoven"
-    When I Login as a user
+    And I have a label "Beethoven"
+    When I login as a user
     And I press "label-bar"
     And I press delete label
     And I submit the delete form

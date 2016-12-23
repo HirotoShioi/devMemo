@@ -41,7 +41,7 @@ module.exports = function() {
     });
   });
 
-  this.When(/^I Login as a user$/, function() {
+  this.When(/^I login as a user$/, function() {
     client.url("http://localhost:3000");
     waitAndClickButton("#at-nav-button");
     waitAndSetValue("input[name=at-field-username_and_email]", user.username);

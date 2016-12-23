@@ -29,7 +29,7 @@ module.exports = function() {
     expect(getLabel.name).to.equal(labelName);
   });
 
-  this.Given(/^have a label "([^"]*)"$/, function(labelName) {
+  this.Given(/^I have a label "([^"]*)"$/, function(labelName) {
     this.label = server.execute((name, userId)=>{
       const { Label } = require('/imports/api/label.js');
       Label.insert({name: name, owner: userId});
@@ -78,6 +78,7 @@ module.exports = function() {
     }, labelName, userId );
     expect(getLabelCount).to.equal(0);
   });
+
   this.Then(/^I should see my label "([^"]*)" deleted$/, function(labelName) {
     let getLabelCount = server.execute( (label, ownerUserId) => {
       const { Label } = require('/imports/api/label.js');
