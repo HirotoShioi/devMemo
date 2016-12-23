@@ -1,7 +1,7 @@
 <template name="AddLabelForm">
 	<p class="form-title">{{i18n 'forms.addLabel.title'}}</p>
 	{{#autoForm id="addLabel" autocomplete="off" schema=schema}}
-		{{>afQuickField name="name"}}
+		{{>afQuickField name="labelName"}}
 		<div class="color-select-box">
 			<ul class="color-chooser">
 				{{#each state.labelColorsFirst}}

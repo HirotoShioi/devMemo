@@ -51,3 +51,7 @@ gwendall:simple-schema-i18n@0.2.1
 anti:i18n@0.4.3
 softwarerero:accounts-t9n
 shell-server
+
+xolvio:backdoor
+xolvio:cleaner@0.3.1
+accounts-base@1.2.14

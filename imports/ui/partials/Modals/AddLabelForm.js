@@ -33,7 +33,7 @@ TemplateController('AddLabelForm', {
     },
     schema() {
       const schema = new SimpleSchema({
-        name: {
+        labelName: {
           type: String,
           label: function() {return i18n('collection.label.name');},
           max: 15,
@@ -57,7 +57,7 @@ const hooksObject = {
     this.event.preventDefault();
     let labelColor = Session.get('addLabelSelectedColor');
     let labelDoc = {
-      name: insertDoc.name,
+      name: insertDoc.labelName,
       color: labelColor,
     };
     Session.set('showModal', false);

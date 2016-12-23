@@ -8,7 +8,13 @@
           <i class="fa fa-file-text-o valign" style="color:{{state.label.color}}"></i>
       </div>
       {{/if}}
-      <span class="card-title">{{memo.name}}</span>
+      <span class="card-title">
+        {{#if memo.name}}
+          {{memo.name}}
+        {{else}}
+          {{memo.url}}
+        {{/if}}
+      </span>
     </a>
   </div>
   <div class="card-content">

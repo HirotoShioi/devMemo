@@ -5,7 +5,6 @@ import { Session } from 'meteor/session';
 // partials
 import './component/Footer.html';
 import './component/Header.js';
-import '../partials/Overlay.js';
 
 import './HomeLayout.html';
 
