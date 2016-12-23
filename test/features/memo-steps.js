@@ -32,6 +32,21 @@ module.exports = function() {
     expect(memo.url).to.equal(url);
   });
 
+  this.Given(/^I have memo "([^"]*)" with state of (.+)$/, function(url, isFavorited) {
+    let favorite;
+    if (isFavorited === "Favorited") {
+      favorite = true;
+    } else if (isFavorited === "unFavorited") {
+      favorite = false;
+    }
+    const labelObj = {
+      url: url,
+      owner: user.userId,
+      isFavorited: favorite,
+    };
+    this.memo = createMemo(labelObj);
+  });
+
   this.Given(/^I have memo "([^"]*)"$/, function(url) {
     const labelObj = {
       url: url,
@@ -51,13 +66,19 @@ module.exports = function() {
     client.click(".heart");
   });
 
-  this.Then(/^my memo "([^"]*)" should be favorited$/, function(url) {
+  this.Then(/^my memo "([^"]*)" should be (.+)$/, function(url, isFavorited) {
+    let favorite;
+    if (isFavorited === "Favorited") {
+      favorite = true;
+    } else if (isFavorited === "unFavorited") {
+      favorite = false;
+    }
     const query = {
       url: url,
       owner: user.userId
     };
     let memo = getMemo(query);
-    expect(memo.isFavorited).to.equal(true);
+    expect(memo.isFavorited).to.equal(favorite);
   });
 
   this.When(/^I click label$/, function() {

@@ -16,14 +16,19 @@ Feature:Memo
     And I click label
     And I submit
     Then I should see "https://www.youtube.com" with label "Music" added to my memo
-
-  Scenario: Favorite Memo
+@watch
+  Scenario Outline: Toggle favorite Memo
     Given that I am a user
-    And I have memo "https://www.youtube.com"
+    And I have memo "https://www.youtube.com" with state of <State>
     When I login as a user
     And I click memo
     And I press heart icon
-    Then my memo "https://www.youtube.com" should be favorited
+    Then my memo "https://www.youtube.com" should be <toggledState>
+
+  Examples:
+  |State       |toggledState  |
+  |Favorited   |unFavorited   |
+  |unFavorited |Favorited     |
 
   Scenario: Memo detail modal
     Given that I am a user
@@ -31,7 +36,7 @@ Feature:Memo
     When I login as a user
     And I click memo
     Then I should see memo detail modal of "https://www.youtube.com"
-@watch
+
   Scenario: Memo detail page
     Given that I am a user
     And I have memo "https://www.youtube.com"
