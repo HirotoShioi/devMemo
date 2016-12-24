@@ -50,6 +50,16 @@ module.exports = function() {
     waitAndClickButton("#at-btn");
   });
 
+  this.When(/^I press Logout$/, function() {
+    waitAndClickButton("#user-link");
+    waitAndClickButton("#logout-link");
+  });
+
+  this.Then(/^I should see landing view$/, function() {
+    let isLandingContentVisible = client.waitForVisible("#landing-content", 2000);
+    expect(isLandingContentVisible).to.equal(true);
+  });
+
   this.Then(/^I should see home view$/, function() {
     let isHomeContentVisible = client.waitForVisible("#home-content", 2000);
     expect(isHomeContentVisible).to.equal(true);

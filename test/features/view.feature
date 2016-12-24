@@ -1,9 +1,15 @@
-Feature: Login as user
+Feature: Login as user and visit other pages
 
   Scenario: Login as user
     Given that I am a user
     When I login as a user
     Then I should see home view
+@watch
+  Scenario: Logout of app
+    Given that I am a user
+    When I login as a user
+    And I press Logout
+    Then I should see landing view
 
   Scenario: Visit gallery view
     Given that I am a user
