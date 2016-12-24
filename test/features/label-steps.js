@@ -86,6 +86,11 @@ module.exports = function() {
     waitAndSetValue("input[name=labelSearch]", labelName);
   });
 
+  this.Then(/^I should see the label bar$/, function() {
+    let isLabelBarVisible = client.waitForVisible("#label-search-bar",2000);
+    expect(isLabelBarVisible).to.equal(true);
+  });
+
   this.Then(/^I should see my label in the search result$/, function() {
     let isLabelSearchResultVisible = client.waitForVisible(`#label-${this.label._id}`, 2000);
     expect(isLabelSearchResultVisible).to.equal(true);

@@ -4,7 +4,7 @@ Feature: Login as user and visit other pages
     Given that I am a user
     When I login as a user
     Then I should see home view
-@watch
+
   Scenario: Logout of app
     Given that I am a user
     When I login as a user
@@ -26,7 +26,7 @@ Feature: Login as user and visit other pages
     And I submit settings form
     Then my language should be <changedLanguage>
 
-  Examples:
-  |Language |changedLanguage |
-  |Japanese |English         |
-  |English  |Japanese        |
+    Examples:
+    |Language |changedLanguage |
+    |Japanese |English         |
+    |English  |Japanese        |
