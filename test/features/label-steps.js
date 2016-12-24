@@ -55,7 +55,7 @@ module.exports = function() {
 
   this.Then(/^I should see my label changed to "([^"]*)"$/, function(labelName) {
     const query = {
-      name: labelName,
+      _id: this.label._id
     };
     let label = getLabel(query);
     expect(label.name).to.equal(labelName);
@@ -75,7 +75,7 @@ module.exports = function() {
   this.Then(/^I should see my label "([^"]*)" deleted$/, function(labelName) {
     client.pause(300);
     const query = {
-      name: labelName,
+      _id: this.label._id,
     };
     let label = getLabel(query);
     expect(label).to.equal(undefined);

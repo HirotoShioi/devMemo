@@ -1,4 +1,3 @@
-@watch
 Feature:Memo
   Scenario: Add Memo
     Given that I am a user
