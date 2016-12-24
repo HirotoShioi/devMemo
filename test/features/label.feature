@@ -28,7 +28,6 @@ Feature: Label
     And I submit the delete form
     Then I should see my label "Beethoven" deleted
 
-@watch
   Scenario: Search Label
     Given that I am a user
     And I have a label "Beethoven"

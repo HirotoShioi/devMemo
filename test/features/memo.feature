@@ -1,3 +1,4 @@
+@watch
 Feature:Memo
   Scenario: Add Memo
     Given that I am a user
@@ -61,3 +62,10 @@ Feature:Memo
     And I fill in the form
     And I submit memo label edit form
     Then I should see my memo "https://www.spotify.com/jp/" has label
+
+  Scenario: Expire memo
+    Given that I am a user
+    And I have memo "https://www.spotify.com/jp/"
+    When I login as a user
+    And memo is expiring
+    Then memo of "https://www.spotify.com/jp/" should have status "expired"

@@ -35,3 +35,12 @@ export const createMemo = function(memoObj) {
   }, memoObj );
   return memo;
 };
+
+export const updateMemo = function(memoId, modifier) {
+  let memo = server.execute( (id, mod) => {
+    const { Memos } = require('/imports/api/memos.js');
+    Memos.update({_id: id}, {$set: mod});
+    return Memos.findOne({_id: id});
+  }, memoId, modifier);
+  return memo;
+};

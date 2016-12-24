@@ -1,6 +1,6 @@
 import { waitAndSetValue, waitAndClickButton } from './webdriver';
 import { user } from './userInfo';
-import { getMemo, createMemo} from './builder';
+import { getMemo, createMemo, updateMemo} from './builder';
 
 module.exports = function() {
   this.Before( function() {
@@ -51,6 +51,7 @@ module.exports = function() {
       isFavorited: false,
       name: url,
       provider_url: url,
+      createdAt: Date.now(),
     };
     this.memo = createMemo(labelObj);
   });
@@ -73,7 +74,7 @@ module.exports = function() {
       favorite = false;
     }
     const query = {
-      url: url,
+      _id: this.memo._id
     };
     let memo = getMemo(query);
     expect(memo.isFavorited).to.equal(favorite);
@@ -137,9 +138,26 @@ module.exports = function() {
 
   this.Then(/^I should see my memo "([^"]*)" has label$/, function(url) {
     let query = {
-      url: url
+      _id: this.memo._id
     };
     let memo = getMemo(query);
     expect(memo.labelId).to.equal(this.label._id);
+  });
+
+  this.When(/^memo is expiring$/, function() {
+    const today = Date.now();
+    const modifier = {
+      expiredAt: today
+    };
+    this.memo = updateMemo(this.memo._id, modifier);
+    server.call('checkExpiration');
+  });
+
+  this.Then(/^memo of "([^"]*)" should have status "([^"]*)"$/, function(url, status) {
+    const query = {
+      _id: this.memo._id
+    };
+    this.memo = getMemo(query);
+    expect(this.memo.status).to.equal(status);
   });
 };
