@@ -165,4 +165,9 @@ module.exports = function() {
     this.recommendation = server.call('getRecommend');
     expect(this.recommendation).to.have.property("result");
   });
+
+  this.Then(/^I should see the search memo bar$/, function() {
+    let isSearchBarVisible = client.waitForVisible("#search-bar", 2000);
+    expect(isSearchBarVisible).to.equal(true);
+  });
 };

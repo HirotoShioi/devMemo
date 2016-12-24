@@ -87,7 +87,7 @@ module.exports = function() {
   });
 
   this.Then(/^I should see the label bar$/, function() {
-    let isLabelBarVisible = client.waitForVisible("#label-search-bar",2000);
+    let isLabelBarVisible = client.waitForVisible("#label-search-bar", 2000);
     expect(isLabelBarVisible).to.equal(true);
   });
 

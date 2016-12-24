@@ -27,7 +27,7 @@ Feature: Label
     And I press delete label
     And I submit the delete form
     Then I should see my label "Beethoven" deleted
-@watch
+
   Scenario: Search Label bar
     Given that I am a user
     And I have a label "Beethoven"

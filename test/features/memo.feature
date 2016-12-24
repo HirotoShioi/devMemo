@@ -73,3 +73,10 @@ Feature:Memo
     Given that I am a user
     When I login as a user
     Then I should have recommendation
+@watch
+  Scenario: Search memo bar
+    Given that I am a user
+    And I have a label "Beethoven"
+    When I login as a user
+    And I press "search-bar"
+    Then I should see the search memo bar
