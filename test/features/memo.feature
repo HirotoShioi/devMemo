@@ -68,3 +68,8 @@ Feature:Memo
     When I login as a user
     And memo is expiring
     Then memo of "https://www.spotify.com/jp/" should have status "expired"
+@watch
+  Scenario: Recommend memo
+    Given that I am a user
+    When I login as a user
+    Then I should have recommendation

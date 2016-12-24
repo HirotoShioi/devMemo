@@ -160,4 +160,9 @@ module.exports = function() {
     this.memo = getMemo(query);
     expect(this.memo.status).to.equal(status);
   });
+
+  this.Then(/^I should have recommendation$/, function() {
+    this.recommendation = server.call('getRecommend');
+    expect(this.recommendation).to.have.property("result");
+  });
 };
