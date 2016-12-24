@@ -50,6 +50,12 @@ module.exports = function() {
   });
 
   this.Then(/^I should see home view$/, function() {
-    expect(client.waitForExist("#home-content", 2000)).to.equal(true);
+    let isHomeContentVisible = client.waitForVisible("#home-content", 2000);
+    expect(isHomeContentVisible).to.equal(true);
+  });
+
+  this.Then(/^I should see gallery view$/, function() {
+    let isGalleryContentVisible = client.waitForVisible("#gallery-content", 2000);
+    expect(isGalleryContentVisible).to.equal(true);
   });
 };
