@@ -31,6 +31,7 @@ module.exports = function() {
   });
 
   this.After( function() {
+    server.call('changeLanguage', {language: "ja"});
     this.accounts.logout();
   });
 
@@ -57,5 +58,66 @@ module.exports = function() {
   this.Then(/^I should see gallery view$/, function() {
     let isGalleryContentVisible = client.waitForVisible("#gallery-content", 2000);
     expect(isGalleryContentVisible).to.equal(true);
+  });
+
+  this.Given(/^my language is (.+)$/, function(language) {
+    let lang = {
+      language: "ja"
+    };
+    switch (language) {
+      case "Japanese":
+        lang.language = "ja";
+        break;
+      case "English":
+        lang.language = "en";
+        break;
+      default:
+        lang.language = "ja";
+    }
+    server.call('changeLanguage', lang);
+  });
+
+  this.When(/^I go to settings$/, function() {
+    waitAndClickButton("#user-link");
+    waitAndClickButton("#settings-link");
+  });
+
+  this.When(/^I change the language to (.+)$/, function(language) {
+    let lang = "ja";
+    switch (language) {
+      case "Japanese":
+        lang = "日本語";
+        break;
+      case "English":
+        lang = "English";
+        break;
+      default:
+        lang = "日本語";
+    }
+    waitAndClickButton('.select-dropdown');
+    client.moveToObject(`span=${lang}`);
+    client.click(`span=${lang}`);
+  });
+
+  this.When(/^I submit settings form$/, function() {
+    client.submitForm("#accountForm");
+  });
+
+  this.Then(/^my language should be (.+)$/, function(language) {
+    this.userProfile = server.execute(()=>{
+      return Meteor.user().profile;
+    });
+    let lang = "ja";
+    switch (language) {
+      case "Japanese":
+        lang = "ja";
+        break;
+      case "English":
+        lang = "en";
+        break;
+      default:
+        lang = "ja";
+    }
+    expect(this.userProfile.language).to.equal(lang);
   });
 };

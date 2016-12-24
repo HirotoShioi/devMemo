@@ -32,14 +32,14 @@
 					</li>
 					<div class="auth-link">
 						{{#if state.showBottomNav}}
-							<li class="bottom-nav link">
+							<li id="settings-link" class="bottom-nav link">
 								<a href="{{pathFor route='settings'}}" class="waves-effect"><i class="fa fa-cogs" aria-hidden="true"></i>{{i18n 'sideNav.settings'}}</a>
 							</li>
-							<li class="bottom-nav">
+							<li id="logout-link" class="bottom-nav">
 								<a class="waves-effect logout"><i class="fa fa-sign-out" aria-hidden="true"></i>{{i18n 'accounts.signOut'}}</a>
 							</li>
 						{{/if}}
-						<li class="bottom-nav">
+						<li id="user-link" class="bottom-nav">
 							<a class="waves-effect z-depth-1 user"><i class="fa fa-user" aria-hidden="true"></i>{{username}}</a>
 						</li>
 					</div>
