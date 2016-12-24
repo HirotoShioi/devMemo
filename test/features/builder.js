@@ -1,5 +1,6 @@
 export const createLabel = function(labelObj) {
   let label = server.execute((obj)=>{
+    obj.owner = Meteor.userId();
     const { Label } = require('/imports/api/label.js');
     Label.insert(obj);
     return Label.findOne(obj);
@@ -9,6 +10,7 @@ export const createLabel = function(labelObj) {
 
 export const getLabel = function(labelObj) {
   let label = server.execute( (obj) => {
+    obj.owner = Meteor.userId();
     const { Label } = require('/imports/api/label.js');
     return Label.findOne(obj);
   }, labelObj );
@@ -17,6 +19,7 @@ export const getLabel = function(labelObj) {
 
 export const getMemo = function(query) {
   let memo = server.execute( (obj) => {
+    obj.owner = Meteor.userId();
     const { Memos } = require('/imports/api/memos.js');
     return Memos.findOne(obj);
   }, query);
@@ -25,6 +28,7 @@ export const getMemo = function(query) {
 
 export const createMemo = function(memoObj) {
   let memo = server.execute( (obj) => {
+    obj.owner = Meteor.userId();
     const { Memos } = require('/imports/api/memos.js');
     Memos.insert(obj);
     return Memos.findOne(obj);

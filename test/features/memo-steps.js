@@ -41,7 +41,6 @@ module.exports = function() {
     }
     const labelObj = {
       url: url,
-      owner: user.userId,
       isFavorited: favorite,
     };
     this.memo = createMemo(labelObj);
@@ -50,7 +49,6 @@ module.exports = function() {
   this.Given(/^I have memo "([^"]*)"$/, function(url) {
     const labelObj = {
       url: url,
-      owner: user.userId,
       isFavorited: false,
       name: url,
       provider_url: url,
@@ -77,7 +75,6 @@ module.exports = function() {
     }
     const query = {
       url: url,
-      owner: user.userId
     };
     let memo = getMemo(query);
     expect(memo.isFavorited).to.equal(favorite);
@@ -91,7 +88,6 @@ module.exports = function() {
     client.pause(3000);
     const query = {
       url: url,
-      owner: user.userId,
     };
     let memo = getMemo(query);
     expect(memo.url).to.equal(url);
@@ -101,7 +97,6 @@ module.exports = function() {
   this.Then(/^I should see memo detail modal of "([^"]*)"$/, function(url) {
     const query = {
       url: url,
-      owner: user.userId,
     };
     let memo = getMemo(query);
     const isModalVisible = client.waitForVisible(`#modal-card-${memo._id}`, 3000);

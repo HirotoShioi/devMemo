@@ -26,7 +26,6 @@ module.exports = function() {
     waitAndClickButton('#label-bar');
     let query = {
       name: labelName,
-      owner: user.userId
     };
     let label = getLabel(query);
     expect(label.name).to.equal(labelName);
@@ -35,7 +34,6 @@ module.exports = function() {
   this.Given(/^I have a label "([^"]*)"$/, function(labelName) {
     const labelObj = {
       name: labelName,
-      owner: user.userId
     };
     this.label = createLabel(labelObj);
   });
@@ -58,7 +56,6 @@ module.exports = function() {
   this.Then(/^I should see my label changed to "([^"]*)"$/, function(labelName) {
     const query = {
       name: labelName,
-      owner: user.userId
     };
     let label = getLabel(query);
     expect(label.name).to.equal(labelName);
@@ -79,7 +76,6 @@ module.exports = function() {
     client.pause(300);
     const query = {
       name: labelName,
-      owner: user.userId
     };
     let label = getLabel(query);
     expect(label).to.equal(undefined);
