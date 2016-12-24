@@ -67,16 +67,25 @@ Feature:Memo
     And I have memo "https://www.spotify.com/jp/"
     When I login as a user
     And memo is expiring
-    Then memo of "https://www.spotify.com/jp/" should have status "expired"
+    Then my memo should be in status "expired"
 
   Scenario: Recommend memo
     Given that I am a user
     When I login as a user
     Then I should have recommendation
-@watch
+
   Scenario: Search memo bar
     Given that I am a user
     And I have a label "Beethoven"
     When I login as a user
     And I press "search-bar"
     Then I should see the search memo bar
+
+@watch
+  Scenario: Stash memo
+    Given that I am a user
+    And I have memo "https://www.youtube.com"
+    When I login as a user
+    And I click memo
+    And I press archive icon
+    Then my memo should be in status "expired"

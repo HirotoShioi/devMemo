@@ -153,7 +153,7 @@ module.exports = function() {
     server.call('checkExpiration');
   });
 
-  this.Then(/^memo of "([^"]*)" should have status "([^"]*)"$/, function(url, status) {
+  this.Then(/^my memo should be in status "([^"]*)"$/, function(status) {
     const query = {
       _id: this.memo._id
     };
@@ -169,5 +169,10 @@ module.exports = function() {
   this.Then(/^I should see the search memo bar$/, function() {
     let isSearchBarVisible = client.waitForVisible("#search-bar", 2000);
     expect(isSearchBarVisible).to.equal(true);
+  });
+
+  this.When(/^I press archive icon$/, function() {
+    client.pause(300);
+    client.click(".archive-memo");
   });
 };
