@@ -7,10 +7,10 @@ module.exports = function() {
   this.Before(function() {
   });
   this.After(function() {
-    server.execute((userId)=>{
+    server.execute(()=>{
       const { Label } = require('/imports/api/label.js');
-      return Label.remove({owner: userId });
-    }, user.userId);
+      return Label.remove({owner: Meteor.userId() });
+    });
   });
   this.When(/^I fill in the form with label name "([^"]*)"$/, function(labelName) {
     waitAndSetValue("input[name=labelName]", labelName);

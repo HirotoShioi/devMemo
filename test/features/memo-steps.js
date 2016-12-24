@@ -8,10 +8,10 @@ module.exports = function() {
   });
 
   this.After( function() {
-    server.execute((userId)=>{
+    server.execute(()=>{
       const { Memos } = require('/imports/api/memos.js');
-      return Memos.remove({owner: userId });
-    }, user.userId);
+      return Memos.remove({owner: Meteor.userId() });
+    });
   });
 
   this.When(/^I fill in url "([^"]*)"$/, function(url) {
@@ -26,7 +26,6 @@ module.exports = function() {
     client.pause(3000);
     const query = {
       url: url,
-      owner: user.userId
     };
     let memo = getMemo(query);
     expect(memo.url).to.equal(url);
@@ -119,5 +118,28 @@ module.exports = function() {
 
   this.Then(/^I should have a search result of the memo$/, function() {
     client.waitForVisible(`#memo-bar-item-${this.memo._id}`);
+  });
+
+  this.When(/^I press cog button$/, function() {
+    waitAndClickButton(`#card-${this.memo._id}`);
+    client.pause(300);
+    waitAndClickButton(`.fa-cog`);
+  });
+
+  this.When(/^I fill in the form$/, function() {
+    client.pause(500);
+    client.click(`label=${this.label.name}`);
+  });
+
+  this.When(/^I submit memo label edit form$/, function() {
+    client.submitForm("#editMemoLabel");
+  });
+
+  this.Then(/^I should see my memo "([^"]*)" has label$/, function(url) {
+    let query = {
+      url: url
+    };
+    let memo = getMemo(query);
+    expect(memo.labelId).to.equal(this.label._id);
   });
 };

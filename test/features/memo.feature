@@ -44,7 +44,6 @@ Feature:Memo
     And I click more
     Then I should see memo detail view
   
-@watch
   Scenario: Search memo
     Given that I am a user
     And I have memo "https://www.youtube.com"
@@ -52,3 +51,13 @@ Feature:Memo
     And I press "search-bar"
     And I search for "https://www.youtube.com"
     Then I should have a search result of the memo
+@watch
+  Scenario: Edit Memo label
+    Given that I am a user
+    And I have memo "https://www.spotify.com/jp/"
+    And I have a label "Music"
+    When I login as a user
+    And I press cog button
+    And I fill in the form
+    And I submit memo label edit form
+    Then I should see my memo "https://www.spotify.com/jp/" has label
