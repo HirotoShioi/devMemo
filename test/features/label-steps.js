@@ -80,4 +80,14 @@ module.exports = function() {
     let label = getLabel(query);
     expect(label).to.equal(undefined);
   });
+
+  this.When(/^I search for label "([^"]*)"$/, function(labelName) {
+    client.pause(300);
+    waitAndSetValue("input[name=labelSearch]", labelName);
+  });
+
+  this.Then(/^I should see my label in the search result$/, function() {
+    let isLabelSearchResultVisible = client.waitForVisible(`#label-${this.label._id}`, 2000);
+    expect(isLabelSearchResultVisible).to.equal(true);
+  });
 };

@@ -27,3 +27,12 @@ Feature: Label
     And I press delete label
     And I submit the delete form
     Then I should see my label "Beethoven" deleted
+
+@watch
+  Scenario: Search Label
+    Given that I am a user
+    And I have a label "Beethoven"
+    When I login as a user
+    And I press "label-bar"
+    And I search for label "Beethoven"
+    Then I should see my label in the search result

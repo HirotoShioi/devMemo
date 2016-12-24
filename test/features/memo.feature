@@ -51,7 +51,7 @@ Feature:Memo
     And I press "search-bar"
     And I search for "https://www.youtube.com"
     Then I should have a search result of the memo
-@watch
+
   Scenario: Edit Memo label
     Given that I am a user
     And I have memo "https://www.spotify.com/jp/"
