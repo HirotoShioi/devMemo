@@ -81,7 +81,6 @@ Feature:Memo
     And I press "search-bar"
     Then I should see the search memo bar
 
-@watch
   Scenario: Stash memo
     Given that I am a user
     And I have memo "https://www.youtube.com"
@@ -89,3 +88,13 @@ Feature:Memo
     And I click memo
     And I press archive icon
     Then my memo should be in status "expired"
+  
+@watch
+  Scenario: Stash memo
+    Given that I am a user
+    And I have memo "https://www.youtube.com"
+    And the memo is expired
+    When I login as a user
+    And I click memo
+    And I click image
+    Then my memo should be in status "active"

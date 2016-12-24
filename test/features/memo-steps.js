@@ -171,8 +171,25 @@ module.exports = function() {
     expect(isSearchBarVisible).to.equal(true);
   });
 
+  this.When(/^I click image$/, function() {
+    waitAndClickButton(".card-image-url");
+    client.pause(1000);
+    const tabs = client.getTabIds();
+    client.switchTab(tabs[1]);
+    client.close(tabs[0]);
+  });
+
   this.When(/^I press archive icon$/, function() {
     client.pause(300);
     client.click(".archive-memo");
+  });
+
+  this.Given(/^the memo is expired$/, function() {
+    const today = Date.now();
+    const modifier = {
+      expiredAt: today,
+      status: "expired"
+    };
+    this.memo = updateMemo(this.memo._id, modifier);
   });
 };
