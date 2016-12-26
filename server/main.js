@@ -26,8 +26,30 @@ Meteor.startup(function() {
     { "service": "github" },
     {
       $set: {
-        "clientId": "d20c465d930da340c1d1",
-        "secret": "08c2c0d1ed41697fb3cf739c4297db8b3a00080b"
+        "clientId": Meteor.settings.private.oAuth.github.clientId,
+        "secret": Meteor.settings.private.oAuth.github.secret
+      }
+    },
+    { upsert: true }
+  );
+
+  ServiceConfiguration.configurations.update(
+    { "service": "facebook" },
+    {
+      $set: {
+        "appId": Meteor.settings.private.oAuth.facebook.appId,
+        "secret": Meteor.settings.private.oAuth.facebook.secret
+      }
+    },
+    { upsert: true }
+  );
+
+  ServiceConfiguration.configurations.update(
+    { "service": "google" },
+    {
+      $set: {
+        "clientId": Meteor.settings.private.oAuth.google.clientId,
+        "secret": Meteor.settings.private.oAuth.google.secret
       }
     },
     { upsert: true }

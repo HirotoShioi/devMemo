@@ -55,6 +55,8 @@ shell-server
 service-configuration
 accounts-ui
 accounts-github
+accounts-google
+accounts-facebook
 
 xolvio:backdoor
 xolvio:cleaner@0.3.1
