@@ -1,5 +1,5 @@
 <template name="labelBarItem">
-  <li class="collection-item search-item">
+  <li class="collection-item search-item label-item" id="label-{{label._id}}">
     <a href="{{pathFor route='label.detail' data=labelId}}"
       class="title label-bar-chip" style="background-color:{{label.color}}">
 	   <span class="label-text">{{label.name}}</span>
@@ -7,8 +7,8 @@
     </a>
     <div class="secondary-content">
       {{#if state.shouldOptionShow}}
-        <i class="fa fa-pencil option-icon"></i>
-        <i class="fa fa-trash option-icon"></i>
+        <i class="fa fa-pencil option-icon label-edit"></i>
+        <i class="fa fa-trash option-icon label-delete"></i>
       {{/if}}
     </div>
   </li>

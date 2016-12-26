@@ -1,9 +1,9 @@
 <template name="labelBar">
-	<div id="search-bar" class="search-nav-bar {{#if shouldSearchBarShow}}search-bar-show {{else}}search-bar-hidden{{/if}}">
+	<div id="label-search-bar" class="search-nav-bar {{#if shouldSearchBarShow}}search-bar-show {{else}}search-bar-hidden{{/if}}">
 		<div class="search-bar-header-wrapper">
 			<div class="search-input-title">
 				<span>{{i18n 'label.title'}}</span>
-				<a href="#" class="fa fa-plus-circle right"></a>
+				<a href="#" id="add-label" class="fa fa-plus-circle right"></a>
 			</div>
 			<input id="search" type="text" name="labelSearch" placeholder="{{i18n 'search.placeholder'}}...">
 		</div>

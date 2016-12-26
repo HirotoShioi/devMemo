@@ -74,7 +74,7 @@ Meteor.users.helpers({
 Meteor.methods({
   changeLanguage(doc) {
     check(doc, Object);
-    if (!this.userId) {
+    if (!Meteor.userId()) {
       throw new Meteor.Error('not authorized');
     }
     Meteor.users.update({_id: this.userId}, {$set: {'profile.language': doc.language}});

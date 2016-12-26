@@ -1,9 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { SyncedCron } from 'meteor/percolate:synced-cron';
 // collections
-import { Memos } from '../imports/api/memos.js';
-import { memoClicked } from '../imports/api/memoClicked.js';
-import { Label } from '../imports/api/label.js';
+import '../imports/api/memos.js';
+import '../imports/api/memoClicked.js';
+import '../imports/api/label.js';
 
 import '../imports/api/user.js';
 

@@ -16,13 +16,18 @@ TemplateController('AddMemoButton', {
   },
 
   events: {
-    'click .addMemoModal'() {
+    'click #addMemoModal'() {
       const recentlyChosenLabel = Meteor.user().profile.recentChosenLabel;
       let initialLabel;
-      if (! recentlyChosenLabel) {
-        initialLabel = Label.findOne()._id;
+      const labelCount = Label.find().count();
+      if (labelCount <= 0) {
+        initialLabel = null;
       } else {
-        initialLabel = recentlyChosenLabel;
+        if (! recentlyChosenLabel) {
+          initialLabel = Label.findOne()._id;
+        } else {
+          initialLabel = recentlyChosenLabel;
+        }
       }
       Session.set('addMemoSelectedLabelId', initialLabel);
       Session.set('showModal', true);
@@ -30,8 +35,8 @@ TemplateController('AddMemoButton', {
     },
   },
 
-  helpers:{
-    isDisabled(){
+  helpers: {
+    isDisabled() {
       return Session.get('isLoadingMemo');
     }
   }

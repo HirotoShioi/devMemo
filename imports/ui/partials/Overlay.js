@@ -8,6 +8,8 @@ TemplateController('Overlay', {
     shouldOverlayShow() {
       if (Session.get('isShrinkedSideNavShown') || Session.get('isSearchNavShown') || Session.get('isSearching') || Session.get('labelBarShow')) {
         return true;
+      } else if (!Meteor.userId()) {
+        return false;
       } else {
         return false;
       }

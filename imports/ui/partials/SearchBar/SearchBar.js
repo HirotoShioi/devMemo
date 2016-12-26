@@ -47,7 +47,7 @@ TemplateController('SearchBar', {
     },
   },
   events: {
-    'keyup [name="search"]'(event) {
+    'keyup [name="memoSearch"]'(event) {
       let value = event.target.value.trim();
       Session.set('searchQuery', value);
     },

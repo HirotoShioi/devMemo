@@ -1,5 +1,5 @@
 <Template name="Memo">
-  <div class="col l3 m6 s12 memo-card-wrapper">
+  <div id="card-{{_id}}" class="col l3 m6 s12 memo-card-wrapper">
     <div class="card hoverable">
             <div class="card-image center">
             <div class="expire-progress {{#if shouldExpireProgressbarShow}}show{{else}}hide{{/if}}-progress-bar">
@@ -34,10 +34,10 @@
                     {{name}}
                   </span>
                 {{else}}
-                  <p class="">{{url}}</p>
+                  <p class="truncate">{{url}}</p>
                 {{/if}}
                 </a>
-                    <a href="{{pathFor route='memo.detail'}}">{{i18n 'memo.more'}}</a>
+                    <a class="memo-detail" href="{{pathFor route='memo.detail'}}">{{i18n 'memo.more'}}</a>
                 {{#if hasLabel}}
                     <a href="{{pathFor route='label.detail'}}" class="chip edit-btn" style="background-color:{{label.color}}">
                        {{label.name}}
