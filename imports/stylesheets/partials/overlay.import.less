@@ -1,11 +1,11 @@
 
 .overlay{
 	position: fixed;
-    top: -100px;
+    overflow: auto;
+    top: 0;
     left: 0;
     bottom: 0;
     right: 0;
-    height: 125%;
     width: 100%;
     background: #000;
     display: block;
@@ -17,11 +17,11 @@
     &.sidebar-overlay{
         visibility: visible;
         z-index: 500;
-        opacity: 0.5;
+        background: rgba(0,0,0,0.5);
     }
     &.modal-overlay{
         visibility: visible;
         z-index: 1000;
-        opacity: 0.5;
+        background: rgba(0,0,0,0.5);
     }
 }

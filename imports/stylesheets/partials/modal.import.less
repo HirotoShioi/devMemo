@@ -1,7 +1,6 @@
 /* Modal */
 .modal{
 	width: 40%;
-	max-height: 80%;
     .row{
         margin-bottom: 0px;
     }
@@ -56,21 +55,18 @@
 }
 .modal-form-wrapper{
   z-index: 1500;
-  position: fixed;
-  margin: auto;
-  left:0;
+  position: absolute;
+  left:50%;
   right:0;
   padding: 0;
   transition:all 0.2s linear;
   display: block;
-  max-height: 80%;
-  opacity: 0;
+  opacity: 1;
   visibility: hidden;
-  top:0;
+  top:0px;
   &.show-modal{
     visibility: visible;
-    opacity: 1;
-    top: 10%;
+    top: 50px;
   }
 }
 .label-select{
@@ -82,12 +78,15 @@
 }
 .add-label{
   width: 330px;
+  margin-left: -165px;
 }
 .add-memo{
   width: 500px;
+  margin-left: -250px;
 }
 .delete-label{
   width: 370px;
+  margin-left: -185px;
   .delete-text{
     margin: 40px 0;
     font-size: 16px;
@@ -95,12 +94,15 @@
 }
 .edit-label{
   width: 370px;
+  margin-left: -185px;
 }
 .edit-memo-label{
   width: 370px;
+  margin-left: -185px;
 }
 .memo-detail-modal{
   width: 420px;
+  margin-left: -210px;
 }
 .form-title{
     font-size: 25px;
