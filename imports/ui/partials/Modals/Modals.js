@@ -13,6 +13,10 @@ import './Modals.html';
 
 TemplateController('Modals', {
 
+  state: {
+    canModalDismiss: true,
+  },
+
   helpers: {
     overlayShow() {
       if (Session.get('showModal')) {
@@ -32,8 +36,14 @@ TemplateController('Modals', {
       resetModalForm();
       return false;
     },
+    'mouseenter .modal-form-wrapper'() {
+      this.state.canModalDismiss = false;
+    },
+    'mouseleave .modal-form-wrapper'() {
+      this.state.canModalDismiss = true;
+    },
     'click .overlay'() {
-      resetModalForm();
+      if (this.state.canModalDismiss) resetModalForm();
     },
   },
 });
