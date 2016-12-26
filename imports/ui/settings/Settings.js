@@ -3,6 +3,8 @@ import { Session } from 'meteor/session';
 import { Meteor } from 'meteor/meteor';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { i18n } from 'meteor/anti:i18n';
+import { Router } from 'meteor/iron:router';
+
 import '../layouts/component/PageTitle';
 
 import './Settings.html';
@@ -16,6 +18,13 @@ TemplateController('Settings', {
   },
 
   helpers: {
+    needSettings() {
+      if (Meteor.user().username) {
+        return false;
+      } else {
+        return true;
+      }
+    },
     doc() {
       return Meteor.user();
     },
@@ -23,7 +32,7 @@ TemplateController('Settings', {
       const schema = new SimpleSchema({
         username: {
           type: String,
-          optional: true,
+          label: i18n("settings.username.label"),
         },
         language: {
           type: String,
@@ -60,6 +69,7 @@ const hooksObject = {
           message: i18n('settings.success'),
           style: "growl-top-right"
         });
+        Router.go('memo.home');
       }
     });
     this.done();

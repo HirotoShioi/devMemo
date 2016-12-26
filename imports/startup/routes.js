@@ -29,9 +29,10 @@ Router.onBeforeAction(function() {
 
   if (!Meteor.userId()) {
     Router.go('Landing');
-  } else {
-    this.next();
+  } else if (!Meteor.user().username) {
+    Router.go('settings');
   }
+  this.next();
 }, {
   only: ['memo.home', 'memo.detail', 'labeldetail', 'memo.gallery', 'settings']
 });

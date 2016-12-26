@@ -4,7 +4,7 @@
 			<li class="brand-logo">
 				<a href="{{pathFor route='memo.home'}}"><span>DevMemo</span></a>
 			</li>
-				{{#if currentUser}}
+				{{#if username}}
 				{{> AddMemoButton}}
 					<li class="{{isActiveRoute 'memo.home'}} link">
 						<a href="{{pathFor route='memo.home'}}" class="waves-effect {{isActiveRoute 'memo.home'}}">
@@ -30,6 +30,8 @@
 							{{i18n 'sideNav.labels'}}
 						</a>
 					</li>
+				{{/if}}
+				{{#if currentUser}}
 					<div class="auth-link">
 						{{#if state.showBottomNav}}
 							<li id="settings-link" class="bottom-nav link">
@@ -40,14 +42,21 @@
 							</li>
 						{{/if}}
 						<li id="user-link" class="bottom-nav">
-							<a class="waves-effect z-depth-1 user"><i class="fa fa-user" aria-hidden="true"></i>{{username}}</a>
+							<a class="waves-effect z-depth-1 user">
+								<i class="fa fa-user" aria-hidden="true"></i>
+								{{#if username}}
+									{{username}}
+								{{else}}
+									<span class="grey-text">Username</span>
+								{{/if}}
+							</a>
 						</li>
 					</div>
-		      	{{else}}
-		      		<li>
-		      			<a href="{{pathFor route='atSignIn'}}" class="waves-effect auth-link">{{i18n 'accounts.signIn'}}<i class="fa fa-sign-in"></i></a>
-		      		</li>
-		      	{{/if}}
+				{{else}}
+					<li>
+						<a href="{{pathFor route='atSignIn'}}" class="waves-effect auth-link">{{i18n 'accounts.signIn'}}<i class="fa fa-sign-in"></i></a>
+					</li>
+		    {{/if}}
 				<li class="{{isActiveRoute 'about'}} link">
 					<a href="{{pathFor route='about'}}" class="waves-effect">
 						<i class="fa fa-info"></i>

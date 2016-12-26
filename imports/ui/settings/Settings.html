@@ -5,6 +5,11 @@
         <h4 style="">{{i18n 'settings.title'}}</h4>
       </div>
     </div>
+    {{#if needSettings}}
+      <div class="setting-note-wrapper blue z-depth-1">
+        <p class="white-text">{{i18n 'settings.settingsNotify'}}</p>
+      </div>
+    {{/if}}
     <div class="main-content">
       <div class="settings-wrapper">
           <div class="row">
