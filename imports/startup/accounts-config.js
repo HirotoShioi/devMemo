@@ -1,5 +1,6 @@
 import { AccountsTemplates } from 'meteor/useraccounts:core';
 import { i18n } from 'meteor/anti:i18n';
+import { ServiceConfiguration } from 'meteor/service-configuration';
 
 let pwd = AccountsTemplates.removeField('password');
 AccountsTemplates.removeField('email');

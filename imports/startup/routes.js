@@ -99,6 +99,10 @@ AccountsTemplates.configureRoute('signIn', {
   name: "atSignIn",
   redirect: function() {
     let user = Meteor.user();
-    if (user) Router.go('memo.home');
+    if (!user.username) {
+      Router.go('settings');
+    } else if (user) {
+      Router.go('memo.home');
+    }
   }
 });

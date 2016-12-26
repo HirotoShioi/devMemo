@@ -21,4 +21,15 @@ SyncedCron.add({
 
 Meteor.startup(function() {
   SyncedCron.start();
+  // Add GitHub configuration entry
+  ServiceConfiguration.configurations.update(
+    { "service": "github" },
+    {
+      $set: {
+        "clientId": "d20c465d930da340c1d1",
+        "secret": "08c2c0d1ed41697fb3cf739c4297db8b3a00080b"
+      }
+    },
+    { upsert: true }
+  );
 });

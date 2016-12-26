@@ -17,10 +17,14 @@ TemplateController('Settings', {
 
   helpers: {
     doc() {
-      return Meteor.user().profile;
+      return Meteor.user();
     },
     schema() {
       const schema = new SimpleSchema({
+        username: {
+          type: String,
+          optional: true,
+        },
         language: {
           type: String,
           label: i18n("settings.language.label"),
@@ -38,4 +42,29 @@ TemplateController('Settings', {
       return schema;
     },
   }
+});
+const hooksObject = {
+  onSubmit: function(insertDoc) {
+    this.event.preventDefault();
+    Meteor.call('changeUserSettings', insertDoc, (err, result)=>{
+      if (err) {
+        console.log(err);
+        Bert.alert({
+          type: "danger",
+          message: i18n('settings.usernameExists'),
+          style: "growl-top-right"
+        });
+      } else {
+        Bert.alert({
+          type: "success",
+          message: i18n('settings.success'),
+          style: "growl-top-right"
+        });
+      }
+    });
+    this.done();
+  },
+};
+AutoForm.hooks({
+  accountForm: hooksObject
 });

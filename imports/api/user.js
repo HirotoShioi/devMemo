@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { check } from 'meteor/check';
+import { i18n } from 'meteor/anti:i18n';
 let Schema = {};
 
 Schema.userSettings = new SimpleSchema({
@@ -27,6 +28,7 @@ Schema.User = new SimpleSchema({
   username: {
     type: String,
     optional: true,
+    unique: true,
   },
   emails: {
     type: Array,
@@ -72,11 +74,17 @@ Meteor.users.helpers({
 });
 
 Meteor.methods({
-  changeLanguage(doc) {
+  changeUserSettings(doc) {
     check(doc, Object);
     if (!Meteor.userId()) {
       throw new Meteor.Error('not authorized');
     }
-    Meteor.users.update({_id: this.userId}, {$set: {'profile.language': doc.language}});
+    const hasSameUsername = Meteor.users.findOne({username: doc.username});
+    if (hasSameUsername) {
+      if (Meteor.userId() !== hasSameUsername._id) {
+        throw new Meteor.Error(i18n('settings.usernameExists'));
+      }
+    }
+    Meteor.users.update({_id: this.userId}, {$set: {username: doc.username, 'profile.language': doc.language}});
   }
 });

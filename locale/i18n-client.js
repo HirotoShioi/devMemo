@@ -58,6 +58,8 @@ i18n.map('en', {
       label: "Language Settings",
     },
     save: "Save settings",
+    success: "Profile saved",
+    usernameExists: "Username already exists"
   },
 
   sideNav: {
@@ -165,6 +167,8 @@ i18n.map('ja', {
       label: "言語設定",
     },
     save: "設定を保存する",
+    success: "設定は保存されました",
+    usernameExists: "そのユーザー名は既に使用されています"
   },
 
   sideNav: {

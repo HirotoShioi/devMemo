@@ -9,9 +9,10 @@
       <div class="settings-wrapper">
           <div class="row">
             <div class="col s12 m4 offset-m4">
-              {{#autoForm id='accountForm' doc=doc schema=schema type="method" meteormethod="changeLanguage"}}
-              {{> afQuickField name="language" firstOption=firstOption}}
-              <button type='submit' class="btn blue darken-3 btn-primary">{{i18n 'settings.save'}}</button>
+              {{#autoForm id='accountForm' doc=doc schema=schema}}
+                {{> afQuickField name="username"}}
+                {{> afQuickField name="language" defaultValue=doc.profile.language}}
+                <button type='submit' class="btn blue darken-3 btn-primary">{{i18n 'settings.save'}}</button>
               {{/autoForm}}
             </div>
             {{profile}}
