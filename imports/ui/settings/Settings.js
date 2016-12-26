@@ -19,10 +19,10 @@ TemplateController('Settings', {
 
   helpers: {
     needSettings() {
-      if (Meteor.user().username) {
-        return false;
+      if (Meteor.user()) {
+        return !Meteor.user().hasUserName();
       } else {
-        return true;
+        return false;
       }
     },
     doc() {

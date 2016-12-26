@@ -16,6 +16,7 @@ import '../ui/settings/Settings.js';
 
 import { Memos } from '../api/memos.js';
 import { Label } from '../api/memos.js';
+import '../api/user.js';
 import { Router } from 'meteor/iron:router';
 import { Meteor } from 'meteor/meteor';
 import { AccountsTemplates } from 'meteor/useraccounts:core';
@@ -26,11 +27,11 @@ Router.configure({
 });
 
 Router.onBeforeAction(function() {
-
   if (!Meteor.userId()) {
     Router.go('Landing');
-  } else if (!Meteor.user().username) {
-    Router.go('settings');
+  }
+  if (Meteor.user()) {
+    if(!Meteor.user().hasUserName()) Router.go('settings');
   }
   this.next();
 }, {

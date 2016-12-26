@@ -71,6 +71,9 @@ Meteor.users.helpers({
   lang() {
     return this.profile.language || 'ja';
   },
+  hasUserName() {
+    return (this.username) ? true : false;
+  }
 });
 
 Meteor.methods({
