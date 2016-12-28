@@ -11,6 +11,8 @@ import '../partials/Loading.js';
 import '../partials/Memo.js';
 import '../partials/List/SingleList.js';
 import '../partials/ViewOptions.js';
+import '../partials/emptyMemo.js';
+
 const session = new ReactiveDict('Gallery');
 
 TemplateController('Gallery', {
