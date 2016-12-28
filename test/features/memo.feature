@@ -94,6 +94,7 @@ Feature:Memo
     And I have memo "https://www.youtube.com"
     And the memo is expired
     When I login as a user
+    And I press "gallery"
     And I click memo
     And I click image
     Then my memo should be in status "active"
