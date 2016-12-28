@@ -49,7 +49,6 @@ TemplateController('labelBar', {
     },
     noLabel() {
       const labelCount = Label.find({}).count();
-      console.log(labelCount);
       if (labelCount === 0) {
         return true;
       } else {
@@ -57,7 +56,7 @@ TemplateController('labelBar', {
       }
     },
     noResult() {
-      if (this.state.labelResultCount === 0 && this.state.isSearching){
+      if (this.state.labelResultCount === 0 && this.state.isSearching) {
         return true;
       } else {
         return false;

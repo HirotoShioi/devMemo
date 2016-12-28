@@ -5,7 +5,9 @@
 				<span>{{i18n 'label.title'}}</span>
 				<a href="#" id="add-label" class="fa fa-plus-circle right"></a>
 			</div>
-			<input id="search" type="text" name="labelSearch" placeholder="{{i18n 'search.placeholder'}}...">
+			{{#if $eq noLabel false}}
+				<input id="search" class="label-search-input" type="text" name="labelSearch" placeholder="{{i18n 'search.placeholder'}}...">
+			{{/if}}
 		</div>
 		{{#if noLabel}}
 			<div class="not-found">
