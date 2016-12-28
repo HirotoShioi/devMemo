@@ -111,6 +111,13 @@ Meteor.methods({
     }
     return true;
   },
+  changeLanguage(doc) {
+    check(doc, Object);
+    if (!Meteor.userId()) {
+      throw new Meteor.Error('not authorized');
+    }
+    Meteor.users.update({_id: this.userId}, {$set: {'profile.language': doc.language}});
+  }
 });
 
 SimpleSchema.messages({

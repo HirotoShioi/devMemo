@@ -50,8 +50,3 @@ AutoForm.hooks({
   accountForm: hooksObject
 });
 
-SimpleSchema.messages({
-  "usernameExists-en": "Username already exists",
-  "usernameExists-ja": "そのユーザー名は既に使用されています"
-});
-

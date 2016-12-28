@@ -16,7 +16,7 @@ Feature: Login as user and visit other pages
     When I login as a user
     And I press "gallery"
     Then I should see gallery view
-
+@watch
   Scenario Outline: Change language
     Given that I am a user
     And my language is <Language>
