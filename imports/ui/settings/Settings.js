@@ -3,10 +3,13 @@ import { Session } from 'meteor/session';
 import { Meteor } from 'meteor/meteor';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { i18n } from 'meteor/anti:i18n';
+import { Router } from 'meteor/iron:router';
+
 import '../layouts/component/PageTitle';
 
 import './Settings.html';
 
+let Schema = {};
 TemplateController('Settings', {
   onCreated() {
     Session.set('Title', {name: i18n("settings.title")});
@@ -15,27 +18,35 @@ TemplateController('Settings', {
   onRendered() {
   },
 
+  onDestroyed() {
+    Session.set('isUsernameAvailable', null);
+  },
+
   helpers: {
-    doc() {
-      return Meteor.user().profile;
+    needSettings() {
+      if (Meteor.user()) {
+        return !Meteor.user().hasUserName();
+      } else {
+        return false;
+      }
     },
-    schema() {
-      const schema = new SimpleSchema({
-        language: {
-          type: String,
-          label: i18n("settings.language.label"),
-          optional: true,
-          allowedValues: ["ja", "en"],
-          autoform: {
-            type: "select",
-            options: [
-              {label: "日本語", value: "ja"},
-              {label: "English", value: "en"},
-            ]
-          },
-        }
-      });
-      return schema;
+    doc() {
+      return Meteor.user();
     },
   }
 });
+const hooksObject = {
+  onSuccess: function() {
+    Bert.alert({
+      type: "success",
+      message: i18n('settings.success'),
+      style: "growl-top-right"
+    });
+    Router.go('memo.home');
+  }
+};
+
+AutoForm.hooks({
+  accountForm: hooksObject
+});
+

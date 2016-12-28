@@ -54,10 +54,16 @@ i18n.map('en', {
 
   settings: {
     title: "Settings",
+    username: {
+      label: "Username",
+    },
     language: {
       label: "Language Settings",
     },
     save: "Save settings",
+    success: "Profile saved",
+    usernameExists: "Username already exists",
+    settingsNotify: "Please set your settings before using the application"
   },
 
   sideNav: {
@@ -161,10 +167,16 @@ i18n.map('ja', {
 
   settings: {
     title: "設定",
+    username: {
+      label: "ユーザーネーム",
+    },
     language: {
       label: "言語設定",
     },
     save: "設定を保存する",
+    success: "設定は保存されました",
+    usernameExists: "そのユーザー名は既に使用されています",
+    settingsNotify: "初期設定を行ってください"
   },
 
   sideNav: {

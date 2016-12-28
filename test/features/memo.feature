@@ -89,7 +89,6 @@ Feature:Memo
     And I press archive icon
     Then my memo should be in status "expired"
   
-@watch
   Scenario: Stash memo
     Given that I am a user
     And I have memo "https://www.youtube.com"

@@ -1,5 +1,6 @@
 import './routes.js';
 import './accounts-config.js';
+import '../api/user';
 import { i18n } from 'meteor/anti:i18n';
 import { TAPi18n } from 'meteor/tap:i18n';
 import { T9n } from 'meteor/softwarerero:accounts-t9n';

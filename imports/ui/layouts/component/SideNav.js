@@ -21,7 +21,11 @@ TemplateController('SideNav', {
 
   helpers: {
     username() {
-      return  Meteor.user().username;
+      if (Meteor.user()) {
+        return Meteor.user().username;
+      } else {
+        return false;
+      }
     }
   },
 

@@ -21,4 +21,37 @@ SyncedCron.add({
 
 Meteor.startup(function() {
   SyncedCron.start();
+  // Add GitHub configuration entry
+  ServiceConfiguration.configurations.update(
+    { "service": "github" },
+    {
+      $set: {
+        "clientId": Meteor.settings.private.oAuth.github.clientId,
+        "secret": Meteor.settings.private.oAuth.github.secret
+      }
+    },
+    { upsert: true }
+  );
+
+  ServiceConfiguration.configurations.update(
+    { "service": "facebook" },
+    {
+      $set: {
+        "appId": Meteor.settings.private.oAuth.facebook.appId,
+        "secret": Meteor.settings.private.oAuth.facebook.secret
+      }
+    },
+    { upsert: true }
+  );
+
+  ServiceConfiguration.configurations.update(
+    { "service": "google" },
+    {
+      $set: {
+        "clientId": Meteor.settings.private.oAuth.google.clientId,
+        "secret": Meteor.settings.private.oAuth.google.secret
+      }
+    },
+    { upsert: true }
+  );
 });

@@ -16,6 +16,7 @@ import '../ui/settings/Settings.js';
 
 import { Memos } from '../api/memos.js';
 import { Label } from '../api/memos.js';
+import '../api/user.js';
 import { Router } from 'meteor/iron:router';
 import { Meteor } from 'meteor/meteor';
 import { AccountsTemplates } from 'meteor/useraccounts:core';
@@ -26,12 +27,13 @@ Router.configure({
 });
 
 Router.onBeforeAction(function() {
-
   if (!Meteor.userId()) {
     Router.go('Landing');
-  } else {
-    this.next();
   }
+  if (Meteor.user()) {
+    if(!Meteor.user().hasUserName()) Router.go('settings');
+  }
+  this.next();
 }, {
   only: ['memo.home', 'memo.detail', 'labeldetail', 'memo.gallery', 'settings']
 });
@@ -99,6 +101,10 @@ AccountsTemplates.configureRoute('signIn', {
   name: "atSignIn",
   redirect: function() {
     let user = Meteor.user();
-    if (user) Router.go('memo.home');
+    if (!user.username) {
+      Router.go('settings');
+    } else if (user) {
+      Router.go('memo.home');
+    }
   }
 });
