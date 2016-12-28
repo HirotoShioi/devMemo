@@ -46,7 +46,8 @@ i18n.map('en', {
     searchResult: 'Search result',
     noResultsFound: 'No results found',
     more: 'more',
-    noLabel: `Add label to organize`
+    noLabel: `Add label to organize`,
+    noMemosFound: 'Add bookmark'
   },
 
   label: {
@@ -160,7 +161,8 @@ i18n.map('ja', {
     searchResult: '検索結果',
     noResultsFound: '見つかりませんでした',
     more: 'more',
-    noLabel: `ラベルを追加しましょう`
+    noLabel: `ラベルを追加しましょう`,
+    noMemosFound: 'ブックマークを追加しましょう'
   },
 
   label: {
