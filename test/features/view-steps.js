@@ -31,7 +31,9 @@ module.exports = function() {
   });
 
   this.After( function() {
-    server.call('changeLanguage', {language: "ja"});
+    server.execute(()=>{
+      Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.language': "ja"}});
+    });
     this.accounts.logout();
   });
 
@@ -71,20 +73,21 @@ module.exports = function() {
   });
 
   this.Given(/^my language is (.+)$/, function(language) {
-    let lang = {
-      language: "ja"
-    };
+    let selectLanguage = "ja";
+
     switch (language) {
       case "Japanese":
-        lang.language = "ja";
+        selectLanguage = "ja";
         break;
       case "English":
-        lang.language = "en";
+        selectLanguage = "en";
         break;
       default:
-        lang.language = "ja";
+        selectLanguage = "ja";
     }
-    server.call('changeLanguage', lang);
+    server.execute((givenLanguage)=>{
+      Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.language': givenLanguage}});
+    }, selectLanguage);
   });
 
   this.When(/^I go to settings$/, function() {
