@@ -9,12 +9,17 @@ import '../layouts/component/PageTitle';
 
 import './Settings.html';
 
+let Schema = {};
 TemplateController('Settings', {
   onCreated() {
     Session.set('Title', {name: i18n("settings.title")});
   },
 
   onRendered() {
+  },
+
+  onDestroyed() {
+    Session.set('isUsernameAvailable', null);
   },
 
   helpers: {
@@ -28,53 +33,25 @@ TemplateController('Settings', {
     doc() {
       return Meteor.user();
     },
-    schema() {
-      const schema = new SimpleSchema({
-        username: {
-          type: String,
-          label: i18n("settings.username.label"),
-        },
-        language: {
-          type: String,
-          label: i18n("settings.language.label"),
-          optional: true,
-          allowedValues: ["ja", "en"],
-          autoform: {
-            type: "select",
-            options: [
-              {label: "日本語", value: "ja"},
-              {label: "English", value: "en"},
-            ]
-          },
-        }
-      });
-      return schema;
-    },
   }
 });
 const hooksObject = {
-  onSubmit: function(insertDoc) {
-    this.event.preventDefault();
-    Meteor.call('changeUserSettings', insertDoc, (err, result)=>{
-      if (err) {
-        console.log(err);
-        Bert.alert({
-          type: "danger",
-          message: i18n('settings.usernameExists'),
-          style: "growl-top-right"
-        });
-      } else {
-        Bert.alert({
-          type: "success",
-          message: i18n('settings.success'),
-          style: "growl-top-right"
-        });
-        Router.go('memo.home');
-      }
+  onSuccess: function() {
+    Bert.alert({
+      type: "success",
+      message: i18n('settings.success'),
+      style: "growl-top-right"
     });
-    this.done();
-  },
+    Router.go('memo.home');
+  }
 };
+
 AutoForm.hooks({
   accountForm: hooksObject
 });
+
+SimpleSchema.messages({
+  "usernameExists-en": "Username already exists",
+  "usernameExists-ja": "そのユーザー名は既に使用されています"
+});
+

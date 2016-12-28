@@ -4,6 +4,12 @@ import { check } from 'meteor/check';
 import { i18n } from 'meteor/anti:i18n';
 let Schema = {};
 
+Meteor.users.allow({
+  update: function(userId) {
+    return !!userId;
+  }
+});
+
 Schema.userSettings = new SimpleSchema({
   memoExpireIn: {
     type: Number,
@@ -18,9 +24,17 @@ Schema.userSettings = new SimpleSchema({
   },
   language: {
     type: String,
+    label: function() {return i18n("settings.language.label");},
     optional: true,
     defaultValue: "ja",
     allowedValues: ["ja", "en"],
+    autoform: {
+      type: "select",
+      options: [
+        {label: "日本語", value: "ja"},
+        {label: "English", value: "en"},
+      ]
+    },
   }
 });
 
@@ -28,7 +42,18 @@ Schema.User = new SimpleSchema({
   username: {
     type: String,
     optional: true,
+    label: function() {return i18n("settings.username.label");},
     unique: true,
+    custom: function() {
+      if (Meteor.isClient && this.isSet) {
+        Meteor.call("isUsernameAvailable", this.value, function(error, result) {
+          if (!result) {
+            const errorText = `usernameExists-${i18n.getLanguage()}`;
+            Meteor.users.simpleSchema().namedContext("accountForm").addInvalidKeys([{name: "username", type: errorText}]);
+          }
+        });
+      }
+    }
   },
   emails: {
     type: Array,
@@ -77,17 +102,18 @@ Meteor.users.helpers({
 });
 
 Meteor.methods({
-  changeUserSettings(doc) {
-    check(doc, Object);
-    if (!Meteor.userId()) {
-      throw new Meteor.Error('not authorized');
-    }
-    const hasSameUsername = Meteor.users.findOne({username: doc.username});
+  isUsernameAvailable(username) {
+    const hasSameUsername = Meteor.users.findOne({username: username});
     if (hasSameUsername) {
       if (Meteor.userId() !== hasSameUsername._id) {
-        throw new Meteor.Error(i18n('settings.usernameExists'));
+        return false;
       }
     }
-    Meteor.users.update({_id: this.userId}, {$set: {username: doc.username, 'profile.language': doc.language}});
-  }
+    return true;
+  },
+});
+
+SimpleSchema.messages({
+  "usernameExists-en": "Username already exists",
+  "usernameExists-ja": "そのユーザー名は既に使用されています"
 });
