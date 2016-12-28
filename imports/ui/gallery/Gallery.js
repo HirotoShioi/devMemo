@@ -48,6 +48,14 @@ TemplateController('Gallery', {
       if (Session.get('hideExpired')) { query.status = "active"; }
       return Memos.find(query, {limit: this.session.get('resultsLimit'), sort: {createdAt: -1}});
     },
+    emptyMemos() {
+      const emptyMemoCount = 8;
+      emptyMemoAry = [];
+      for (i = 0; i < emptyMemoCount; i++) {
+        emptyMemoAry.push({});
+      }
+      return emptyMemoAry;
+    },
     hasMoreContent() {
       return this.session.get('resultsLimit') < this.session.get('resultsCount');
     },
