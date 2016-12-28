@@ -7,19 +7,26 @@
 			</div>
 			<input id="search" type="text" name="labelSearch" placeholder="{{i18n 'search.placeholder'}}...">
 		</div>
-		<div class="search-result">
-			{{#if $neq labelResultCount 0}}
-				<div class="search-result-title">
-					<span>{{i18n 'label.title'}}</span>
-					<a href="#" class="right toggle-label-show">more</a>
-				</div>
-				<ul class="collection">
-				{{#each label in searchedLabels}}
-					{{> labelBarItem label=label}}
-				{{/each}}
-				</ul>
-			{{/if}}
-		</div>
+		{{#if noLabel}}
+			<div class="not-found">
+				<i class="fa fa-tag"></i>
+				<h4>{{i18n 'search.noLabel'}}</h4>
+			</div>
+		{{else}}
+			<div class="search-result">
+				{{#if $neq labelResultCount 0}}
+					<div class="search-result-title">
+						<span>{{i18n 'label.title'}}</span>
+						<a href="#" class="right toggle-label-show">more</a>
+					</div>
+					<ul class="collection">
+					{{#each label in searchedLabels}}
+						{{> labelBarItem label=label}}
+					{{/each}}
+					</ul>
+				{{/if}}
+			</div>
+		{{/if}}
 		{{#if noResult}}
 			<div class="not-found">
 				<i class="fa fa-search"></i>

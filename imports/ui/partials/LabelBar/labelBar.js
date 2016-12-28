@@ -47,6 +47,15 @@ TemplateController('labelBar', {
         return false;
       }
     },
+    noLabel() {
+      const labelCount = Label.find({}).count();
+      console.log(labelCount);
+      if (labelCount === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     noResult() {
       if (this.state.labelResultCount === 0 && this.state.isSearching){
         return true;
