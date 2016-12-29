@@ -47,7 +47,7 @@ i18n.map('en', {
     noResultsFound: 'No results found',
     more: 'more',
     noLabel: `Add label to organize`,
-    noMemosFound: 'Add bookmark'
+    noMemosFound: 'Add bookmark for search'
   },
 
   label: {
@@ -134,7 +134,7 @@ i18n.map('ja', {
 
   home: {
     favorites: 'お気に入り',
-    recentlyViewed: '最近見た',
+    recentlyViewed: '最近',
     forYou: 'あなたへのおすすめ',
     noFavorite: 'お気に入りを追加しよう',
     noRecent: '最近追加したものはありません',
