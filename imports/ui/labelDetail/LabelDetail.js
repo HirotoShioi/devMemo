@@ -11,7 +11,7 @@ import '../partials/ViewOptions.js';
 import '../partials/Loading.js';
 import '../partials/InfiniteScroll/loadingIndicator.js';
 import '../layouts/component/PageTitle.js';
-
+import './ShareUserBar';
 const session = new ReactiveDict('LabelDetail');
 TemplateController('LabelDetail', {
   state: {
