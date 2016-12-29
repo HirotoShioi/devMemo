@@ -106,3 +106,18 @@ Feature:Memo
     And I press "search-bar"
     Then I should get a indicator about no memos
     And the memo search bar is hidden
+
+@watch
+  Scenario: Empty memo at gallery
+    Given that I am a user
+    And I have no memos
+    When I login as a user
+    And I press "gallery"
+    Then I should see empty memos
+
+@watch
+  Scenario: Empty memo at home view
+    Given that I am a user
+    And I have no memos
+    When I login as a user
+    Then I should see empty memos

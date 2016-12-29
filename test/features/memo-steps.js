@@ -210,4 +210,8 @@ module.exports = function() {
     });
   });
 
+  this.Then(/^I should see empty memos$/, function() {
+    let isEmptyMemoVisible = client.waitForVisible(".empty-card", 2000);
+    expect(isEmptyMemoVisible).to.equal(true);
+  });
 };
