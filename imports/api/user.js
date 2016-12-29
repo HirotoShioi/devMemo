@@ -98,6 +98,9 @@ Meteor.users.helpers({
   },
   hasUserName() {
     return (this.username) ? true : false;
+  },
+  userName() {
+    return this.username;
   }
 });
 

@@ -32,3 +32,8 @@ Meteor.publish('memos', function(search) {
   }
   return Memos.find(query, projection);
 });
+
+// User publication
+Meteor.publish('allUser', function() {
+  return Meteor.users.find({}, {fields: {username: 1}});
+});

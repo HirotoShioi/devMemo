@@ -16,6 +16,7 @@ TemplateController('SideNav', {
     const self = this;
     self.autorun(()=>{
       self.subscribe('memos');
+      self.subscribe('allUser');
     });
   },
 
