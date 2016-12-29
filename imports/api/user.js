@@ -106,6 +106,7 @@ Meteor.users.helpers({
 
 Meteor.methods({
   isUsernameAvailable(username) {
+    check(username, String);
     const hasSameUsername = Meteor.users.findOne({username: username});
     if (hasSameUsername) {
       if (Meteor.userId() !== hasSameUsername._id) {
