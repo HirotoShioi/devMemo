@@ -20,6 +20,19 @@ Label.allow({
 
 let Schemas = {};
 
+Schemas.sharedWith  = new SimpleSchema({
+  userId: {
+    type: String,
+    optional: true,
+  },
+  sharedAt: {
+    type: Date,
+    autoValue: function() {
+      return new Date();
+    }
+  }
+});
+
 Schemas.label = new SimpleSchema({
   name: {
     type: String,
@@ -62,6 +75,10 @@ Schemas.label = new SimpleSchema({
       return Meteor.user().username;
     },
   },
+  sharedWith: {
+    type: [Schemas.sharedWith],
+    optional: true,
+  }
 });
 
 Label.attachSchema(Schemas.label);
