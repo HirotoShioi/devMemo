@@ -11,6 +11,8 @@ import '../partials/Loading.js';
 import '../partials/Memo.js';
 import '../partials/List/SingleList.js';
 import '../partials/ViewOptions.js';
+import '../partials/emptyMemo.js';
+
 const session = new ReactiveDict('Gallery');
 
 TemplateController('Gallery', {
@@ -45,6 +47,14 @@ TemplateController('Gallery', {
       let query = {};
       if (Session.get('hideExpired')) { query.status = "active"; }
       return Memos.find(query, {limit: this.session.get('resultsLimit'), sort: {createdAt: -1}});
+    },
+    emptyMemos() {
+      const emptyMemoCount = 8;
+      emptyMemoAry = [];
+      for (i = 0; i < emptyMemoCount; i++) {
+        emptyMemoAry.push({});
+      }
+      return emptyMemoAry;
     },
     hasMoreContent() {
       return this.session.get('resultsLimit') < this.session.get('resultsCount');

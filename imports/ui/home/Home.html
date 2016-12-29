@@ -38,7 +38,9 @@
 						{{#each recentMemos}}
 							{{> Memo}}
 						{{else}}
-							<span class="grey-text">{{i18n 'home.noRecent'}}</span>
+							{{#each noRecentMemos}}
+								{{> emptyMemo}}
+							{{/each}}
 						{{/each}}
 						{{#if $gt state.recentCount 8}}
 							<div class="col s12 center">
@@ -55,6 +57,7 @@
 						{{/if}}
 					</div>
 				</li>
+				{{#if $gt state.recommendMemos 0}}
 				<li class="collection-item">
 					<span class="title">{{i18n 'home.forYou'}}
 						<span class="chip" style="background-color:{{recommendLabel.color}};">{{recommendLabel.name}}</span>
@@ -67,6 +70,7 @@
 						{{/each}}
 					</div>
 				</li>
+				{{/if}}
 			</ul>
 		</div>
 		{{else}}

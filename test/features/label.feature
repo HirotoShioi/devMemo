@@ -42,3 +42,11 @@ Feature: Label
     And I press "label-bar"
     And I search for label "Beethoven"
     Then I should see my label in the search result
+
+  Scenario: No label indication
+    Given that I am a user
+    And I have no labels
+    When I login as a user
+    And I press "label-bar"
+    Then I should get a indicator about no labels
+    And the label search bar is hidden

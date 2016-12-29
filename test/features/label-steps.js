@@ -95,4 +95,21 @@ module.exports = function() {
     let isLabelSearchResultVisible = client.waitForVisible(`#label-${this.label._id}`, 2000);
     expect(isLabelSearchResultVisible).to.equal(true);
   });
+
+  this.Given(/^I have no labels$/, function() {
+    server.execute(()=>{
+      const { Label } = require('/imports/api/label.js');
+      return Label.remove({owner: Meteor.userId() });
+    });
+  });
+
+  this.Then(/^I should get a indicator about no labels$/, function() {
+    let isNoLabelVisible = client.waitForVisible("#no-label", 2000);
+    expect(isNoLabelVisible).to.equal(true);
+  });
+
+  this.Then(/^the label search bar is hidden$/, function() {
+    let isLabelSearchInputVisible = client.isVisible(".label-search-input", 2000);
+    expect(isLabelSearchInputVisible).to.equal(false);
+  });
 };

@@ -192,4 +192,26 @@ module.exports = function() {
     };
     this.memo = updateMemo(this.memo._id, modifier);
   });
+
+  this.Then(/^I should get a indicator about no memos$/, function() {
+    let isNoMemoVisible = client.waitForVisible("#no-memo", 2000);
+    expect(isNoMemoVisible).to.equal(true);
+  });
+
+  this.Then(/^the memo search bar is hidden$/, function() {
+    let isMemoSearchInputVisible = client.isVisible(".memo-search-input", 2000);
+    expect(isMemoSearchInputVisible).to.equal(false);
+  });
+
+  this.Given(/^I have no memos$/, function() {
+    server.execute(()=>{
+      const { Memos } = require('/imports/api/memos.js');
+      return Memos.remove({owner: Meteor.userId() });
+    });
+  });
+
+  this.Then(/^I should see empty memos$/, function() {
+    let isEmptyMemoVisible = client.waitForVisible(".empty-card", 2000);
+    expect(isEmptyMemoVisible).to.equal(true);
+  });
 };

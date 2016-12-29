@@ -45,6 +45,14 @@ TemplateController('SearchBar', {
         return false;
       }
     },
+    noMemos() {
+      const memoCount = Memos.find({}).count();
+      if (memoCount === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   },
   events: {
     'keyup [name="memoSearch"]'(event) {

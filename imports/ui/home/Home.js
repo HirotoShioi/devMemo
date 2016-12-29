@@ -7,6 +7,7 @@ import { i18n } from 'meteor/anti:i18n';
 import { Label } from '../../api/label.js';
 import '../partials/Loading.js';
 import '../partials/Memo.js';
+import '../partials/emptyMemo.js';
 
 import './Home.html';
 
@@ -16,6 +17,7 @@ TemplateController('Home', {
   state: {
     recentCount: 0,
     favoriteCount: 0,
+    recommendCount: 0,
   },
 
   private: {
@@ -57,6 +59,14 @@ TemplateController('Home', {
       };
       this.state.recentCount = Memos.find(query).count();
       return Memos.find(query, {limit: this.session.get('recentResultsLimit'), sort: {clickedAt: -1}});
+    },
+    noRecentMemos() {
+      const emptyMemoCount = 4;
+      emptyMemoAry = [];
+      for (i = 0; i < emptyMemoCount; i++) {
+        emptyMemoAry.push({});
+      }
+      return emptyMemoAry;
     },
     recommendLabel() {
       if (!this.state.recommendLabels) {

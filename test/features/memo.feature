@@ -89,11 +89,35 @@ Feature:Memo
     And I press archive icon
     Then my memo should be in status "expired"
   
-  Scenario: Stash memo
+  Scenario: Reactivate memo
     Given that I am a user
     And I have memo "https://www.youtube.com"
     And the memo is expired
     When I login as a user
+    And I press "gallery"
     And I click memo
     And I click image
     Then my memo should be in status "active"
+
+  Scenario: No memo indication at memo search bar
+    Given that I am a user
+    And I have no memos
+    When I login as a user
+    And I press "search-bar"
+    Then I should get a indicator about no memos
+    And the memo search bar is hidden
+
+@watch
+  Scenario: Empty memo at gallery
+    Given that I am a user
+    And I have no memos
+    When I login as a user
+    And I press "gallery"
+    Then I should see empty memos
+
+@watch
+  Scenario: Empty memo at home view
+    Given that I am a user
+    And I have no memos
+    When I login as a user
+    Then I should see empty memos

@@ -26,7 +26,9 @@
                         {{#each memos}}
                             {{> Memo}}
                         {{else}}
-                            <h4 class="grey-text">{{i18n 'gallery.noMemoFound'}}</h4>
+                            {{#each emptyMemos}}
+                                {{> emptyMemo}}
+                            {{/each}}
                         {{/each}}
                     </div>
                 {{/if}}

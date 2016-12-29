@@ -2,8 +2,16 @@
 	<div id="search-bar" class="search-nav-bar {{#if shouldSearchBarShow}}search-bar-show {{else}}search-bar-hidden{{/if}}">
 		<div class="search-bar-header-wrapper">
 			<div class="search-input-title">{{i18n 'search.title'}}</div>
-			<input id="search" type="text" name="memoSearch" placeholder="{{i18n 'search.placeholder'}}..." autocomplete="off">
+			{{#if $eq noMemos false}}
+			<input id="search" class="memo-search-input" type="text" name="memoSearch" placeholder="{{i18n 'search.placeholder'}}..." autocomplete="off">
+			{{/if}}
 		</div>
+		{{#if noMemos}}
+			<div id="no-memo" class="not-found">
+				<i class="fa fa-sticky-note"></i>
+				<h4>{{i18n 'search.noMemosFound'}}</h4>
+			</div>
+		{{else}}
 		<div class="search-result">
 			<ul class="collection">
 			<div class="search-result-title">
@@ -15,6 +23,7 @@
 			{{/each}}
 			</ul>
 		</div>
+		{{/if}}
 		{{#if noResult}}
 			<div class="not-found">
 				<i class="fa fa-search"></i>
