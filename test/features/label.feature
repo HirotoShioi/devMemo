@@ -42,7 +42,7 @@ Feature: Label
     And I press "label-bar"
     And I search for label "Beethoven"
     Then I should see my label in the search result
-@watch
+
   Scenario: No label indication
     Given that I am a user
     And I have no labels

@@ -3,11 +3,11 @@
 		<div class="search-bar-header-wrapper">
 			<div class="search-input-title">{{i18n 'search.title'}}</div>
 			{{#if $eq noMemos false}}
-			<input id="search" type="text" name="memoSearch" placeholder="{{i18n 'search.placeholder'}}..." autocomplete="off">
+			<input id="search" class="memo-search-input" type="text" name="memoSearch" placeholder="{{i18n 'search.placeholder'}}..." autocomplete="off">
 			{{/if}}
 		</div>
 		{{#if noMemos}}
-			<div class="not-found">
+			<div id="no-memo" class="not-found">
 				<i class="fa fa-sticky-note"></i>
 				<h4>{{i18n 'search.noMemosFound'}}</h4>
 			</div>
