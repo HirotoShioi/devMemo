@@ -2,6 +2,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
 import { moment } from 'meteor/momentjs:moment';
+import { Label } from './label.js';
 
 export const labelShare = new Mongo.Collection('labelShare');
 let Schema = {};

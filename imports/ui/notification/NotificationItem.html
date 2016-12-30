@@ -13,17 +13,17 @@
       </p>
       <div class="secondary-content">
         {{#if isRequestedUser}}
-          <button class="btn blue accept-share">Accept</button>
+          <button class="btn green accept-share">Accept</button>
           <button class="btn red deny-share">Deny</button>
         {{else}}
           {{#if isAccepted}}
-            <span class="notify-status-indicator green">Accepted</span>
+            <span class="notify-status-indicator green lighten-1">Accepted</span>
           {{/if}}
           {{#if isDenied}}
-            <span class="notify-status-indicator red">Denied</span>
+            <span class="notify-status-indicator red lighten-1">Denied</span>
           {{/if}}
           {{#if isPending}}
-            <span class="notify-status-indicator yellow">Pending</span>
+            <span class="notify-status-indicator amber lighten-1">Pending</span>
           {{/if}}
         {{/if}}
       </div>

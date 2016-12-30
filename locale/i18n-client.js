@@ -124,6 +124,7 @@ i18n.map('en', {
     requestAlreadySent: "Request already sent",
     userDoesNotExist: "User does not exist",
     notAuthorized: "Not authorized",
+    unknownError: '不明なエラーです',
   },
 });
 
@@ -251,6 +252,7 @@ i18n.map('ja', {
   errors: {
     requestAlreadySent: "リクエスト済みです",
     userDoesNotExist: "ユーザーは存在しません",
-    notAuthorized: "権限がありません"
+    notAuthorized: "権限がありません",
+    unknownError: '不明なエラーです',
   },
 });

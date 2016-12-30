@@ -36,11 +36,19 @@ const hooksObject = {
     Meteor.call('requestUser', requestObj, (err, result)=>{
       resetModalForm();
       if (err) {
-        Bert.alert({
-          type: "warning",
-          message: i18n(`errors.${err.error}`),
-          style: "growl-top-right"
-        });
+        if (err.error === 'notAuthorized' || err.error === 'userDoesNotExist' ||  err.error === 'requestAlreadySent') {
+          Bert.alert({
+            type: "warning",
+            message: i18n(`errors.${err.error}`),
+            style: "growl-top-right"
+          });
+        } else {
+          Bert.alert({
+            type: "danger",
+            message: i18n(`errors.unknownError`),
+            style: "growl-top-right"
+          });
+        }
       }
       if (result) {
         Bert.alert({
