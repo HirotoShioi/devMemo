@@ -61,9 +61,12 @@ labelShare.helpers({
 Meteor.methods({
   requestUser(doc) {
     check(doc, Object);
-    if (!this.userId) {
+
+    const sharedLabel = Label.findOne({_id: doc.labelId});
+    if (this.userId !== sharedLabel.owner) {
       throw new Meteor.Error('notAuthorized');
     }
+
     const requestedUser = Meteor.users.findOne({username: doc.username});
     if (!requestedUser) {
       throw new Meteor.Error("userDoesNotExist");
