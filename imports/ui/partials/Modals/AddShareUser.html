@@ -1,0 +1,9 @@
+<template name="AddShareUser">
+	<p class="form-title">{{i18n 'forms.addSharedUser.title'}}</p>
+	<div class="modal-edit-wrapper">
+		{{#autoForm schema=schema id="addShareUser" autocomplete="off"}}
+			{{> afQuickField name="username"}}
+			<input type="submit" class="btn blue darken-3">
+		{{/autoForm}}
+	</div>
+</template>

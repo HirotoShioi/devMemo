@@ -40,5 +40,12 @@
 				{{> MemoDetailModal}}
 			</div>
 		</div>
+
+		<div class="{{#if $eq formType 'AddShareUser'}}show-modal{{/if}} modal-form-wrapper edit-label">
+			<div class="card-panel z-depth-2 modal-card">
+				<i class="fa fa-close right"></i>
+				{{> AddShareUser}}
+			</div>
+		</div>
 	</div>
 </template>

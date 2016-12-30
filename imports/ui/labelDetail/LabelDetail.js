@@ -28,8 +28,8 @@ TemplateController('LabelDetail', {
     this.session.setDefault('resultsCount', 0);
     const self = this;
     self.autorun(()=>{
-      self.subscribe('label');
-      self.subscribe('memos');
+      self.subscribe('label');// change to share publication!!
+      self.subscribe('memos');// change to share publication!!
       let query = { labelId: self.data._id };
       if (Session.get('hideExpired')) {
         query.status = "active";
@@ -44,6 +44,9 @@ TemplateController('LabelDetail', {
   },
 
   helpers: {
+    labelId() {
+      return this.data._id;
+    },
     memos() {
       Session.set('Title', Label.findOne({_id: this.data._id}, {fields: {'name': 1}}));
       let query = {

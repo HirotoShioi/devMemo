@@ -107,6 +107,10 @@ i18n.map('en', {
       messages: 'Are you sure you want to delete',
       submit: 'Delete',
     },
+
+    addSharedUser: {
+      title: 'Add User',
+    }
   },
 
   memo: {
@@ -222,6 +226,10 @@ i18n.map('ja', {
       messages: 'このラベルを削除してもいいですか',
       submit: '削除',
     },
+
+    addSharedUser: {
+      title: 'ユーザーと共有する',
+    }
   },
 
   memo: {

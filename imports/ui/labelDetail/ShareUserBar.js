@@ -12,5 +12,13 @@ TemplateController('ShareUserBar', {
     sharedUser() {
 
     },
+  },
+
+  events: {
+    'click .add-share-user'() {
+      Session.set('showModal', true);
+      Session.set('formType', 'AddShareUser');
+      Session.set('sharedLabelId', this.data.labelId);
+    }
   }
 });
