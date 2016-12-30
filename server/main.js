@@ -4,7 +4,7 @@ import { SyncedCron } from 'meteor/percolate:synced-cron';
 import '../imports/api/memos.js';
 import '../imports/api/memoClicked.js';
 import '../imports/api/label.js';
-
+import '../imports/api/labelShare.js';
 import '../imports/api/user.js';
 
 // jobs

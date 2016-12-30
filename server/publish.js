@@ -15,11 +15,9 @@ Meteor.publish('memoWithLabels', function(id) {
 });
 
 // label publication
-/*
 Meteor.publish('label', function() {
   return Label.find({owner: this.userId});
 });
-*/
 // Memo publication with query options
 Meteor.publish('memos', function(search) {
   check( search, Match.OneOf( String, null, undefined ) );
@@ -37,41 +35,4 @@ Meteor.publish('memos', function(search) {
 // User publication
 Meteor.publish('allUser', function() {
   return Meteor.users.find({}, {fields: {username: 1}});
-});
-
-// Server
-Meteor.publish('label', function() {
-
-  // Transform function
-  let transform = function(doc) {
-    usersAry = doc.sharedWith;
-    if (usersAry) {
-      usersAry.forEach((user)=>{
-        const findUser = Meteor.users.findOne({_id: user.userId}, {fields: {username: 1}});
-        user.username = findUser.username;
-      });
-    }
-    return doc;
-  };
-
-  const self = this;
-
-  let observer = Label.find({owner: this.userId}).observe({
-    added: function(document) {
-      self.added('Label', document._id, transform(document));
-    },
-    changed: function(newDocument, oldDocument) {
-      self.changed('Label', newDocument._id, transform(newDocument));
-    },
-    removed: function(oldDocument) {
-      self.removed('Label', oldDocument._id);
-    }
-  });
-
-  self.onStop(function() {
-    observer.stop();
-  });
-
-  self.ready();
-
 });

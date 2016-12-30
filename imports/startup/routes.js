@@ -17,10 +17,10 @@ import '../ui/settings/Settings.js';
 import { Memos } from '../api/memos.js';
 import { Label } from '../api/memos.js';
 import '../api/user.js';
+import '../api/labelShare.js';
 import { Router } from 'meteor/iron:router';
 import { Meteor } from 'meteor/meteor';
 import { AccountsTemplates } from 'meteor/useraccounts:core';
-import '../api/user.js';
 Router.configure({
   layoutTemplate: 'MainLayout',
   loadingTemplate: 'Loading',
@@ -31,7 +31,7 @@ Router.onBeforeAction(function() {
     Router.go('Landing');
   }
   if (Meteor.user()) {
-    if(!Meteor.user().hasUserName()) Router.go('settings');
+    if (!Meteor.user().hasUserName()) Router.go('settings');
   }
   this.next();
 }, {
