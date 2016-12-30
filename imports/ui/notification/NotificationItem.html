@@ -11,9 +11,21 @@
         <br>
         <span class="grey-text">Hey! Join my channel</span>
       </p>
-      <a href="" class="secondary-content">
-        <button class="btn blue accept-share">Accept</button>
-        <button class="btn red deny-share">Deny</button>
-      </a>
+      <div class="secondary-content">
+        {{#if isRequestedUser}}
+          <button class="btn blue accept-share">Accept</button>
+          <button class="btn red deny-share">Deny</button>
+        {{else}}
+          {{#if isAccepted}}
+            <span class="notify-status-indicator green">Accepted</span>
+          {{/if}}
+          {{#if isDenied}}
+            <span class="notify-status-indicator red">Denied</span>
+          {{/if}}
+          {{#if isPending}}
+            <span class="notify-status-indicator yellow">Pending</span>
+          {{/if}}
+        {{/if}}
+      </div>
   </li>
 </template>

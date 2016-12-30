@@ -12,18 +12,26 @@ TemplateController('NotificationItem', {
   },
 
   helpers: {
-    username() {
-      const user = Meteor.users.findOne({_id: this.data.notification.sharedFrom});
-      return user.username;
+    isRequestedUser() {
+      return (Meteor.userId() === this.data.notification.sharedTo);
     },
+    isAccepted() {
+      return (this.data.notification.status === "accepted");
+    },
+    isDenied() {
+      return (this.data.notification.status === "denied");
+    },
+    isPending() {
+      return (this.data.notification.status === "pending");
+    }
   },
 
   events: {
     'click .accept-share'() {
-      Meteor.call('acceptShare', this.state.notification._id);
+      Meteor.call('acceptShare', this.data.notification._id);
     },
     'click .deny-share'() {
-      Meteor.call('denyShare', this.state.notification._id);
+      Meteor.call('denyShare', this.data.notification._id);
     },
   }
 });
