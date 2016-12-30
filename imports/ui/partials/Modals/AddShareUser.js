@@ -1,7 +1,11 @@
 import { TemplateController } from 'meteor/space:template-controller';
 import { AutoForm } from 'meteor/aldeed:autoform';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { i18n } from 'meteor/anti:i18n';
+import { Bert } from 'meteor/themeteorchef:bert';
+
 import { resetModalForm } from './modalHelper.js';
+
 import './AddShareUser.html';
 
 TemplateController('AddShareUser', {
@@ -13,7 +17,8 @@ TemplateController('AddShareUser', {
       const schema = new SimpleSchema({
         username: {
           type: String,
-          label: function() {return i18n('collection.label.name');},
+          max: 15,
+          label: function() {return i18n('collection.users.label');},
         },
       });
       return schema;
@@ -31,9 +36,18 @@ const hooksObject = {
     Meteor.call('requestUser', requestObj, (err, result)=>{
       resetModalForm();
       if (err) {
-        return;
+        Bert.alert({
+          type: "warning",
+          message: i18n(`errors.${err.error}`),
+          style: "growl-top-right"
+        });
       }
       if (result) {
+        Bert.alert({
+          type: "success",
+          message: i18n('forms.addShareUser.success'),
+          style: "growl-top-right"
+        });
         this.resetForm();
       }
     });

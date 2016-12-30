@@ -1,7 +1,7 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { check } from 'meteor/check';
-import { i18n } from 'meteor/anti:i18n';
 import { Meteor } from 'meteor/meteor';
+import { moment } from 'meteor/momentjs:moment';
 
 export const labelShare = new Mongo.Collection('labelShare');
 let Schema = {};
@@ -31,6 +31,10 @@ Schema.labelShare = new SimpleSchema({
     type: String,
     optional: true,
   },
+  requestNotified: {
+    type: Boolean,
+    defaultValue: false
+  },
   status: {
     type: String,
     optional: true,
@@ -58,11 +62,11 @@ Meteor.methods({
   requestUser(doc) {
     check(doc, Object);
     if (!this.userId) {
-      throw new Meteor.Error('not authorized');
+      throw new Meteor.Error('notAuthorized');
     }
     const requestedUser = Meteor.users.findOne({username: doc.username});
     if (!requestedUser) {
-      return false;
+      throw new Meteor.Error("userDoesNotExist");
     }
     // if there was already a same request, reject it
     const isAlreadyRequested = labelShare.find({
@@ -71,7 +75,7 @@ Meteor.methods({
       labelId: doc.labelId}).count();
 
     if (isAlreadyRequested > 0) {
-      return false;
+      throw new Meteor.Error("requestAlreadySent");
     }
 
     labelShare.insert({

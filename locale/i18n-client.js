@@ -108,14 +108,21 @@ i18n.map('en', {
       submit: 'Delete',
     },
 
-    addSharedUser: {
+    addShareUser: {
       title: 'Add User',
+      success: 'Request successfuly sent'
     }
   },
 
   memo: {
     more: 'more',
-  }
+  },
+
+  errors: {
+    requestAlreadySent: "Request already sent",
+    userDoesNotExist: "User does not exist",
+    notAuthorized: "Not authorized",
+  },
 });
 
 i18n.map('ja', {
@@ -227,12 +234,19 @@ i18n.map('ja', {
       submit: '削除',
     },
 
-    addSharedUser: {
+    addShareUser: {
       title: 'ユーザーと共有する',
+      success: 'リクエストを送信しました',
     }
   },
 
   memo: {
     more: 'more',
-  }
+  },
+
+  errors: {
+    requestAlreadySent: "リクエスト済みです",
+    userDoesNotExist: "ユーザーは存在しません",
+    notAuthorized: "権限がありません"
+  },
 });

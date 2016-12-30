@@ -7,6 +7,9 @@ i18n.map('en', {
       label: 'Label',
       description: 'Description',
       name: 'Name',
+    },
+    users: {
+      label: "username",
     }
   }
 });
@@ -20,6 +23,9 @@ i18n.map('ja', {
       label: 'ラベル',
       description: '詳細',
       name: 'タイトル',
+    },
+    users: {
+      label: "ユーザー名",
     }
   }
 });

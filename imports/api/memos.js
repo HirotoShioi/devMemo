@@ -143,7 +143,7 @@ Meteor.methods({
     const memo = Memos.findOne(id);
 
     if (this.userId !== memo.owner) {
-      throw new Meteor.Error('not authorized');
+      throw new Meteor.Error('notAuthorized');
     }
 
     Memos.remove(id);
@@ -162,7 +162,7 @@ Meteor.methods({
     check(doc, Object);
 
     if (this.userId !== doc.owner) {
-      throw new Meteor.Error("not authorized");
+      throw new Meteor.Error("notAuthorized");
     }
 
     if (!doc.clicked) {
@@ -177,7 +177,7 @@ Meteor.methods({
   addMemo(doc) {
     check(doc, Object);
     if (!this.userId) {
-      throw new Meteor.Error('not authorized');
+      throw new Meteor.Error('notAuthorized');
     }
 
     if (Meteor.isServer) {
@@ -258,7 +258,7 @@ Meteor.methods({
     check(doc, Object);
 
     if (this.userId !== doc.owner) {
-      throw new Meteor.Error("not authorized");
+      throw new Meteor.Error("notAuthorized");
     }
     const today = moment().toDate();
     Memos.update({_id: doc._id}, {$set: {expiredAt: today, status: "expired", isFavorited: false}});
