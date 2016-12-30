@@ -17,6 +17,7 @@ TemplateController('SideNav', {
     self.autorun(()=>{
       self.subscribe('memos');
       self.subscribe('allUser');
+      self.subscribe('labelShare');
     });
   },
 
