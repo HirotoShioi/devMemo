@@ -5,9 +5,19 @@
                 <h4 style="">{{i18n 'pageTitle.notification'}}</h4>
             </div>
         </div>
-		<div id="memo-detail-content" class="main-content">
+		<div class="main-content">
 		{{#if Template.subscriptionsReady}}
-      notification
+      <div id="notify-content">
+        <div class="row">
+          <div class="col s10 offset-s1">
+            <ul class="collection">
+              {{#each notification in notifications}}
+                {{> NotificationItem notification=notification}}
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      </div>
 		{{else}}
 			<div class="loading-wrapper valign-wrapper">
 				<div class="center valign">

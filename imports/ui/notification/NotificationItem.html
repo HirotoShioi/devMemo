@@ -1,0 +1,19 @@
+<template name="NotificationItem">
+  <li class="collection-item avatar">
+      <i class="fa fa-share-alt circle blue lighten-3"></i>
+      <span class="title">Share Label</span>
+      <p>
+        <strong>{{notification.username}}</strong> 
+        has requested you to Share
+        <span class="chip" style="background-color: {{notification.labelColor}}">
+          {{notification.labelName}}
+        </span>
+        <br>
+        <span class="grey-text">Hey! Join my channel</span>
+      </p>
+      <a href="" class="secondary-content">
+        <button class="btn blue">Accept</button>
+        <button class="btn red">Deny</button>
+      </a>
+  </li>
+</template>

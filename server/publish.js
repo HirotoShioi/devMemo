@@ -34,7 +34,7 @@ Meteor.publish('memos', function(search) {
 
 // User publication
 Meteor.publish('allUser', function() {
-  return Meteor.users.find({}, {fields: {username: 1}});
+  return Meteor.users.find({}, {fields: {username: 1, _id: 0}});
 });
 
 // labelShare publication(request)
@@ -45,6 +45,9 @@ Meteor.publish('labelShare', function() {
     const label = Label.findOne({_id: doc.labelId});
     doc.labelName = label.name;
     doc.labelColor = label.color;
+
+    const user = Meteor.users.findOne({_id: doc.sharedFrom });
+    doc.username = user.username;
     return doc;
   };
 
