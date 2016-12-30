@@ -1,5 +1,6 @@
 import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../../api/memos.js';
+import { labelShare } from '../../../api/labelShare.js';
 import { AccountsTemplates } from 'meteor/useraccounts:core';
 import { Session } from 'meteor/session';
 import { Meteor } from 'meteor/meteor';
@@ -15,9 +16,15 @@ TemplateController('SideNav', {
   onCreated() {
     const self = this;
     self.autorun(()=>{
-      self.subscribe('memos');
-      self.subscribe('allUser');
       self.subscribe('labelShare');
+
+      let labels = labelShare.find({sharedTo: Meteor.userId(), status: "accepted"}).fetch();
+      let queryArray = [];
+      labels.forEach(function(sharedLabel) {
+        queryArray.push({_id: sharedLabel.labelId});
+      });
+      self.subscribe('label', queryArray);
+      self.subscribe('memos', queryArray);
     });
   },
 
@@ -28,7 +35,7 @@ TemplateController('SideNav', {
       } else {
         return false;
       }
-    }
+    },
   },
 
   events: {

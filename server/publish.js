@@ -9,27 +9,34 @@ Meteor.publish('singleMemo', function(id) {
   return Memos.find({_id: id});
 });
 
-Meteor.publish('memoWithLabels', function(id) {
-  check(id, String);
-  return Memos.find({labelId: id});
-});
 
 // label publication
-Meteor.publish('label', function() {
-  return Label.find({owner: this.userId});
-});
-// Memo publication with query options
-Meteor.publish('memos', function(search) {
-  check( search, Match.OneOf( String, null, undefined ) );
+Meteor.publish('label', function(sharedLabelAry) {
+  let queryArray = [
+    {owner: this.userId}
+  ];
 
-  let query      = { owner: this.userId },
-      projection = { limit: 100, sort: { createdAt: -1 } };
-
-  if ( search ) {
-    let regex = new RegExp( search, 'i' );
-    query.name = regex;
+  if (sharedLabelAry !== undefined) {
+    sharedLabelAry.forEach((label) =>{
+      queryArray.push(label);
+    });
   }
-  return Memos.find(query, projection);
+
+  return Label.find({$or: queryArray});
+});
+
+// Memo publication with query options
+Meteor.publish('memos', function(sharedLabelAry) {
+  let queryArray      = [{ owner: this.userId }];
+  let projection = { limit: 100, sort: { createdAt: -1 } };
+
+  if (sharedLabelAry !== undefined) {
+    sharedLabelAry.forEach((label) =>{
+      queryArray.push({labelId: label._id});
+    });
+  }
+
+  return Memos.find({$or: queryArray}, projection);
 });
 
 // labelShare publication(request)

@@ -29,8 +29,7 @@ TemplateController('Gallery', {
     this.session.setDefault('resultsCount', 0);
     const self = this;
     self.autorun(()=>{
-      self.subscribe('memos');
-      let query = {};
+      let query = {owner: Meteor.userId()};
       if (Session.get('hideExpired')) { query.status = "active";}
       let counts  =  Memos.find(query).count();
       this.session.set('resultsCount', counts);
@@ -44,7 +43,7 @@ TemplateController('Gallery', {
 
   helpers: {
     memos() {
-      let query = {};
+      let query = {owner: Meteor.userId()};
       if (Session.get('hideExpired')) { query.status = "active"; }
       return Memos.find(query, {limit: this.session.get('resultsLimit'), sort: {createdAt: -1}});
     },
