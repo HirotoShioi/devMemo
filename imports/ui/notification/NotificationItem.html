@@ -3,19 +3,14 @@
       <i class="fa fa-share-alt circle blue lighten-3"></i>
       <span class="title">Share Label</span>
       <p>
-        <strong>{{state.notification.username}}</strong> 
-        has requested you to Share
+        Sending request to share label
         <span class="chip" style="background-color: {{state.notification.labelColor}}">
           {{state.notification.labelName}}
         </span>
-        <br>
-        <span class="grey-text">Hey! Join my channel</span>
+        with
+        <strong>{{state.notification.requestUsername}}</strong>
       </p>
       <div class="secondary-content">
-        {{#if isRequestedUser}}
-          <button class="btn green accept-share">Accept</button>
-          <button class="btn red deny-share">Deny</button>
-        {{else}}
           {{#if isAccepted}}
             <span class="notify-status-indicator green lighten-1">Accepted</span>
           {{/if}}
@@ -25,7 +20,6 @@
           {{#if isPending}}
             <span class="notify-status-indicator amber lighten-1">Pending</span>
           {{/if}}
-        {{/if}}
       </div>
   </li>
 </template>

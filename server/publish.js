@@ -43,6 +43,9 @@ Meteor.publish('labelShare', function() {
 
     const user = Meteor.users.findOne({_id: doc.sharedFrom });
     doc.username = user.username;
+
+    const requestUser = Meteor.users.findOne({_id: doc.sharedTo});
+    doc.requestUsername = requestUser.username;
     return doc;
   };
 

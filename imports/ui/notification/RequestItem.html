@@ -1,0 +1,19 @@
+<template name="RequestItem">
+  <li class="collection-item avatar">
+      <i class="fa fa-share-alt circle blue lighten-3"></i>
+      <span class="title">Share Label</span>
+      <p>
+        <strong>{{state.request.username}}</strong> 
+        has requested you to Share
+        <span class="chip" style="background-color: {{state.request.labelColor}}">
+          {{state.request.labelName}}
+        </span>
+        <br>
+        <span class="grey-text">Hey! Join my channel</span>
+      </p>
+      <div class="secondary-content">
+        <button class="btn green accept-share">Accept</button>
+        <button class="btn red deny-share">Deny</button>
+      </div>
+  </li>
+</template>
