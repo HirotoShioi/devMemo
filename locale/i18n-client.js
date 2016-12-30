@@ -37,6 +37,7 @@ i18n.map('en', {
     home: 'Home',
     gallery: 'Gallery',
     memoDetail: 'details',
+    notification: 'Notifications',
   },
 
   search: {
@@ -76,6 +77,7 @@ i18n.map('en', {
     labels: 'Labels',
     about: 'About',
     settings: 'Settings',
+    notification: "Notification"
   },
 
   accounts: {
@@ -163,6 +165,7 @@ i18n.map('ja', {
     home: 'ホーム',
     gallery: 'ギャラリー',
     memoDetail: '詳細',
+    notification: '通知',
   },
 
   search: {
@@ -202,6 +205,7 @@ i18n.map('ja', {
     labels: 'ラベル',
     about: '概要',
     settings: '設定',
+    notification: "通知"
   },
 
   accounts: {

@@ -21,6 +21,11 @@
             {{i18n 'sideNav.memos'}}
           </a>
         </li>
+      	<li class="{{isActiveRoute 'memo.notification'}}">
+          <a class="{{isActiveRoute 'memo.notification'}}" href="{{pathFor route='memo.notification'}}">
+            {{i18n 'sideNav.notification'}}
+          </a>
+        </li>
       	{{/if}}
         <li class="{{isActiveRoute 'about'}}">
           <a class="{{isActiveRoute 'about'}}" href="{{pathFor route='about'}}">
@@ -40,6 +45,12 @@
             <li class="{{isActiveRoute 'memo.gallery'}}">
               <a class="{{isActiveRoute 'memo.gallery'}}" href="{{pathFor route='memo.gallery'}}">
                 <i class="fa fa-sticky-note"></i>
+                {{i18n 'sideNav.memos'}}
+              </a>
+            </li>
+            <li class="{{isActiveRoute 'memo.notification'}}">
+              <a class="{{isActiveRoute 'memo.notification'}}" href="{{pathFor route='memo.notification'}}">
+                <i class="fa fa-bell"></i>
                 {{i18n 'sideNav.memos'}}
               </a>
             </li>
