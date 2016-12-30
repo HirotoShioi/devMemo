@@ -16,13 +16,6 @@ TemplateController('Memo', {
     shouldToolTipShow: true,
   },
 
-  onCreated() {
-    const self = this;
-    self.autorun(()=>{
-      self.subscribe('label');
-    });
-  },
-
   helpers: {
     shouldExpireProgressbarShow() {
       if (this.data.isFavorited === true || this.data.status === "expired") {

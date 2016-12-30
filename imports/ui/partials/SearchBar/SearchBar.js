@@ -13,12 +13,6 @@ TemplateController('SearchBar', {
     labelTitle: i18n('search.frequentlyUsed'),
   },
 
-  onCreated() {
-    const self = this;
-    self.autorun(()=>{
-      self.subscribe('memos');
-    });
-  },
   helpers: {
     searchedMemos() {
       let search = Session.get('searchQuery');

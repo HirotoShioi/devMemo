@@ -8,12 +8,6 @@ import './AddMemoButton.html';
 import './Loading.js';
 
 TemplateController('AddMemoButton', {
-  onCreated() {
-    const self = this;
-    self.autorun(()=>{
-      self.subscribe('label');
-    });
-  },
 
   events: {
     'click #addMemoModal'() {

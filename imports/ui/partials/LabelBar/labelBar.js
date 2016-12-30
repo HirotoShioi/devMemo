@@ -13,13 +13,6 @@ TemplateController('labelBar', {
     labelSearchLimit: 20,
   },
 
-  onCreated() {
-    const self = this;
-    self.autorun(()=>{
-      self.subscribe('label');
-    });
-  },
-
   helpers: {
     searchedLabels() {
       let search = this.state.labelSearchQuery;

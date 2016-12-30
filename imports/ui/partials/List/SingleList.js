@@ -12,13 +12,6 @@ TemplateController('SingleList', {
     progressRate: 0,
   },
 
-  onCreated() {
-    const self = this;
-    self.autorun(()=>{
-      self.subscribe('label');
-    });
-  },
-
   helpers: {
     shouldExpireProgressbarShow() {
       if (this.data.memo.isFavorited === true) {
