@@ -3,17 +3,17 @@
       <i class="fa fa-share-alt circle blue lighten-3"></i>
       <span class="title">Share Label</span>
       <p>
-        <strong>{{notification.username}}</strong> 
+        <strong>{{state.notification.username}}</strong> 
         has requested you to Share
-        <span class="chip" style="background-color: {{notification.labelColor}}">
-          {{notification.labelName}}
+        <span class="chip" style="background-color: {{state.notification.labelColor}}">
+          {{state.notification.labelName}}
         </span>
         <br>
         <span class="grey-text">Hey! Join my channel</span>
       </p>
       <a href="" class="secondary-content">
-        <button class="btn blue">Accept</button>
-        <button class="btn red">Deny</button>
+        <button class="btn blue accept-share">Accept</button>
+        <button class="btn red deny-share">Deny</button>
       </a>
   </li>
 </template>

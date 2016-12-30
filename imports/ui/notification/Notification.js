@@ -11,5 +11,8 @@ TemplateController('Notification', {
     notifications() {
       return labelShare.find({}, {sort: {requestSentAt: -1}});
     },
+    notificationCount() {
+      return labelShare.find({}).count();
+    },
   },
 });

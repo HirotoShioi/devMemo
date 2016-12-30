@@ -32,11 +32,6 @@ Meteor.publish('memos', function(search) {
   return Memos.find(query, projection);
 });
 
-// User publication
-Meteor.publish('allUser', function() {
-  return Meteor.users.find({}, {fields: {username: 1, _id: 0}});
-});
-
 // labelShare publication(request)
 Meteor.publish('labelShare', function() {
 
@@ -53,7 +48,7 @@ Meteor.publish('labelShare', function() {
 
   const self = this;
 
-  let observer = labelShare.find({sharedTo: this.userId}).observe({
+  let observer = labelShare.find({$or: [{sharedTo: this.userId}, {sharedFrom: this.userId}]}).observe({
     added: function(document) {
       self.added('labelShare', document._id, transform(document));
     },

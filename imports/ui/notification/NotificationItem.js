@@ -1,8 +1,6 @@
 import './NotificationItem.html';
 import { TemplateController } from 'meteor/space:template-controller';
-import { moment } from 'meteor/momentjs:moment';
 import { Meteor } from 'meteor/meteor';
-import { Session } from 'meteor/session';
 
 TemplateController('NotificationItem', {
   state: {
@@ -18,8 +16,14 @@ TemplateController('NotificationItem', {
       const user = Meteor.users.findOne({_id: this.data.notification.sharedFrom});
       return user.username;
     },
-    notification() {
-      return this.state.notification;
+  },
+
+  events: {
+    'click .accept-share'() {
+      Meteor.call('acceptShare', this.state.notification._id);
+    },
+    'click .deny-share'() {
+      Meteor.call('denyShare', this.state.notification._id);
     },
   }
 });

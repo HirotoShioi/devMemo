@@ -10,11 +10,13 @@
       <div id="notify-content">
         <div class="row">
           <div class="col s10 offset-s1">
-            <ul class="collection">
-              {{#each notification in notifications}}
-                {{> NotificationItem notification=notification}}
-              {{/each}}
-            </ul>
+            {{#if $neq notificationCount 0}}
+              <ul class="collection">
+                {{#each notification in notifications}}
+                  {{> NotificationItem notification=notification}}
+                {{/each}}
+              </ul>
+            {{/if}}
           </div>
         </div>
       </div>

@@ -39,7 +39,7 @@ Schema.labelShare = new SimpleSchema({
     type: String,
     optional: true,
     defaultValue: "pending",
-    allowedValues: ["pending", "rejected", "accepted"],
+    allowedValues: ["pending", "denied", "accepted"],
   }
 });
 
@@ -48,13 +48,13 @@ labelShare.attachSchema(Schema.labelShare);
 
 labelShare.helpers({
   isPending() {
-    return (this.pending === "pending") ? true : false;
+    return (this.pending === "pending");
   },
-  isRejected() {
-    return (this.pending === "rejected") ? true : false;
+  isDenied() {
+    return (this.pending === "denied");
   },
   isAccepted() {
-    return (this.pending === "accepted") ? true : false;
+    return (this.pending === "accepted");
   }
 });
 
@@ -90,4 +90,26 @@ Meteor.methods({
     });
     return true;
   },
+  acceptShare(id) {
+    check(id, String);
+
+    const sharedLabel = labelShare.findOne({_id: id});
+
+    if (this.userId !== sharedLabel.sharedTo) {
+      throw new Meteor.Error('notAuthorized');
+    }
+
+    labelShare.update({_id: id}, {$set: {status: "accepted"}});
+  },
+  denyShare(id) {
+    check(id, String);
+
+    const sharedLabel = labelShare.findOne({_id: id});
+
+    if (this.userId !== sharedLabel.sharedTo) {
+      throw new Meteor.Error('notAuthorized');
+    }
+
+    labelShare.update({_id: id}, {$set: {status: "denied"}});
+  }
 });
