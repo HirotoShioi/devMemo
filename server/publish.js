@@ -124,3 +124,7 @@ Meteor.publishComposite('shares', {
   ]
 });
 
+// all user's username
+Meteor.publish('usernames', function() {
+  return Meteor.users.find({}, {fields: {username: 1}});
+});

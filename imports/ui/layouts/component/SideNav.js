@@ -20,6 +20,7 @@ TemplateController('SideNav', {
       self.subscribe('label');
       self.subscribe('memos');
       self.subscribe('shares');
+      self.subscribe('usernames');
     });
   },
 
