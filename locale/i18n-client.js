@@ -69,6 +69,12 @@ i18n.map('en', {
     settingsNotify: "Please set your settings before using the application"
   },
 
+  notification: {
+    share: {
+      success: "Accepted label sharing",
+    }
+  },
+
   sideNav: {
     addMemo: 'Bookmark',
     featured: 'Home',
@@ -196,6 +202,12 @@ i18n.map('ja', {
     success: "設定は保存されました",
     usernameExists: "そのユーザー名は既に使用されています",
     settingsNotify: "初期設定を行ってください"
+  },
+
+  notification: {
+    share: {
+      success: "ラベルの共有を承認しました",
+    }
   },
 
   sideNav: {

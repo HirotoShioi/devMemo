@@ -1,5 +1,6 @@
 import './RequestItem.html';
 import { TemplateController } from 'meteor/space:template-controller';
+import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
 
 TemplateController('RequestItem', {
@@ -25,10 +26,33 @@ TemplateController('RequestItem', {
 
   events: {
     'click .accept-share'() {
-      Meteor.call('acceptShare', this.data.request._id);
+      Meteor.call('acceptShare', this.data.request._id, (err)=>{
+        if (err) {
+          Bert.alert({
+            type: "danger",
+            message: err.reason,
+            style: "growl-top-right"
+          });
+        }
+        if (!err) {
+          Bert.alert({
+            type: "success",
+            message: i18n('notification.share.success'),
+            style: "growl-top-right"
+          });
+        }
+      });
     },
     'click .deny-share'() {
-      Meteor.call('denyShare', this.data.request._id);
+      Meteor.call('denyShare', this.data.request._id, (err)=>{
+        if (err) {
+          Bert.alert({
+            type: "danger",
+            message: err.reason,
+            style: "growl-top-right"
+          });
+        }
+      });
     },
   }
 });

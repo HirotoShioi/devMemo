@@ -13,13 +13,13 @@ TemplateController('Notification', {
       return labelShare.find({sharedFrom: Meteor.userId()}, {sort: {requestSentAt: -1}});
     },
     requests() {
-      return labelShare.find({sharedTo: Meteor.userId()}, {sort: {requestSentAt: -1}});
+      return labelShare.find({sharedTo: Meteor.userId(), status: "pending"}, {sort: {requestSentAt: -1}});
     },
     notificationCount() {
       return labelShare.find({sharedFrom: Meteor.userId()}).count();
     },
     requestCount() {
-      return labelShare.find({sharedTo: Meteor.userId()}).count();
+      return labelShare.find({sharedTo: Meteor.userId(), status: "pending"}).count();
     }
   },
 });
