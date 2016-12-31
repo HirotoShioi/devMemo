@@ -13,15 +13,14 @@ TemplateController('RequestItem', {
   },
 
   helpers: {
-    isAccepted() {
-      return (this.data.notification.status === "accepted");
+    requestUsername() {
+      const user = Meteor.users.findOne({_id: this.data.request.sharedFrom});
+      if (user) {
+        return user.username;
+      } else {
+        return false;
+      }
     },
-    isDenied() {
-      return (this.data.notification.status === "denied");
-    },
-    isPending() {
-      return (this.data.notification.status === "pending");
-    }
   },
 
   events: {

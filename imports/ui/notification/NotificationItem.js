@@ -12,6 +12,14 @@ TemplateController('NotificationItem', {
   },
 
   helpers: {
+    requestUsername() {
+      const user = Meteor.users.findOne({_id: this.data.notification.sharedTo});
+      if (user) {
+        return user.username;
+      } else {
+        return false;
+      }
+    },
     isAccepted() {
       return (this.data.notification.status === "accepted");
     },
