@@ -86,7 +86,33 @@ Meteor.publishComposite('shares', {
   children: [
     {
       find: function(label) {
-        return Label.find({$or: [{owner: this.userId}, {_id: label.labelId}]});
+        // Transform function
+        const transform = function(doc) {
+          if (doc._id === label.labelId) {
+            doc.isShared = true;
+          }
+          return doc;
+        };
+
+        const self = this;
+
+        let observer = Label.find({$or: [{owner: this.userId}, {_id: label.labelId}]}).observe({
+          added: function(document) {
+            self.added('Label', document._id, transform(document));
+          },
+          changed: function(newDocument, oldDocument) {
+            self.changed('labelShare', oldDocument._id, transform(newDocument));
+          },
+          removed: function(oldDocument) {
+            self.removed('labelShare', oldDocument._id);
+          }
+        });
+
+        self.onStop(function() {
+          observer.stop();
+        });
+
+        self.ready();
       }
     },
     {

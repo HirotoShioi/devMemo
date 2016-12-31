@@ -15,6 +15,9 @@ TemplateController('labelBarItem', {
       };
       return labelId;
     },
+    isShared() {
+      return this.data.label.isShared;
+    }
   },
 
   events: {
