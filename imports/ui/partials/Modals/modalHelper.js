@@ -17,5 +17,6 @@ export const resetModalForm = function() {
     Session.set('modalOverlayShow', false);
     Session.set('MemoDetailId', false);
     Session.set('sharedLabelId', null);
+    Session.set('leaveLabelId', null);
   }, 300);
 };

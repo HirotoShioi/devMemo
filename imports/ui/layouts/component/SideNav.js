@@ -17,9 +17,16 @@ TemplateController('SideNav', {
     const self = this;
     self.autorun(()=>{
       self.subscribe('labelShare');
-      self.subscribe('label');
-      self.subscribe('memos');
-      self.subscribe('shares');
+      let acceptedLabels = labelShare.find({$or: [
+        {sharedTo: Meteor.userId(), status: "accepted"},
+        {sharedFrom: Meteor.userId(), status: "accepted"}
+      ]}).fetch();
+      let queryArray = [];
+      acceptedLabels.forEach(function(sharedLabel) {
+        queryArray.push({_id: sharedLabel.labelId});
+      });
+      self.subscribe('label', queryArray);
+      self.subscribe('memos', queryArray);
       self.subscribe('usernames');
     });
   },

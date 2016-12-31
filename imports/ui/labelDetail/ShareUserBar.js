@@ -30,6 +30,11 @@ TemplateController('ShareUserBar', {
       Session.set('showModal', true);
       Session.set('formType', 'AddShareUser');
       Session.set('sharedLabelId', this.data.labelId);
+    },
+    'click #leave-label'() {
+      Session.set('showModal', true);
+      Session.set('formType', 'LeaveShareLabel');
+      Session.set('leaveLabelId', this.data.labelId);
     }
   }
 });

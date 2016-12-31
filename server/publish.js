@@ -21,8 +21,34 @@ Meteor.publish('label', function(sharedLabelAry) {
       queryArray.push(label);
     });
   }
+  // Transform function
+  const transform = function(doc) {
+    if (sharedLabelAry !== undefined) {
+      if (sharedLabelAry.some(label => label._id === doc._id)) {
+        doc.isShared = true;
+      }
+    }
+    return doc;
+  };
 
-  return Label.find({$or: queryArray});
+  const self = this;
+  let observer = Label.find({$or: queryArray}).observe({
+    added: function(document) {
+      self.added('Label', document._id, transform(document));
+    },
+    changed: function(newDocument, oldDocument) {
+      self.changed('Label', oldDocument._id, transform(newDocument));
+    },
+    removed: function(oldDocument) {
+      self.removed('Label', oldDocument._id);
+    }
+  });
+
+  self.onStop(function() {
+    observer.stop();
+  });
+
+  self.ready();
 });
 
 // Memo publication with query options
@@ -68,57 +94,6 @@ Meteor.publish('labelShare', function() {
   });
 
   self.ready();
-});
-
-// shares
-Meteor.publishComposite('shares', {
-  find: function() {
-    let acceptedLabels = labelShare.find({$or: [{sharedTo: this.userId, status: "accepted"}, {sharedFrom: this.userId, status: "accepted"}]});
-    queryArray = [];
-    acceptedLabels.forEach((label)=>{
-      queryArray.push({labelId: label.labelId});
-    });
-    return labelShare.find({$or: queryArray});
-  },
-  children: [
-    {
-      find: function(label) {
-        // Transform function
-        const transform = function(doc) {
-          if (doc._id === label.labelId) {
-            doc.isShared = true;
-          }
-          return doc;
-        };
-
-        const self = this;
-
-        let observer = Label.find({$or: [{owner: this.userId}, {_id: label.labelId}]}).observe({
-          added: function(document) {
-            self.added('Label', document._id, transform(document));
-          },
-          changed: function(newDocument, oldDocument) {
-            self.changed('labelShare', oldDocument._id, transform(newDocument));
-          },
-          removed: function(oldDocument) {
-            self.removed('labelShare', oldDocument._id);
-          }
-        });
-
-        self.onStop(function() {
-          observer.stop();
-        });
-
-        self.ready();
-      }
-    },
-    {
-      find: function(label) {
-          // Find top two comments on post
-        return Memos.find({$or: [{owner: this.userId}, {labelId: label.labelId}]});
-      },
-    }
-  ]
 });
 
 // all user's username

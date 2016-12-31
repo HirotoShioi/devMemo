@@ -10,6 +10,7 @@ import './EditLabel.js';
 import './EditMemoLabel.js';
 import './MemoDetailModal.js';
 import './AddShareUser.js';
+import './LeaveShareLabel.js';
 
 import './Modals.html';
 

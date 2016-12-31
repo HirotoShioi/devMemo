@@ -112,5 +112,14 @@ Meteor.methods({
     }
 
     labelShare.update({_id: id}, {$set: {status: "denied"}});
-  }
+  },
+  leaveSharedLabel(labelId) {
+    check(labelId, String);
+
+    if (!this.userId) {
+      throw new Meteor.Error('notAuthorized');
+    }
+
+    labelShare.remove({sharedTo: this.userId, labelId: labelId});
+  },
 });

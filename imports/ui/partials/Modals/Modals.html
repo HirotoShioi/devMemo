@@ -47,5 +47,12 @@
 				{{> AddShareUser}}
 			</div>
 		</div>
+
+		<div class="{{#if $eq formType 'LeaveShareLabel'}}show-modal{{/if}} modal-form-wrapper delete-label">
+			<div class="card-panel z-depth-2 modal-card">
+				<i class="fa fa-close right"></i>
+				{{> LeaveShareLabel}}
+			</div>
+		</div>
 	</div>
 </template>

@@ -129,7 +129,13 @@ i18n.map('en', {
     addShareUser: {
       title: 'Add User',
       success: 'Request successfuly sent'
-    }
+    },
+
+    leaveShareLabel: {
+      title: 'Leave Label',
+      message: 'Are you sure you wan to leave',
+      submit: 'Leave'
+    },
   },
 
   memo: {
@@ -274,7 +280,13 @@ i18n.map('ja', {
     addShareUser: {
       title: 'ユーザーと共有する',
       success: 'リクエストを送信しました',
-    }
+    },
+
+    leaveShareLabel: {
+      title: '共有をやめる',
+      message: 'このラベルの共有をやめますか',
+      submit: 'やめる',
+    },
   },
 
   memo: {
