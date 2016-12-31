@@ -1,7 +1,7 @@
 <template name="NotificationItem">
   <li class="collection-item avatar">
-      <i class="fa fa-share-alt circle blue lighten-3"></i>
-      <span class="title">Share Label</span>
+      <i class="fa fa-share-alt circle blue lighten-1"></i>
+      <span class="title">{{i18n 'notification.share.title'}}</span>
       <p>
         Sending request to share label
         <span class="chip" style="background-color: {{state.notification.labelColor}}">
@@ -12,13 +12,19 @@
       </p>
       <div class="secondary-content">
           {{#if isAccepted}}
-            <span class="notify-status-indicator green lighten-1">Accepted</span>
+            <span class="notify-status-indicator green lighten-1">
+		          {{i18n 'notification.share.status.accepted'}}
+            </span>
           {{/if}}
           {{#if isDenied}}
-            <span class="notify-status-indicator red lighten-1">Denied</span>
+            <span class="notify-status-indicator red lighten-1">
+              {{i18n 'notification.share.status.denied'}}
+            </span>
           {{/if}}
           {{#if isPending}}
-            <span class="notify-status-indicator amber lighten-1">Pending</span>
+            <span class="notify-status-indicator amber">
+              {{i18n 'notification.share.status.pending'}}
+            </span>
           {{/if}}
       </div>
   </li>

@@ -1,7 +1,7 @@
 <template name="RequestItem">
   <li class="collection-item avatar">
-      <i class="fa fa-share-alt circle blue lighten-3"></i>
-      <span class="title">Share Label</span>
+      <i class="fa fa-share-alt circle blue lighten-1"></i>
+      <span class="title">{{i18n 'notification.share.title'}}</span>
       <p>
         <strong>{{requestUsername}}</strong> 
         has requested you to share
@@ -12,8 +12,12 @@
         <span class="grey-text">Hey! Join my channel</span>
       </p>
       <div class="secondary-content">
-        <button class="btn green accept-share">Accept</button>
-        <button class="btn red deny-share">Deny</button>
+        <button class="btn green accept-share">
+          {{i18n 'notification.share.action.accept'}}
+        </button>
+        <button class="btn red deny-share">
+          {{i18n 'notification.share.action.deny'}}
+        </button>
       </div>
   </li>
 </template>

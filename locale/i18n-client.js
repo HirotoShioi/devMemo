@@ -71,8 +71,18 @@ i18n.map('en', {
 
   notification: {
     share: {
+      title: "Share label",
       success: "Accepted label sharing",
-    }
+      status: {
+        accepted: "Accepted",
+        denied: "Denied",
+        pending: "Pending",
+      },
+      action: {
+        accept: "Accept",
+        deny: "Deny",
+      },
+    },
   },
 
   sideNav: {
@@ -206,8 +216,18 @@ i18n.map('ja', {
 
   notification: {
     share: {
+      title: "ラベルの共有",
       success: "ラベルの共有を承認しました",
-    }
+      status: {
+        accepted: "承認",
+        denied: "却下",
+        pending: "保留中",
+      },
+      action: {
+        accept: "承認する",
+        deny: "却下する",
+      },
+    },
   },
 
   sideNav: {
