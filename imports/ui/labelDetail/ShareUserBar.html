@@ -13,9 +13,11 @@
 						Add user
 					</div>
 				{{/if}}
+				{{#if $neq isOwner true}}
 				<div class="right label-leave-wrapper">
 					<i id="leave-label" class="fa fa-sign-out" aria-hidden="true"></i>
 				</div>
+				{{/if}}
 		</div>
 </template>
 
