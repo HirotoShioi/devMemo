@@ -77,3 +77,24 @@ Meteor.publish('labelShare', function() {
   self.ready();
 });
 
+// Server
+Meteor.publishComposite('shares', {
+  find: function() {
+    // Find top ten highest scoring posts
+    return labelShare.find({$or: [{sharedTo: this.userId, status: "accepted"}, {sharedFrom: this.userId, status: "accepted"}]});
+  },
+  children: [
+    {
+      find: function(label) {
+        return Label.find({$or: [{owner: this.userId}, {_id: label.labelId}]});
+      }
+    },
+    {
+      find: function(label) {
+          // Find top two comments on post
+        return Memos.find({$or: [{owner: this.userId}, {labelId: label.labelId}]});
+      },
+    }
+  ]
+});
+
