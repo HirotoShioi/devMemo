@@ -16,6 +16,7 @@ const session = new ReactiveDict('LabelDetail');
 TemplateController('LabelDetail', {
   state: {
     scrollTarget: '.main-container',
+    label: {},
   },
 
   private: {
@@ -44,14 +45,6 @@ TemplateController('LabelDetail', {
   helpers: {
     labelId() {
       return this.data._id;
-    },
-    owner() {
-      const label = Label.findOne({_id: this.data._id});
-      if (label) {
-        return label.owner;
-      } else {
-        return false;
-      }
     },
     memos() {
       Session.set('Title', Label.findOne({_id: this.data._id}, {fields: {'name': 1}}));

@@ -57,7 +57,6 @@ Meteor.publish('labelShare', function() {
   };
 
   const self = this;
-
   let observer = labelShare.find({$or: [{sharedTo: this.userId}, {sharedFrom: this.userId}]}).observe({
     added: function(document) {
       self.added('labelShare', document._id, transform(document));
@@ -77,11 +76,15 @@ Meteor.publish('labelShare', function() {
   self.ready();
 });
 
-// Server
+// shares
 Meteor.publishComposite('shares', {
   find: function() {
-    // Find top ten highest scoring posts
-    return labelShare.find({$or: [{sharedTo: this.userId, status: "accepted"}, {sharedFrom: this.userId, status: "accepted"}]});
+    let acceptedLabels = labelShare.find({$or: [{sharedTo: this.userId, status: "accepted"}, {sharedFrom: this.userId, status: "accepted"}]});
+    queryArray = [];
+    acceptedLabels.forEach((label)=>{
+      queryArray.push({labelId: label.labelId});
+    });
+    return labelShare.find({$or: queryArray});
   },
   children: [
     {
