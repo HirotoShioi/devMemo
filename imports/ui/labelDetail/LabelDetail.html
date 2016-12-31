@@ -22,7 +22,9 @@
 						{{#each memos}}
 							{{> Memo}}
 						{{else}}
-							<h3>No Memo Available!</h3>
+							{{#each emptyMemos}}
+									{{> emptyMemo}}
+							{{/each}}
 						{{/each}}
 					 </div>
 				{{/if}}

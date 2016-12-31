@@ -11,6 +11,8 @@ import '../partials/ViewOptions.js';
 import '../partials/Loading.js';
 import '../partials/InfiniteScroll/loadingIndicator.js';
 import '../layouts/component/PageTitle.js';
+import '../partials/emptyMemo.js';
+
 import './ShareUserBar';
 const session = new ReactiveDict('LabelDetail');
 TemplateController('LabelDetail', {
@@ -55,6 +57,14 @@ TemplateController('LabelDetail', {
       }
       let memos = Memos.find(query, {limit: this.session.get('resultsLimit'), sort: {status: 1, clickedAt: -1}});
       return memos;
+    },
+    emptyMemos() {
+      const emptyMemoCount = 8;
+      emptyMemoAry = [];
+      for (i = 0; i < emptyMemoCount; i++) {
+        emptyMemoAry.push({});
+      }
+      return emptyMemoAry;
     },
     hasMoreContent() {
       return this.session.get('resultsLimit') < this.session.get('resultsCount');
