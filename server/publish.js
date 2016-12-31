@@ -77,7 +77,12 @@ Meteor.publish('labelShare', function() {
   };
 
   const self = this;
-  let observer = labelShare.find({$or: [{sharedTo: this.userId}, {sharedFrom: this.userId}]}).observe({
+  const label = labelShare.find({$or: [{sharedTo: this.userId}, {sharedFrom: this.userId}]});
+  let queryArray = [];
+  label.forEach((sharelabel)=>{
+    queryArray.push({labelId: sharelabel.labelId});
+  });
+  let observer = labelShare.find({$or: queryArray}).observe({
     added: function(document) {
       self.added('labelShare', document._id, transform(document));
     },
