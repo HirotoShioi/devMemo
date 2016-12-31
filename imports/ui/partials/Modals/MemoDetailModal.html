@@ -28,6 +28,7 @@
     </p>
       <a href="{{pathFor route='memo.detail' data=state.memo}}" class="more-detail">{{i18n 'memo.more'}}</a>
   </div>
+  {{#if isOwner}}
   <div class="card-action">
     <i class="fa fa-cog card-option"></i>
     <i class="fa heart {{#if shouldFavoriteHightlight}}fa-heart{{ else }}fa-heart-o{{/if}}  card-option"></i>
@@ -35,4 +36,5 @@
       <i class="fa fa-archive archive-memo card-option"></i>
     {{/if}}
   </div>
+  {{/if}}
 </template>

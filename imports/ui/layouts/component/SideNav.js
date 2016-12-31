@@ -18,7 +18,11 @@ TemplateController('SideNav', {
     self.autorun(()=>{
       self.subscribe('labelShare');
 
-      let labels = labelShare.find({sharedTo: Meteor.userId(), status: "accepted"}).fetch();
+      let labels = labelShare.find({$or: [
+      {sharedTo: Meteor.userId(), status: "accepted"},
+      {sharedFrom: Meteor.userId(), status: "accepted"}
+      ]}).fetch();
+
       let queryArray = [];
       labels.forEach(function(sharedLabel) {
         queryArray.push({_id: sharedLabel.labelId});

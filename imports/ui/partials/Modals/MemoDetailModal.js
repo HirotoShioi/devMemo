@@ -22,6 +22,17 @@ TemplateController('MemoDetailModal', {
       }
       return memo;
     },
+    isOwner() {
+      if (this.state.memo) {
+        if (Meteor.userId() === this.state.memo.owner) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    },
     truncate() {
       if (this.state.memo) {
         if (this.state.memo.desc.length > 100) {
