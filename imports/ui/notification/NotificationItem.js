@@ -1,6 +1,7 @@
 import './NotificationItem.html';
 import { TemplateController } from 'meteor/space:template-controller';
 import { Meteor } from 'meteor/meteor';
+import { Label } from '../../api/label.js';
 
 TemplateController('NotificationItem', {
   state: {
@@ -19,6 +20,10 @@ TemplateController('NotificationItem', {
       } else {
         return false;
       }
+    },
+    label() {
+      const label = Label.findOne({_id: this.data.notification.labelId});
+      return label;
     },
     isAccepted() {
       return (this.data.notification.status === "accepted");

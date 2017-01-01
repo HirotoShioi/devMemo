@@ -2,6 +2,7 @@ import './RequestItem.html';
 import { TemplateController } from 'meteor/space:template-controller';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
+import { Label } from '../../api/label.js';
 
 TemplateController('RequestItem', {
   state: {
@@ -13,6 +14,10 @@ TemplateController('RequestItem', {
   },
 
   helpers: {
+    label() {
+      const label = Label.findOne({_id: this.data.request.labelId});
+      return label;
+    },
     requestUsername() {
       const user = Meteor.users.findOne({_id: this.data.request.sharedFrom});
       if (user) {
