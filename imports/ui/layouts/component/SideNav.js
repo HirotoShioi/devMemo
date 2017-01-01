@@ -32,8 +32,10 @@ TemplateController('SideNav', {
         return false;
       }
     },
-    requestCount() {
-      return labelShare.find({sharedTo: Meteor.userId(), requestNotified: false}).count();
+    notificationCount() {
+      const requestCount = labelShare.find({sharedTo: Meteor.userId(), requestNotified: false}).count();
+      const respondCount = labelShare.find({sharedFrom: Meteor.userId(), respondNotified: false}).count();
+      return requestCount + respondCount;
     }
   },
 

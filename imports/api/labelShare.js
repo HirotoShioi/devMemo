@@ -16,7 +16,7 @@ Schema.labelShare = new SimpleSchema({
     type: Date,
     optional: true,
   },
-  rejectedAt: {
+  deniedAt: {
     type: Date,
     optional: true,
   },
@@ -34,7 +34,12 @@ Schema.labelShare = new SimpleSchema({
   },
   requestNotified: {
     type: Boolean,
-    defaultValue: false
+    defaultValue: false,
+    optional: true,
+  },
+  respondNotified: {
+    type: Boolean,
+    optional: true,
   },
   status: {
     type: String,
@@ -88,6 +93,7 @@ Meteor.methods({
       labelId: doc.labelId,
       requestSentAt: moment().toDate(),
       status: "pending",
+      requestNotified: false,
     });
     return true;
   },
@@ -100,7 +106,12 @@ Meteor.methods({
       throw new Meteor.Error('notAuthorized');
     }
 
-    labelShare.update({_id: id}, {$set: {status: "accepted", requestNotified: true}});
+    labelShare.update({_id: id}, {$set: {
+      status: "accepted",
+      requestNotified: true,
+      acceptedAt: moment().toDate(),
+      respondNotified: false,
+    }});
   },
   denyShare(id) {
     check(id, String);
@@ -111,7 +122,12 @@ Meteor.methods({
       throw new Meteor.Error('notAuthorized');
     }
 
-    labelShare.update({_id: id}, {$set: {status: "denied", requestNotified: true}});
+    labelShare.update({_id: id}, {$set: {
+      status: "denied",
+      requestNotified: true,
+      deniedAt: moment().toDate(),
+      respondNotified: false,
+    }});
   },
   leaveSharedLabel(labelId) {
     check(labelId, String);
@@ -124,5 +140,6 @@ Meteor.methods({
   },
   requestNotified() {
     labelShare.update({sharedTo: this.userId}, {$set: {requestNotified: true}});
+    labelShare.update({sharedFrom: this.userId}, {$set: {respondNotified: true}});
   }
 });
