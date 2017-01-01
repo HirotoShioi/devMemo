@@ -71,64 +71,22 @@ Meteor.publishComposite('MemoLabelShares', {
 });
 
 // Not used but saved if there's any problem with publish composite
-/*
+
 // label publication
-Meteor.publish('label', function(sharedLabelAry) {
-  let queryArray = [
-    {owner: this.userId}
-  ];
-
-  if (sharedLabelAry !== undefined) {
-    sharedLabelAry.forEach((label) =>{
-      queryArray.push(label);
-    });
-  }
-  // Transform function
-  const transform = function(doc) {
-    if (sharedLabelAry !== undefined) {
-      if (sharedLabelAry.some(label => label._id === doc._id)) {
-        doc.isShared = true;
-      }
-    }
-    return doc;
-  };
-
-  const self = this;
-  let observer = Label.find({$or: queryArray}).observe({
-    added: function(document) {
-      self.added('Label', document._id, transform(document));
-    },
-    changed: function(newDocument, oldDocument) {
-      self.changed('Label', oldDocument._id, transform(newDocument));
-    },
-    removed: function(oldDocument) {
-      self.removed('Label', oldDocument._id);
-    }
-  });
-
-  self.onStop(function() {
-    observer.stop();
-  });
-
-  self.ready();
+Meteor.publish('label', function() {
+  return Label.find({owner: this.userId});
 });
 
 // Memo publication with query options
-Meteor.publish('memos', function(sharedLabelAry) {
-  let queryArray      = [{ owner: this.userId }];
+Meteor.publish('memos', function() {
+  let query    = { owner: this.userId };
   let projection = { limit: 100, sort: { createdAt: -1 } };
 
-  if (sharedLabelAry !== undefined) {
-    sharedLabelAry.forEach((label) =>{
-      queryArray.push({labelId: label._id});
-    });
-  }
-
-  return Memos.find({$or: queryArray}, projection);
+  return Memos.find(query, projection);
 });
 
 // labelShare publication(request)
 Meteor.publish('labelShare', function() {
-  labelShare.find({$or: [{sharedTo: this.userId}, {sharedFrom: this.userId}]});s
+  labelShare.find({$or: [{sharedTo: this.userId}, {sharedFrom: this.userId}]});
 });
-*/
+

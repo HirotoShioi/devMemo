@@ -17,8 +17,8 @@ TemplateController('SideNav', {
     const self = this;
     self.autorun(()=>{
       // self.subscribe('labelShare');
-      // self.subscribe('label', []);
-      // self.subscribe('memos', []);
+      self.subscribe('label');
+      self.subscribe('memos');
       self.subscribe('usernames');
       self.subscribe('MemoLabelShares');
     });
@@ -32,6 +32,9 @@ TemplateController('SideNav', {
         return false;
       }
     },
+    requestCount() {
+      return labelShare.find({sharedTo: Meteor.userId(), requestNotified: false}).count();
+    }
   },
 
   events: {

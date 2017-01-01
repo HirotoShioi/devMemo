@@ -34,6 +34,9 @@
 						<a href="{{pathFor route='notification'}}" class="waves-effect {{isActiveRoute 'notification'}}">
 							<i class="fa fa-bell"></i>
 							{{i18n 'sideNav.notification'}}
+							{{#if $neq requestCount 0}}
+								<span class="chip blue lighten-4">{{requestCount}}</span>
+							{{/if}}
 						</a>
 					</li>
 				{{/if}}

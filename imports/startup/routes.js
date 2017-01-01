@@ -90,6 +90,10 @@ Router.route('/notification', function() {
   this.render('Notification');
 }, {
   name: "notification",
+
+  onStop: function() {
+    Meteor.call('requestNotified');
+  },
 });
 // account routing
 // Routes
