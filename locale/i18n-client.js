@@ -72,7 +72,7 @@ i18n.map('en', {
   notification: {
     share: {
       title: "Share label",
-      success: "Accepted label sharing",
+      success: 'Started sharing {$1}',
       request: {
         message: "{$1} has requested to share label with you",
         noRequestReceived: "No requests received",
@@ -233,7 +233,7 @@ i18n.map('ja', {
   notification: {
     share: {
       title: "ラベルの共有",
-      success: "ラベルの共有を開始しました",
+      success: "{$1}の共有を開始しました",
       request: {
         noRequestReceived: "ラベル共有のリクエストはありません",
         message: "{$1}からラベル共有のリクエストが来ています",

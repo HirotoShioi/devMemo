@@ -5,6 +5,9 @@ import { Meteor } from 'meteor/meteor';
 import { Label } from '../../api/label.js';
 
 TemplateController('RequestItem', {
+  state: {
+    label: {}
+  },
 
   helpers: {
     request() {
@@ -12,6 +15,7 @@ TemplateController('RequestItem', {
     },
     label() {
       const label = Label.findOne({_id: this.data.request.labelId});
+      this.state.label = label;
       return label;
     },
     requestUsername() {
@@ -37,7 +41,7 @@ TemplateController('RequestItem', {
         if (!err) {
           Bert.alert({
             type: "success",
-            message: i18n('notification.share.success'),
+            message: i18n('notification.share.success', this.state.label.name),
             style: "growl-top-right"
           });
         }
