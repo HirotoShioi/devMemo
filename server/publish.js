@@ -27,7 +27,7 @@ Meteor.publishComposite('MemoLabelShares', {
         // Transform function
         // Add field isShared to indicate which label is shared
         const transform = function(doc) {
-          if (doc._id === label.labelId) {
+          if (doc._id === label.labelId && label.status === "accepted") {
             doc.isShared = true;
           }
           return doc;

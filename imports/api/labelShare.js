@@ -91,7 +91,16 @@ Meteor.methods({
     if (isAlreadyRequested > 0) {
       throw new Meteor.Error("requestAlreadySent");
     }
-
+    requestAlreadyDeniedQuery = {
+      sharedFrom: this.userId,
+      sharedTo: requestedUser._id,
+      labelId: doc.labelId,
+      status: "denied"
+    };
+    const requestAlreadyDenied = labelShare.find(requestAlreadyDeniedQuery).count();
+    if (requestAlreadyDenied > 0)  {
+      labelShare.remove(requestAlreadyDeniedQuery);
+    }
     labelShare.insert({
       sharedFrom: this.userId,
       sharedTo: requestedUser._id,
