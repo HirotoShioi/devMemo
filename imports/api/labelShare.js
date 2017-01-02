@@ -46,7 +46,11 @@ Schema.labelShare = new SimpleSchema({
     optional: true,
     defaultValue: "pending",
     allowedValues: ["pending", "denied", "accepted"],
-  }
+  },
+  message: {
+    type: String,
+    optional: true,
+  },
 });
 
 labelShare.attachSchema(Schema.labelShare);
@@ -81,7 +85,8 @@ Meteor.methods({
     const isAlreadyRequested = labelShare.find({
       sharedFrom: this.userId,
       sharedTo: requestedUser._id,
-      labelId: doc.labelId}).count();
+      labelId: doc.labelId,
+      status: {$ne: "denied"}}).count();
 
     if (isAlreadyRequested > 0) {
       throw new Meteor.Error("requestAlreadySent");
@@ -94,6 +99,7 @@ Meteor.methods({
       requestSentAt: moment().toDate(),
       status: "pending",
       requestNotified: false,
+      message: doc.message,
     });
     return true;
   },
@@ -139,7 +145,7 @@ Meteor.methods({
     labelShare.remove({sharedTo: this.userId, labelId: labelId});
   },
   requestNotified() {
-    labelShare.update({sharedTo: this.userId}, {$set: {requestNotified: true}});
-    labelShare.update({sharedFrom: this.userId}, {$set: {respondNotified: true}});
+    labelShare.update({sharedTo: this.userId}, {$set: {requestNotified: true}}, {multi: true});
+    labelShare.update({sharedFrom: this.userId}, {$set: {respondNotified: true}}, {multi: true});
   }
 });

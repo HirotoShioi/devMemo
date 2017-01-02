@@ -20,6 +20,11 @@ TemplateController('AddShareUser', {
           max: 15,
           label: function() {return i18n('collection.users.label');},
         },
+        message: {
+          type: String,
+          optional: true,
+          max: 100,
+        },
       });
       return schema;
     },
@@ -32,6 +37,7 @@ const hooksObject = {
     requestObj = {
       username: insertDoc.username,
       labelId: shareLabelId,
+      message: insertDoc.message,
     };
     Meteor.call('requestUser', requestObj, (err, result)=>{
       resetModalForm();

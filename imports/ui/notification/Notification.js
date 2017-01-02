@@ -8,6 +8,11 @@ import './NotificationItem.js';
 import './RequestItem.js';
 
 TemplateController('Notification', {
+  onRendered() {
+    $(document).ready(function() {
+      $('ul.tabs').tabs();
+    });
+  },
   helpers: {
     notifications() {
       return labelShare.find({sharedFrom: Meteor.userId()}, {sort: {requestSentAt: -1}});

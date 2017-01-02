@@ -10,20 +10,28 @@
       <div id="notify-content">
         <div class="row">
           <div class="col s12 m10 offset-m1">
-            {{#if $neq requestCount 0}}
-              <ul class="collection">
-                {{#each request in requests}}
-                  {{> RequestItem request=request}}
-                {{/each}}
-              </ul>
-            {{/if}}
-            {{#if $neq notificationCount 0}}
-              <ul class="collection">
-                {{#each notification in notifications}}
-                  {{> NotificationItem notification=notification}}
-                {{/each}}
-              </ul>
-            {{/if}}
+            <ul class="tabs notification-tabs">
+              <li class="tab col s3"><a href="#request">Request</a></li>
+              <li class="tab col s3"><a class="active" href="#status">Status</a></li>
+            </ul>
+            <div id="request" class="">
+              {{#if $neq requestCount 0}}
+                <ul class="collection">
+                  {{#each request in requests}}
+                    {{> RequestItem request=request}}
+                  {{/each}}
+                </ul>
+              {{/if}}
+            </div>
+            <div id="status" class="notification-wrapper">
+              {{#if $neq notificationCount 0}}
+                <ul class="collection">
+                  {{#each notification in notifications}}
+                    {{> NotificationItem notification=notification}}
+                  {{/each}}
+                </ul>
+              {{/if}}
+            </div>
           </div>
         </div>
       </div>
