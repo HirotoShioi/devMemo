@@ -35,6 +35,8 @@
                     {{> RequestItem request=request}}
                   {{/each}}
                 </ul>
+              {{else}}
+                <h5 class="grey-text center notify-messages">{{i18n 'notification.share.request.noRequestReceived'}}</h5>
               {{/if}}
             </div>
             <div id="status" class="notification-wrapper">
@@ -44,6 +46,8 @@
                     {{> NotificationItem notification=notification}}
                   {{/each}}
                 </ul>
+              {{else}}
+                 <h5 class="grey-text center notify-messages">{{i18n 'notification.share.status.sendRequestMessage'}}</h5>
               {{/if}}
             </div>
           </div>

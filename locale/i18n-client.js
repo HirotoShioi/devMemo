@@ -73,14 +73,20 @@ i18n.map('en', {
     share: {
       title: "Share label",
       success: "Accepted label sharing",
+      request: {
+        message: "{$1} has requested to share label with you",
+        noRequestReceived: "No requests received",
+      },
       status: {
-        accepted: "Accepted",
-        denied: "Denied",
+        sendRequestMessage: "Share your memos and labels with other people",
+        message: "Sending request to share label with {$1}",
+        accepted: "Sharing",
+        denied: "Canceled",
         pending: "Pending",
       },
       action: {
-        accept: "Accept",
-        deny: "Deny",
+        accept: "Share",
+        deny: "Cancel",
       },
     },
     tabs: {
@@ -227,15 +233,21 @@ i18n.map('ja', {
   notification: {
     share: {
       title: "ラベルの共有",
-      success: "ラベルの共有を承認しました",
+      success: "ラベルの共有を開始しました",
+      request: {
+        noRequestReceived: "ラベル共有のリクエストはありません",
+        message: "{$1}からラベル共有のリクエストが来ています",
+      },
       status: {
-        accepted: "承認",
-        denied: "却下",
+        message: "{$1}にラベルの共有をリクエストしています",
+        accepted: "共有中",
+        denied: "キャンセル",
         pending: "保留中",
+        sendRequestMessage: "他のユーザーとあなたのメモ、ラベルを共有しましょう",
       },
       action: {
-        accept: "承認する",
-        deny: "却下する",
+        accept: "共有する",
+        deny: "キャンセル",
       },
     },
     tabs: {
