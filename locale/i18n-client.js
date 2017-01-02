@@ -83,6 +83,10 @@ i18n.map('en', {
         deny: "Deny",
       },
     },
+    tabs: {
+      requests: "Requests",
+      status: "Status"
+    },
   },
 
   sideNav: {
@@ -233,6 +237,10 @@ i18n.map('ja', {
         accept: "承認する",
         deny: "却下する",
       },
+    },
+    tabs: {
+      requests: "リクエスト",
+      status: "ステータス"
     },
   },
 
