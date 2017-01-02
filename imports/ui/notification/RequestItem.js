@@ -5,15 +5,11 @@ import { Meteor } from 'meteor/meteor';
 import { Label } from '../../api/label.js';
 
 TemplateController('RequestItem', {
-  state: {
-    request: {}
-  },
-
-  onRendered() {
-    this.state.request = this.data.request;
-  },
 
   helpers: {
+    request() {
+      return this.data.request;
+    },
     label() {
       const label = Label.findOne({_id: this.data.request.labelId});
       return label;

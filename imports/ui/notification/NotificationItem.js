@@ -4,15 +4,11 @@ import { Meteor } from 'meteor/meteor';
 import { Label } from '../../api/label.js';
 
 TemplateController('NotificationItem', {
-  state: {
-    notification: {}
-  },
-
-  onRendered() {
-    this.state.notification = this.data.notification;
-  },
 
   helpers: {
+    notification() {
+      return this.data.notification;
+    },
     requestUsername() {
       const user = Meteor.users.findOne({_id: this.data.notification.sharedTo});
       if (user) {

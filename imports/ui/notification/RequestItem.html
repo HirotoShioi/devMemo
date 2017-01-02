@@ -1,5 +1,5 @@
 <template name="RequestItem">
-  <li class="collection-item avatar">
+  <li class="collection-item avatar {{#if $eq request.requestNotified false}}blue lighten-5{{/if}}">
       <i class="fa fa-share-alt circle blue lighten-1"></i>
       <span class="title">{{i18n 'notification.share.title'}}</span>
       <p>
