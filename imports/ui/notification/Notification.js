@@ -25,6 +25,14 @@ TemplateController('Notification', {
     },
     requestCount() {
       return labelShare.find({sharedTo: Meteor.userId(), status: "pending"}).count();
+    },
+    unnotifiedResponseCount() {
+      const responseCount = labelShare.find({sharedFrom: Meteor.userId(), respondNotified: false}).count();
+      return responseCount;
+    },
+    unnotifiedRequestCount() {
+      const requestCount = labelShare.find({sharedTo: Meteor.userId(), requestNotified: false}).count();
+      return requestCount;
     }
   },
 });
