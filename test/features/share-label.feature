@@ -32,9 +32,11 @@ Feature: Share label
 
   Scenario: Stop sharing
     Given that I am a user
-    And I have a shared label "Beethoven"
+    And other user has label name "Beethoven"
+    And I am sharing label with him
     When I login as a user
     And I go to label detail view
     And I press leave
+    And I accept the leave form
     Then I should be at home view
     And label share should be stopped

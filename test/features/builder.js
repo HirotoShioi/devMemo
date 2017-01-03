@@ -57,7 +57,7 @@ export const createLabelShare = function(shareRequestObj) {
 
 export const getLabelShare = function(shareObj) {
   let label = server.execute( (obj) => {
-    if (!obj.sharedTo) obj.sharedFrom = Meteor.userId();
+    if (!obj.sharedTo) obj.sharedTo = Meteor.userId();
     const { labelShare } = require('/imports/api/labelShare.js');
     return labelShare.findOne(obj);
   }, shareObj );

@@ -30,7 +30,7 @@ TemplateController('labelBar', {
     const self = this;
     self.autorun(()=>{
       let availableLabel = queryAvailableLabels(Meteor.userId());
-      this.state.labelCount = Label.find({$or: availableLabel});
+      this.state.labelCount = Label.find({$or: availableLabel}).count();
     });
   },
 

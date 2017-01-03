@@ -41,11 +41,13 @@ module.exports = function() {
   });
 
   this.Then(/^that request should be in accepted state$/, function() {
+    client.pasue(300);
     const getSharedLabel = getLabelShare({_id: this.requestShare._id});
     expect(getSharedLabel.status).to.equal("accepted");
   });
 
   this.Then(/^that request should be in denied state$/, function() {
+    client.pasue(300);
     const getSharedLabel = getLabelShare({_id: this.requestShare._id});
     expect(getSharedLabel.status).to.equal("denied");
   });
@@ -83,9 +85,40 @@ module.exports = function() {
 
   this.Then(/^I should send request to the user$/, function() {
     const query = {
+      sharedTo: user2._id,
       labelId: this.label._id
     };
     const isRequestSend = getLabelShare(query);
     expect(isRequestSend.status).to.equal("pending");
+  });
+
+  this.Given(/^I am sharing label with him$/, function() {
+    const shareObj = {
+      sharedFrom: user2._id,
+      sharedTo: user._id,
+      status: "accepted",
+      requestNotified: false,
+      respondNotified: false,
+      labelId: this.otherUserLabel._id,
+    };
+    this.acceptedShare = createLabelShare(shareObj);
+  });
+
+  this.When(/^I press leave$/, function() {
+    waitAndClickButton("#leave-label");
+  });
+
+  this.When(/^I accept the leave form$/, function() {
+    client.pause(300);
+    waitAndClickButton(".leave-share-label");
+  });
+  this.Then(/^I should be at home view$/, function() {
+    const homeUrl = client.getUrl();
+    expect(homeUrl).to.equal('http://localhost:3000/');
+  });
+
+  this.Then(/^label share should be stopped$/, function() {
+    const isLabelShareStopped = getLabelShare({_id: this.acceptedShare._id});
+    expect(isLabelShareStopped).to.equal(undefined);
   });
 };
