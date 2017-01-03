@@ -1,8 +1,6 @@
 export const createLabel = function(labelObj) {
   let label = server.execute((obj)=>{
-    if (obj.owner === null) {
-      obj.owner = Meteor.userId();
-    }
+    if (!obj.owner) obj.owner = Meteor.userId();
     const { Label } = require('/imports/api/label.js');
     Label.insert(obj);
     return Label.findOne(obj);
@@ -59,7 +57,7 @@ export const createLabelShare = function(shareRequestObj) {
 
 export const getLabelShare = function(shareObj) {
   let label = server.execute( (obj) => {
-    if (!obj.sharedTo) obj.sharedTo = Meteor.userId();
+    if (!obj.sharedTo) obj.sharedFrom = Meteor.userId();
     const { labelShare } = require('/imports/api/labelShare.js');
     return labelShare.findOne(obj);
   }, shareObj );

@@ -1,5 +1,5 @@
 import { createLabelShare, createLabel, getLabelShare } from './builder.js';
-import { waitAndClickButton } from './webdriver';
+import { waitAndClickButton, waitAndSetValue } from './webdriver';
 import { user, user2 } from './userInfo.js';
 module.exports = function() {
 
@@ -57,9 +57,35 @@ module.exports = function() {
   });
 
   this.Then(/^I should not see the shared label in label bar$/, function() {
-    client.pause(200);
     waitAndClickButton('#label-bar');
     const isSharedLabelVisible = client.isVisible(`#label-${this.otherUserLabel._id}`);
     expect(isSharedLabelVisible).to.equal(false);
+  });
+
+  this.When(/^I go to label detail view$/, function() {
+    waitAndClickButton('#label-bar');
+    client.pause(500);
+    client.click(`.label-bar-chip`);
+  });
+
+  this.When(/^I press add user$/, function() {
+    waitAndClickButton(".add-share-user");
+  });
+
+  this.When(/^I fill in the share form$/, function() {
+    client.pause(150);
+    waitAndSetValue("#addShareUser input[name=username]", "testWebDriver2");
+  });
+
+  this.When(/^I submit share form$/, function() {
+    client.submitForm("#addShareUser");
+  });
+
+  this.Then(/^I should send request to the user$/, function() {
+    const query = {
+      labelId: this.label._id
+    };
+    const isRequestSend = getLabelShare(query);
+    expect(isRequestSend.status).to.equal("pending");
   });
 };

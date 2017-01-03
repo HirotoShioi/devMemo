@@ -9,7 +9,7 @@ Feature: Share label
     And I accept the label sharing
     Then that request should be in accepted state
     And I should see the shared label in label bar
-@watch
+
   Scenario: Deny sharing
     Given that I am a user
     And other user has label name "Mozart"
@@ -26,6 +26,9 @@ Feature: Share label
     When I login as a user
     And I go to label detail view
     And I press add user
+    And I fill in the share form
+    And I submit share form
+    Then I should send request to the user
 
   Scenario: Stop sharing
     Given that I am a user
