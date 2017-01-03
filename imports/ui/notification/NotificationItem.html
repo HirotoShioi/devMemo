@@ -10,7 +10,7 @@
       <p>
         {{i18n 'notification.share.status.message' requestUsername}}
       </p>
-      <div class="secondary-content">
+      <div class="secondary-content hide-on-med-and-down">
           {{#if isAccepted}}
             <span class="notify-status-indicator green lighten-1">
 		          {{i18n 'notification.share.status.accepted'}}
@@ -27,5 +27,8 @@
             </span>
           {{/if}}
       </div>
+      {{#if shouldCancelButtonShow}}
+        <i class="fa fa-times cancel-request"></i>
+      {{/if}}
   </li>
 </template>

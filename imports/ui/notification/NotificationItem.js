@@ -29,6 +29,25 @@ TemplateController('NotificationItem', {
     },
     isPending() {
       return (this.data.notification.status === "pending");
-    }
+    },
+    shouldCancelButtonShow() {
+      const isPending = (this.data.notification.status === "pending");
+      const isDenied = (this.data.notification.status === "denied");
+      return (isPending || isDenied);
+    },
   },
+
+  events: {
+    'click .cancel-request'() {
+      Meteor.call('cancelRequest', this.data.notification._id, (err)=>{
+        if (err) {
+          Bert.alert({
+            type: "danger",
+            message: err.reason,
+            style: "growl-top-right"
+          });
+        }
+      });
+    }
+  }
 });

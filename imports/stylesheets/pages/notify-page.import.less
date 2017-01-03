@@ -1,6 +1,7 @@
 #notify-content{
   margin-top:20px;
   .notify-status-indicator{
+    margin: 0 1em;
     text-decoration: none;
     color: #fff;
     background-color: #26a69a;
@@ -42,5 +43,17 @@
   }
   .notify-messages{
     margin-top:150px;
+  }
+  .cancel-request{
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    font-size: 1.4em;
+    color: #999;
+    cursor:pointer;
+    transition:color 0.2s ease;
+    &:hover{
+      color:#cc0000;
+    }
   }
 }

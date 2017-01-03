@@ -112,6 +112,16 @@ Meteor.methods({
     });
     return true;
   },
+  cancelRequest(id) {
+    check(id, String);
+    const sharedLabel = labelShare.findOne({_id: id});
+
+    if (this.userId !== sharedLabel.sharedFrom) {
+      throw new Meteor.Error('notAuthorized');
+    }
+
+    labelShare.remove({_id: id});
+  },
   acceptShare(id) {
     check(id, String);
 
