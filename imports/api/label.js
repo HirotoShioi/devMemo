@@ -52,9 +52,7 @@ Schemas.label = new SimpleSchema({
   },
   owner: {
     type: String,
-    autoValue: function() {
-      return Meteor.userId();
-    },
+    optional: true,
   },
   username: {
     type: String,
