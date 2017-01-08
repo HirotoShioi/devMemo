@@ -41,13 +41,13 @@ module.exports = function() {
   });
 
   this.Then(/^that request should be in accepted state$/, function() {
-    client.pasue(300);
+    client.pause(300);
     const getSharedLabel = getLabelShare({_id: this.requestShare._id});
     expect(getSharedLabel.status).to.equal("accepted");
   });
 
   this.Then(/^that request should be in denied state$/, function() {
-    client.pasue(300);
+    client.pause(300);
     const getSharedLabel = getLabelShare({_id: this.requestShare._id});
     expect(getSharedLabel.status).to.equal("denied");
   });
