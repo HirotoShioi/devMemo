@@ -1,9 +1,21 @@
 import { TemplateController } from 'meteor/space:template-controller';
 import { Label } from '../../../api/label.js';
+import { labelShare } from '../../../api/labelShare.js';
 import { Session } from 'meteor/session';
 
 import './labelBar.html';
 import './labelBarItem.js';
+
+const queryAvailableLabels = ((userId)=>{
+  let availableArray = [{owner: userId}];
+  const sharedLabels = labelShare.find({sharedTo: Meteor.userId()});
+  sharedLabels.forEach((label)=>{
+    if (label.status === "accepted") {
+      availableArray.push({_id: label.labelId});
+    }
+  });
+  return availableArray;
+});
 
 TemplateController('labelBar', {
   state: {
@@ -11,12 +23,14 @@ TemplateController('labelBar', {
     isSearching: false,
     labelResultCount: 0,
     labelSearchLimit: 20,
+    labelCount: 0,
   },
 
   onCreated() {
     const self = this;
     self.autorun(()=>{
-      self.subscribe('label');
+      let availableLabel = queryAvailableLabels(Meteor.userId());
+      this.state.labelCount = Label.find({$or: availableLabel}).count();
     });
   },
 
@@ -24,14 +38,16 @@ TemplateController('labelBar', {
     searchedLabels() {
       let search = this.state.labelSearchQuery;
       let regex = new RegExp(search, 'i');
+      let availableLabels = queryAvailableLabels(Meteor.userId());
       if (search !== "") {
         this.state.isSearching = true;
-        return Label.find({name: regex}, {sort: {name_sort: 1, name: 1}}).fetch();
+        let searchQuery = [{name: regex}];
+        return Label.find({$and: [{$or: availableLabels}, {$or: searchQuery}]}, {sort: {name_sort: 1, name: 1}}).fetch();
       } else {
         this.state.isSearching = false;
         let projection = {limit: this.state.labelSearchLimit, sort: {name_sort: 1, name: 1}};
-        this.state.labelResultCount = Label.find({}, projection).count();
-        return Label.find({}, projection);
+        this.state.labelResultCount = Label.find({$or: availableLabels}, projection).count();
+        return Label.find({$or: availableLabels}, projection);
       }
     },
     shouldSearchBarShow() {
@@ -48,8 +64,7 @@ TemplateController('labelBar', {
       }
     },
     noLabel() {
-      const labelCount = Label.find({}).count();
-      if (labelCount === 0) {
+      if (this.state.labelCount === 0) {
         return true;
       } else {
         return false;

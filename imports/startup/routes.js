@@ -13,14 +13,15 @@ import '../ui/landing/Landing.js';
 import '../ui/labelDetail/LabelDetail.js';
 import '../ui/home/Home.js';
 import '../ui/settings/Settings.js';
+import '../ui/notification/Notification.js';
 
 import { Memos } from '../api/memos.js';
-import { Label } from '../api/memos.js';
+import { Label } from '../api/label.js';
 import '../api/user.js';
+import '../api/labelShare.js';
 import { Router } from 'meteor/iron:router';
 import { Meteor } from 'meteor/meteor';
 import { AccountsTemplates } from 'meteor/useraccounts:core';
-import '../api/user.js';
 Router.configure({
   layoutTemplate: 'MainLayout',
   loadingTemplate: 'Loading',
@@ -31,11 +32,11 @@ Router.onBeforeAction(function() {
     Router.go('Landing');
   }
   if (Meteor.user()) {
-    if(!Meteor.user().hasUserName()) Router.go('settings');
+    if (!Meteor.user().hasUserName()) Router.go('settings');
   }
   this.next();
 }, {
-  only: ['memo.home', 'memo.detail', 'labeldetail', 'memo.gallery', 'settings']
+  only: ['memo.home', 'memo.detail', 'labeldetail', 'memo.gallery', 'settings', 'notification']
 });
 
 Router.route('/landing', function() {
@@ -83,6 +84,16 @@ Router.route('/settings', function() {
   this.render('Settings');
 }, {
   name: "settings",
+});
+
+Router.route('/notification', function() {
+  this.render('Notification');
+}, {
+  name: "notification",
+
+  onStop: function() {
+    Meteor.call('requestNotified');
+  },
 });
 // account routing
 // Routes

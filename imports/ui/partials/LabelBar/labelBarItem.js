@@ -15,6 +15,9 @@ TemplateController('labelBarItem', {
       };
       return labelId;
     },
+    isShared() {
+      return this.data.label.isShared;
+    }
   },
 
   events: {
@@ -35,6 +38,7 @@ TemplateController('labelBarItem', {
       Session.set('labelBarShow', false);
     },
     'mouseover .search-item'() {
+      if (Meteor.userId() !== this.data.label.owner) return;
       this.state.shouldOptionShow = true;
     },
     'mouseout .search-item'() {

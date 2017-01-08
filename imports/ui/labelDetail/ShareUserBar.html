@@ -1,0 +1,29 @@
+<template name="ShareUserBar">
+		<div id="share-user" class="row">
+				<div class="chip">
+					<i class="fa fa-user"></i>
+						{{label.username}}
+				</div>
+				{{#each user in sharedUser}}
+					{{> UserChip user=user.sharedTo}}
+				{{/each}}
+				{{#if isOwner}}
+					<div class="chip add-share-user">
+						<i class="fa fa-plus-circle red-text"></i>
+						Add user
+					</div>
+				{{/if}}
+				{{#if $neq isOwner true}}
+					<div class="right label-leave-wrapper">
+						<i id="leave-label" class="fa fa-sign-out" aria-hidden="true"></i>
+					</div>
+				{{/if}}
+		</div>
+</template>
+
+<template name="UserChip">
+	<div class="chip">
+		<i class="fa fa-user"></i>
+			{{username}}
+	</div>
+</template>

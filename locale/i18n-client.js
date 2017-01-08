@@ -37,6 +37,7 @@ i18n.map('en', {
     home: 'Home',
     gallery: 'Gallery',
     memoDetail: 'details',
+    notification: 'Notifications',
   },
 
   search: {
@@ -68,6 +69,32 @@ i18n.map('en', {
     settingsNotify: "Please set your settings before using the application"
   },
 
+  notification: {
+    share: {
+      title: "Share label",
+      success: 'Started sharing {$1}',
+      request: {
+        message: "{$1} has requested to share label with you",
+        noRequestReceived: "No requests received",
+      },
+      status: {
+        sendRequestMessage: "Share your memos and labels with other people",
+        message: "Sending request to share label with {$1}",
+        accepted: "Sharing",
+        denied: "Canceled",
+        pending: "Pending",
+      },
+      action: {
+        accept: "Share",
+        deny: "Cancel",
+      },
+    },
+    tabs: {
+      requests: "Requests",
+      status: "Status"
+    },
+  },
+
   sideNav: {
     addMemo: 'Bookmark',
     featured: 'Home',
@@ -76,6 +103,7 @@ i18n.map('en', {
     labels: 'Labels',
     about: 'About',
     settings: 'Settings',
+    notification: "Notification"
   },
 
   accounts: {
@@ -107,11 +135,29 @@ i18n.map('en', {
       messages: 'Are you sure you want to delete',
       submit: 'Delete',
     },
+
+    addShareUser: {
+      title: 'Add User',
+      success: 'Request successfuly sent'
+    },
+
+    leaveShareLabel: {
+      title: 'Leave Label',
+      message: 'Are you sure you wan to leave',
+      submit: 'Leave'
+    },
   },
 
   memo: {
     more: 'more',
-  }
+  },
+
+  errors: {
+    requestAlreadySent: "Request already sent",
+    userDoesNotExist: "User does not exist",
+    notAuthorized: "Not authorized",
+    unknownError: '不明なエラーです',
+  },
 });
 
 i18n.map('ja', {
@@ -152,6 +198,7 @@ i18n.map('ja', {
     home: 'ホーム',
     gallery: 'ギャラリー',
     memoDetail: '詳細',
+    notification: '通知',
   },
 
   search: {
@@ -183,6 +230,32 @@ i18n.map('ja', {
     settingsNotify: "初期設定を行ってください"
   },
 
+  notification: {
+    share: {
+      title: "ラベルの共有",
+      success: "{$1}の共有を開始しました",
+      request: {
+        noRequestReceived: "ラベル共有のリクエストはありません",
+        message: "{$1}からラベル共有のリクエストが来ています",
+      },
+      status: {
+        message: "{$1}にラベルの共有をリクエストしています",
+        accepted: "共有中",
+        denied: "キャンセル",
+        pending: "保留中",
+        sendRequestMessage: "他のユーザーとあなたのメモ、ラベルを共有しましょう",
+      },
+      action: {
+        accept: "共有する",
+        deny: "キャンセル",
+      },
+    },
+    tabs: {
+      requests: "リクエスト",
+      status: "ステータス"
+    },
+  },
+
   sideNav: {
     addMemo: 'ブックマーク',
     featured: 'ホーム',
@@ -191,6 +264,7 @@ i18n.map('ja', {
     labels: 'ラベル',
     about: '概要',
     settings: '設定',
+    notification: "通知"
   },
 
   accounts: {
@@ -222,9 +296,27 @@ i18n.map('ja', {
       messages: 'このラベルを削除してもいいですか',
       submit: '削除',
     },
+
+    addShareUser: {
+      title: 'ユーザーと共有する',
+      success: 'リクエストを送信しました',
+    },
+
+    leaveShareLabel: {
+      title: '共有をやめる',
+      message: 'このラベルの共有をやめますか',
+      submit: 'やめる',
+    },
   },
 
   memo: {
     more: 'more',
-  }
+  },
+
+  errors: {
+    requestAlreadySent: "リクエスト済みです",
+    userDoesNotExist: "ユーザーは存在しません",
+    notAuthorized: "権限がありません",
+    unknownError: '不明なエラーです',
+  },
 });

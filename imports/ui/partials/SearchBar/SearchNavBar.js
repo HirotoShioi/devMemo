@@ -4,12 +4,6 @@ import './SearchNavBar.html';
 import './SearchBarItem.js';
 
 TemplateController('SearchNavBar', {
-  onCreated() {
-    const self = this;
-    self.autorun(()=>{
-      self.subscribe('memos');// for search query!
-    });
-  },
   helpers: {
     searchedMemos() {
       let search = Session.get('searchQuery');

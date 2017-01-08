@@ -41,6 +41,7 @@ Schema.userSettings = new SimpleSchema({
 Schema.User = new SimpleSchema({
   username: {
     type: String,
+    regEx: /^[a-z0-9A-Z_]{3,15}$/,
     optional: true,
     label: function() {return i18n("settings.username.label");},
     unique: true,
@@ -98,11 +99,15 @@ Meteor.users.helpers({
   },
   hasUserName() {
     return (this.username) ? true : false;
+  },
+  userName() {
+    return this.username;
   }
 });
 
 Meteor.methods({
   isUsernameAvailable(username) {
+    check(username, String);
     const hasSameUsername = Meteor.users.findOne({username: username});
     if (hasSameUsername) {
       if (Meteor.userId() !== hasSameUsername._id) {

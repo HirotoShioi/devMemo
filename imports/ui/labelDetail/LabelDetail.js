@@ -11,11 +11,14 @@ import '../partials/ViewOptions.js';
 import '../partials/Loading.js';
 import '../partials/InfiniteScroll/loadingIndicator.js';
 import '../layouts/component/PageTitle.js';
+import '../partials/emptyMemo.js';
 
+import './ShareUserBar';
 const session = new ReactiveDict('LabelDetail');
 TemplateController('LabelDetail', {
   state: {
     scrollTarget: '.main-container',
+    label: {},
   },
 
   private: {
@@ -28,8 +31,6 @@ TemplateController('LabelDetail', {
     this.session.setDefault('resultsCount', 0);
     const self = this;
     self.autorun(()=>{
-      self.subscribe('label');
-      self.subscribe('memos');
       let query = { labelId: self.data._id };
       if (Session.get('hideExpired')) {
         query.status = "active";
@@ -44,6 +45,9 @@ TemplateController('LabelDetail', {
   },
 
   helpers: {
+    labelId() {
+      return this.data._id;
+    },
     memos() {
       Session.set('Title', Label.findOne({_id: this.data._id}, {fields: {'name': 1}}));
       let query = {
@@ -53,6 +57,14 @@ TemplateController('LabelDetail', {
       }
       let memos = Memos.find(query, {limit: this.session.get('resultsLimit'), sort: {status: 1, clickedAt: -1}});
       return memos;
+    },
+    emptyMemos() {
+      const emptyMemoCount = 8;
+      emptyMemoAry = [];
+      for (i = 0; i < emptyMemoCount; i++) {
+        emptyMemoAry.push({});
+      }
+      return emptyMemoAry;
     },
     hasMoreContent() {
       return this.session.get('resultsLimit') < this.session.get('resultsCount');

@@ -30,6 +30,15 @@
 							{{i18n 'sideNav.labels'}}
 						</a>
 					</li>
+					<li id="notification" class="{{isActiveRoute 'notification'}} link">
+						<a href="{{pathFor route='notification'}}" class="waves-effect {{isActiveRoute 'notification'}}">
+							<i class="fa fa-bell"></i>
+							{{i18n 'sideNav.notification'}}
+							{{#if $neq notificationCount 0}}
+								<i class="fa fa-circle blue-text"></i>
+							{{/if}}
+						</a>
+					</li>
 				{{/if}}
 				{{#if currentUser}}
 					<div class="auth-link">

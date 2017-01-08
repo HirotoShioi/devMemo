@@ -30,9 +30,6 @@ TemplateController('Home', {
     this.session.setDefault('favoriteResultsLimit', this.initialResult);
     Session.set('Title', {name: i18n('pageTitle.featured')});
     const self = this;
-    self.autorun(()=>{
-      self.subscribe('memos');
-    });
     Meteor.call('getRecommend', (err, result)=>{
       if (err) {
         return;
@@ -47,6 +44,7 @@ TemplateController('Home', {
   helpers: {
     favoriteMemos() {
       let query = {
+        owner: Meteor.userId(),
         isFavorited: true,
       };
       this.state.favoriteCount = Memos.find(query).count();
@@ -54,6 +52,7 @@ TemplateController('Home', {
     },
     recentMemos() {
       let query = {
+        owner: Meteor.userId(),
         status: "active",
         isFavorited: false,
       };
@@ -80,6 +79,7 @@ TemplateController('Home', {
         return false;
       }
       let query = {
+        owner: Meteor.userId(),
         status: "expired",
         isFavorited: false,
       };
