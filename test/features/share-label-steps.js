@@ -121,4 +121,46 @@ module.exports = function() {
     const isLabelShareStopped = getLabelShare({_id: this.acceptedShare._id});
     expect(isLabelShareStopped).to.equal(undefined);
   });
+
+  this.Given(/^I am requesting other user for share$/, function() {
+    const shareObj = {
+      sharedFrom: user._id,
+      sharedTo: user2._id,
+      status: "pending",
+      requestNotified: false,
+      respondNotified: false,
+      labelId: this.label._id,
+    };
+    this.pendingShare = createLabelShare(shareObj);
+  });
+
+  this.When(/^I press status tab$/, function() {
+    waitAndClickButton("#status-tab");
+  });
+
+  this.When(/^I press Cancel$/, function() {
+    waitAndClickButton(".cancel-request");
+  });
+
+  this.Then(/^my request to share label should be canceled$/, function() {
+    const getShare = getLabelShare({_id: this.pendingShare._id});
+    expect(getShare).to.equal(undefined);
+  });
+
+  this.Given(/^I my request to share label is denied$/, function() {
+    const shareObj = {
+      sharedFrom: user._id,
+      sharedTo: user2._id,
+      status: "denied",
+      requestNotified: false,
+      respondNotified: false,
+      labelId: this.label._id,
+    };
+    this.deniedShare = createLabelShare(shareObj);
+  });
+
+  this.Then(/^my request to share label should be removed$/, function() {
+    const getShare = getLabelShare({_id: this.deniedShare._id});
+    expect(getShare).to.equal(undefined);
+  });
 };

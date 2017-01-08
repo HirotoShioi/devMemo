@@ -20,7 +20,7 @@ Feature: Share label
     Then that request should be in denied state
     And I should not see the shared label in label bar
 
-  Scenario: Send Request
+  Scenario: Send request
     Given that I am a user
     And I have a label "Beethoven"
     When I login as a user
@@ -29,6 +29,26 @@ Feature: Share label
     And I fill in the share form
     And I submit share form
     Then I should send request to the user
+
+  Scenario: Cancel request
+    Given that I am a user
+    And I have a label "Beethoven"
+    And I am requesting other user for share
+    When I login as a user
+    And I press "notification"
+    And I press status tab
+    And I press Cancel
+    Then my request to share label should be canceled
+
+  Scenario: Cancel denied request
+    Given that I am a user
+    And I have a label "Beethoven"
+    And I my request to share label is denied
+    When I login as a user
+    And I press "notification"
+    And I press status tab
+    And I press Cancel
+    Then my request to share label should be removed
 
   Scenario: Stop sharing
     Given that I am a user

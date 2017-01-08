@@ -16,7 +16,7 @@ Feature:Memo
     And I click label
     And I submit
     Then I should see "https://www.youtube.com" with label "Music" added to my memo
-
+@watch
   Scenario Outline: Toggle favorite Memo
     Given that I am a user
     And I have memo "https://www.youtube.com" with state of <State>
