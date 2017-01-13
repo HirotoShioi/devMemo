@@ -37,6 +37,7 @@ TemplateController('Settings', {
 });
 const hooksObject = {
   onSuccess: function() {
+    Meteor.call('renameMemoLabelOwner');
     Bert.alert({
       type: "success",
       message: i18n('settings.success'),
