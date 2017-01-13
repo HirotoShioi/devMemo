@@ -2,6 +2,9 @@ import { Meteor } from 'meteor/meteor';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { check } from 'meteor/check';
 import { i18n } from 'meteor/anti:i18n';
+import { Memos } from './memos.js';
+import { Label } from './label.js';
+
 let Schema = {};
 
 Meteor.users.allow({
@@ -115,6 +118,14 @@ Meteor.methods({
       }
     }
     return true;
+  },
+  renameMemoLabelOwner() {
+    if (!this.userId) {
+      throw new Meteor.Error("notAuthorized");
+    }
+    const user = Meteor.users.findOne({_id: this.userId});
+    Memos.update({owner: this.userId}, {$set: {username: user.username}}, {multi: true});
+    Label.update({owner: this.userId}, {$set: {username: user.username}}, {multi: true});
   },
 });
 
