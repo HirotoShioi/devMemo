@@ -1,5 +1,6 @@
 import { waitAndClickButton, waitAndSetValue } from './webdriver';
 import { user } from './userInfo';
+import { getLabel, getMemo } from './builder';
 
 module.exports = function() {
   "use strict";
@@ -31,9 +32,9 @@ module.exports = function() {
   });
 
   this.After( function() {
-    server.execute(()=>{
-      Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.language': "ja"}});
-    });
+    server.execute((user1)=>{
+      Meteor.users.update({_id: Meteor.userId()}, {$set: {username: user1.username, 'profile.language': "ja"}});
+    }, user);
     this.accounts.logout();
   });
 
@@ -132,5 +133,24 @@ module.exports = function() {
         lang = "ja";
     }
     expect(this.userProfile.language).to.equal(lang);
+  });
+
+  this.When(/^I change the username to "([^"]*)"$/, function(username) {
+    waitAndSetValue("#accountForm input[name=username]", username);
+  });
+
+  this.Then(/^my username should be "([^"]*)"$/, function(username) {
+    const getUsername = server.execute(()=>{
+      return Meteor.user().username;
+    });
+    expect(getUsername).to.equal(username);
+  });
+
+  this.Then(/^my memo and label username should be "([^"]*)" as well$/, function(username) {
+    client.waitForVisible("#home-content");
+    const memo = getMemo({});
+    const label = getLabel({});
+    expect(memo.username).to.equal(username);
+    expect(label.username).to.equal(username);
   });
 };

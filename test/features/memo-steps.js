@@ -52,6 +52,7 @@ module.exports = function() {
       name: url,
       provider_url: url,
       createdAt: Date.now(),
+      username: user.username,
     };
     this.memo = createMemo(labelObj);
   });
