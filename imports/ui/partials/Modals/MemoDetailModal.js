@@ -42,7 +42,7 @@ TemplateController('MemoDetailModal', {
     },
     shouldArchiveShow() {
       if (this.state.memo) {
-        if (this.state.memo.status === "active" && !this.state.memo.favoritedAt) {
+        if (this.state.memo.status === "active" && !this.state.memo.favoritedAt && this.state.memo.owner === Meteor.userId()) {
           return true;
         } else {
           return false;
