@@ -18,7 +18,7 @@ TemplateController('Memo', {
 
   helpers: {
     shouldExpireProgressbarShow() {
-      if (this.data.favoritedAt === true || this.data.status === "expired") {
+      if (this.data.favoritedAt || this.data.status === "expired") {
         this.state.shouldExpireProgressbarShow = false;
       } else {
         this.state.shouldExpireProgressbarShow = true;
@@ -38,7 +38,7 @@ TemplateController('Memo', {
       return ( this.state.shouldHeartHightlight || this.data.favoritedAt );
     },
     shouldArchiveShow() {
-      if (this.data.status === "active" && this.data.favoritedAt === false && this.data.owner === Meteor.userId()) {
+      if (this.data.status === "active" && !this.data.favoritedAt && this.data.owner === Meteor.userId()) {
         return true;
       } else {
         return false;

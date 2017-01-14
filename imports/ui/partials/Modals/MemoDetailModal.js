@@ -42,7 +42,7 @@ TemplateController('MemoDetailModal', {
     },
     shouldArchiveShow() {
       if (this.state.memo) {
-        if (this.state.memo.status === "active" && this.state.memo.favoritedAt === false) {
+        if (this.state.memo.status === "active" && !this.state.memo.favoritedAt) {
           return true;
         } else {
           return false;

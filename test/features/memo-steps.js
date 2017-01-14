@@ -1,6 +1,6 @@
 import { waitAndSetValue, waitAndClickButton } from './webdriver';
 import { user } from './userInfo';
-import { getMemo, createMemo, updateMemo} from './builder';
+import { getMemo, createMemo, updateMemo, createUserFavorites, getUserFavorites} from './builder';
 
 module.exports = function() {
   this.Before( function() {
@@ -40,9 +40,15 @@ module.exports = function() {
     }
     const labelObj = {
       url: url,
-      isFavorited: favorite,
     };
     this.memo = createMemo(labelObj);
+    if (favorite) {
+      const favoriteObject = {
+        memoId: this.memo._id,
+        userId: user._id
+      };
+      this.userFavorites = createUserFavorites(favoriteObject);
+    }
   });
 
   this.Given(/^I have memo "([^"]*)"$/, function(url) {
@@ -68,17 +74,16 @@ module.exports = function() {
   });
 
   this.Then(/^my memo "([^"]*)" should be (.+)$/, function(url, isFavorited) {
-    let favorite;
-    if (isFavorited === "Favorited") {
-      favorite = true;
-    } else if (isFavorited === "unFavorited") {
-      favorite = false;
-    }
     const query = {
-      _id: this.memo._id
+      memoId: this.memo._id
     };
-    let memo = getMemo(query);
-    expect(memo.isFavorited).to.equal(favorite);
+    let memo = getUserFavorites(query);
+
+    if (isFavorited === "Favorited") {
+      expect(memo.memoId).to.equal(this.memo._id);
+    } else if (isFavorited === "unFavorited") {
+      expect(memo).to.equal(undefined);
+    }
   });
 
   this.When(/^I click label$/, function() {
