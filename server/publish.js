@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { Memos } from '../imports/api/memos.js';
 import { Label } from '../imports/api/label.js';
 import { labelShare } from '../imports/api/labelShare.js';
+import { userFavorites } from '../imports/api/userFavorites.js';
+
 import { check, Match } from 'meteor/check';
 
 // Single memo
@@ -13,6 +15,11 @@ Meteor.publish('singleMemo', function(id) {
 // all user's username
 Meteor.publish('usernames', function() {
   return Meteor.users.find({}, {fields: {username: 1}});
+});
+
+// all user's favorites
+Meteor.publish('userFavorites', function() {
+  return userFavorites.find({userId: this.userId});
 });
 
 // publish all memos label shares labels
