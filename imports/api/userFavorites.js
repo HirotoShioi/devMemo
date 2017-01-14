@@ -21,7 +21,7 @@ Schemas.userFavorites = new SimpleSchema({
     optional: true,
   },
   favoritedAt: {
-    type: String,
+    type: Date,
     optional: true,
     autoValue: function() {
       return moment().toDate();
@@ -30,3 +30,19 @@ Schemas.userFavorites = new SimpleSchema({
 });
 
 userFavorites.attachSchema(Schemas.userFavorites);
+
+Meteor.methods({
+  toggleFavorite(memoId) {
+    check(memoId, String);
+    if (!this.userId) {
+      throw new Meteor.Error("notAuthorized");
+    }
+    // if find, remove favoritedAt
+    const isFavorited = userFavorites.findOne({userId: this.userId, memoId: memoId});
+    if (isFavorited) {
+      userFavorites.remove({_id: isFavorited._id});
+    } else {
+      userFavorites.insert({memoId: memoId});
+    }
+  },
+});

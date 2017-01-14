@@ -98,6 +98,7 @@ TemplateController('Memo', {
       this.state.shouldExpireProgressbarShow = !this.state.shouldExpireProgressbarShow;
       this.state.isMemoExpired = false;
       Meteor.call('updateFavorite', this.data);
+      Meteor.call('toggleFavorite', this.data._id);
     },
     'click .card-image-url'() {
       Session.set('showModal', true);
