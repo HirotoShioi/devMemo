@@ -18,7 +18,7 @@ TemplateController('Memo', {
 
   helpers: {
     shouldExpireProgressbarShow() {
-      if (this.data.isFavorited === true || this.data.status === "expired") {
+      if (this.data.favoritedAt === true || this.data.status === "expired") {
         this.state.shouldExpireProgressbarShow = false;
       } else {
         this.state.shouldExpireProgressbarShow = true;
@@ -35,10 +35,10 @@ TemplateController('Memo', {
       return `http://www.google.com/s2/favicons?domain=${this.data.url}`;
     },
     shouldFavoriteHightlight() {
-      return ( this.state.shouldHeartHightlight || this.data.isFavorited );
+      return ( this.state.shouldHeartHightlight || this.data.favoritedAt );
     },
     shouldArchiveShow() {
-      if (this.data.status === "active" && this.data.isFavorited === false && this.data.owner === Meteor.userId()) {
+      if (this.data.status === "active" && this.data.favoritedAt === false && this.data.owner === Meteor.userId()) {
         return true;
       } else {
         return false;

@@ -18,8 +18,41 @@ Meteor.publish('usernames', function() {
 });
 
 // all user's favorites
-Meteor.publish('userFavorites', function() {
-  return userFavorites.find({userId: this.userId});
+Meteor.publishComposite('userFavorites', {
+  find: function() {
+    return userFavorites.find({userId: this.userId});
+  },
+  children: [
+    {
+      find: function(favorite) {
+        const transform = function(doc) {
+          doc.favoritedAt = favorite.favoritedAt;
+          return doc;
+        };
+
+        const self = this;
+
+        let observer = Memos.find({_id: favorite.memoId}).observe({
+          added: function(document) {
+            self.added('memos', document._id, transform(document));
+          },
+          changed: function(newDocument, oldDocument) {
+            self.changed('memos', oldDocument._id, transform(newDocument));
+          },
+          removed: function(oldDocument) {
+            self.removed('memos', oldDocument._id);
+          }
+        });
+
+        self.onStop(function() {
+          observer.stop();
+        });
+
+        self.ready();
+        return Memos.find({_id: favorite.memoId});
+      },
+    }
+  ]
 });
 
 // publish all memos label shares labels
@@ -36,6 +69,8 @@ Meteor.publishComposite('MemoLabelShares', {
         const transform = function(doc) {
           if (doc._id === label.labelId && label.status === "accepted") {
             doc.isShared = true;
+          } else {
+            doc.isShared = false;
           }
           return doc;
         };

@@ -14,7 +14,7 @@ TemplateController('SingleList', {
 
   helpers: {
     shouldExpireProgressbarShow() {
-      if (this.data.memo.isFavorited === true) {
+      if (this.data.memo.favoritedAt === true) {
         this.state.shouldExpireProgressbarShow = false;
       }
       return this.state.shouldExpireProgressbarShow;
@@ -68,7 +68,7 @@ TemplateController('SingleList', {
     'mouseover .list-item'() {
       this.state.shouldOptionButtonShow = true;
       const memo = this.data.memo;
-      if (memo.status === "expired" || memo.isFavorited === true) {
+      if (memo.status === "expired" || memo.favoritedAt === true) {
         return;
       }
       this.state.shouldExpireProgressbarShow = true;

@@ -56,7 +56,7 @@ TemplateController('Home', {
       let query = {
         _id: {$in: this.state.favoriteList}
       };
-      return Memos.find(query, {limit: this.session.get('favoriteResultsLimit'), sort: {createdAt: -1}});
+      return Memos.find(query, {limit: this.session.get('favoriteResultsLimit'), sort: {favoritedAt: -1}});
     },
     recentMemos() {
       let query = {
