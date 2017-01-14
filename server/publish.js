@@ -4,7 +4,7 @@ import { Label } from '../imports/api/label.js';
 import { labelShare } from '../imports/api/labelShare.js';
 import { userFavorites } from '../imports/api/userFavorites.js';
 
-import { check, Match } from 'meteor/check';
+import { check } from 'meteor/check';
 
 // Single memo
 Meteor.publish('singleMemo', function(id) {
