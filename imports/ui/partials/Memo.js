@@ -38,7 +38,7 @@ TemplateController('Memo', {
       return ( this.state.shouldHeartHightlight || this.data.isFavorited );
     },
     shouldArchiveShow() {
-      if (this.data.status === "active" && this.data.isFavorited === false) {
+      if (this.data.status === "active" && this.data.isFavorited === false && this.data.owner === Meteor.userId()) {
         return true;
       } else {
         return false;
@@ -97,7 +97,6 @@ TemplateController('Memo', {
     'click .heart'() {
       this.state.shouldExpireProgressbarShow = !this.state.shouldExpireProgressbarShow;
       this.state.isMemoExpired = false;
-      Meteor.call('updateFavorite', this.data);
       Meteor.call('toggleFavorite', this.data._id);
     },
     'click .card-image-url'() {

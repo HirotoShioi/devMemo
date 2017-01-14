@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { moment } from 'meteor/momentjs:moment';
+import { Memos } from './memos.js';
 
 export const userFavorites = new Mongo.Collection('userFavorites');
 
@@ -45,4 +46,10 @@ Meteor.methods({
       userFavorites.insert({memoId: memoId});
     }
   },
+});
+
+userFavorites.helpers({
+  memo() {
+    return Memos.findOne(this.memoId);
+  }
 });
