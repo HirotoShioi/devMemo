@@ -7,30 +7,35 @@
 				{{#if username}}
 				{{> AddMemoButton}}
 					<li class="{{isActiveRoute 'memo.home'}} link">
+						<div class="sidenav-nav {{isActiveRoute 'memo.home'}}"></div>
 						<a href="{{pathFor route='memo.home'}}" class="waves-effect {{isActiveRoute 'memo.home'}}">
 							<i class="fa fa-home"></i>
 							{{i18n 'sideNav.featured'}}
 						</a>
 					</li>
 					<li id="gallery" class="{{isActiveRoute 'memo.gallery'}} link">
+						<div class="sidenav-nav {{isActiveRoute 'memo.gallery'}}"></div>
 						<a href="{{pathFor route='memo.gallery'}}" class="waves-effect {{isActiveRoute 'memo.gallery'}}">
 							<i class="fa fa-sticky-note"></i>
 							{{i18n 'sideNav.memos'}}
 						</a>
 					</li>
-					<li id="search-bar" class="search-link">
+					<li id="search-bar" class="search-link {{#if $.Session.get 'isSearching'}}active{{/if}}">
+						<div class="sidenav-nav {{#if $.Session.get 'isSearching'}}active{{/if}}"></div>
 						<a class="waves-effect">
 							<i class="fa fa-search"></i>
 							{{i18n 'sideNav.search'}}
 						</a>
 					</li>
-					<li id="label-bar" class="label-link">
+					<li id="label-bar" class="label-link {{#if $.Session.get 'labelBarShow'}}active{{/if}}">
+						<div class="sidenav-nav {{#if $.Session.get 'labelBarShow'}}active{{/if}}"></div>
 						<a class="waves-effect">
 							<i class="fa fa-tags"></i>
 							{{i18n 'sideNav.labels'}}
 						</a>
 					</li>
 					<li id="notification" class="{{isActiveRoute 'notification'}} link">
+						<div class="sidenav-nav {{isActiveRoute 'notification'}}"></div>
 						<a href="{{pathFor route='notification'}}" class="waves-effect {{isActiveRoute 'notification'}}">
 							<i class="fa fa-bell"></i>
 							{{i18n 'sideNav.notification'}}
@@ -44,6 +49,7 @@
 					<div class="auth-link">
 						{{#if state.showBottomNav}}
 							<li id="settings-link" class="bottom-nav link">
+								<div class="sidenav-nav {{isActiveRoute 'settings'}}"></div>
 								<a href="{{pathFor route='settings'}}" class="waves-effect"><i class="fa fa-cogs" aria-hidden="true"></i>{{i18n 'sideNav.settings'}}</a>
 							</li>
 							<li id="logout-link" class="bottom-nav">
