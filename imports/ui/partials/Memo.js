@@ -18,7 +18,7 @@ TemplateController('Memo', {
 
   helpers: {
     shouldExpireProgressbarShow() {
-      if (this.data.isFavorited === true || this.data.status === "expired") {
+      if (this.data.favoritedAt || this.data.status === "expired") {
         this.state.shouldExpireProgressbarShow = false;
       } else {
         this.state.shouldExpireProgressbarShow = true;
@@ -35,10 +35,10 @@ TemplateController('Memo', {
       return `http://www.google.com/s2/favicons?domain=${this.data.url}`;
     },
     shouldFavoriteHightlight() {
-      return ( this.state.shouldHeartHightlight || this.data.isFavorited );
+      return ( this.state.shouldHeartHightlight || this.data.favoritedAt );
     },
     shouldArchiveShow() {
-      if (this.data.status === "active" && this.data.isFavorited === false) {
+      if (this.data.status === "active" && !this.data.favoritedAt && this.data.owner === Meteor.userId()) {
         return true;
       } else {
         return false;
@@ -97,7 +97,7 @@ TemplateController('Memo', {
     'click .heart'() {
       this.state.shouldExpireProgressbarShow = !this.state.shouldExpireProgressbarShow;
       this.state.isMemoExpired = false;
-      Meteor.call('updateFavorite', this.data);
+      Meteor.call('toggleFavorite', this.data._id);
     },
     'click .card-image-url'() {
       Session.set('showModal', true);

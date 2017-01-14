@@ -15,10 +15,12 @@ import '../ui/home/Home.js';
 import '../ui/settings/Settings.js';
 import '../ui/notification/Notification.js';
 
-import { Memos } from '../api/memos.js';
-import { Label } from '../api/label.js';
+import '../api/memos.js';
+import '../api/label.js';
 import '../api/user.js';
 import '../api/labelShare.js';
+import '../api/userFavorites.js';
+
 import { Router } from 'meteor/iron:router';
 import { Meteor } from 'meteor/meteor';
 import { AccountsTemplates } from 'meteor/useraccounts:core';

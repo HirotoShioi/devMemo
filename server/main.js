@@ -6,6 +6,7 @@ import '../imports/api/memoClicked.js';
 import '../imports/api/label.js';
 import '../imports/api/labelShare.js';
 import '../imports/api/user.js';
+import '../imports/api/userFavorites.js';
 
 // jobs
 SyncedCron.add({

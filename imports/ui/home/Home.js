@@ -1,5 +1,6 @@
 import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../api/memos.js';
+import { userFavorites } from '../../api/userFavorites.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
@@ -18,6 +19,7 @@ TemplateController('Home', {
     recentCount: 0,
     favoriteCount: 0,
     recommendCount: 0,
+    favoriteList: [],
   },
 
   private: {
@@ -39,22 +41,28 @@ TemplateController('Home', {
         self.state.recommendCount = Memos.find({labelId: result._id}).count();
       }
     });
+    self.autorun(()=>{
+      let favorites = userFavorites.find({}, {sort: {favoritedAt: -1}}).fetch();
+      this.state.favoriteList = [];
+      favorites.forEach((favorite)=>{
+        this.state.favoriteList.push(favorite.memoId);
+      });
+    });
   },
 
   helpers: {
     favoriteMemos() {
+      this.state.favoriteCount = userFavorites.find().count();
       let query = {
-        owner: Meteor.userId(),
-        isFavorited: true,
+        _id: {$in: this.state.favoriteList}
       };
-      this.state.favoriteCount = Memos.find(query).count();
-      return Memos.find(query, {limit: this.session.get('favoriteResultsLimit'), sort: {createdAt: -1}});
+      return Memos.find(query, {limit: this.session.get('favoriteResultsLimit'), sort: {favoritedAt: -1}});
     },
     recentMemos() {
       let query = {
         owner: Meteor.userId(),
         status: "active",
-        isFavorited: false,
+        _id: {$nin: this.state.favoriteList}
       };
       this.state.recentCount = Memos.find(query).count();
       return Memos.find(query, {limit: this.session.get('recentResultsLimit'), sort: {clickedAt: -1}});
@@ -81,7 +89,7 @@ TemplateController('Home', {
       let query = {
         owner: Meteor.userId(),
         status: "expired",
-        isFavorited: false,
+        _id: {$nin: this.state.favoriteList},
       };
       if (this.state.recommendLabels) {
         query.labelId = this.state.recommendLabels._id;

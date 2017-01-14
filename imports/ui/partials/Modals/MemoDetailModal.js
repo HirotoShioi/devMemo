@@ -10,9 +10,6 @@ TemplateController('MemoDetailModal', {
     label: {},
     shouldHeartHightlight: false,
   },
-  onCreated() {
-    const self = this;
-  },
   helpers: {
     memo() {
       let memo = Memos.findOne({_id: Session.get('MemoDetailId')});
@@ -45,7 +42,7 @@ TemplateController('MemoDetailModal', {
     },
     shouldArchiveShow() {
       if (this.state.memo) {
-        if (this.state.memo.status === "active" && this.state.memo.isFavorited === false) {
+        if (this.state.memo.status === "active" && !this.state.memo.favoritedAt) {
           return true;
         } else {
           return false;
@@ -56,7 +53,7 @@ TemplateController('MemoDetailModal', {
     },
     shouldFavoriteHightlight() {
       if (this.state.memo) {
-        return ( this.state.shouldHeartHightlight || this.state.memo.isFavorited );
+        return ( this.state.shouldHeartHightlight || this.state.memo.favoritedAt );
       } else {
         return false;
       }
@@ -93,7 +90,7 @@ TemplateController('MemoDetailModal', {
       this.state.shouldHeartHightlight = false;
     },
     'click .heart'() {
-      Meteor.call('updateFavorite', this.state.memo);
+      Meteor.call('toggleFavorite', this.state.memo._id);
     },
     'click .archive-memo'() {
       if (this.state.memo.status === "active") {

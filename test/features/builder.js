@@ -63,3 +63,21 @@ export const getLabelShare = function(shareObj) {
   }, shareObj );
   return label;
 };
+
+export const createUserFavorites = function(favoriteObj) {
+  let userFavorite = server.execute( (obj) => {
+    const { userFavorites } = require('/imports/api/userFavorites.js');
+    userFavorites.insert(obj);
+    return userFavorites.findOne(obj);
+  }, favoriteObj );
+  return userFavorite;
+};
+
+export const getUserFavorites = function(shareObj) {
+  let userFavorite = server.execute( (obj) => {
+    if (!obj.userId) obj.userId = Meteor.userId();
+    const { userFavorites } = require('/imports/api/userFavorites.js');
+    return userFavorites.findOne(obj);
+  }, shareObj );
+  return userFavorite;
+};

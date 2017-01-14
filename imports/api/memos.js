@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { HTTP } from 'meteor/http';
 import { check } from 'meteor/check';
 import { Label } from './label.js';
+import { userFavorites } from './userFavorites.js';
 import { moment } from 'meteor/momentjs:moment';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { memoClicked } from './memoClicked.js';
@@ -45,11 +46,6 @@ Schemas.memos = new SimpleSchema({
   provider_name: {
     type: String,
     optional: true,
-  },
-  isFavorited: {
-    type: Boolean,
-    optional: true,
-    defaultValue: false,
   },
   tags: {
     type: String,
@@ -147,16 +143,6 @@ Meteor.methods({
     }
 
     Memos.remove(id);
-  },
-  updateFavorite(doc) {
-    check(doc, Object);
-
-    let isFavorited = doc.isFavorited;
-    if (isFavorited === undefined) {
-      isFavorited = false;
-    }
-
-    Memos.update({_id: doc._id}, {$set: {isFavorited: !doc.isFavorited}});
   },
   memoUrlClicked(doc) {
     check(doc, Object);
@@ -261,7 +247,8 @@ Meteor.methods({
       throw new Meteor.Error("notAuthorized");
     }
     const today = moment().toDate();
-    Memos.update({_id: doc._id}, {$set: {expiredAt: today, status: "expired", isFavorited: false}});
+    Memos.update({_id: doc._id}, {$set: {expiredAt: today, status: "expired"}});
+    userFavorites.remove({userId: this.userId, memoId: doc._id});
   }
 });
 
