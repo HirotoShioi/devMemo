@@ -12,12 +12,12 @@ Meteor.publish('singleMemo', function(id) {
   return Memos.find({_id: id});
 });
 
-// all user's username
+// All user's username
 Meteor.publish('usernames', function() {
   return Meteor.users.find({}, {fields: {username: 1}});
 });
 
-// all user's favorites
+// All user's favorites
 Meteor.publishComposite('userFavorites', {
   find: function() {
     return userFavorites.find({userId: this.userId});
@@ -82,9 +82,9 @@ Meteor.publishComposite('MemoLabelShares', {
           changed: function(newDocument, oldDocument) {
             self.changed('Label', oldDocument._id, transform(newDocument));
           },
-          removed: function(oldDocument) {
-            self.removed('Label', oldDocument._id);
-          }
+          //removed: function(oldDocument) {
+            //self.removed('Label', oldDocument._id);
+          //}
         });
 
         self.onStop(function() {
@@ -110,14 +110,12 @@ Meteor.publishComposite('MemoLabelShares', {
   ]
 });
 
-// Not used but saved if there's any problem with publish composite
-
-// label publication
+// Label publication
 Meteor.publish('label', function() {
   return Label.find({owner: this.userId});
 });
 
-// Memo publication with query options
+// Memo publication
 Meteor.publish('memos', function() {
   let query    = { owner: this.userId };
   let projection = { limit: 100, sort: { createdAt: -1 } };
