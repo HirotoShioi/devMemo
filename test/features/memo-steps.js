@@ -220,4 +220,18 @@ module.exports = function() {
     let isEmptyMemoVisible = client.waitForVisible(".empty-card", 2000);
     expect(isEmptyMemoVisible).to.equal(true);
   });
+
+  this.When(/^I click memo content$/, function() {
+    client.waitForVisible(`#card-${this.memo._id}`, 3000);
+    client.click(`#card-${this.memo._id} .card-content`);
+  });
+
+  this.When(/^I press delete$/, function() {
+    client.click(`#card-${this.memo._id} .fa-close`);
+  });
+
+  this.Then(/^my memo should be deleted$/, function() {
+    let memo = getMemo({_id: this.memo._id});
+    expect(memo).to.equal(undefined);
+  });
 };

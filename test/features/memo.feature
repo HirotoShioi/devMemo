@@ -119,3 +119,11 @@ Feature:Memo
     And I have no memos
     When I login as a user
     Then I should see empty memos
+
+  Scenario: Delete memo
+    Given that I am a user
+    And I have memo "https://www.youtube.com"
+    When I login as a user
+    And I click memo content
+    And I press delete
+    Then my memo should be deleted
