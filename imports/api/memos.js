@@ -143,6 +143,7 @@ Meteor.methods({
     }
 
     Memos.remove(id);
+    userFavorites.remove({memoId: id});
   },
   memoUrlClicked(doc) {
     check(doc, Object);

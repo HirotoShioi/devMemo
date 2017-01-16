@@ -3,7 +3,8 @@ import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
 import { moment } from 'meteor/momentjs:moment';
 import { Label } from './label.js';
-
+import { userFavorites } from './userFavorites.js';
+import { Memos } from './memos.js';
 export const labelShare = new Mongo.Collection('labelShare');
 let Schema = {};
 
@@ -160,8 +161,18 @@ Meteor.methods({
     if (!this.userId) {
       throw new Meteor.Error('notAuthorized');
     }
+    const memos = Memos.find({labelId: labelId}).fetch();
+    memos.forEach((memo)=>{
+      if (this.userId !== memo.owner) {
+        userFavorites.remove({memoId: memo._id});
+      }
+    });
 
-    labelShare.remove({sharedTo: this.userId, labelId: labelId});
+    const removeQuery = {
+      sharedTo: this.userId,
+      labelId: labelId
+    };
+    labelShare.remove(removeQuery);
   },
   requestNotified() {
     labelShare.update({sharedTo: this.userId}, {$set: {requestNotified: true}}, {multi: true});

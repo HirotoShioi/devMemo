@@ -69,8 +69,6 @@ Meteor.publishComposite('MemoLabelShares', {
         const transform = function(doc) {
           if (doc._id === label.labelId && label.status === "accepted") {
             doc.isShared = true;
-          } else {
-            doc.isShared = false;
           }
           return doc;
         };
