@@ -10,6 +10,7 @@ TemplateController('Memo', {
     isHovered: false,
     shouldHeartHightlight: false,
     shouldExpireProgressbarShow: true,
+    shouldDeleteMemoShow: false,
     progressBarColor: 'over-75',
     progressRate: 0,
     isMemoExpired: false,
@@ -84,9 +85,13 @@ TemplateController('Memo', {
     },
     'mouseover .card'() {
       this.state.isHovered = true;
+      if (this.data.owner === Meteor.userId()) {
+        this.state.shouldDeleteMemoShow = true;
+      }
     },
     'mouseout .card'() {
       this.state.isHovered = false;
+      this.state.shouldDeleteMemoShow = false;
     },
     'mouseover .heart'() {
       this.state.shouldHeartHightlight = true;
