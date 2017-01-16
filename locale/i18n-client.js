@@ -133,6 +133,7 @@ i18n.map('en', {
     deleteLabel: {
       title: 'Delete Label',
       messages: 'Are you sure you want to delete',
+      deleteMemo: 'Delete related memos as well',
       submit: 'Delete',
     },
 
@@ -294,6 +295,7 @@ i18n.map('ja', {
     deleteLabel: {
       title: 'ラベル削除',
       messages: 'このラベルを削除してもいいですか',
+      deleteMemo: 'ラベルに関するブックマークも一緒に消去する',
       submit: '削除',
     },
 

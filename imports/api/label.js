@@ -79,19 +79,24 @@ Meteor.methods({
       username: Meteor.user().username
     });
   },
-  'removeLabel'(id) {
-    check(id, String);
-    const label = Label.findOne(id);
+  'removeLabel'(labelId, shouldDeleteMemo) {
+    check(labelId, String);
+    check(shouldDeleteMemo, Boolean);
+    const label = Label.findOne(labelId);
 
     if (this.userId !== label.owner) {
       throw new Meteor.Error('notAuthorized');
     }
 
-    Label.remove(id);
-    Memos.update({labelId: id},
-      {
-        $unset: {labelId: ""}
-      }, {multi: true});
+    if (shouldDeleteMemo) {
+      Memos.remove({owner: this.userId, labelId: labelId});
+    } else {
+      Memos.update({labelId: labelId},
+        {
+          $unset: {labelId: ""}
+        }, {multi: true});
+    }
+    Label.remove(labelId);
   }
 });
 
