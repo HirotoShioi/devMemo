@@ -27,11 +27,6 @@
           </a>
         </li>
       	{{/if}}
-        <li class="{{isActiveRoute 'about'}}">
-          <a class="{{isActiveRoute 'about'}}" href="{{pathFor route='about'}}">
-            {{i18n 'sideNav.about'}}
-          </a>
-        </li>
       </ul>
        <ul id="slide-out" class="side-nav  {{#if $.Session.get 'isShrinkedSideNavShown'}}sidenav-active {{else}} sidenav-inactive {{/if}}">
           {{#if currentUser}}
@@ -56,14 +51,6 @@
             </li>
           {{else}}
             <li>{{> atNavButton }}</li>
-          {{/if}}
-            <li class="{{isActiveRoute 'about'}}">
-              <a class="{{isActiveRoute 'about'}}" href="{{pathFor route='about'}}">
-                <i class="fa fa-info"></i>
-                {{i18n 'sideNav.about'}}
-              </a>
-            </li>
-          {{#if currentUser}}
             <li>
               <a href="" class="waves-effect red-text logout auth-link">Logout<i class="fa fa-sign-out" aria-hidden="true"></i></a>                
             </li>
