@@ -8,7 +8,6 @@ import '../ui/partials/Loading.html';
 // pages
 import '../ui/gallery/Gallery.js';
 import '../ui/memoDetail/MemoDetail.js';
-import '../ui/about/About.js';
 import '../ui/landing/Landing.js';
 import '../ui/labelDetail/LabelDetail.js';
 import '../ui/home/Home.js';
@@ -46,6 +45,12 @@ Router.route('/landing', function() {
   this.render('Landing');
 }, {
   name: 'Landing',
+  onBeforeAction: function() {
+    if (Meteor.user()) {
+      Router.go('memo.home');
+    }
+    this.next();
+  },
 });
 
 Router.route('/', function() {
@@ -60,12 +65,6 @@ Router.route('/detail/:_id', function() {
   });
 }, {
   name: 'memo.detail',
-});
-
-Router.route('/about', function() {
-  this.render('About');
-}, {
-  name: 'about',
 });
 
 Router.route('/label/:labelId', function() {

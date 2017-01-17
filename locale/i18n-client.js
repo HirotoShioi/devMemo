@@ -101,7 +101,6 @@ i18n.map('en', {
     memos: 'Gallery',
     search: 'Search',
     labels: 'Labels',
-    about: 'About',
     settings: 'Settings',
     notification: "Notification"
   },
@@ -263,7 +262,6 @@ i18n.map('ja', {
     memos: 'ギャラリー',
     search: '探す',
     labels: 'ラベル',
-    about: '概要',
     settings: '設定',
     notification: "通知"
   },
