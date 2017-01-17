@@ -10,23 +10,23 @@
       <a href="{{pathFor route='memo.home'}}" class="brand-logo">{{title.name}}</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li>{{> atNavButton }}</li>
-      	{{#if currentUser}}
+        {{#if currentUser}}
         <li class="{{isActiveRoute 'memo.home'}}">
           <a class="{{isActiveRoute 'memo.home'}}" href="{{pathFor route='memo.home'}}">
             {{i18n 'sideNav.featured'}}
           </a>
         </li>
-      	<li class="{{isActiveRoute 'memo.gallery'}}">
+        <li class="{{isActiveRoute 'memo.gallery'}}">
           <a class="{{isActiveRoute 'memo.gallery'}}" href="{{pathFor route='memo.gallery'}}">
             {{i18n 'sideNav.memos'}}
           </a>
         </li>
-      	<li class="{{isActiveRoute 'notification'}}">
+        <li class="{{isActiveRoute 'notification'}}">
           <a class="{{isActiveRoute 'notification'}}" href="{{pathFor route='notification'}}">
             {{i18n 'sideNav.notification'}}
           </a>
         </li>
-      	{{/if}}
+        {{/if}}
       </ul>
        <ul id="slide-out" class="side-nav  {{#if $.Session.get 'isShrinkedSideNavShown'}}sidenav-active {{else}} sidenav-inactive {{/if}}">
           {{#if currentUser}}

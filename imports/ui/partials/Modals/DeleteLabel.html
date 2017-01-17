@@ -1,16 +1,16 @@
 <template name="DeleteLabel">
-	<p class="form-title">{{i18n 'forms.deleteLabel.title'}}</p>
-	<p class="delete-text">
-		{{i18n 'forms.deleteLabel.messages'}}
-		<span class="chip" style="background-color:{{label.color}}">
-			{{label.name}}
-		</span>?
-	</p>
-	{{#if hasAnyMemos}}
-		<p>
-			<input type="checkbox" class="filled-in delete-memo-with-label" id="filled-in-box"/>
-			<label for="filled-in-box">{{i18n 'forms.deleteLabel.deleteMemo'}}</label>
-		</p>
-	{{/if}}
-	<button class="btn red delete-label-btn">{{i18n 'forms.deleteLabel.submit'}}</button>
+  <p class="form-title">{{i18n 'forms.deleteLabel.title'}}</p>
+  <p class="delete-text">
+    {{i18n 'forms.deleteLabel.messages'}}
+    <span class="chip" style="background-color:{{label.color}}">
+      {{label.name}}
+    </span>?
+  </p>
+  {{#if hasAnyMemos}}
+    <p>
+      <input type="checkbox" class="filled-in delete-memo-with-label" id="filled-in-box"/>
+      <label for="filled-in-box">{{i18n 'forms.deleteLabel.deleteMemo'}}</label>
+    </p>
+  {{/if}}
+  <button class="btn red delete-label-btn">{{i18n 'forms.deleteLabel.submit'}}</button>
 </template>

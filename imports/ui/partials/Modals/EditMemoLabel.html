@@ -1,9 +1,9 @@
 <template name="EditMemoLabel">
-	<p class="form-title edit-memo-title">{{memo.name}}</p>
-	<div class="modal-edit-wrapper">
-		{{#autoForm collection="Memos" doc=memo id="editMemoLabel" type="update"}}
-			{{> afQuickField name="labelId"}}
-			<input type="submit" class="btn blue darken-3">
-		{{/autoForm}}
-	</div>
+  <p class="form-title edit-memo-title">{{memo.name}}</p>
+  <div class="modal-edit-wrapper">
+    {{#autoForm collection="Memos" doc=memo id="editMemoLabel" type="update"}}
+      {{> afQuickField name="labelId"}}
+      <input type="submit" class="btn blue darken-3"/>
+    {{/autoForm}}
+  </div>
 </template>
