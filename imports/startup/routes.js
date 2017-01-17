@@ -45,6 +45,11 @@ Router.route('/landing', function() {
   this.render('Landing');
 }, {
   name: 'Landing',
+  onBeforeAction: function() {
+    if (Meteor.user()) {
+      Router.go('memo.home');
+    }
+  },
 });
 
 Router.route('/', function() {
