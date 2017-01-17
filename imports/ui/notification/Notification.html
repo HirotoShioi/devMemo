@@ -1,12 +1,12 @@
 <template name="Notification">
-	<div class="main-container">
+  <div class="main-container">
         <div class="page-title hide-on-med-and-down z-depth-1">
             <div class="container">
                 <h4 style="">{{i18n 'pageTitle.notification'}}</h4>
             </div>
         </div>
-		<div class="main-content">
-		{{#if Template.subscriptionsReady}}
+    <div class="main-content">
+    {{#if Template.subscriptionsReady}}
       <div id="notify-content">
         <div class="row">
           <div class="col s12 m12">
@@ -53,13 +53,13 @@
           </div>
         </div>
       </div>
-		{{else}}
-			<div class="loading-wrapper valign-wrapper">
-				<div class="center valign">
-					{{> Loading size="big"}}
-				</div>
-			</div>
-		{{/if}}
-		</div>
-	</div>
+    {{else}}
+      <div class="loading-wrapper valign-wrapper">
+        <div class="center valign">
+          {{> Loading size="big"}}
+        </div>
+      </div>
+    {{/if}}
+    </div>
+  </div>
 </template>

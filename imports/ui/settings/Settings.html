@@ -17,7 +17,7 @@
               {{#autoForm id='accountForm' collection='Meteor.users' doc=currentUser type='update' id='accountForm'}}
                 {{> afQuickField name="username"}}
                 {{> afQuickField name="profile.language"}}
-                <button type='submit' class="btn blue darken-3 btn-primary">{{i18n 'settings.save'}}</button>
+                <button type="submit" class="btn blue darken-3 btn-primary">{{i18n 'settings.save'}}</button>
               {{/autoForm}}
             </div>
             {{profile}}

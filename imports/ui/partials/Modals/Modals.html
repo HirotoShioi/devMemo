@@ -1,58 +1,58 @@
 <template name="Modals">
-	<div class="{{#if overlayShow}}modal-overlay{{else}}hide-overlay{{/if}} overlay">
-		<div class="{{#if $eq formType 'AddLabel'}}show-modal{{/if}} modal-form-wrapper add-label">
-			<div class="card-panel modal-card">
-				<i class="fa fa-close right"></i>
-				{{> AddLabelForm}}
-			</div>
-		</div>
+  <div class="{{#if overlayShow}}modal-overlay{{else}}hide-overlay{{/if}} overlay">
+    <div class="{{#if $eq formType 'AddLabel'}}show-modal{{/if}} modal-form-wrapper add-label">
+      <div class="card-panel modal-card">
+        <i class="fa fa-close right"></i>
+        {{> AddLabelForm}}
+      </div>
+    </div>
 
-		<div class="{{#if $eq formType 'AddMemo'}}show-modal{{/if}} modal-form-wrapper add-memo">
-			<div class="card-panel z-depth-2 modal-card">
-				<i class="fa fa-close right"></i>
-				{{> AddMemoForm}}
-			</div>
-		</div>
+    <div class="{{#if $eq formType 'AddMemo'}}show-modal{{/if}} modal-form-wrapper add-memo">
+      <div class="card-panel z-depth-2 modal-card">
+        <i class="fa fa-close right"></i>
+        {{> AddMemoForm}}
+      </div>
+    </div>
 
-		<div class="{{#if $eq formType 'DeleteLabel'}}show-modal{{/if}} modal-form-wrapper delete-label">
-			<div class="card-panel z-depth-2 modal-card">
-				<i class="fa fa-close right"></i>
-				{{> DeleteLabel}}
-			</div>
-		</div>
+    <div class="{{#if $eq formType 'DeleteLabel'}}show-modal{{/if}} modal-form-wrapper delete-label">
+      <div class="card-panel z-depth-2 modal-card">
+        <i class="fa fa-close right"></i>
+        {{> DeleteLabel}}
+      </div>
+    </div>
 
-		<div class="{{#if $eq formType 'EditLabel'}}show-modal{{/if}} modal-form-wrapper edit-label">
-			<div class="card-panel z-depth-2 modal-card">
-				<i class="fa fa-close right"></i>
-				{{> EditLabel}}
-			</div>
-		</div>
+    <div class="{{#if $eq formType 'EditLabel'}}show-modal{{/if}} modal-form-wrapper edit-label">
+      <div class="card-panel z-depth-2 modal-card">
+        <i class="fa fa-close right"></i>
+        {{> EditLabel}}
+      </div>
+    </div>
 
-		<div class="{{#if $eq formType 'EditMemoLabel'}}show-modal{{/if}} modal-form-wrapper edit-memo-label">
-			<div class="card-panel z-depth-2 modal-card">
-				<i class="fa fa-close right"></i>
-				{{> EditMemoLabel}}
-			</div>
-		</div>
+    <div class="{{#if $eq formType 'EditMemoLabel'}}show-modal{{/if}} modal-form-wrapper edit-memo-label">
+      <div class="card-panel z-depth-2 modal-card">
+        <i class="fa fa-close right"></i>
+        {{> EditMemoLabel}}
+      </div>
+    </div>
 
-		<div class="{{#if $.Session.get 'showMemoDetail'}}show-modal{{/if}} modal-form-wrapper memo-detail-modal">
-			<div class="card z-depth-2">
-				{{> MemoDetailModal}}
-			</div>
-		</div>
+    <div class="{{#if $.Session.get 'showMemoDetail'}}show-modal{{/if}} modal-form-wrapper memo-detail-modal">
+      <div class="card z-depth-2">
+        {{> MemoDetailModal}}
+      </div>
+    </div>
 
-		<div class="{{#if $eq formType 'AddShareUser'}}show-modal{{/if}} modal-form-wrapper edit-label">
-			<div class="card-panel z-depth-2 modal-card">
-				<i class="fa fa-close right"></i>
-				{{> AddShareUser}}
-			</div>
-		</div>
+    <div class="{{#if $eq formType 'AddShareUser'}}show-modal{{/if}} modal-form-wrapper edit-label">
+      <div class="card-panel z-depth-2 modal-card">
+        <i class="fa fa-close right"></i>
+        {{> AddShareUser}}
+      </div>
+    </div>
 
-		<div class="{{#if $eq formType 'LeaveShareLabel'}}show-modal{{/if}} modal-form-wrapper delete-label">
-			<div class="card-panel z-depth-2 modal-card">
-				<i class="fa fa-close right"></i>
-				{{> LeaveShareLabel}}
-			</div>
-		</div>
-	</div>
+    <div class="{{#if $eq formType 'LeaveShareLabel'}}show-modal{{/if}} modal-form-wrapper delete-label">
+      <div class="card-panel z-depth-2 modal-card">
+        <i class="fa fa-close right"></i>
+        {{> LeaveShareLabel}}
+      </div>
+    </div>
+  </div>
 </template>

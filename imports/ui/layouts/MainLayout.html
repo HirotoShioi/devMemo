@@ -1,15 +1,15 @@
 <template name="MainLayout">
-	{{> SideNav}}
-	{{#if currentUser}}
-		{{#if shouldSearchBarShow}}
-			{{> SearchBar}}
-			{{> labelBar}}
-		{{/if}}
-	{{/if}}
-	{{> Modals}}
-	{{> Header}}
-		<main class="main-layout">
-				{{> yield}}
-		</main>
-	{{> Overlay}}
+  {{> SideNav}}
+  {{#if currentUser}}
+    {{#if shouldSearchBarShow}}
+      {{> SearchBar}}
+      {{> labelBar}}
+    {{/if}}
+  {{/if}}
+  {{> Modals}}
+  {{> Header}}
+    <main class="main-layout">
+        {{> yield}}
+    </main>
+  {{> Overlay}}
 </template>

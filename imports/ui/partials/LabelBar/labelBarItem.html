@@ -2,8 +2,8 @@
   <li class="collection-item search-item label-item" id="label-{{label._id}}">
     <a href="{{pathFor route='label.detail' data=labelId}}"
       class="title label-bar-chip" style="background-color:{{label.color}}">
-	   <span class="label-text">{{label.name}}</span>
-	   <span class="counter-chip">{{label.memoCount}}</span>
+     <span class="label-text">{{label.name}}</span>
+     <span class="counter-chip">{{label.memoCount}}</span>
     </a>
     {{#if isShared}}
       <i class="fa fa-share-alt option-icon share-edit"></i>
