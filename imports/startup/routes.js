@@ -49,6 +49,7 @@ Router.route('/landing', function() {
     if (Meteor.user()) {
       Router.go('memo.home');
     }
+    this.next();
   },
 });
 
