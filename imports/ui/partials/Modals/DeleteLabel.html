@@ -6,5 +6,11 @@
 			{{label.name}}
 		</span>?
 	</p>
+	{{#if hasAnyMemos}}
+		<p>
+			<input type="checkbox" class="filled-in delete-memo-with-label" id="filled-in-box"/>
+			<label for="filled-in-box">{{i18n 'forms.deleteLabel.deleteMemo'}}</label>
+		</p>
+	{{/if}}
 	<button class="btn red delete-label-btn">{{i18n 'forms.deleteLabel.submit'}}</button>
 </template>
