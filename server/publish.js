@@ -26,30 +26,6 @@ Meteor.publishComposite('userFavorites', {
   children: [
     {
       find: function(favorite) {
-        const transform = function(doc) {
-          doc.favoritedAt = favorite.favoritedAt;
-          return doc;
-        };
-
-        const self = this;
-
-        let observer = Memos.find({_id: favorite.memoId}).observe({
-          added: function(document) {
-            self.added('memos', document._id, transform(document));
-          },
-          changed: function(newDocument, oldDocument) {
-            self.changed('memos', oldDocument._id, transform(newDocument));
-          },
-          removed: function(oldDocument) {
-            self.removed('memos', oldDocument._id);
-          }
-        });
-
-        self.onStop(function() {
-          observer.stop();
-        });
-
-        self.ready();
         return Memos.find({_id: favorite.memoId});
       },
     }

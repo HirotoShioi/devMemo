@@ -23,8 +23,8 @@
                     </div>
                 {{else}}
                     <div class="row">
-                        {{#each memos}}
-                            {{> Memo}}
+                        {{#each memo in memos}}
+                            {{> Memo memo=memo favoritedAt=memo.favoritedAt}}
                         {{else}}
                             {{#each emptyMemos}}
                                 {{> emptyMemo}}

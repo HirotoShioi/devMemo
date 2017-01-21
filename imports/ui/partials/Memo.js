@@ -15,11 +15,20 @@ TemplateController('Memo', {
     progressRate: 0,
     isMemoExpired: false,
     shouldToolTipShow: true,
+    favorited: false,
   },
 
   helpers: {
+    memo() {
+      if (this.data.favoritedAt) {
+        this.state.favorited = true;
+      } else {
+        this.state.favorited = false;
+      }
+      return this.data.memo;
+    },
     shouldExpireProgressbarShow() {
-      if (this.data.favoritedAt || this.data.status === "expired") {
+      if (this.state.favorited || this.data.memo.status === "expired") {
         this.state.shouldExpireProgressbarShow = false;
       } else {
         this.state.shouldExpireProgressbarShow = true;
@@ -27,29 +36,29 @@ TemplateController('Memo', {
       return this.state.shouldExpireProgressbarShow;
     },
     isOwner() {
-      return (Meteor.userId() === this.data.owner);
+      return (Meteor.userId() === this.data.memo.owner);
     },
     hasLabel() {
-      return (this.data.labelId) ? true : false;
+      return (this.data.memo.labelId) ? true : false;
     },
     faviconUrl() {
-      return `http://www.google.com/s2/favicons?domain=${this.data.url}`;
+      return `http://www.google.com/s2/favicons?domain=${this.data.memo.url}`;
     },
     shouldFavoriteHightlight() {
-      return ( this.state.shouldHeartHightlight || this.data.favoritedAt );
+      return this.state.favorited;
     },
     shouldArchiveShow() {
-      if (this.data.status === "active" && !this.data.favoritedAt && this.data.owner === Meteor.userId()) {
+      if (this.data.memo.status === "active" && !this.state.favorited && this.data.memo.owner === Meteor.userId()) {
         return true;
       } else {
         return false;
       }
     },
     expireStatus() {
-      const expireDate = moment(this.data.expiredAt);
+      const expireDate = moment(this.data.memo.expiredAt);
       const today = moment().format();
       const progress = expireDate.diff(today, 'hours');
-      const expireLimit = this.data.expireIn * 24;
+      const expireLimit = this.data.memo.expireIn * 24;
       let progressRate = 0;
       progressRate = Math.floor((progress / expireLimit) * 100);
 
@@ -77,15 +86,15 @@ TemplateController('Memo', {
   events: {
     'click .fa-cog'() {
       Session.set('showModal', true);
-      Session.set('editMemoLabelId', this.data._id);
+      Session.set('editMemoLabelId', this.data.memo._id);
       Session.set('formType', 'EditMemoLabel');
     },
     'click .fa-close'() {
-      Meteor.call('deleteMemo', this.data._id);
+      Meteor.call('deleteMemo', this.data.memo._id);
     },
     'mouseover .card'() {
       this.state.isHovered = true;
-      if (this.data.owner === Meteor.userId()) {
+      if (this.data.memo.owner === Meteor.userId()) {
         this.state.shouldDeleteMemoShow = true;
       }
     },
@@ -93,35 +102,29 @@ TemplateController('Memo', {
       this.state.isHovered = false;
       this.state.shouldDeleteMemoShow = false;
     },
-    'mouseover .heart'() {
-      this.state.shouldHeartHightlight = true;
-    },
-    'mouseout .heart'() {
-      this.state.shouldHeartHightlight = false;
-    },
     'click .heart'() {
       this.state.shouldExpireProgressbarShow = !this.state.shouldExpireProgressbarShow;
       this.state.isMemoExpired = false;
-      Meteor.call('toggleFavorite', this.data._id);
+      Meteor.call('toggleFavorite', this.data.memo._id);
     },
     'click .card-image-url'() {
       Session.set('showModal', true);
-      Session.set('MemoDetailId', this.data._id);
+      Session.set('MemoDetailId', this.data.memo._id);
       Session.set('showMemoDetail', true);
       return false;
     },
     'click .archive-memo'() {
-      if (this.data.status === "active") {
+      if (this.data.memo.status === "active") {
         this.state.isMemoExpired = true;
-        Meteor.call('archiveMemo', this.data);
+        Meteor.call('archiveMemo', this.data.memo);
       } else {
         this.state.isMemoExpired = false;
-        Meteor.call('memoUrlClicked', this.data);
+        Meteor.call('memoUrlClicked', this.data.memo);
       }
     },
     'click .card-link'() {
-      Meteor.call('memoUrlClicked', this.data);
-      window.open(this.data.url, '_blank');
+      Meteor.call('memoUrlClicked', this.data.memo);
+      window.open(this.data.memo.url, '_blank');
       return false;
     },
   },
