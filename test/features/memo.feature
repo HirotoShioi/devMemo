@@ -88,7 +88,7 @@ Feature:Memo
     And I click memo
     And I press archive icon
     Then my memo should be in status "expired"
-  
+
   Scenario: Reactivate memo
     Given that I am a user
     And I have memo "https://www.youtube.com"

@@ -1,5 +1,5 @@
 <template name="Memo">
-  <div id="card-{{_id}}" class="col l3 m6 s12 memo-card-wrapper">
+  <div id="card-{{memo._id}}" class="col l3 m6 s12 memo-card-wrapper">
     <div class="card hoverable">
         <div class="card-image center">
         {{#if $eq state.favorited false}}
@@ -41,7 +41,7 @@
               <p class="truncate">{{memo.url}}</p>
             {{/if}}
             </a>
-                <a class="memo-detail" href="{{pathFor route='memo.detail'}}">{{i18n 'memo.more'}}</a>
+                <a class="memo-detail" href="{{pathFor route='memo.detail' data=memo}}">{{i18n 'memo.more'}}</a>
             {{#if hasLabel}}
                 <a href="{{pathFor route='label.detail' data=memo}}" class="chip edit-btn" style="background-color:{{memo.label.color}}">
                     {{memo.label.name}}
