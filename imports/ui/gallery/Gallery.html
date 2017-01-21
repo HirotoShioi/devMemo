@@ -1,0 +1,47 @@
+<template name="Gallery">
+    <div class="main-container">
+        <div class="page-title hide-on-med-and-down z-depth-1">
+            <div class="container">
+                <h4 style="">{{i18n 'pageTitle.gallery'}}</h4>
+            </div>
+        </div>
+        <div id="gallery-content" class="main-content">
+        {{> ViewOptions}}
+        {{#if Template.subscriptionsReady}}
+             <div class="list-group">
+                {{#if $.Session.get 'ListMode'}}
+                    <div class="row">
+                        <div class="memos-list">
+                            <div class="col m10 s12 offset-m1">
+                                <ul class="collection">
+                                    {{#each memo in memos}}
+                                    {{> SingleList memo=memo}}
+                                    {{/each}}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {{else}}
+                    <div class="row">
+                        {{#each memos}}
+                            {{> Memo}}
+                        {{else}}
+                            {{#each emptyMemos}}
+                                {{> emptyMemo}}
+                            {{/each}}
+                        {{/each}}
+                    </div>
+                {{/if}}
+             </div>
+            {{> loadingIndicator scrollTargetSelector=state.scrollTarget
+            showIndicator=hasMoreContent}}
+        {{else}}
+            <div class="loading-wrapper valign-wrapper">
+                <div class="center valign">
+                    {{> Loading size="big"}}
+                </div>
+            </div>
+        {{/if}}
+        </div>
+    </div>
+</template>

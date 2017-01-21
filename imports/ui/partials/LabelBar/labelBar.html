@@ -1,0 +1,39 @@
+<template name="labelBar">
+  <div id="label-search-bar" class="search-nav-bar {{#if shouldSearchBarShow}}search-bar-show {{else}}search-bar-hidden{{/if}}">
+    <div class="search-bar-header-wrapper">
+      <div class="search-input-title">
+        <span>{{i18n 'label.title'}}</span>
+        <a href="#" id="add-label" class="fa fa-plus-circle right"></a>
+      </div>
+      {{#if $eq noLabel false}}
+        <input id="search" class="label-search-input" type="text" name="labelSearch" placeholder="{{i18n 'search.placeholder'}}..." />
+      {{/if}}
+    </div>
+    {{#if noLabel}}
+      <div id="no-label" class="not-found">
+        <i class="fa fa-tag"></i>
+        <h4>{{i18n 'search.noLabel'}}</h4>
+      </div>
+    {{else}}
+      <div class="search-result">
+        {{#if $neq labelResultCount 0}}
+          <div class="search-result-title">
+            <span>{{i18n 'label.title'}}</span>
+            <a href="#" class="right toggle-label-show">more</a>
+          </div>
+          <ul class="collection">
+          {{#each label in searchedLabels}}
+            {{> labelBarItem label=label}}
+          {{/each}}
+          </ul>
+        {{/if}}
+      </div>
+    {{/if}}
+    {{#if noResult}}
+      <div class="not-found">
+        <i class="fa fa-search"></i>
+        <h4>{{i18n 'search.noResultsFound'}}</h4>
+      </div>
+    {{/if}}
+  </div>
+</template>

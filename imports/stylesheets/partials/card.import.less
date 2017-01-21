@@ -1,0 +1,130 @@
+.memo-card-wrapper{
+    .card {
+        .card-image{
+            height: 140px;
+            overflow: hidden;
+            img{
+                min-height: 140px;
+            }
+            .card-image-alt-icon{
+                font-size: 8em;
+                margin-top: 15px;
+                color: #999;
+            }
+        }
+        .card-action a:not(.btn):not(.btn-large):not(.btn-floating)
+        {
+            text-transform: lowercase;
+            margin-right: 0px;
+        }
+        .fa-close{
+            position: absolute;
+            top: 0%;
+            right: 1%;
+            color: #ddd;
+            font-size: 23px;
+            transition:color 0.2s linear;
+            &:hover{
+                color:#cc0000;
+            }
+        }
+        .card-action{
+            visibility: hidden;
+            padding: 3px 10px;
+            position: absolute;
+            width: 100%;
+            text-align: left;
+            background-color: rgba(0,0,0,0.4);
+            opacity:1;
+            bottom: -20px;
+            transition:all 0.1s linear;
+            &.tooltip-show{
+                bottom: 0;
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        .card-content{
+            padding:7px 12px;
+            .card-body{
+                position: relative;
+                .card-link{
+                    color:#000;
+                }
+                .favicon{
+                    width:14px;
+                }
+                .edit-btn{
+                    font-size: 12px;
+                    height:20px;
+                    line-height: 20px;
+                    padding:0 1em;
+                    text-transform: none;
+                    position: absolute;
+                    right:-3%;
+                    top:50%;
+                }
+            }
+        }
+
+        .card-option{
+            cursor: pointer;
+            font-size: 21px;
+            margin-right: 8px;
+            color:#fefefe;
+            transition: color .15s linear;
+        }
+
+        .fa-heart{
+            color:#ED4956;
+        }
+
+        .fa-cog:hover{
+            color:#1565C0;
+        }
+
+        .fa-archive:hover{
+            color:#FFEB3B;
+        }
+    }
+}
+@media (max-width: 600px) {
+.memo-card-wrapper{
+    .card {
+            .card-image{
+                height: 200px;
+                img{
+                    min-height: 200px;
+                }
+                .card-image-alt-icon{
+                    font-size: 10em;
+                }
+            }
+    }
+}
+}
+@media (min-width:1380px){
+    .memo-card-wrapper{
+        .card {
+            .card-image{
+                height: 200px;
+                img{
+                    min-height: 200px;
+                }
+                .card-image-alt-icon{
+                    font-size: 10em;
+                }
+            }
+        }
+    }
+}
+.empty-card{
+    opacity: 0.4;
+    .card-image-alt-icon{
+        color: rgba(0,0,0,0.1) !important;
+    }
+    p{
+        opacity: 0;
+    }
+}

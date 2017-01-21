@@ -1,8 +1,37 @@
 <template name="MemoDetail">
-	<div class="container about-content">
-			<a href="http://{{url}}">{{memo.url}}</a>
-			<p class="caption">
-				{{memo.desc}}
-			</p>	
-	</div>
+    <div class="main-container">
+        <div class="page-title hide-on-med-and-down z-depth-1">
+            <div class="container">
+                <h4 style="">{{i18n 'pageTitle.memoDetail'}}</h4>
+            </div>
+        </div>
+        <div id="memo-detail-content" class="main-content about-content">
+        {{#if Template.subscriptionsReady}}
+            <div class="row">
+                <div class="center">
+                    {{#if state.memo.thumbnailUrl}}
+                        <img class="memo-detail-image" src="{{state.memo.thumbnailUrl}}" alt="{{state.memo.desc}}" />
+                    {{else}}
+                        <i class="fa fa-file-text-o card-detail-alt-icon" aria-hidden="true"></i>
+                    {{/if}}
+                </div>
+                <div class="col s12">
+                    <h5>{{state.memo.name}}</h5>
+                    <p>
+                        <a class="memo-detail-url" href="{{state.memo.url}}">{{state.memo.url}}</a>
+                    </p>
+                    <p class="caption">
+                        {{state.memo.desc}}
+                    </p>
+                </div>
+            </div>
+        {{else}}
+            <div class="loading-wrapper valign-wrapper">
+                <div class="center valign">
+                    {{> Loading size="big"}}
+                </div>
+            </div>
+        {{/if}}
+        </div>
+    </div>
 </template>

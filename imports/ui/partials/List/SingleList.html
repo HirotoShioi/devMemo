@@ -1,20 +1,23 @@
 <template name="SingleList">
-  <tr>
-    <td class="list-name">
-    	{{#if Url}}
-    		<img class="" src="{{Url}}" alt="">
-    	{{/if}}
-    	<a href="{{url}}">{{name}}</a><i class="fa fa-close"></i>
-    </td>
-    <td class="center">
- 		    {{#afModal classes="waves-effect table-status-btn btn amber darken-3" title=name collection="Memos" operation="update" doc=_id fields="statusId" formId="updateMemo"}}
- 		    	{{#if status.name}}
-						{{status.name}}
-				{{else}}
-						None
-				{{/if}}
-			{{/afModal}}
-    </td>
-    <td class="right">{{moFormat createdAt 'M/D'}}</td>
-  </tr>
+    <li class="collection-item list-item avatar">
+        <div class="expire-progress {{#if shouldExpireProgressbarShow}}show{{else}}hide{{/if}}-progress-bar">
+          <div class="progress-bar progress-{{progressBarColor}}" style="width:{{state.progressRate}}%"></div>
+        </div>
+        <a href="{{memo.url}}" class="collection-url">
+          {{#if memo.thumbnailUrl}}
+            <img src="{{memo.thumbnailUrl}}" alt="" class="circle" />
+          {{else}}
+            <i class="fa fa-file circle"></i>
+          {{/if}}
+        </a>
+        <a href="{{memo.url}}" class="title">
+          {{memo.name}}
+        </a>
+        <p>
+          {{memo.provider_url}} <br/>
+          <a href="{{pathFor 'label.detail' data=memo}}" class="chip" style="background-color:{{memo.label.color}}">
+             {{memo.label.name}}
+          </a>
+        </p>
+   </li>
 </template>

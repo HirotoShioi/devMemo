@@ -1,0 +1,18 @@
+<template name="labelBarItem">
+  <li class="collection-item search-item label-item" id="label-{{label._id}}">
+    <a href="{{pathFor route='label.detail' data=labelId}}"
+      class="title label-bar-chip" style="background-color:{{label.color}}">
+     <span class="label-text">{{label.name}}</span>
+     <span class="counter-chip">{{label.memoCount}}</span>
+    </a>
+    {{#if isShared}}
+      <i class="fa fa-share-alt option-icon share-edit"></i>
+    {{/if}}
+    <div class="secondary-content">
+        {{#if state.shouldOptionShow}}
+          <i class="fa fa-pencil option-icon label-edit"></i>
+          <i class="fa fa-trash option-icon label-delete"></i>
+        {{/if}}
+    </div>
+  </li>
+</template>

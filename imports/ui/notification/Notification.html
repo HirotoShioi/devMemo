@@ -1,0 +1,65 @@
+<template name="Notification">
+  <div class="main-container">
+        <div class="page-title hide-on-med-and-down z-depth-1">
+            <div class="container">
+                <h4 style="">{{i18n 'pageTitle.notification'}}</h4>
+            </div>
+        </div>
+    <div class="main-content">
+    {{#if Template.subscriptionsReady}}
+      <div id="notify-content">
+        <div class="row">
+          <div class="col s12 m12">
+            <ul class="tabs notification-tabs">
+              <li class="tab col s3">
+                <a id="request-tab" class="active" href="#request">
+                  {{i18n 'notification.tabs.requests'}}
+                  {{#if $neq unnotifiedRequestCount 0}}
+                    <span class="chip blue lighten-3">{{unnotifiedRequestCount}}</span>
+                  {{/if}}
+                </a>
+              </li>
+              <li id="status-tab" class="tab col s3">
+                <a href="#status">
+                  {{i18n 'notification.tabs.status'}}
+                  {{#if $neq unnotifiedResponseCount 0}}
+                    <span class="chip blue lighten-3">{{unnotifiedResponseCount}}</span>
+                  {{/if}}
+                </a>
+              </li>
+            </ul>
+            <div id="request" class="">
+              {{#if $neq requestCount 0}}
+                <ul class="collection">
+                  {{#each request in requests}}
+                    {{> RequestItem request=request}}
+                  {{/each}}
+                </ul>
+              {{else}}
+                <h5 class="grey-text center notify-messages">{{i18n 'notification.share.request.noRequestReceived'}}</h5>
+              {{/if}}
+            </div>
+            <div id="status" class="notification-wrapper">
+              {{#if $neq notificationCount 0}}
+                <ul class="collection">
+                  {{#each notification in notifications}}
+                    {{> NotificationItem notification=notification}}
+                  {{/each}}
+                </ul>
+              {{else}}
+                 <h5 class="grey-text center notify-messages">{{i18n 'notification.share.status.sendRequestMessage'}}</h5>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    {{else}}
+      <div class="loading-wrapper valign-wrapper">
+        <div class="center valign">
+          {{> Loading size="big"}}
+        </div>
+      </div>
+    {{/if}}
+    </div>
+  </div>
+</template>

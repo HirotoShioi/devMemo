@@ -1,0 +1,71 @@
+import { TemplateController } from 'meteor/space:template-controller';
+import { Memos } from '../../api/memos.js';
+import { ReactiveDict } from 'meteor/reactive-dict';
+import { Session } from 'meteor/session';
+import { i18n } from 'meteor/anti:i18n';
+import './Gallery.html';
+
+// partials
+import '../partials/InfiniteScroll/loadingIndicator.js';
+import '../partials/Loading.js';
+import '../partials/Memo.js';
+import '../partials/List/SingleList.js';
+import '../partials/ViewOptions.js';
+import '../partials/emptyMemo.js';
+
+const session = new ReactiveDict('Gallery');
+
+TemplateController('Gallery', {
+  state: {
+    scrollTarget: '.main-container',
+    memoCount: 0,
+  },
+  private: {
+    INITIAL_RESULTS_LIMIT: 40,
+  },
+  onCreated() {
+    this.session = session;
+    this.session.setDefault('resultsLimit', this.INITIAL_RESULTS_LIMIT);
+    this.session.setDefault('resultsCount', 0);
+    const self = this;
+    self.autorun(()=>{
+      let query = {owner: Meteor.userId()};
+      if (Session.get('hideExpired')) { query.status = "active";}
+      let counts  =  Memos.find(query).count();
+      this.session.set('resultsCount', counts);
+    });
+    Session.set("Title", {name: i18n('pageTitle.memos')});
+  },
+
+  onRendered() {
+    this.session.set('resultsLimit', this.INITIAL_RESULTS_LIMIT);
+  },
+
+  helpers: {
+    memos() {
+      let query = {owner: Meteor.userId()};
+      if (Session.get('hideExpired')) { query.status = "active"; }
+      return Memos.find(query, {limit: this.session.get('resultsLimit'), sort: {createdAt: -1}});
+    },
+    emptyMemos() {
+      const emptyMemoCount = 8;
+      emptyMemoAry = [];
+      for (i = 0; i < emptyMemoCount; i++) {
+        emptyMemoAry.push({});
+      }
+      return emptyMemoAry;
+    },
+    hasMoreContent() {
+      return this.session.get('resultsLimit') < this.session.get('resultsCount');
+    },
+  },
+
+  events: {
+    'loadingIndicatorBecameVisible'() {
+      const self = this;
+      setTimeout(()=>{
+        self.session.set('resultsLimit', session.get('resultsLimit') + 40);
+      }, 500);
+    },
+  }
+});

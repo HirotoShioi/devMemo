@@ -1,0 +1,24 @@
+<template name="RequestItem">
+  <li id="request-{{request._id}}" class="collection-item avatar {{#if $eq request.requestNotified false}}blue lighten-5{{/if}}">
+      <i class="fa fa-share-alt circle blue lighten-1"></i>
+      <span class="title">
+        {{i18n 'notification.share.title'}}:
+        <span class="chip" style="background-color: {{label.color}}">
+          {{label.name}}
+        </span>  
+      </span>
+      <p>
+        {{i18n 'notification.share.request.message' requestUsername}}
+        <br/>
+        <span class="grey-text">{{state.request.message}}</span>
+      </p>
+      <div class="secondary-content">
+        <button class="btn green accept-share">
+          {{i18n 'notification.share.action.accept'}}
+        </button>
+        <button class="btn red lighten-1 deny-share">
+          {{i18n 'notification.share.action.deny'}}
+        </button>
+      </div>
+  </li>
+</template>

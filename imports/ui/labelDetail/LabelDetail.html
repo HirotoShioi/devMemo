@@ -1,0 +1,42 @@
+<template name="LabelDetail">
+  <div class="main-container">
+    {{> PageTitle}}
+    <div class="main-content">
+    {{> ViewOptions}}
+    {{> ShareUserBar labelId=labelId}}
+    {{#if Template.subscriptionsReady}}
+        {{#if $.Session.get 'ListMode'}}
+          <div class="row">
+            <div class="memos-list">
+              <div class="col m10 s12 offset-m1">
+                  <ul class="collection">
+                    {{#each memo in memos}}
+                      {{> SingleList memo=memo}}
+                    {{/each}}
+                  </ul>
+              </div>
+            </div>
+          </div>
+        {{else}}
+           <div class="row">
+            {{#each memos}}
+              {{> Memo}}
+            {{else}}
+              {{#each emptyMemos}}
+                  {{> emptyMemo}}
+              {{/each}}
+            {{/each}}
+           </div>
+        {{/if}}
+      {{> loadingIndicator scrollTargetSelector=state.scrollTarget
+            showIndicator=hasMoreContent}}
+    {{else}}
+      <div class="loading-wrapper valign-wrapper">
+        <div class="center valign">
+          {{> Loading size="big"}}
+        </div>
+      </div>
+    {{/if}}
+    </div>
+  </div>
+</template>

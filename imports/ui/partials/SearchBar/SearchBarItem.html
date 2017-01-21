@@ -1,0 +1,18 @@
+<template name="SearchBarItem">
+    <a id="memo-bar-item-{{_id}}" href="{{url}}" class="collection-item avatar search-item search-memo-item">
+      {{#if thumbnailUrl}}
+          <img src="{{thumbnailUrl}}" alt="" class="circle"/>
+        {{else}}
+      <i class="fa fa-file-text-o circle" aria-hidden="true"></i>
+        {{/if}}
+      <span class="title search-title">
+        <span class="truncate">{{name}}</span>
+      </span>
+      <a href="{{url}}" class="provider_url">
+        {{providerUrl}}
+      </a>
+      <span class="secondary-content">
+        <span class="chip" style="background-color:{{label.color}}">{{label.name}}</span>
+      </span>
+    </a>
+</template>

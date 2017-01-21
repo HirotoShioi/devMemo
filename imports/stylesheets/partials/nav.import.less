@@ -1,0 +1,87 @@
+/* sideNav */
+/* header */
+nav {
+    .sidenav-active{
+        left:240px;
+        z-index: 1003;
+        display: block;
+        opacity: 1;
+        transition: left 0.2s ease-in;
+    }
+    .sidenav-inactive{
+        left:0;
+        transition: left 0.2s ease-in;
+    }
+    .button-collapse i{
+        font-size:32px;
+        padding:0 0.5em;
+    }
+    .brand-logo{
+        padding:0 15px;
+        span{
+            font-size: 2.28em;
+        }
+    }
+}
+.side-nav{
+	z-index: 801;
+    .brand-logo{
+        height: 64px;
+        a{
+            height: 64px;
+        }
+        span{
+            line-height: 64px;
+            font-size: 2.28em;
+            color:#1565C0;
+        }
+    }
+    li{
+        position:relative;
+    }
+    .sidenav-nav{
+        width: 0%;
+        background-color: #1565C0 !important;
+        height: 100%;
+        position: absolute;
+        transition: width 0.15s linear;
+        &.active{
+            width: 4%;
+        }
+    }
+    a{
+        height: 55px;
+        line-height: 55px;
+    }
+
+    .fa {
+        font-size: 1.3em;
+        width: 25px;
+    }
+    .fa-circle{
+        font-size:0.7em;
+        color:#90CAF9;
+    }
+
+    .chip{
+        height: 20px;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 20px;
+        padding: 0 9px;
+        border-radius: 16px;
+    }
+    .logout{
+        text-decoration: underline;
+        font-weight: 400;
+    }
+    .auth-link{
+        width: 100%;
+        position: absolute;
+        bottom: 8%;
+    }
+    .bottom-nav{
+        border-top:1px solid rgba(230,230,230,0.8);
+        transition:all 0.2s linear;
+    }
+}

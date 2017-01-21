@@ -1,13 +1,15 @@
-import { Template } from 'meteor/templating';
+import '../../stylesheets/style.less';
 
-import '../../style.css';
+import { TemplateController } from 'meteor/space:template-controller';
+import { Session } from 'meteor/session';
+// partials
+import './component/Footer.html';
+import './component/Header.js';
+
 import './HomeLayout.html';
 
-//partials
-import '../partials/Footer.html';
-import '../partials/Header.html';
-import '../partials/PageTitle.js';
-import '../partials/Overlay.js';
-Template.HomeLayout.onCreated(function(){
-	Session.set('Layout',false);
+TemplateController('HomeLayout', {
+  onCreated() {
+    Session.set('shouldHeaderBeShownAtFullWindow', false);
+  },
 });

@@ -1,92 +1,122 @@
-//layout
+// layout
 import '../ui/layouts/MainLayout.js';
 import '../ui/layouts/HomeLayout.js';
+import '../ui/layouts/LoginLayout.js';
 
-//pages
-import '../ui/memo/Memos.js';
+// loading
+import '../ui/partials/Loading.html';
+// pages
+import '../ui/gallery/Gallery.js';
 import '../ui/memoDetail/MemoDetail.js';
-import '../ui/about/About.js';
-import '../ui/boards/Board.js';
+import '../ui/landing/Landing.js';
+import '../ui/labelDetail/LabelDetail.js';
 import '../ui/home/Home.js';
+import '../ui/settings/Settings.js';
+import '../ui/notification/Notification.js';
 
-import { Memos } from '../api/memos.js';
-import { Status } from '../api/status.js';
+import '../api/memos.js';
+import '../api/label.js';
+import '../api/user.js';
+import '../api/labelShare.js';
+import '../api/userFavorites.js';
 
-Accounts.onLogout(function(){
-	Router.go('home');
-});
-
+import { Router } from 'meteor/iron:router';
+import { Meteor } from 'meteor/meteor';
+import { AccountsTemplates } from 'meteor/useraccounts:core';
 Router.configure({
-  layoutTemplate: 'MainLayout'
+  layoutTemplate: 'MainLayout',
+  loadingTemplate: 'Loading',
 });
 
-Router.route('/home',function(){
-	this.layout('HomeLayout');
-	this.render('Home');
-},{
-	name:'home'
+Router.onBeforeAction(function() {
+  if (!Meteor.userId()) {
+    Router.go('Landing');
+  }
+  if (Meteor.user()) {
+    if (!Meteor.user().hasUserName()) Router.go('settings');
+  }
+  this.next();
+}, {
+  only: ['memo.home', 'memo.detail', 'labeldetail', 'memo.gallery', 'settings', 'notification']
 });
 
-Router.route('/',function(){
-	this.render('Memos');
-},{
-	name:'memo.home',
-	onBeforeAction:function(){
-		if(!Meteor.user()){
-			Router.go('home');
-		}else{
-			this.next();
-		}
-	}
+Router.route('/landing', function() {
+  this.layout('HomeLayout');
+  this.render('Landing');
+}, {
+  name: 'Landing',
+  onBeforeAction: function() {
+    if (Meteor.user()) {
+      Router.go('memo.home');
+    }
+    this.next();
+  },
 });
 
-Router.route('/detail/:_id',function(){
-	this.render('MemoDetail',{
-		data:{_id:this.params._id}
-	});
-},{
-	name:'memo.detail',
-	onBeforeAction:function(){
-		if(!Meteor.user()){
-			Router.go('home');
-		}else{
-			this.next();
-		}
-	}
+Router.route('/', function() {
+  this.render('Home');
+}, {
+  name: 'memo.home',
 });
 
-Router.route('/about',function(){
-	this.render('About');
-},{
-	name:'about',
+Router.route('/detail/:_id', function() {
+  this.render('MemoDetail', {
+    data: {_id: this.params._id}
+  });
+}, {
+  name: 'memo.detail',
 });
 
-Router.route('/board',function(){
-	this.render('Board');
-},{
-	name:'memo.board',
-	onBeforeAction:function(){
-		if(!Meteor.user()){
-			Router.go('home');
-		}else{
-			this.next();
-		}
-	}
+Router.route('/label/:labelId', function() {
+  this.render('LabelDetail', {
+    data: { _id: this.params.labelId }
+  });
+}, {
+  name: 'label.detail',
 });
 
-//account routing
-//Routes
+Router.route('/gallery', function() {
+  this.render('Gallery');
+}, {
+  name: "memo.gallery",
+});
+
+Router.route('/settings', function() {
+  this.render('Settings');
+}, {
+  name: "settings",
+});
+
+Router.route('/notification', function() {
+  this.render('Notification');
+}, {
+  name: "notification",
+
+  onStop: function() {
+    Meteor.call('requestNotified');
+  },
+});
+// account routing
+// Routes
 AccountsTemplates.configure({
-	defaultLayout:'HomeLayout'
+  defaultLayout: 'LoginLayout',
+  onLogoutHook: function() {
+    Router.go('Landing');
+  },
 });
+
 AccountsTemplates.configureRoute('enrollAccount');
 AccountsTemplates.configureRoute('resetPwd');
 AccountsTemplates.configureRoute('signUp');
 
 AccountsTemplates.configureRoute('signIn', {
-    redirect: function(){
-        var user = Meteor.user();
-        if (user)
-          Router.go('memo.home');
+  name: "atSignIn",
+  redirect: function() {
+    let user = Meteor.user();
+    if (!user.username) {
+      Router.go('settings');
+    } else if (user) {
+      Router.go('memo.home');
     }
+  }
 });

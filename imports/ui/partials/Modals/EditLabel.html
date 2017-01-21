@@ -1,0 +1,9 @@
+<template name="EditLabel">
+  <p class="form-title">{{i18n 'forms.editLabel.title'}}</p>
+  <div class="modal-edit-wrapper">
+    {{#autoForm collection="Label" doc=label id="editLabel" type="update"}}
+      {{> afQuickField name="name"}}
+      <input type="submit" class="btn blue darken-3"/>
+    {{/autoForm}}
+  </div>
+</template>

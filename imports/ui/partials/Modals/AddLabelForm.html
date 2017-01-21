@@ -1,0 +1,29 @@
+<template name="AddLabelForm">
+  <p class="form-title">{{i18n 'forms.addLabel.title'}}</p>
+  {{#autoForm id="addLabel" autocomplete="off" schema=schema}}
+    {{>afQuickField name="labelName"}}
+    <div class="color-select-box">
+      <ul class="color-chooser">
+        {{#each state.labelColorsFirst}}
+          <li class="color-chooser-color {{#if $eq selectedColor value}} z-depth-2 {{/if}}"
+           style="background-color:{{value}}" data="{{value}}">
+            {{#if $eq selectedColor value}}
+              <i class="fa fa-check" data="{{value}}"></i>
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
+      <ul class="color-chooser">
+        {{#each state.labelColorsSecond}}
+          <li class="color-chooser-color {{#if $eq selectedColor value}} z-depth-2 {{/if}}"
+           style="background-color:{{value}}" data="{{value}}">
+            {{#if $eq selectedColor value}}
+              <i class="fa fa-check" data="{{value}}"></i>
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+    <input type="submit" class="btn blue darken-3"/>
+  {{/autoForm}}
+</template>

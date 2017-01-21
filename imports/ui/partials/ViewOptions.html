@@ -1,0 +1,17 @@
+<template name="ViewOptions">
+  <div class="row option-wrapper">
+    <div class="col view-btn-wrapper">
+      {{#if $.Session.get 'ListMode'}}
+        <button class="btn view-btn blue darken-3 card-view"><i class="fa fa-th-large" aria-hidden="true"></i></button>
+      {{else}}
+        <button class="btn view-btn blue darken-3 list-view"><i class="fa fa-list" aria-hidden="true"></i></button>
+       {{/if}}	
+    </div>
+    <div class="col m3 s6">
+        <p>
+          <input type="checkbox" class="filled-in toggle-bookmark-view" id="filled-in-box" {{isChecked check true}} />
+          <label for="filled-in-box">{{i18n 'gallery.hideExpired'}}</label>
+        </p>
+    </div>
+  </div>
+</template>

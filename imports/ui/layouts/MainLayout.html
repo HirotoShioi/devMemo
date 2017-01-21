@@ -1,11 +1,15 @@
 <template name="MainLayout">
-	{{> autoformModals}}
-	{{> SideNav}}
-	{{> Header}}
-		<main class="main-layout">
-				{{> PageTitle}}
-				{{> yield}}
-		</main>
-	{{> Footer}}
-	{{> Overlay}}
+  {{> SideNav}}
+  {{#if currentUser}}
+    {{#if shouldSearchBarShow}}
+      {{> SearchBar}}
+      {{> labelBar}}
+    {{/if}}
+  {{/if}}
+  {{> Modals}}
+  {{> Header}}
+    <main class="main-layout">
+        {{> yield}}
+    </main>
+  {{> Overlay}}
 </template>

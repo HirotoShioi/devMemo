@@ -1,17 +1,58 @@
 import { Meteor } from 'meteor/meteor';
-import { Memos } from '../imports/api/memos.js';
-import { Status } from '../imports/api/status.js';
-import { Accounts } from 'meteor/accounts-base';
+import { SyncedCron } from 'meteor/percolate:synced-cron';
+// collections
+import '../imports/api/memos.js';
+import '../imports/api/memoClicked.js';
+import '../imports/api/label.js';
+import '../imports/api/labelShare.js';
+import '../imports/api/user.js';
+import '../imports/api/userFavorites.js';
 
-  Accounts.onCreateUser(function(options, user) {
-  	Status.insert({
-  		name:"default",
-  		createdAt:new Date(),
-  		owner:user._id,
-  		username:user.username,
-  	},{getAutoValues:false});
-  	return user;
-  });
-Meteor.startup(() => {
-  // code to run on server at startup
+// jobs
+SyncedCron.add({
+  name: 'Find expired memos',
+  schedule: function(parser) {
+    // parser is a later.parse object
+    return parser.text('every 5 seconds');
+  },
+  job: function() {
+    Meteor.call('checkExpiration');
+  }
+});
+
+Meteor.startup(function() {
+  SyncedCron.start();
+  // Add GitHub configuration entry
+  ServiceConfiguration.configurations.update(
+    { "service": "github" },
+    {
+      $set: {
+        "clientId": Meteor.settings.private.oAuth.github.clientId,
+        "secret": Meteor.settings.private.oAuth.github.secret
+      }
+    },
+    { upsert: true }
+  );
+
+  ServiceConfiguration.configurations.update(
+    { "service": "facebook" },
+    {
+      $set: {
+        "appId": Meteor.settings.private.oAuth.facebook.appId,
+        "secret": Meteor.settings.private.oAuth.facebook.secret
+      }
+    },
+    { upsert: true }
+  );
+
+  ServiceConfiguration.configurations.update(
+    { "service": "google" },
+    {
+      $set: {
+        "clientId": Meteor.settings.private.oAuth.google.clientId,
+        "secret": Meteor.settings.private.oAuth.google.secret
+      }
+    },
+    { upsert: true }
+  );
 });

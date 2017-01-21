@@ -1,0 +1,62 @@
+<template name="Header">
+  {{#if currentUser}}
+    {{> SearchNavBar}}
+  {{/if}}
+  <nav class="{{#if $.Session.get 'shouldHeaderBeShownAtFullWindow'}}app-layout{{/if}}">
+    <div class="nav-wrapper blue darken-3">
+      {{#if currentUser}}
+        <i class="nav-icon fa fa-search right"></i>
+      {{/if}}
+      <a href="{{pathFor route='memo.home'}}" class="brand-logo">{{title.name}}</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li>{{> atNavButton }}</li>
+        {{#if currentUser}}
+        <li class="{{isActiveRoute 'memo.home'}}">
+          <a class="{{isActiveRoute 'memo.home'}}" href="{{pathFor route='memo.home'}}">
+            {{i18n 'sideNav.featured'}}
+          </a>
+        </li>
+        <li class="{{isActiveRoute 'memo.gallery'}}">
+          <a class="{{isActiveRoute 'memo.gallery'}}" href="{{pathFor route='memo.gallery'}}">
+            {{i18n 'sideNav.memos'}}
+          </a>
+        </li>
+        <li class="{{isActiveRoute 'notification'}}">
+          <a class="{{isActiveRoute 'notification'}}" href="{{pathFor route='notification'}}">
+            {{i18n 'sideNav.notification'}}
+          </a>
+        </li>
+        {{/if}}
+      </ul>
+       <ul id="slide-out" class="side-nav  {{#if $.Session.get 'isShrinkedSideNavShown'}}sidenav-active {{else}} sidenav-inactive {{/if}}">
+          {{#if currentUser}}
+            {{> AddMemoButton}}
+            <li class="{{isActiveRoute 'memo.home'}}">
+              <a class="{{isActiveRoute 'memo.home'}}" href="{{pathFor route='memo.home'}}">
+                <i class="fa fa-home"></i>
+                {{i18n 'sideNav.featured'}}
+              </a>
+            </li>
+            <li class="{{isActiveRoute 'memo.gallery'}}">
+              <a class="{{isActiveRoute 'memo.gallery'}}" href="{{pathFor route='memo.gallery'}}">
+                <i class="fa fa-sticky-note"></i>
+                {{i18n 'sideNav.memos'}}
+              </a>
+            </li>
+            <li class="{{isActiveRoute 'notification'}}">
+              <a class="{{isActiveRoute 'notification'}}" href="{{pathFor route='notification'}}">
+                <i class="fa fa-bell"></i>
+                {{i18n 'sideNav.notification'}}
+              </a>
+            </li>
+          {{else}}
+            <li>{{> atNavButton }}</li>
+            <li>
+              <a href="" class="waves-effect red-text logout auth-link">Logout<i class="fa fa-sign-out" aria-hidden="true"></i></a>                
+            </li>
+          {{/if}}
+      </ul>
+      <a href="#" data-activates="slide-out" class="button-collapse toggle-sidenav"><i class="fa fa-bars" aria-hidden="true"></i></a>
+    </div>
+  </nav>
+</template>
