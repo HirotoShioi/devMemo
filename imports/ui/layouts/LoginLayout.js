@@ -12,6 +12,6 @@ import './LoginLayout.html';
 TemplateController('LoginLayout', {
   onCreated() {
     Session.set('shouldHeaderBeShownAtFullWindow', false);
-    Session.set('Title', {name: "Memoli"});
+    Session.set('Title', {name: "iine!!"});
   },
 });
