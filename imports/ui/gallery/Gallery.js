@@ -33,6 +33,7 @@ TemplateController('Gallery', {
       if (Session.get('hideExpired')) { query.status = "active";}
       let counts  =  Memos.find(query).count();
       this.session.set('resultsCount', counts);
+      self.subscribe('memos');
     });
     Session.set("Title", {name: i18n('pageTitle.memos')});
   },

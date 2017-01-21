@@ -5,11 +5,9 @@
 	background-color: #fefefe;
 	transition:all 0.2s ease;
     &.show-search-nav{
-        visibility: visible;
         top:0;
     }
     &.hide-search-nav{
-        visibility: hidden;
         top: -64px;
     }
     .fa-arrow-left{
@@ -102,20 +100,15 @@
     background: #fefefe;
     z-index: 800;
     border-right: 1px solid #ddd;
-    visibility: hidden;
     overflow-x: hidden;
-
+    transition: all 0.2s linear;
     &.search-bar-show{
         left: 240px;
         width: 340px;
-        visibility: visible;
-        transition: all 0.3s ease;
     }
     &.search-bar-hidden{
         left: 0px;
         width: 240px;
-        visibility: hidden;
-        transition: all 0.3s ease;
     }
     .not-found{
         display: flex;
