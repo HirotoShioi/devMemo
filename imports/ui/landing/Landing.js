@@ -5,6 +5,6 @@ import './Landing.html';
 
 TemplateController('Landing', {
   onCreated() {
-    Session.set('Title', {name: "Memoli"});
+    Session.set('Title', {name: "iine!!"});
   },
 });
