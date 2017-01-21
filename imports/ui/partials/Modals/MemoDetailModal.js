@@ -2,6 +2,9 @@ import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../../api/memos.js';
 import { Session } from 'meteor/session';
 import { resetModalForm } from './modalHelper.js';
+import { moment } from 'meteor/momentjs:moment';
+import { i18n } from 'meteor/anti:i18n';
+
 import './MemoDetailModal.html';
 
 TemplateController('MemoDetailModal', {
@@ -99,10 +102,28 @@ TemplateController('MemoDetailModal', {
         Meteor.call('memoUrlClicked', this.state.memo);
       }
     },
-    'click .card-image-url'() {
+    'click .card-url'() {
       Meteor.call('memoUrlClicked', this.state.memo);
       window.open(this.state.memo.url, '_blank');
       return false;
     },
+    'submit #add-comment'(event) {
+      event.preventDefault();
+      const comment = event.target.comment.value;
+      Meteor.call('addComment', comment, this.state.memo._id);
+      event.target.comment.value = "";
+    }
   },
+});
+
+TemplateController('CommentItem', {
+  helpers: {
+    username() {
+      const user = Meteor.users.findOne({_id: this.data.userId});
+      return user.username;
+    },
+    date() {
+      return moment(this.data.commentedAt).fromNow();
+    }
+  }
 });

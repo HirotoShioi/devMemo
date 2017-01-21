@@ -130,13 +130,18 @@
         overflow:hidden;
     }
     .card-content{
-        padding:15px 20px;
+        padding:10px 20px;
+    }
+    .card-url{
+      color:#fff;
     }
     .card-action{
-        padding:10px 20px;
+        padding:0;
+        border-top: none;
+        background: transparent;
         .fa{
-            font-size:2em;
-            color:#777;
+            font-size:20px;
+            color:#fff;
             margin-right: 5px;
             cursor:pointer;
             transition:color .2s ease;
@@ -167,6 +172,33 @@
         width: 100%;
         background: rgba(0,0,0,0.5);
         font-size:16px;
-        padding:10px !important;
+        padding:5px 20px !important;
     }
+}
+.comment-form-wrapper{
+    border: 1px solid #e1e8ed;
+    border-radius: 3px;
+    line-height: 18px;
+    position:relative;
+    .fa-pencil{
+      position: absolute;
+      right: 4px;
+      top: 3px;
+      font-size: 1.5em;
+    }
+}
+.comment-collection{
+  border-right: none;
+  border-left: none;
+  margin: 0;
+}
+#comments{
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 14px;
+    padding: 8px 30px 8px 10px;
+    height: 2em;
+    box-sizing: border-box;
+    margin: 0;
 }
