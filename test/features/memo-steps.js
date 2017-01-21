@@ -10,7 +10,9 @@ module.exports = function() {
   this.After( function() {
     server.execute(()=>{
       const { Memos } = require('/imports/api/memos.js');
-      return Memos.remove({owner: Meteor.userId() });
+      Memos.remove({owner: Meteor.userId() });
+      const { userFavorites } = require('/imports/api/userFavorites.js');
+      userFavorites.remove({userId: Meteor.userId()});
     });
   });
 
@@ -178,7 +180,7 @@ module.exports = function() {
   });
 
   this.When(/^I click image$/, function() {
-    waitAndClickButton(".card-image-url");
+    waitAndClickButton(".card-url");
     client.pause(1000);
     const tabs = client.getTabIds();
     client.switchTab(tabs[1]);
