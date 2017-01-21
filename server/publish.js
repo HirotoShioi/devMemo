@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Memos } from '../imports/api/memos.js';
 import { Label } from '../imports/api/label.js';
 import { labelShare } from '../imports/api/labelShare.js';
+import { Comments } from '../imports/api/comments.js';
 import { userFavorites } from '../imports/api/userFavorites.js';
 
 import { check } from 'meteor/check';
@@ -127,4 +128,3 @@ Meteor.publish('memos', function() {
 Meteor.publish('labelShare', function() {
   labelShare.find({$or: [{sharedTo: this.userId}, {sharedFrom: this.userId}]});
 });
-
