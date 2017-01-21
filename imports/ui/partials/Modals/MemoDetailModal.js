@@ -112,3 +112,12 @@ TemplateController('MemoDetailModal', {
     }
   },
 });
+
+TemplateController('CommentItem', {
+  helpers: {
+    username() {
+      const user = Meteor.users.findOne({_id: this.data.userId});
+      return user.username;
+    }
+  }
+});
