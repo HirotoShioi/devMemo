@@ -104,5 +104,11 @@ TemplateController('MemoDetailModal', {
       window.open(this.state.memo.url, '_blank');
       return false;
     },
+    'submit #add-comment'(event) {
+      event.preventDefault();
+      const comment = event.target.comment.value;
+      Meteor.call('addComment', comment, this.state.memo._id);
+      event.target.comment.value = "";
+    }
   },
 });
