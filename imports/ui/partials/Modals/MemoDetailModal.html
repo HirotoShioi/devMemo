@@ -1,21 +1,32 @@
 <template name="MemoDetailModal">
   <div id="modal-card-{{memo._id}}" class="card-image">
-    <a href="{{memo.url}}" class="card-image-url">
-      {{#if memo.thumbnailUrl}}
-        <img src="{{memo.thumbnailUrl}}"/>
-      {{else}}
-      <div class="alt-image-wrapper valign-wrapper">
-          <i class="fa fa-sticky-note valign" style="color:{{state.label.color}}"></i>
-      </div>
-      {{/if}}
+      <a href="{{memo.url}}" class="card-url">
+        {{#if memo.thumbnailUrl}}
+          <img src="{{memo.thumbnailUrl}}"/>
+        {{else}}
+        <div class="alt-image-wrapper valign-wrapper">
+            <i class="fa fa-sticky-note valign" style="color:{{state.label.color}}"></i>
+        </div>
+        {{/if}}
+      </a>
       <span class="card-title">
+        <a href="{{memo.url}}" class="card-url">
         {{#if memo.name}}
           {{memo.name}}
         {{else}}
           {{memo.url}}
         {{/if}}
+        </a>
+        <div class="card-action">
+          {{#if isOwner}}
+          <i class="fa fa-cog card-option"></i>
+          {{/if}}
+          <i class="fa heart {{#if shouldFavoriteHightlight}}fa-heart{{ else }}fa-heart-o{{/if}}  card-option"></i>
+          {{#if shouldArchiveShow}}
+            <i class="fa fa-archive archive-memo card-option"></i>
+          {{/if}}
+        </div>
       </span>
-    </a>
   </div>
   <div class="card-content">
     <p>
@@ -27,15 +38,6 @@
       {{/if}}
     </p>
       <a href="{{pathFor route='memo.detail' data=state.memo}}" class="more-detail">{{i18n 'memo.more'}}</a>
-  </div>
-  <div class="card-action">
-    {{#if isOwner}}
-    <i class="fa fa-cog card-option"></i>
-    {{/if}}
-    <i class="fa heart {{#if shouldFavoriteHightlight}}fa-heart{{ else }}fa-heart-o{{/if}}  card-option"></i>
-    {{#if shouldArchiveShow}}
-      <i class="fa fa-archive archive-memo card-option"></i>
-    {{/if}}
   </div>
     <ul class="collection comment-collection">
       <li class="collection-item">
