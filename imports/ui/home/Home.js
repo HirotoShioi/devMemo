@@ -53,10 +53,7 @@ TemplateController('Home', {
   helpers: {
     favoriteMemos() {
       this.state.favoriteCount = userFavorites.find().count();
-      let query = {
-        _id: {$in: this.state.favoriteList}
-      };
-      return Memos.find(query, {limit: this.session.get('favoriteResultsLimit'), sort: {favoritedAt: -1}});
+      return userFavorites.find({userId: Meteor.userId()}, {sort: {favoritedAt: -1}});
     },
     recentMemos() {
       let query = {

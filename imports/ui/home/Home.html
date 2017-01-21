@@ -12,8 +12,8 @@
         <li class="collection-item">
           <span class="title">{{i18n 'home.favorites'}}</span>
           <div class="row">
-            {{#each memo in favoriteMemos}}
-              {{> Memo memo=memo favoritedAt=memo.favoritedAt}}
+            {{#each favorite in favoriteMemos}}
+              {{> Memo memo=favorite.memo favoritedAt=favorite.memo.favoritedAt}}
             {{else}}
               <span class="grey-text">{{i18n 'home.noFavorite'}}</span>
             {{/each}}

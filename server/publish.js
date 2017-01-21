@@ -21,7 +21,7 @@ Meteor.publish('usernames', function() {
 // All user's favorites
 Meteor.publishComposite('userFavorites', {
   find: function() {
-    return userFavorites.find({userId: this.userId});
+    return userFavorites.find({userId: this.userId}, {sort: {favoritedAt: -1}});
   },
   children: [
     {
