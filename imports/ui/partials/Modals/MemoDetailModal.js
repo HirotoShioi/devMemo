@@ -102,7 +102,7 @@ TemplateController('MemoDetailModal', {
         Meteor.call('memoUrlClicked', this.state.memo);
       }
     },
-    'click .card-image-url'() {
+    'click .card-url'() {
       Meteor.call('memoUrlClicked', this.state.memo);
       window.open(this.state.memo.url, '_blank');
       return false;
