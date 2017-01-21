@@ -39,9 +39,9 @@
   </div>
     <ul class="collection comment-collection">
       <li class="collection-item">
-        <div class="comment-wrapper">
+        <div class="comment-form-wrapper">
           <form action="" id="add-comment">
-            <input id="comments" type="text" name="comment" placeholder="Comments"/>
+            <input id="comments" type="text" name="comment" placeholder="Comments" autocomplete="off"/>
           </form>
           <i class="fa fa-pencil right"></i>
         </div>
@@ -54,6 +54,12 @@
 
 <template name="CommentItem">
       <li class="collection-item">
-        <strong>{{username}}:</strong> {{comment}}
+        <div class="comment-wrapper">
+          <strong>{{username}}:</strong>
+          <span>{{comment}}</span>
+        </div>
+        <span class="grey-text">
+          {{moFromNow commentedAt withoutSuffix=true}}
+        </span>
       </li>
 </template>

@@ -2,6 +2,9 @@ import { TemplateController } from 'meteor/space:template-controller';
 import { Memos } from '../../../api/memos.js';
 import { Session } from 'meteor/session';
 import { resetModalForm } from './modalHelper.js';
+import { moment } from 'meteor/momentjs:moment';
+import { i18n } from 'meteor/anti:i18n';
+
 import './MemoDetailModal.html';
 
 TemplateController('MemoDetailModal', {
@@ -118,6 +121,9 @@ TemplateController('CommentItem', {
     username() {
       const user = Meteor.users.findOne({_id: this.data.userId});
       return user.username;
+    },
+    date() {
+      return moment(this.data.commentedAt).fromNow();
     }
   }
 });
