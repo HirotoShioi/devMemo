@@ -5,11 +5,11 @@ i18n.map('en', {
     subtitle: 'Make your bookmarking fun',
     easyToUse: {
       title: 'Easy to use',
-      description: 'Memoli is easy to use. It is as same as bookmarking in you browser.',
+      description: 'iine!! is easy to use. It is as same as bookmarking in you browser.',
     },
     wellDesigned: {
       title: 'Well Designed',
-      description: 'Using the Materialize css framework, Memoli is well-designed',
+      description: 'Using the Materialize css framework, iine!! is well-designed',
     },
     realTime: {
       title: 'Reactive',
@@ -162,11 +162,11 @@ i18n.map('en', {
 
 i18n.map('ja', {
   landing: {
-    gettingStarted: 'Memoliを始める',
+    gettingStarted: 'iine!!を始める',
     subtitle: 'ブックマークを楽しく',
     easyToUse: {
       title: '簡単な操作',
-      description: 'Memoliはブラウザのブックマークのように簡単に操作できます',
+      description: 'iine!!はブラウザのブックマークのように簡単に操作できます',
     },
     wellDesigned: {
       title: '洗練されたデザイン',

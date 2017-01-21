@@ -1,4 +1,4 @@
-# Memoli
+# iine!!
 Memo Application for Developers
 ====
 
@@ -12,7 +12,7 @@ Web Developers are good at searching. They search for
 * What their interested in
 * Official Documents, Guides
 But they are bad at organizing them.
-Memoli is a easy to use, well designed, realtime application that manages what you've searched.
+iine!! is a easy to use, well designed, realtime application that manages what you've searched.
 
 ## Usage
 Dev Memo can be used as
@@ -27,7 +27,7 @@ This can be used for
 Experience the best application to change your dev life
 
 ##Technologies
-Memoli is made with 
+iine!! is made with 
 * [Meteor](https://www.meteor.com/). 
 * [Blaze](https://guide.meteor.com/blaze.html) (Meteor frontend)
 * [Materialize](http://materializecss.com/) (CSS framework)
