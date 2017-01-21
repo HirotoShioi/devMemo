@@ -46,5 +46,14 @@
           <i class="fa fa-pencil right"></i>
         </div>
       </li>
+      {{#each memo.comments}}
+        {{> CommentItem}}
+      {{/each}}
     </ul>
+</template>
+
+<template name="CommentItem">
+      <li class="collection-item">
+        <strong>{{username}}:</strong> {{comment}}
+      </li>
 </template>

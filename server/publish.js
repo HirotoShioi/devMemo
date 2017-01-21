@@ -101,6 +101,13 @@ Meteor.publishComposite('MemoLabelShares', {
       find: function(label) {
         return Memos.find({$or: [{owner: this.userId}, {labelId: label.labelId}]});
       },
+      children: [
+        {
+          find: function(memo) {
+            return Comments.find({memoId: memo._id});
+          }
+        }
+      ]
     },
     {
       // Get other users that is sharing same label
@@ -127,4 +134,11 @@ Meteor.publish('memos', function() {
 // labelShare publication(request)
 Meteor.publish('labelShare', function() {
   labelShare.find({$or: [{sharedTo: this.userId}, {sharedFrom: this.userId}]});
+});
+
+Meteor.publish('comments', function() {
+  let query    = { userId: this.userId };
+  let projection = { limit: 100, sort: { createdAt: -1 } };
+
+  return Comments.find(query, projection);
 });
