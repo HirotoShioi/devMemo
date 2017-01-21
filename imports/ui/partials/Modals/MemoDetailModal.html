@@ -31,13 +31,13 @@
   <div class="card-content">
     <p>
       {{truncate}}
-      {{#if state.label}}
-      <a href="{{pathFor route='label.detail' data=labelId}}" class="chip right detail-chip" style="background:{{state.label.color}}">
-          {{state.label.name}}
-      </a>
-      {{/if}}
     </p>
       <a href="{{pathFor route='memo.detail' data=state.memo}}" class="more-detail">{{i18n 'memo.more'}}</a>
+    {{#if state.label}}
+    <a href="{{pathFor route='label.detail' data=labelId}}" class="chip right detail-chip" style="background:{{state.label.color}}">
+        {{state.label.name}}
+    </a>
+    {{/if}}
   </div>
     <ul class="collection comment-collection">
       <li class="collection-item">
