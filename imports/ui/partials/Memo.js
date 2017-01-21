@@ -15,20 +15,14 @@ TemplateController('Memo', {
     progressRate: 0,
     isMemoExpired: false,
     shouldToolTipShow: true,
-    favorited: false,
   },
 
   helpers: {
     memo() {
-      if (this.data.favoritedAt) {
-        this.state.favorited = true;
-      } else {
-        this.state.favorited = false;
-      }
       return this.data.memo;
     },
     shouldExpireProgressbarShow() {
-      if (this.state.favorited || this.data.memo.status === "expired") {
+      if (this.data.favoritedAt || this.data.memo.status === "expired") {
         this.state.shouldExpireProgressbarShow = false;
       } else {
         this.state.shouldExpireProgressbarShow = true;
@@ -44,11 +38,8 @@ TemplateController('Memo', {
     faviconUrl() {
       return `http://www.google.com/s2/favicons?domain=${this.data.memo.url}`;
     },
-    shouldFavoriteHightlight() {
-      return this.state.favorited;
-    },
     shouldArchiveShow() {
-      if (this.data.memo.status === "active" && !this.state.favorited && this.data.memo.owner === Meteor.userId()) {
+      if (this.data.memo.status === "active" && !this.data.favoritedAt && this.data.memo.owner === Meteor.userId()) {
         return true;
       } else {
         return false;

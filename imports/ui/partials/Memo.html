@@ -2,7 +2,7 @@
   <div id="card-{{memo._id}}" class="col l3 m6 s12 memo-card-wrapper">
     <div class="card hoverable">
         <div class="card-image center">
-        {{#if $eq state.favorited false}}
+        {{#if $eq favoritedAt false}}
           <div class="expire-progress {{#if shouldExpireProgressbarShow}}show{{else}}hide{{/if}}-progress-bar">
             <div class="progress-bar progress-{{state.progressBarColor}}" style="width:{{expireStatus}}%"></div>
           </div>
@@ -18,7 +18,7 @@
           {{#if isOwner}}
             <i class="fa fa-cog card-option"></i>
           {{/if}}
-            <i class="fa heart {{#if shouldFavoriteHightlight}}fa-heart{{ else }}fa-heart-o{{/if}}  card-option"></i>
+            <i class="fa heart {{#if favoritedAt}}fa-heart{{ else }}fa-heart-o{{/if}}  card-option"></i>
             {{#if shouldArchiveShow}}
               <i class="fa fa-archive archive-memo card-option"></i>
             {{/if}}
