@@ -37,7 +37,7 @@ Feature: Login as user and visit other pages
     And I have a label "Beethoven"
     When I login as a user
     And I go to settings
-    And I change the username to "iine"
+    And I change the username to "Memoli"
     And I submit settings form
-    Then my username should be "iine"
-    And my memo and label username should be "iine" as well
+    Then my username should be "Memoli"
+    And my memo and label username should be "Memoli" as well

@@ -2,15 +2,12 @@ import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import { HTTP } from 'meteor/http';
 import { check } from 'meteor/check';
+import { Label } from './label.js';
+import { userFavorites } from './userFavorites.js';
 import { moment } from 'meteor/momentjs:moment';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { memoClicked } from './memoClicked.js';
 import { i18n } from 'meteor/anti:i18n';
-
-import { Label } from './label.js';
-import { Comments } from './comments.js';
-import { userFavorites } from './userFavorites.js';
-
 export const Memos = new Mongo.Collection('memos');
 
 let Schemas = {};
@@ -259,9 +256,6 @@ Meteor.methods({
 Memos.helpers({
   label() {
     return Label.findOne(this.labelId);
-  },
-  comments() {
-    return Comments.find({memoId: this._id}, {sort: {commentedAt: -1}});
   }
 });
 

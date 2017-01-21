@@ -7,7 +7,7 @@ import '../imports/api/label.js';
 import '../imports/api/labelShare.js';
 import '../imports/api/user.js';
 import '../imports/api/userFavorites.js';
-import '../imports/api/comments.js';
+
 // jobs
 SyncedCron.add({
   name: 'Find expired memos',

@@ -4,8 +4,6 @@ import '../api/user';
 import { i18n } from 'meteor/anti:i18n';
 import { TAPi18n } from 'meteor/tap:i18n';
 import { T9n } from 'meteor/softwarerero:accounts-t9n';
-import { moment } from 'meteor/momentjs:moment';
-import { mo } from 'meteor/lbee:moment-helpers';
 AutoForm.setDefaultTemplate('materialize');
 
 if (Meteor.isClient) {
@@ -31,9 +29,7 @@ if (Meteor.isClient) {
       i18n.setLanguage = function(lang) {
         originalSetLanguage(lang);
         T9n.setLanguage(lang);
-        moment.locale(lang);
         TAPi18n.setLanguage(convertToTAPi18nLang(lang));
-        mo.setLocale(lang);
       };
     };
 
