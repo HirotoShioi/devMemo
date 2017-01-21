@@ -47,6 +47,7 @@ TemplateController('Home', {
       favorites.forEach((favorite)=>{
         this.state.favoriteList.push(favorite.memoId);
       });
+      self.subscribe('memos');
     });
   },
 
