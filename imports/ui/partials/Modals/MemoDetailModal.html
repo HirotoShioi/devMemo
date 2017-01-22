@@ -21,7 +21,7 @@
           {{#if isOwner}}
           <i class="fa fa-cog card-option"></i>
           {{/if}}
-          <i class="fa heart {{#if shouldFavoriteHightlight}}fa-heart{{ else }}fa-heart-o{{/if}}  card-option"></i>
+          <i class="fa heart {{#if favorited}}fa-heart{{ else }}fa-heart-o{{/if}}  card-option"></i>
           {{#if shouldArchiveShow}}
             <i class="fa fa-archive archive-memo card-option"></i>
           {{/if}}
@@ -31,18 +31,18 @@
   <div class="card-content">
     <p>
       {{truncate}}
-      {{#if state.label}}
-      <a href="{{pathFor route='label.detail' data=labelId}}" class="chip right detail-chip" style="background:{{state.label.color}}">
-          {{state.label.name}}
-      </a>
-      {{/if}}
     </p>
       <a href="{{pathFor route='memo.detail' data=state.memo}}" class="more-detail">{{i18n 'memo.more'}}</a>
+    {{#if state.label}}
+    <a href="{{pathFor route='label.detail' data=labelId}}" class="chip right detail-chip" style="background:{{state.label.color}}">
+        {{state.label.name}}
+    </a>
+    {{/if}}
   </div>
     <ul class="collection comment-collection">
       <li class="collection-item">
         <div class="comment-form-wrapper">
-          <form action="" id="add-comment">
+          <form id="add-comment">
             <input id="comments" type="text" name="comment" placeholder="Comments" autocomplete="off"/>
           </form>
           <i class="fa fa-pencil right"></i>
@@ -55,13 +55,13 @@
 </template>
 
 <template name="CommentItem">
-      <li class="collection-item">
-        <div class="comment-wrapper">
-          <strong>{{username}}:</strong>
-          <span>{{comment}}</span>
-        </div>
-        <span class="grey-text">
-          {{moFromNow commentedAt withoutSuffix=true}}
-        </span>
-      </li>
+    <li id="comment-{{_id}}" class="collection-item">
+      <div class="comment-wrapper">
+        <strong>{{username}}:</strong>
+        <span>{{comment}}</span>
+      </div>
+      <span class="grey-text">
+        {{moFromNow commentedAt withoutSuffix=true}}
+      </span>
+    </li>
 </template>

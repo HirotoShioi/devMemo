@@ -31,7 +31,7 @@ TemplateController('Header', {
       AccountsTemplates.logout();
     },
     'click .fa-search'() {
-      Session.set('searchQuery', '');
+      Session.set('searchQueryHeader', '');
       Session.set('isSearchNavShown', true);
       return false;
     },

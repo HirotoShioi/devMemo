@@ -37,6 +37,7 @@ TemplateController('LabelDetail', {
       }
       let counts  =  Memos.find(query).count();
       this.session.set('resultsCount', counts);
+      self.subscribe('memos');
     });
   },
 

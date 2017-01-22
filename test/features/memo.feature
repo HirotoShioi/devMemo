@@ -88,7 +88,7 @@ Feature:Memo
     And I click memo
     And I press archive icon
     Then my memo should be in status "expired"
-  
+
   Scenario: Reactivate memo
     Given that I am a user
     And I have memo "https://www.youtube.com"
@@ -127,3 +127,12 @@ Feature:Memo
     And I click memo content
     And I press delete
     Then my memo should be deleted
+
+  Scenario: Add comment
+    Given that I am a user
+    And I have memo "https://www.youtube.com"
+    When I login as a user
+    And I click memo
+    And I write comment "this is youtube"
+    And I submit the comment
+    Then I should see the comment "this is youtube" added to my memo

@@ -11,14 +11,18 @@ TemplateController('MemoDetailModal', {
   state: {
     memo: {},
     label: {},
-    shouldHeartHightlight: false,
+    favoritedAt: false,
   },
   helpers: {
+    favorited() {
+      return this.state.favoritedAt;
+    },
     memo() {
       let memo = Memos.findOne({_id: Session.get('MemoDetailId')});
       this.state.memo = memo;
       if (memo) {
         this.state.label = memo.label();
+        this.state.favoritedAt = memo.favoritedAt();
       }
       return memo;
     },
@@ -45,18 +49,11 @@ TemplateController('MemoDetailModal', {
     },
     shouldArchiveShow() {
       if (this.state.memo) {
-        if (this.state.memo.status === "active" && !this.state.memo.favoritedAt && this.state.memo.owner === Meteor.userId()) {
+        if (this.state.memo.status === "active" && !this.state.favoritedAt && this.state.memo.owner === Meteor.userId()) {
           return true;
         } else {
           return false;
         }
-      } else {
-        return false;
-      }
-    },
-    shouldFavoriteHightlight() {
-      if (this.state.memo) {
-        return ( this.state.shouldHeartHightlight || this.state.memo.favoritedAt );
       } else {
         return false;
       }
@@ -85,12 +82,6 @@ TemplateController('MemoDetailModal', {
       Session.set('showModal', true);
       Session.set('editMemoLabelId', this.state.memo._id);
       Session.set('formType', 'EditMemoLabel');
-    },
-    'mouseover .heart'() {
-      this.state.shouldHeartHightlight = true;
-    },
-    'mouseout .heart'() {
-      this.state.shouldHeartHightlight = false;
     },
     'click .heart'() {
       Meteor.call('toggleFavorite', this.state.memo._id);

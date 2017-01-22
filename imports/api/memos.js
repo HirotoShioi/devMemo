@@ -262,6 +262,14 @@ Memos.helpers({
   },
   comments() {
     return Comments.find({memoId: this._id}, {sort: {commentedAt: -1}});
+  },
+  favoritedAt() {
+    let favorites = userFavorites.findOne({memoId: this._id});
+    if (favorites) {
+      return favorites.favoritedAt;
+    } else {
+      return false;
+    }
   }
 });
 
