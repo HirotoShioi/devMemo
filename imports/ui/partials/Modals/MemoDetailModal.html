@@ -42,7 +42,7 @@
     <ul class="collection comment-collection">
       <li class="collection-item">
         <div class="comment-form-wrapper">
-          <form action="" id="add-comment">
+          <form id="add-comment">
             <input id="comments" type="text" name="comment" placeholder="Comments" autocomplete="off"/>
           </form>
           <i class="fa fa-pencil right"></i>
@@ -55,13 +55,13 @@
 </template>
 
 <template name="CommentItem">
-      <li class="collection-item">
-        <div class="comment-wrapper">
-          <strong>{{username}}:</strong>
-          <span>{{comment}}</span>
-        </div>
-        <span class="grey-text">
-          {{moFromNow commentedAt withoutSuffix=true}}
-        </span>
-      </li>
+    <li id="comment-{{_id}}" class="collection-item">
+      <div class="comment-wrapper">
+        <strong>{{username}}:</strong>
+        <span>{{comment}}</span>
+      </div>
+      <span class="grey-text">
+        {{moFromNow commentedAt withoutSuffix=true}}
+      </span>
+    </li>
 </template>
