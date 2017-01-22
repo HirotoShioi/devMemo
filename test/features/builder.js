@@ -81,3 +81,12 @@ export const getUserFavorites = function(shareObj) {
   }, shareObj );
   return userFavorite;
 };
+
+export const getComment = function(query) {
+  let comment = server.execute( (obj) => {
+    if (!obj.userId) obj.userId = Meteor.userId();
+    const { Comments } = require('/imports/api/comments.js');
+    return Comments.findOne(obj);
+  }, query);
+  return comment;
+};
