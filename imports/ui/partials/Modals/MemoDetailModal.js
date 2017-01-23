@@ -4,6 +4,7 @@ import { Session } from 'meteor/session';
 import { resetModalForm } from './modalHelper.js';
 import { moment } from 'meteor/momentjs:moment';
 import { i18n } from 'meteor/anti:i18n';
+import { $ } from 'meteor/jquery';
 
 import './MemoDetailModal.html';
 
@@ -104,6 +105,13 @@ TemplateController('MemoDetailModal', {
       const comment = event.target.comment.value;
       Meteor.call('addComment', comment, this.state.memo._id);
       event.target.comment.value = "";
+      this.state.shouldCommentsShow = true;
+    },
+    'click .fa-pencil'() {
+      const comment = $("#add-comment input[name=comment]").val();
+      Meteor.call('addComment', comment, this.state.memo._id);
+      $('#add-comment').trigger("reset");
+      this.state.shouldCommentsShow = true;
     },
     'click .comment-show-link'() {
       this.state.shouldCommentsShow = !this.state.shouldCommentsShow;
