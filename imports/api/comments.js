@@ -50,4 +50,14 @@ Meteor.methods({
       comment: comment,
     });
   },
+  'deleteComment'(commentId) {
+    check(commentId, String);
+
+    const comment = Comments.findOne({_id: commentId});
+    if (this.userId !== comment.userId) {
+      throw new Meteor.Error("notAuthorized");
+    }
+
+    Comments.remove({_id: commentId});
+  }
 });
