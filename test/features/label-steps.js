@@ -22,7 +22,7 @@ module.exports = function() {
   });
 
   this.Then(/^I should see my new label "([^"]*)"$/, function(labelName) {
-    client.pause(300);
+    client.pause(500);
     waitAndClickButton('#label-bar');
     let query = {
       name: labelName,
@@ -73,7 +73,7 @@ module.exports = function() {
   });
 
   this.Then(/^I should see my label "([^"]*)" deleted$/, function(labelName) {
-    client.pause(300);
+    client.pause(500);
     const query = {
       _id: this.label._id,
     };
