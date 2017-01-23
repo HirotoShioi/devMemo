@@ -150,6 +150,8 @@ i18n.map('en', {
 
   memo: {
     more: 'more',
+    addComments: 'Add comment',
+    comments: 'comments:',
   },
 
   errors: {
@@ -311,6 +313,8 @@ i18n.map('ja', {
 
   memo: {
     more: 'more',
+    addComments: 'コメントを追加',
+    comments: 'コメント数：',
   },
 
   errors: {
