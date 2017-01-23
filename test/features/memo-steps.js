@@ -1,6 +1,6 @@
 import { waitAndSetValue, waitAndClickButton } from './webdriver';
 import { user } from './userInfo';
-import { getMemo, createMemo, updateMemo, createUserFavorites, getUserFavorites, getComment} from './builder';
+import { getMemo, createMemo, updateMemo, createUserFavorites, getUserFavorites, getComment, createComment} from './builder';
 
 module.exports = function() {
   this.Before( function() {
@@ -253,5 +253,26 @@ module.exports = function() {
     expect(this.comments.comment).to.equal(comment);
     const isCommentVisible = client.waitForVisible(`#comment-${this.comments._id}`, 2000);
     expect(isCommentVisible).to.equal(true);
+  });
+
+  this.Given(/^I there's a comment "([^"]*)" in that memo$/, function(comment) {
+    const commentObj = {
+      comment: comment,
+      memoId: this.memo._id
+    };
+    this.comments = createComment(commentObj);
+  });
+
+  this.When(/^I delete the comment$/, function() {
+    waitAndClickButton('.comment-show-link');
+    waitAndClickButton(`#comment-${this.comments._id}`);
+    waitAndClickButton('.delete-comment');
+  });
+
+  this.Then(/^I shold see the comment deleted$/, function() {
+    const comment = getComment({_id: this.comments._id});
+    const isCommentVisible = client.isVisible(`#comment-${this.comments._id}`);
+    expect(comment).to.equal(undefined);
+    expect(isCommentVisible).to.equal(false);
   });
 };

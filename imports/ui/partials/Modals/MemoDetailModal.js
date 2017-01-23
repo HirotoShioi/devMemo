@@ -4,6 +4,7 @@ import { Session } from 'meteor/session';
 import { resetModalForm } from './modalHelper.js';
 import { moment } from 'meteor/momentjs:moment';
 import { i18n } from 'meteor/anti:i18n';
+import { $ } from 'meteor/jquery';
 
 import './MemoDetailModal.html';
 
@@ -12,6 +13,7 @@ TemplateController('MemoDetailModal', {
     memo: {},
     label: {},
     favoritedAt: false,
+    shouldCommentsShow: false,
   },
   helpers: {
     favorited() {
@@ -103,11 +105,25 @@ TemplateController('MemoDetailModal', {
       const comment = event.target.comment.value;
       Meteor.call('addComment', comment, this.state.memo._id);
       event.target.comment.value = "";
+      this.state.shouldCommentsShow = true;
+    },
+    'click .fa-pencil'() {
+      const comment = $("#add-comment input[name=comment]").val();
+      Meteor.call('addComment', comment, this.state.memo._id);
+      $('#add-comment').trigger("reset");
+      this.state.shouldCommentsShow = true;
+    },
+    'click .comment-show-link'() {
+      this.state.shouldCommentsShow = !this.state.shouldCommentsShow;
     }
   },
 });
 
 TemplateController('CommentItem', {
+  state: {
+    shouldDeleteCommentShow: false,
+  },
+
   helpers: {
     username() {
       const user = Meteor.users.findOne({_id: this.data.userId});
@@ -115,6 +131,23 @@ TemplateController('CommentItem', {
     },
     date() {
       return moment(this.data.commentedAt).fromNow();
+    },
+    isCommentOwner() {
+      return (this.data.userId === Meteor.userId());
     }
+  },
+
+  events: {
+    'mouseover .comment-item'() {
+      if (this.data.userId === Meteor.userId()) {
+        this.state.shouldDeleteCommentShow = true;
+      }
+    },
+    'mouseout .comment-item'() {
+      this.state.shouldDeleteCommentShow = false;
+    },
+    'click .delete-comment'() {
+      Meteor.call('deleteComment', this.data._id);
+    },
   }
 });

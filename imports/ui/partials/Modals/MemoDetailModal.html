@@ -43,25 +43,42 @@
       <li class="collection-item">
         <div class="comment-form-wrapper">
           <form id="add-comment">
-            <input id="comments" type="text" name="comment" placeholder="Comments" autocomplete="off"/>
+            <input id="comments" type="text" name="comment" placeholder="{{i18n 'memo.addComments'}}" autocomplete="off"/>
           </form>
           <i class="fa fa-pencil right"></i>
         </div>
       </li>
-      {{#each memo.comments}}
-        {{> CommentItem}}
-      {{/each}}
+      {{#if $neq memo.commentCount 0}}
+      <li class="collection-item comment-item">
+        <span class="comment-show-link">
+          {{i18n 'memo.comments'}}{{memo.commentCount}}
+          {{#if state.shouldCommentsShow}}
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+          {{else}}
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+          {{/if}}
+        </span>
+      </li>
+      {{/if}}
+      {{#if state.shouldCommentsShow}}
+        {{#each memo.comments}}
+          {{> CommentItem}}
+        {{/each}}
+      {{/if}}
     </ul>
 </template>
 
 <template name="CommentItem">
-    <li id="comment-{{_id}}" class="collection-item">
+    <li id="comment-{{_id}}" class="collection-item comment-item">
+      {{#if state.shouldDeleteCommentShow}}
+      <i class="fa fa-close delete-comment"></i>
+      {{/if}}
       <div class="comment-wrapper">
-        <strong>{{username}}:</strong>
-        <span>{{comment}}</span>
+        <strong class="comment-username">{{username}}</strong>
+        <span class="grey-text comment-timestamp">
+          {{moFromNow commentedAt withoutSuffix=false}}
+        </span>
+        <p class="comment-text">{{comment}}</p>
       </div>
-      <span class="grey-text">
-        {{moFromNow commentedAt withoutSuffix=true}}
-      </span>
     </li>
 </template>

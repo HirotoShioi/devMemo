@@ -136,3 +136,12 @@ Feature:Memo
     And I write comment "this is youtube"
     And I submit the comment
     Then I should see the comment "this is youtube" added to my memo
+
+  Scenario: Delete comment
+    Given that I am a user
+    And I have memo "https://www.youtube.com"
+    And I there's a comment "This is cool" in that memo
+    When I login as a user
+    And I click memo
+    And I delete the comment
+    Then I shold see the comment deleted

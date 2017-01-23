@@ -24,6 +24,7 @@ TemplateController('AddShareUser', {
           type: String,
           optional: true,
           max: 100,
+          label: function() {return i18n('collection.users.shareLabelMessage');},
         },
       });
       return schema;
