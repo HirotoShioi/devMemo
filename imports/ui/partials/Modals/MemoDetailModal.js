@@ -12,6 +12,7 @@ TemplateController('MemoDetailModal', {
     memo: {},
     label: {},
     favoritedAt: false,
+    shouldCommentsShow: false,
   },
   helpers: {
     favorited() {
@@ -103,6 +104,9 @@ TemplateController('MemoDetailModal', {
       const comment = event.target.comment.value;
       Meteor.call('addComment', comment, this.state.memo._id);
       event.target.comment.value = "";
+    },
+    'click .comment-show-link'() {
+      this.state.shouldCommentsShow = !this.state.shouldCommentsShow;
     }
   },
 });

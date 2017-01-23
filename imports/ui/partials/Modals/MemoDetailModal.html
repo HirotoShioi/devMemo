@@ -48,9 +48,23 @@
           <i class="fa fa-pencil right"></i>
         </div>
       </li>
-      {{#each memo.comments}}
-        {{> CommentItem}}
-      {{/each}}
+      {{#if $neq memo.commentCount 0}}
+      <li class="collection-item comment-item">
+        <span class="comment-show-link">
+          {{memo.commentCount}} comments
+          {{#if state.shouldCommentsShow}}
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+          {{else}}
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+          {{/if}}
+        </span>
+      </li>
+      {{/if}}
+      {{#if state.shouldCommentsShow}}
+        {{#each memo.comments}}
+          {{> CommentItem}}
+        {{/each}}
+      {{/if}}
     </ul>
 </template>
 
@@ -60,7 +74,7 @@
       <i class="fa fa-close delete-comment"></i>
       {{/if}}
       <div class="comment-wrapper">
-        <strong>{{username}}</strong>
+        <strong class="comment-username">{{username}}</strong>
         <span class="grey-text comment-timestamp">
           {{moFromNow commentedAt withoutSuffix=false}}
         </span>

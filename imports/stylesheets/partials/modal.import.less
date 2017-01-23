@@ -196,19 +196,34 @@
   border-left: none;
   margin: 0;
   .comment-item{
+    line-height: 1.2em;
+    .comment-show-link{
+      color:#039be5;
+      cursor: pointer;
+      .fa{
+        font-size: 1.5em;
+        height: 16px;
+        vertical-align: sub;
+        margin: 0 5px;
+      }
+    }
     position: relative;
-    padding: 7px 20px;
+    padding: 9px 20px;
     .delete-comment{
       position: absolute;
       font-size: 1.3em;
       top: 5px;
       right: 7px;
     }
+    .comment-username{
+      font-size: 12px;
+    }
     .comment-timestamp{
-      margin: 0 5px;
+      font-size: 12px;
+      margin: 0 0.3em;
     }
     .comment-text{
-      margin: 5px 0;
+      margin: 5px 0 0;
       line-height: 1em;
     }
   }
