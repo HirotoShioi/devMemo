@@ -41,7 +41,7 @@ TemplateController('MemoDetailModal', {
     },
     truncate() {
       if (this.state.memo) {
-        if (this.state.memo.desc.length > 100) {
+        if (this.state.memo.desc && this.state.memo.desc.length > 100) {
           this.state.memo.desc = `${this.state.memo.desc.substring(0, 100)}...`;
         }
         return this.state.memo.desc;
