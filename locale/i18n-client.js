@@ -137,7 +137,7 @@ i18n.map('en', {
     },
 
     addShareUser: {
-      title: 'Add User',
+      title: 'Share label with other user',
       success: 'Request successfuly sent'
     },
 
@@ -300,7 +300,7 @@ i18n.map('ja', {
     },
 
     addShareUser: {
-      title: 'ユーザーと共有する',
+      title: 'ユーザーとラベルを共有する',
       success: 'リクエストを送信しました',
     },
 
