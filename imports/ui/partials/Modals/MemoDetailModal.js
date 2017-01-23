@@ -108,6 +108,10 @@ TemplateController('MemoDetailModal', {
 });
 
 TemplateController('CommentItem', {
+  state: {
+    shouldDeleteCommentShow: false,
+  },
+
   helpers: {
     username() {
       const user = Meteor.users.findOne({_id: this.data.userId});
@@ -115,6 +119,23 @@ TemplateController('CommentItem', {
     },
     date() {
       return moment(this.data.commentedAt).fromNow();
+    },
+    isCommentOwner() {
+      return (this.data.userId === Meteor.userId());
     }
+  },
+
+  events: {
+    'mouseover .comment-item'() {
+      if (this.data.userId === Meteor.userId()) {
+        this.state.shouldDeleteCommentShow = true;
+      }
+    },
+    'mouseout .comment-item'() {
+      this.state.shouldDeleteCommentShow = false;
+    },
+    'click .delete-comment'() {
+      Meteor.call('deleteComment', this.data._id);
+    },
   }
 });
