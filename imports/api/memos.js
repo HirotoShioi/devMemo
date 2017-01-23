@@ -36,6 +36,14 @@ Schemas.memos = new SimpleSchema({
     type: String,
     optional: true,
   },
+  thumbnailWidth: {
+    type: Number,
+    optional: true,
+  },
+  thumbnailHeight: {
+    type: Number,
+    optional: true,
+  },
   desc: {
     type: String,
     label: function() { return i18n('collection.memos.description');},
@@ -185,6 +193,8 @@ Meteor.methods({
         name: data.title,
         url: doc.url,
         thumbnailUrl: data.thumbnail_url,
+        thumbnailHeight: data.thumbnail_height,
+        thumbnailWidth: data.thumbnail_width,
         provider_url: data.provider_url,
         provider_name: data.provider_name,
         desc: data.description,
