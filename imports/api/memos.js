@@ -147,6 +147,7 @@ Meteor.methods({
 
     Memos.remove(id);
     userFavorites.remove({memoId: id});
+    Comments.remove({memoId: id});
   },
   memoUrlClicked(doc) {
     check(doc, Object);
@@ -262,6 +263,9 @@ Memos.helpers({
   },
   comments() {
     return Comments.find({memoId: this._id}, {sort: {commentedAt: -1}});
+  },
+  commentCount() {
+    return Comments.find({memoId: this._id}).count();
   },
   favoritedAt() {
     let favorites = userFavorites.findOne({memoId: this._id});
