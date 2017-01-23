@@ -55,13 +55,16 @@
 </template>
 
 <template name="CommentItem">
-    <li id="comment-{{_id}}" class="collection-item">
+    <li id="comment-{{_id}}" class="collection-item comment-item">
+      {{#if state.shouldDeleteCommentShow}}
+      <i class="fa fa-close delete-comment"></i>
+      {{/if}}
       <div class="comment-wrapper">
-        <strong>{{username}}:</strong>
-        <span>{{comment}}</span>
+        <strong>{{username}}</strong>
+        <span class="grey-text comment-timestamp">
+          {{moFromNow commentedAt withoutSuffix=true}}
+        </span>
+        <p class="comment-text">{{comment}}</p>
       </div>
-      <span class="grey-text">
-        {{moFromNow commentedAt withoutSuffix=true}}
-      </span>
     </li>
 </template>
