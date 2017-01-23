@@ -43,7 +43,7 @@
       <li class="collection-item">
         <div class="comment-form-wrapper">
           <form id="add-comment">
-            <input id="comments" type="text" name="comment" placeholder="Comments" autocomplete="off"/>
+            <input id="comments" type="text" name="comment" placeholder="{{i18n 'memo.addComments'}}" autocomplete="off"/>
           </form>
           <i class="fa fa-pencil right"></i>
         </div>
@@ -51,7 +51,7 @@
       {{#if $neq memo.commentCount 0}}
       <li class="collection-item comment-item">
         <span class="comment-show-link">
-          {{memo.commentCount}} comments
+          {{i18n 'memo.comments'}}{{memo.commentCount}}
           {{#if state.shouldCommentsShow}}
             <i class="fa fa-caret-down" aria-hidden="true"></i>
           {{else}}
