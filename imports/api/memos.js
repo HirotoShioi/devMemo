@@ -189,6 +189,13 @@ Meteor.methods({
       });
       console.log(result);
       const data = result.data;
+      if (!result) {
+        Memos.insert({
+          name: doc.url,
+          url: doc.url,
+          labelId: doc.labelId
+        });
+      } else {
       Memos.insert({
         name: data.title,
         url: doc.url,
@@ -208,6 +215,7 @@ Meteor.methods({
       }, (err, memoId)=>{
         logMemoClicked(this.userId, memoId, doc.labelId);
       });
+      }
     }
 
     // update user's recently used label
