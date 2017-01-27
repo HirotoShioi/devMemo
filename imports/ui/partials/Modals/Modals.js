@@ -32,7 +32,7 @@ TemplateController('Modals', {
     },
     formType() {
       return Session.get('formType');
-    }
+    },
   },
   events: {
     'click .fa-close'() {
