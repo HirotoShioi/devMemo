@@ -4,8 +4,8 @@
         {{#if memo.thumbnailUrl}}
           <img src="{{memo.thumbnailUrl}}"/>
         {{else}}
-        <div class="alt-image-wrapper valign-wrapper">
-            <i class="fa fa-sticky-note valign" style="color:{{state.label.color}}"></i>
+        <div class="alt-image-wrapper valign-wrapper" style="color:{{state.label.color}}">
+            <span class="valign modal-image-icon">{{altImage}}</span>
         </div>
         {{/if}}
       </a>
