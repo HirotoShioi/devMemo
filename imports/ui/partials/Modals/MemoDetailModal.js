@@ -16,6 +16,13 @@ TemplateController('MemoDetailModal', {
     shouldCommentsShow: false,
   },
   helpers: {
+    altImage() {
+      if (!this.state.memo.thumbnailUrl) {
+        return this.state.memo.name.substring(0, 1);
+      } else {
+        return false;
+      }
+    },
     favorited() {
       return this.state.favoritedAt;
     },

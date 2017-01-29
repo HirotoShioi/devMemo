@@ -18,6 +18,13 @@ TemplateController('Memo', {
   },
 
   helpers: {
+    altImage() {
+      if (!this.data.memo.thumbnailUrl) {
+        return this.data.memo.name.substring(0, 1);
+      } else {
+        return false;
+      }
+    },
     memo() {
       return this.data.memo;
     },
