@@ -17,7 +17,7 @@ TemplateController('MemoDetailModal', {
   },
   helpers: {
     altImage() {
-      if (!this.state.memo.thumbnailUrl) {
+      if (this.state.memo) {
         return this.state.memo.name.substring(0, 1);
       } else {
         return false;
@@ -48,8 +48,8 @@ TemplateController('MemoDetailModal', {
     },
     truncate() {
       if (this.state.memo) {
-        if (this.state.memo.desc && this.state.memo.desc.length > 100) {
-          this.state.memo.desc = `${this.state.memo.desc.substring(0, 100)}...`;
+        if (this.state.memo.desc && this.state.memo.desc.length > 200) {
+          this.state.memo.desc = `${this.state.memo.desc.substring(0, 200)}...`;
         }
         return this.state.memo.desc;
       } else {

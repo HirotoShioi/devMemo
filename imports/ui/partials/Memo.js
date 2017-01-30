@@ -19,7 +19,7 @@ TemplateController('Memo', {
 
   helpers: {
     altImage() {
-      if (!this.data.memo.thumbnailUrl) {
+      if (this.data.memo) {
         return this.data.memo.name.substring(0, 1);
       } else {
         return false;
