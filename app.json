@@ -1,0 +1,26 @@
+{
+  "name": "devMemo",
+  "scripts": {
+  },
+  "env": {
+    "METEOR_SETTINGS": {
+      "required": true
+    },
+    "MONGODB_URI": {
+      "required": true
+    },
+    "ROOT_URL": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "mongolab"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/AdmitHub/meteor-buildpack-horse.git"
+    }
+  ]
+}
