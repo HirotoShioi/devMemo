@@ -1,4 +1,4 @@
 node_modules/
 settings.json
-npm-debug.log
 heroku.json
+npm-debug.logheroku.json
