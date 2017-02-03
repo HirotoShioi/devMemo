@@ -1,11 +1,12 @@
 import { TemplateController } from 'meteor/space:template-controller';
-import { Memos } from '../../api/memos.js';
-import { userFavorites } from '../../api/userFavorites.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { rwindow } from 'meteor/gadicohen:reactive-window';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 import { i18n } from 'meteor/anti:i18n';
 import { Label } from '../../api/label.js';
+import { Memos } from '../../api/memos.js';
+import { userFavorites } from '../../api/userFavorites.js';
 import '../partials/Loading.js';
 import '../partials/Memo.js';
 import '../partials/emptyMemo.js';
@@ -13,7 +14,7 @@ import '../partials/emptyMemo.js';
 import './Home.html';
 
 const session = new ReactiveDict('Home');
-
+// 1650
 TemplateController('Home', {
   state: {
     recentCount: 0,
@@ -28,6 +29,9 @@ TemplateController('Home', {
   },
   onCreated() {
     this.session = session;
+    const resultCount = (rwindow.$width() >= 1650 ) ? 10 : 8;
+    this.initialResult = resultCount;
+    this.incrementBy = resultCount;
     this.session.setDefault('recentResultsLimit', this.initialResult);
     this.session.setDefault('favoriteResultsLimit', this.initialResult);
     Session.set('Title', {name: i18n('pageTitle.featured')});
