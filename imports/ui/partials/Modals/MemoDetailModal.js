@@ -47,9 +47,10 @@ TemplateController('MemoDetailModal', {
       }
     },
     truncate() {
+      const truncateLength = 140;
       if (this.state.memo) {
-        if (this.state.memo.desc && this.state.memo.desc.length > 200) {
-          this.state.memo.desc = `${this.state.memo.desc.substring(0, 200)}...`;
+        if (this.state.memo.desc && this.state.memo.desc.length > truncateLength) {
+          this.state.memo.desc = `${this.state.memo.desc.substring(0, truncateLength)}...`;
         }
         return this.state.memo.desc;
       } else {
