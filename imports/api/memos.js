@@ -170,7 +170,9 @@ Meteor.methods({
       Memos.update({_id: doc._id}, {$inc: {clicked: 1}});
     }
 
-    logMemoClicked(this.userId, doc._id, doc.labelId);
+    if (this.userId === doc.owner) {
+      logMemoClicked(this.userId, doc._id, doc.labelId);
+    }
     updateMemoExpiration(doc._id);
   },
   addMemo(doc) {

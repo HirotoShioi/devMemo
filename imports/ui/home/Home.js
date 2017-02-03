@@ -38,7 +38,13 @@ TemplateController('Home', {
       }
       if (result) {
         self.state.recommendLabels = result;
-        self.state.recommendCount = Memos.find({labelId: result._id}).count();
+        const recommendQuery = {
+          owner: Meteor.userId(),
+          labelId: result._id,
+          status: "expired",
+        };
+        self.state.recommendCount = Memos.find(recommendQuery).count();
+        console.log(self.state.recommendCount);
       }
     });
     self.autorun(()=>{
@@ -81,9 +87,6 @@ TemplateController('Home', {
       return label;
     },
     recommendMemos() {
-      if (this.state.recommendCount <= 0) {
-        return false;
-      }
       let query = {
         owner: Meteor.userId(),
         status: "expired",
@@ -92,7 +95,9 @@ TemplateController('Home', {
       if (this.state.recommendLabels) {
         query.labelId = this.state.recommendLabels._id;
       }
-      return Memos.find(query, {limit: 4, sort: {clicked: -1}});
+      const favoriteMemos =  Memos.find(query, {limit: 4, sort: {clicked: 1}});
+      console.log(favoriteMemos.fetch());
+      return favoriteMemos;
     },
     recentHasMoreContent() {
       return this.session.get('recentResultsLimit') < this.state.recentCount;

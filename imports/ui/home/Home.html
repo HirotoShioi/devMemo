@@ -57,7 +57,7 @@
             {{/if}}
           </div>
         </li>
-        {{#if recommendMemos}}
+        {{#if $neq state.recommendCount 0}}
         <li class="collection-item">
           <span class="title">{{i18n 'home.forYou'}}
             <span class="chip" style="background-color:{{recommendLabel.color}};">{{recommendLabel.name}}</span>
