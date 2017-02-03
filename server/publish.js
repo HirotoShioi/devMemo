@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Memos } from '../imports/api/memos.js';
 import { Label } from '../imports/api/label.js';
 import { labelShare } from '../imports/api/labelShare.js';
+import { Comments } from '../imports/api/comments.js';
 import { userFavorites } from '../imports/api/userFavorites.js';
 
 import { check } from 'meteor/check';
@@ -20,35 +21,11 @@ Meteor.publish('usernames', function() {
 // All user's favorites
 Meteor.publishComposite('userFavorites', {
   find: function() {
-    return userFavorites.find({userId: this.userId});
+    return userFavorites.find({userId: this.userId}, {sort: {favoritedAt: -1}});
   },
   children: [
     {
       find: function(favorite) {
-        const transform = function(doc) {
-          doc.favoritedAt = favorite.favoritedAt;
-          return doc;
-        };
-
-        const self = this;
-
-        let observer = Memos.find({_id: favorite.memoId}).observe({
-          added: function(document) {
-            self.added('memos', document._id, transform(document));
-          },
-          changed: function(newDocument, oldDocument) {
-            self.changed('memos', oldDocument._id, transform(newDocument));
-          },
-          removed: function(oldDocument) {
-            self.removed('memos', oldDocument._id);
-          }
-        });
-
-        self.onStop(function() {
-          observer.stop();
-        });
-
-        self.ready();
         return Memos.find({_id: favorite.memoId});
       },
     }
@@ -100,6 +77,13 @@ Meteor.publishComposite('MemoLabelShares', {
       find: function(label) {
         return Memos.find({$or: [{owner: this.userId}, {labelId: label.labelId}]});
       },
+      children: [
+        {
+          find: function(memo) {
+            return Comments.find({memoId: memo._id});
+          }
+        }
+      ]
     },
     {
       // Get other users that is sharing same label
@@ -128,3 +112,9 @@ Meteor.publish('labelShare', function() {
   labelShare.find({$or: [{sharedTo: this.userId}, {sharedFrom: this.userId}]});
 });
 
+Meteor.publish('comments', function() {
+  let query    = { userId: this.userId };
+  let projection = { limit: 100, sort: { createdAt: -1 } };
+
+  return Comments.find(query, projection);
+});

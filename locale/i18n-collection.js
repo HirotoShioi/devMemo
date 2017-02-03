@@ -9,7 +9,8 @@ i18n.map('en', {
       name: 'Name',
     },
     users: {
-      label: "username",
+      label: "Username",
+      shareLabelMessage: "Message",
     }
   }
 });
@@ -26,6 +27,7 @@ i18n.map('ja', {
     },
     users: {
       label: "ユーザー名",
+      shareLabelMessage: "メッセージ",
     }
   }
 });

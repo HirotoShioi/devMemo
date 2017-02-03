@@ -2,12 +2,15 @@ import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import { HTTP } from 'meteor/http';
 import { check } from 'meteor/check';
-import { Label } from './label.js';
-import { userFavorites } from './userFavorites.js';
 import { moment } from 'meteor/momentjs:moment';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { memoClicked } from './memoClicked.js';
 import { i18n } from 'meteor/anti:i18n';
+
+import { Label } from './label.js';
+import { Comments } from './comments.js';
+import { userFavorites } from './userFavorites.js';
+
 export const Memos = new Mongo.Collection('memos');
 
 let Schemas = {};
@@ -31,6 +34,14 @@ Schemas.memos = new SimpleSchema({
   },
   thumbnailUrl: {
     type: String,
+    optional: true,
+  },
+  thumbnailWidth: {
+    type: Number,
+    optional: true,
+  },
+  thumbnailHeight: {
+    type: Number,
     optional: true,
   },
   desc: {
@@ -144,6 +155,7 @@ Meteor.methods({
 
     Memos.remove(id);
     userFavorites.remove({memoId: id});
+    Comments.remove({memoId: id});
   },
   memoUrlClicked(doc) {
     check(doc, Object);
@@ -181,6 +193,8 @@ Meteor.methods({
         name: data.title,
         url: doc.url,
         thumbnailUrl: data.thumbnail_url,
+        thumbnailHeight: data.thumbnail_height,
+        thumbnailWidth: data.thumbnail_width,
         provider_url: data.provider_url,
         provider_name: data.provider_name,
         desc: data.description,
@@ -256,6 +270,20 @@ Meteor.methods({
 Memos.helpers({
   label() {
     return Label.findOne(this.labelId);
+  },
+  comments() {
+    return Comments.find({memoId: this._id}, {sort: {commentedAt: -1}});
+  },
+  commentCount() {
+    return Comments.find({memoId: this._id}).count();
+  },
+  favoritedAt() {
+    let favorites = userFavorites.findOne({memoId: this._id});
+    if (favorites) {
+      return favorites.favoritedAt;
+    } else {
+      return false;
+    }
   }
 });
 

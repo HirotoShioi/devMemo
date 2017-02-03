@@ -1,22 +1,26 @@
 <template name="Memo">
-  <div id="card-{{_id}}" class="col l3 m6 s12 memo-card-wrapper">
+  <div id="card-{{memo._id}}" class="col l3 m6 s12 memo-card-wrapper">
     <div class="card hoverable">
         <div class="card-image center">
-        <div class="expire-progress {{#if shouldExpireProgressbarShow}}show{{else}}hide{{/if}}-progress-bar">
-          <div class="progress-bar progress-{{state.progressBarColor}}" style="width:{{expireStatus}}%"></div>
-        </div>
-        <a href="{{url}}" class="card-image-url">
-          {{#if thumbnailUrl}}
-            <img src="{{thumbnailUrl}}"/>
+        {{#if $eq favoritedAt false}}
+          <div class="expire-progress {{#if shouldExpireProgressbarShow}}show{{else}}hide{{/if}}-progress-bar">
+            <div class="progress-bar progress-{{state.progressBarColor}}" style="width:{{expireStatus}}%"></div>
+          </div>
+        {{/if}}
+        <a href="{{memo.url}}" class="card-image-url">
+          {{#if memo.thumbnailUrl}}
+            <img src="{{memo.thumbnailUrl}}"/>
           {{else}}
-            <i class="fa fa-sticky-note card-image-alt-icon" aria-hidden="true"></i>
+            <div class="alt-image-icon-wrapper valign-wrapper" style="color:{{memo.label.color}}">
+              <span class="valign alt-image-icon">{{altImage}}</span>
+            </div>
           {{/if}}
         </a>
           <div class="card-action {{#if state.isHovered}}tooltip-show{{/if}}">
           {{#if isOwner}}
             <i class="fa fa-cog card-option"></i>
           {{/if}}
-            <i class="fa heart {{#if shouldFavoriteHightlight}}fa-heart{{ else }}fa-heart-o{{/if}}  card-option"></i>
+            <i class="fa heart {{#if favoritedAt}}fa-heart{{ else }}fa-heart-o{{/if}}  card-option"></i>
             {{#if shouldArchiveShow}}
               <i class="fa fa-archive archive-memo card-option"></i>
             {{/if}}
@@ -27,22 +31,22 @@
             <i class="fa fa-close"></i>
           {{/if}}
         <div class="card-body">
-            <a href="{{url}}" class="card-link">
-            {{#if name}}
+            <a href="{{memo.url}}" class="card-link">
+            {{#if memo.name}}
               <span class="truncate">
                 {{#if faviconUrl}}
                   <img class="favicon" src="{{faviconUrl}}" alt=""/>
                 {{/if}}
-                {{name}}
+                {{memo.name}}
               </span>
             {{else}}
-              <p class="truncate">{{url}}</p>
+              <p class="truncate">{{memo.url}}</p>
             {{/if}}
             </a>
-                <a class="memo-detail" href="{{pathFor route='memo.detail'}}">{{i18n 'memo.more'}}</a>
+                <a class="memo-detail" href="{{pathFor route='memo.detail' data=memo}}">{{i18n 'memo.more'}}</a>
             {{#if hasLabel}}
-                <a href="{{pathFor route='label.detail'}}" class="chip edit-btn" style="background-color:{{label.color}}">
-                    {{label.name}}
+                <a href="{{pathFor route='label.detail' data=memo}}" class="chip edit-btn" style="background-color:{{memo.label.color}}">
+                    {{memo.label.name}}
                 </a>
             {{/if}}
         </div>

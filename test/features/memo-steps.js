@@ -1,6 +1,6 @@
 import { waitAndSetValue, waitAndClickButton } from './webdriver';
 import { user } from './userInfo';
-import { getMemo, createMemo, updateMemo, createUserFavorites, getUserFavorites} from './builder';
+import { getMemo, createMemo, updateMemo, createUserFavorites, getUserFavorites, getComment, createComment} from './builder';
 
 module.exports = function() {
   this.Before( function() {
@@ -10,7 +10,11 @@ module.exports = function() {
   this.After( function() {
     server.execute(()=>{
       const { Memos } = require('/imports/api/memos.js');
-      return Memos.remove({owner: Meteor.userId() });
+      Memos.remove({owner: Meteor.userId() });
+      const { userFavorites } = require('/imports/api/userFavorites.js');
+      userFavorites.remove({userId: Meteor.userId()});
+      const { Comments } = require('/imports/api/comments.js');
+      Comments.remove({userId: Meteor.userId()});
     });
   });
 
@@ -178,7 +182,7 @@ module.exports = function() {
   });
 
   this.When(/^I click image$/, function() {
-    waitAndClickButton(".card-image-url");
+    waitAndClickButton(".card-url");
     client.pause(1000);
     const tabs = client.getTabIds();
     client.switchTab(tabs[1]);
@@ -233,5 +237,42 @@ module.exports = function() {
   this.Then(/^my memo should be deleted$/, function() {
     let memo = getMemo({_id: this.memo._id});
     expect(memo).to.equal(undefined);
+  });
+
+  this.When(/^I write comment "([^"]*)"$/, function(comment) {
+    client.pause(300);
+    waitAndSetValue('input[name=comment]', comment);
+  });
+
+  this.When(/^I submit the comment$/, function() {
+    client.submitForm("#add-comment");
+  });
+
+  this.Then(/^I should see the comment "([^"]*)" added to my memo$/, function(comment) {
+    this.comments = getComment({comment: comment});
+    expect(this.comments.comment).to.equal(comment);
+    const isCommentVisible = client.waitForVisible(`#comment-${this.comments._id}`, 2000);
+    expect(isCommentVisible).to.equal(true);
+  });
+
+  this.Given(/^I there's a comment "([^"]*)" in that memo$/, function(comment) {
+    const commentObj = {
+      comment: comment,
+      memoId: this.memo._id
+    };
+    this.comments = createComment(commentObj);
+  });
+
+  this.When(/^I delete the comment$/, function() {
+    waitAndClickButton('.comment-show-link');
+    waitAndClickButton(`#comment-${this.comments._id}`);
+    waitAndClickButton('.delete-comment');
+  });
+
+  this.Then(/^I shold see the comment deleted$/, function() {
+    const comment = getComment({_id: this.comments._id});
+    const isCommentVisible = client.isVisible(`#comment-${this.comments._id}`);
+    expect(comment).to.equal(undefined);
+    expect(isCommentVisible).to.equal(false);
   });
 };

@@ -22,6 +22,7 @@ TemplateController('SideNav', {
       self.subscribe('usernames');
       self.subscribe('MemoLabelShares');
       self.subscribe('userFavorites');
+      self.subscribe('comments');
     });
   },
 

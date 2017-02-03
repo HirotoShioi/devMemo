@@ -12,8 +12,8 @@
         <li class="collection-item">
           <span class="title">{{i18n 'home.favorites'}}</span>
           <div class="row">
-            {{#each favoriteMemos}}
-              {{> Memo}}
+            {{#each favorite in favoriteMemos}}
+              {{> Memo memo=favorite.memo favoritedAt=favorite.memo.favoritedAt}}
             {{else}}
               <span class="grey-text">{{i18n 'home.noFavorite'}}</span>
             {{/each}}
@@ -35,8 +35,8 @@
         <li class="collection-item">
           <span class="title">{{i18n 'home.recentlyViewed'}}</span>
           <div class="row">
-            {{#each recentMemos}}
-              {{> Memo}}
+            {{#each memo in recentMemos}}
+              {{> Memo memo=memo favoritedAt=memo.favoritedAt}}
             {{else}}
               {{#each noRecentMemos}}
                 {{> emptyMemo}}
@@ -63,8 +63,8 @@
             <span class="chip" style="background-color:{{recommendLabel.color}};">{{recommendLabel.name}}</span>
           </span>
           <div class="row">
-            {{#each recommendMemos}}
-              {{> Memo}}
+            {{#each memo in recommendMemos}}
+              {{> Memo memo=memo favoritedAt=memo.favoritedAt}}
             {{else}}
               <span class="grey-text">{{i18n 'home.noRecommend'}}</span>
             {{/each}}
