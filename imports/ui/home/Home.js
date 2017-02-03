@@ -44,7 +44,6 @@ TemplateController('Home', {
           status: "expired",
         };
         self.state.recommendCount = Memos.find(recommendQuery).count();
-        console.log(self.state.recommendCount);
       }
     });
     self.autorun(()=>{
