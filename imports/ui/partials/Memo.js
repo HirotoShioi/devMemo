@@ -43,7 +43,7 @@ TemplateController('Memo', {
       return (this.data.memo.labelId) ? true : false;
     },
     faviconUrl() {
-      return `http://www.google.com/s2/favicons?domain=${this.data.memo.url}`;
+      return `https://www.google.com/s2/favicons?domain=${this.data.memo.url}`;
     },
     shouldArchiveShow() {
       if (this.data.memo.status === "active" && !this.data.favoritedAt && this.data.memo.owner === Meteor.userId()) {
