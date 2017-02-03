@@ -1,5 +1,5 @@
 import { TemplateController } from 'meteor/space:template-controller';
-
+import { Session } from 'meteor/session';
 import './SearchNavBar.html';
 import './SearchBarItem.js';
 
