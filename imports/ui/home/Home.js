@@ -95,7 +95,6 @@ TemplateController('Home', {
         query.labelId = this.state.recommendLabels._id;
       }
       const favoriteMemos =  Memos.find(query, {limit: 4, sort: {clicked: 1}});
-      console.log(favoriteMemos.fetch());
       return favoriteMemos;
     },
     recentHasMoreContent() {
