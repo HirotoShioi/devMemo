@@ -1,24 +1,30 @@
 {
-  name: "devMemo",
-  scripts: { },
-  env: {
-    METEOR_SETTINGS: {
-      required: true
+  "name": "devMemo",
+  "scripts": { },
+  "env": {
+    "METEOR_SETTINGS": {
+      "required": true
     },
-    MONGODB_URI: {
-      required: true
+    "MONGODB_URI": {
+      "required": true
     },
-    ROOT_URL: {
-      required: true
+    "ROOT_URL": {
+      "required": true
+    },
+    "BASIC_AUTH_USERNAME": {
+      "required": true
+    },
+    "BASIC_AUTH_PASSWORD": {
+      "required": true
     }
   },
-  formation: { },
-  addons: [
+  "formation": { },
+  "addons": [
   "mongolab"
   ],
-  buildpacks: [
+  "buildpacks": [
     {
-      url: "https://github.com/AdmitHub/meteor-buildpack-horse.git"
+      "url": "https://github.com/AdmitHub/meteor-buildpack-horse.git"
     }
   ]
 }
