@@ -15,7 +15,7 @@
             {{#each favorite in favoriteMemos}}
               {{> Memo memo=favorite.memo favoritedAt=favorite.memo.favoritedAt}}
             {{else}}
-              <span class="grey-text">{{i18n 'home.noFavorite'}}</span>
+              <span class="grey-text alt-text">{{i18n 'home.noFavorite'}}</span>
             {{/each}}
             {{#if $gt state.favoriteCount 8}}
               <div class="col s12 center">
@@ -66,7 +66,7 @@
             {{#each memo in recommendMemos}}
               {{> Memo memo=memo favoritedAt=memo.favoritedAt}}
             {{else}}
-              <span class="grey-text">{{i18n 'home.noRecommend'}}</span>
+              <span class="grey-text alt-text">{{i18n 'home.noRecommend'}}</span>
             {{/each}}
           </div>
         </li>
