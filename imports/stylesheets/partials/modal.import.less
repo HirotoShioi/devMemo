@@ -17,21 +17,17 @@
 }
 .modal-card{
   margin: 0 auto;
-  overflow-y: scroll;
   .row{
     margin-bottom: 15px;
   }
 }
 .color-chooser{
-    display: table;
     height: 54px;
-    list-style: none;
-    border-collapse: separate;
-    border-spacing: 10px 5px;
     margin: 0;
 }
 .color-chooser li{
-    display: table-cell;
+    display: inline-block;
+    margin: 0 4px;
 }
 .color-select-box{
     width: 280px;
@@ -241,4 +237,23 @@
     height: 2em;
     box-sizing: border-box;
     margin: 0;
+}
+@media (max-width: 980px) {
+    .modal-form-wrapper{
+      width: 80%;
+      left: 0;
+      margin: 0 auto;
+      top: 5%;
+    }
+    .memo-detail-modal{
+      .card-image{
+        max-height: 60vh;
+      }
+      .card-title{
+        font-size: 1em;
+        .card-option{
+          font-size: 1.7em;
+        }
+      }
+    } 
 }

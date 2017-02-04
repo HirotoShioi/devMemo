@@ -20,7 +20,7 @@
   },
   "formation": { },
   "addons": [
-  "mongolab"
+    "mongolab"
   ],
   "buildpacks": [
     {

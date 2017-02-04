@@ -1,7 +1,7 @@
 <template name="Home">
   <div class="main-container">
     <div class="page-title hide-on-med-and-down z-depth-1">
-      <div class="container">
+      <div class="container title-container">
         <h4 style="">{{i18n 'pageTitle.home'}}</h4>
       </div>
     </div>
@@ -57,7 +57,7 @@
             {{/if}}
           </div>
         </li>
-        {{#if recommendMemos}}
+        {{#if $neq state.recommendCount 0}}
         <li class="collection-item">
           <span class="title">{{i18n 'home.forYou'}}
             <span class="chip" style="background-color:{{recommendLabel.color}};">{{recommendLabel.name}}</span>

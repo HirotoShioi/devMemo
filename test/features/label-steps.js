@@ -62,7 +62,8 @@ module.exports = function() {
   });
 
   this.When(/^I press delete label$/, function() {
-    client.pause(300);
+    client.pause(600);
+    client.waitForVisible(`#label-${this.label._id}`, 3000);
     client.click(`#label-${this.label._id}`);
     waitAndClickButton('.label-delete');
   });
