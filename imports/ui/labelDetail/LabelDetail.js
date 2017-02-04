@@ -3,7 +3,7 @@ import { Memos } from '../../api/memos.js';
 import { Label } from '../../api/label.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Session } from 'meteor/session';
-
+import { rwindow } from 'meteor/gadicohen:reactive-window';
 import './LabelDetail.html';
 import '../partials/Memo.js';
 import '../partials/List/SingleList.js';
@@ -60,7 +60,7 @@ TemplateController('LabelDetail', {
       return memos;
     },
     emptyMemos() {
-      const emptyMemoCount = 8;
+      const emptyMemoCount = (rwindow.$width() >= 1650 ) ? 10 : 8;
       emptyMemoAry = [];
       for (i = 0; i < emptyMemoCount; i++) {
         emptyMemoAry.push({});
