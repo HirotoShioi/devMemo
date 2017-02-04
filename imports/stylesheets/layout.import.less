@@ -31,6 +31,10 @@ flex: 1 0 auto;
 }
 .main-layout{
   width: 100%;
+  transition: margin-left 0.25s linear;
+  &.side-nav-showing{
+    margin-left: 240px;
+  }
 }
 @media (min-width: 991px) {
   .main-layout {
