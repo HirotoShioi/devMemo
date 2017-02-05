@@ -3,6 +3,7 @@ import { Memos } from '../../api/memos.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Session } from 'meteor/session';
 import { i18n } from 'meteor/anti:i18n';
+import { rwindow } from 'meteor/gadicohen:reactive-window';
 import './Gallery.html';
 
 // partials
@@ -49,7 +50,7 @@ TemplateController('Gallery', {
       return Memos.find(query, {limit: this.session.get('resultsLimit'), sort: {createdAt: -1}});
     },
     emptyMemos() {
-      const emptyMemoCount = 8;
+      const emptyMemoCount = (rwindow.$width() >= 1650 ) ? 10 : 8;
       emptyMemoAry = [];
       for (i = 0; i < emptyMemoCount; i++) {
         emptyMemoAry.push({});

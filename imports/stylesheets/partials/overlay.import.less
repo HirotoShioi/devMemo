@@ -1,6 +1,5 @@
 
 .overlay{
-	position: fixed;
     overflow: auto;
     top: 0;
     left: 0;
@@ -16,9 +15,11 @@
     &.sidebar-overlay{
         visibility: visible;
         z-index: 500;
+        position: fixed;
     }
     &.modal-overlay{
         visibility: visible;
         z-index: 1000;
+        position: fixed;
     }
 }

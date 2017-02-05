@@ -75,7 +75,7 @@ TemplateController('Home', {
       return Memos.find(query, {limit: this.session.get('recentResultsLimit'), sort: {clickedAt: -1}});
     },
     noRecentMemos() {
-      const emptyMemoCount = 4;
+      const emptyMemoCount = (rwindow.$width() >= 1650 ) ? 5 : 4;
       emptyMemoAry = [];
       for (i = 0; i < emptyMemoCount; i++) {
         emptyMemoAry.push({});
@@ -98,7 +98,8 @@ TemplateController('Home', {
       if (this.state.recommendLabels) {
         query.labelId = this.state.recommendLabels._id;
       }
-      const favoriteMemos =  Memos.find(query, {limit: 4, sort: {clicked: 1}});
+      const recommendMemoLimit = (rwindow.$width() >= 1650 ) ? 5 : 4;
+      const favoriteMemos =  Memos.find(query, {limit: recommendMemoLimit, sort: {clicked: 1}});
       return favoriteMemos;
     },
     recentHasMoreContent() {

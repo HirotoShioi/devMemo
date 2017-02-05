@@ -10,7 +10,7 @@ import '../partials/Overlay.js';
 import '../partials/SearchBar/SearchBar.js';
 import '../partials/LabelBar/labelBar.js';
 import '../partials/Modals/Modals.js';
-
+import { resetModalForm } from '../partials/Modals/modalHelper';
 import './MainLayout.html';
 
 TemplateController('MainLayout', {
@@ -36,5 +36,14 @@ TemplateController('MainLayout', {
         return true;
       }
     },
+  },
+
+  events: {
+    'click .main-layout'() {
+      if (rwindow.$width() <= 992) {
+        Session.set('isShrinkedSideNavShown', false);
+        resetModalForm();
+      }
+    }
   }
 });
