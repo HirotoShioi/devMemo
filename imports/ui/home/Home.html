@@ -17,7 +17,7 @@
             {{else}}
               <span class="grey-text alt-text">{{i18n 'home.noFavorite'}}</span>
             {{/each}}
-            {{#if $gt state.favoriteCount 8}}
+            {{#if shouldShowButtonOnFavorite}}
               <div class="col s12 center">
                 {{#if favoriteHasMoreContent}}
                   <button class="btn white black-text show-more-favorite">
@@ -42,7 +42,7 @@
                 {{> emptyMemo}}
               {{/each}}
             {{/each}}
-            {{#if $gt state.recentCount 8}}
+            {{#if shouldShowButtonOnRecent}}
               <div class="col s12 center">
                 {{#if recentHasMoreContent}}
                   <button class="btn white black-text show-more-recent">
