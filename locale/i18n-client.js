@@ -55,6 +55,10 @@ i18n.map('en', {
     title: 'Label',
   },
 
+  labelDetail: {
+    addUser: 'Add user'
+  },
+
   settings: {
     title: "Settings",
     username: {
@@ -216,6 +220,10 @@ i18n.map('ja', {
 
   label: {
     title: 'ラベル',
+  },
+
+  labelDetail: {
+    addUser: 'ユーザー追加'
   },
 
   settings: {
