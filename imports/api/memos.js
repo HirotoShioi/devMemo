@@ -160,20 +160,15 @@ Meteor.methods({
   memoUrlClicked(doc) {
     check(doc, Object);
 
-    if (this.userId !== doc.owner) {
-      throw new Meteor.Error("notAuthorized");
-    }
-
-    if (!doc.clicked) {
-      Memos.update({_id: doc._id}, {$set: {clicked: 1}});
-    } else {
-      Memos.update({_id: doc._id}, {$inc: {clicked: 1}});
-    }
-
     if (this.userId === doc.owner) {
+      if (!doc.clicked) {
+        Memos.update({_id: doc._id}, {$set: {clicked: 1}});
+      } else {
+        Memos.update({_id: doc._id}, {$inc: {clicked: 1}});
+      }
+      updateMemoExpiration(doc._id);
       logMemoClicked(this.userId, doc._id, doc.labelId);
     }
-    updateMemoExpiration(doc._id);
   },
   addMemo(doc) {
     check(doc, Object);
