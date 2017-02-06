@@ -108,6 +108,14 @@ TemplateController('Home', {
     favoriteHasMoreContent() {
       return this.session.get('favoriteResultsLimit') < this.state.favoriteCount;
     },
+    shouldShowButtonOnFavorite() {
+      const resultCount = (rwindow.$width() >= 1650 ) ? 10 : 8;
+      return this.state.favoriteCount > resultCount;
+    },
+    shouldShowButtonOnRecent() {
+      const resultCount = (rwindow.$width() >= 1650 ) ? 10 : 8;
+      return this.state.recentCount > resultCount;
+    }
   },
 
   events: {

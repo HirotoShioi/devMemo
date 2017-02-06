@@ -15,7 +15,16 @@ Meteor.publish('singleMemo', function(id) {
 
 // All user's username
 Meteor.publish('usernames', function() {
-  return Meteor.users.find({}, {fields: {username: 1}});
+  const sharedUsers = labelShare.find({$or: [{sharedTo: this.userId, status: {$ne: "denied"}}, {sharedFrom: this.userId}]}).fetch();
+  let userAry = [];
+  sharedUsers.forEach((share) =>{
+    if (this.userId === share.sharedTo) {
+      userAry.push(share.sharedFrom);
+    } else {
+      userAry.push(share.sharedTo);
+    }
+  });
+  return Meteor.users.find({_id: { $in: userAry}}, {fields: {username: 1}});
 });
 
 // All user's favorites
