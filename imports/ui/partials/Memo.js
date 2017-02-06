@@ -117,11 +117,15 @@ TemplateController('Memo', {
         Meteor.call('archiveMemo', this.data.memo);
       } else {
         this.state.isMemoExpired = false;
-        Meteor.call('memoUrlClicked', this.data.memo);
+        if (Meteor.userId() === this.data.memo.owner) {
+          Meteor.call('memoUrlClicked', this.data.memo);
+        }
       }
     },
     'click .card-link'() {
-      Meteor.call('memoUrlClicked', this.data.memo);
+      if (Meteor.userId() === this.data.memo.owner) {
+        Meteor.call('memoUrlClicked', this.data.memo);
+      }
       window.open(this.data.memo.url, '_blank');
       return false;
     },

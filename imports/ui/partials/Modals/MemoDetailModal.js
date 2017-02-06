@@ -100,11 +100,15 @@ TemplateController('MemoDetailModal', {
       if (this.state.memo.status === "active") {
         Meteor.call('archiveMemo', this.state.memo);
       } else {
-        Meteor.call('memoUrlClicked', this.state.memo);
+        if (Meteor.userId() === this.state.memo.owner) {
+          Meteor.call('memoUrlClicked', this.state.memo);
+        }
       }
     },
     'click .card-url'() {
-      Meteor.call('memoUrlClicked', this.state.memo);
+      if (Meteor.userId() === this.state.memo.owner) {
+        Meteor.call('memoUrlClicked', this.state.memo);
+      }
       window.open(this.state.memo.url, '_blank');
       return false;
     },
