@@ -14,17 +14,23 @@ Meteor.publish('singleMemo', function(id) {
 });
 
 // All user's username
-Meteor.publish('usernames', function() {
-  const sharedUsers = labelShare.find({$or: [{sharedTo: this.userId, status: {$ne: "denied"}}, {sharedFrom: this.userId}]}).fetch();
-  let userAry = [];
-  sharedUsers.forEach((share) =>{
-    if (this.userId === share.sharedTo) {
-      userAry.push(share.sharedFrom);
-    } else {
-      userAry.push(share.sharedTo);
+Meteor.publishComposite('usernames', {
+  find: function() {
+    return labelShare.find({$or: [{sharedTo: this.userId, status: {$ne: "denied"}}, {sharedFrom: this.userId}]});
+  },
+  children: [
+    {
+      find: function(share) {
+        let userId = "";
+        if (this.userId ===  share.sharedTo) {
+          userId = share.sharedFrom;
+        } else {
+          userId = share.sharedTo;
+        }
+        return Meteor.users.find({_id: userId}, {fields: {username: 1}});
+      },
     }
-  });
-  return Meteor.users.find({_id: { $in: userAry}}, {fields: {username: 1}});
+  ]
 });
 
 // All user's favorites
