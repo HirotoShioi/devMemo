@@ -47,6 +47,8 @@ TemplateController('UserChip', {
   helpers: {
     username() {
       const user = Meteor.users.findOne({_id: this.data.user});
+      console.log(this.data);
+      console.log(user);
       if (user) {
         return user.username;
       } else {

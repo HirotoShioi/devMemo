@@ -78,39 +78,42 @@ Meteor.methods({
       throw new Meteor.Error('notAuthorized');
     }
 
-    const requestedUser = Meteor.users.findOne({username: doc.username});
-    if (!requestedUser) {
-      throw new Meteor.Error("userDoesNotExist");
-    }
-    // if there was already a same request, reject it
-    const isAlreadyRequested = labelShare.find({
-      sharedFrom: this.userId,
-      sharedTo: requestedUser._id,
-      labelId: doc.labelId,
-      status: {$ne: "denied"}}).count();
+    if (Meteor.isServer) {
+      const requestedUser = Meteor.users.findOne({username: doc.username});
+      if (!requestedUser) {
+        throw new Meteor.Error("userDoesNotExist");
+      }
+ 
+      // if there was already a same request, reject it
+      const isAlreadyRequested = labelShare.find({
+        sharedFrom: this.userId,
+        sharedTo: requestedUser._id,
+        labelId: doc.labelId,
+        status: {$ne: "denied"}}).count();
 
-    if (isAlreadyRequested > 0) {
-      throw new Meteor.Error("requestAlreadySent");
+      if (isAlreadyRequested > 0) {
+        throw new Meteor.Error("requestAlreadySent");
+      }
+      requestAlreadyDeniedQuery = {
+        sharedFrom: this.userId,
+        sharedTo: requestedUser._id,
+        labelId: doc.labelId,
+        status: "denied"
+      };
+      const requestAlreadyDenied = labelShare.find(requestAlreadyDeniedQuery).count();
+      if (requestAlreadyDenied > 0)  {
+        labelShare.remove(requestAlreadyDeniedQuery);
+      }
+      labelShare.insert({
+        sharedFrom: this.userId,
+        sharedTo: requestedUser._id,
+        labelId: doc.labelId,
+        requestSentAt: moment().toDate(),
+        status: "pending",
+        requestNotified: false,
+        message: doc.message,
+      });
     }
-    requestAlreadyDeniedQuery = {
-      sharedFrom: this.userId,
-      sharedTo: requestedUser._id,
-      labelId: doc.labelId,
-      status: "denied"
-    };
-    const requestAlreadyDenied = labelShare.find(requestAlreadyDeniedQuery).count();
-    if (requestAlreadyDenied > 0)  {
-      labelShare.remove(requestAlreadyDeniedQuery);
-    }
-    labelShare.insert({
-      sharedFrom: this.userId,
-      sharedTo: requestedUser._id,
-      labelId: doc.labelId,
-      requestSentAt: moment().toDate(),
-      status: "pending",
-      requestNotified: false,
-      message: doc.message,
-    });
     return true;
   },
   cancelRequest(id) {
