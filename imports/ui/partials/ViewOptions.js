@@ -21,6 +21,7 @@ TemplateController('ViewOptions', {
               {label: function() { return i18n('gallery.filter.newest');}, value: "newest"},
               {label: function() { return i18n('gallery.filter.mostClicked');}, value: "mostClicked"},
               {label: function() { return i18n('gallery.filter.byLabels');}, value: "byLabels"},
+              {label: function() { return i18n('gallery.filter.byTitle');}, value: "byTitle"},
             ]
           }
         }

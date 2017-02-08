@@ -59,6 +59,9 @@ TemplateController('Gallery', {
         case "byLabels":
           sort = {labelId: 1};
           break;
+        case "byTitle":
+          sort = {name: 1};
+          break;
         default:
           sort = {createdAt: -1};
       }

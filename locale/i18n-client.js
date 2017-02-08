@@ -34,8 +34,9 @@ i18n.map('en', {
     filter: {
       label: "Sort by",
       newest: "Date",
-      mostClicked: "Click count",
+      mostClicked: "Clicked",
       byLabels: "Labels",
+      byTitle: "Title"
     }
   },
 
@@ -209,6 +210,7 @@ i18n.map('ja', {
       newest: "作成日",
       mostClicked: "クリック回数",
       byLabels: "ラベル",
+      byTitle: "タイトル"
     }
   },
 
