@@ -24,7 +24,7 @@ TemplateController('AddMemoForm', {
       return Session.get('addMemoSelectedLabelId');
     },
     labels() {
-      let labels = Label.find({}, {limit: 10, sort: {createdAt: -1}});
+      let labels = Label.find({}, {sort: {createdAt: -1}});
       return labels;
     },
     schema() {
