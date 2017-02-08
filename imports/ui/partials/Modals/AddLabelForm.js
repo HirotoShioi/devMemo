@@ -24,9 +24,6 @@ TemplateController('AddLabelForm', {
       {value: "#C377E0"},
     ],
   },
-  onRendered() {
-    Session.set('addLabelSelectedColor', "#1b95e0");
-  },
   helpers: {
     selectedColor() {
       return Session.get('addLabelSelectedColor');
