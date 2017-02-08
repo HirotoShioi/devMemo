@@ -47,7 +47,25 @@ TemplateController('Gallery', {
     memos() {
       let query = {owner: Meteor.userId()};
       if (Session.get('hideExpired')) { query.status = "active"; }
-      return Memos.find(query, {limit: this.session.get('resultsLimit'), sort: {createdAt: -1}});
+      const sortFilter = Session.get('gallerySortFilter');
+      let sort = {};
+      switch (sortFilter) {
+        case "newest":
+          sort = {createdAt: -1};
+          break;
+        case "mostClicked":
+          sort = {clicked: -1};
+          break;
+        case "byLabels":
+          sort = {labelId: 1};
+          break;
+        case "byTitle":
+          sort = {name: 1};
+          break;
+        default:
+          sort = {createdAt: -1};
+      }
+      return Memos.find(query, {limit: this.session.get('resultsLimit'), sort: sort});
     },
     emptyMemos() {
       const emptyMemoCount = (rwindow.$width() >= 1650 ) ? 10 : 8;

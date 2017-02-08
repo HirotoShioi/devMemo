@@ -8,6 +8,11 @@
        {{/if}}	
     </div>
     <div class="col m3 s6">
+      {{#autoForm id="gallerySortFilter" autocomplete="off" schema=schema}}
+        {{> afQuickField name="sortFilter"}}
+      {{/autoForm}}
+    </div>
+    <div class="col m3 s6">
         <p>
           <input type="checkbox" class="filled-in toggle-bookmark-view" id="filled-in-box" {{isChecked check true}} />
           <label for="filled-in-box">{{i18n 'gallery.hideExpired'}}</label>

@@ -30,7 +30,14 @@ i18n.map('en', {
 
   gallery: {
     hideExpired: 'Hide old boookmark',
-    noMemoFound: 'No bookmark found'
+    noMemoFound: 'No bookmark found',
+    filter: {
+      label: "Sort by",
+      newest: "Date",
+      mostClicked: "Clicked",
+      byLabels: "Labels",
+      byTitle: "Title"
+    }
   },
 
   pageTitle: {
@@ -197,7 +204,14 @@ i18n.map('ja', {
 
   gallery: {
     hideExpired: '過去のブックマークを隠す',
-    noMemoFound: 'メモは見つかりませんでした'
+    noMemoFound: 'メモは見つかりませんでした',
+    filter: {
+      label: "並べ替え",
+      newest: "作成日",
+      mostClicked: "クリック回数",
+      byLabels: "ラベル",
+      byTitle: "タイトル"
+    }
   },
 
   pageTitle: {
