@@ -205,7 +205,7 @@ i18n.map('ja', {
     hideExpired: '過去のブックマークを隠す',
     noMemoFound: 'メモは見つかりませんでした',
     filter: {
-      label: "ソート",
+      label: "並べ替え",
       newest: "作成日",
       mostClicked: "クリック回数",
       byLabels: "ラベル",

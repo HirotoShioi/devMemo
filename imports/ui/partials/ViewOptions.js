@@ -42,3 +42,12 @@ TemplateController('ViewOptions', {
     }
   },
 });
+const hooksObject = {
+  formToDoc: function(doc) {
+    Session.set('gallerySortFilter', doc.sortFilter);
+  },
+};
+AutoForm.hooks({
+  gallerySortFilter: hooksObject
+});
+
