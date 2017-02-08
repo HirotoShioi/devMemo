@@ -52,11 +52,30 @@ TemplateController('LabelDetail', {
     memos() {
       Session.set('Title', Label.findOne({_id: this.data._id}, {fields: {'name': 1}}));
       let query = {
-        labelId: this.data._id};
+        labelId: this.data._id
+      };
       if (Session.get('hideExpired')) {
         query.status = "active";
       }
-      let memos = Memos.find(query, {limit: this.session.get('resultsLimit'), sort: {status: 1, clickedAt: -1}});
+      const sortFilter = Session.get('gallerySortFilter');
+      let sort = {};
+      switch (sortFilter) {
+        case "newest":
+          sort = {createdAt: -1};
+          break;
+        case "mostClicked":
+          sort = {clicked: -1};
+          break;
+        case "byLabels":
+          sort = {labelId: 1};
+          break;
+        case "byTitle":
+          sort = {name: 1};
+          break;
+        default:
+          sort = {createdAt: -1};
+      }
+      let memos = Memos.find(query, {limit: this.session.get('resultsLimit'), sort: sort});
       return memos;
     },
     emptyMemos() {
