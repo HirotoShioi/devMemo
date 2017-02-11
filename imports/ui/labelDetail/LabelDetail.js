@@ -3,7 +3,7 @@ import { Memos } from '../../api/memos.js';
 import { Label } from '../../api/label.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Session } from 'meteor/session';
-
+import { rwindow } from 'meteor/gadicohen:reactive-window';
 import './LabelDetail.html';
 import '../partials/Memo.js';
 import '../partials/List/SingleList.js';
@@ -37,6 +37,7 @@ TemplateController('LabelDetail', {
       }
       let counts  =  Memos.find(query).count();
       this.session.set('resultsCount', counts);
+      self.subscribe('memos');
     });
   },
 
@@ -51,15 +52,34 @@ TemplateController('LabelDetail', {
     memos() {
       Session.set('Title', Label.findOne({_id: this.data._id}, {fields: {'name': 1}}));
       let query = {
-        labelId: this.data._id};
+        labelId: this.data._id
+      };
       if (Session.get('hideExpired')) {
         query.status = "active";
       }
-      let memos = Memos.find(query, {limit: this.session.get('resultsLimit'), sort: {status: 1, clickedAt: -1}});
+      const sortFilter = Session.get('gallerySortFilter');
+      let sort = {};
+      switch (sortFilter) {
+        case "newest":
+          sort = {createdAt: -1};
+          break;
+        case "mostClicked":
+          sort = {clicked: -1};
+          break;
+        case "byLabels":
+          sort = {labelId: 1};
+          break;
+        case "byTitle":
+          sort = {name: 1};
+          break;
+        default:
+          sort = {createdAt: -1};
+      }
+      let memos = Memos.find(query, {limit: this.session.get('resultsLimit'), sort: sort});
       return memos;
     },
     emptyMemos() {
-      const emptyMemoCount = 8;
+      const emptyMemoCount = (rwindow.$width() >= 1650 ) ? 10 : 8;
       emptyMemoAry = [];
       for (i = 0; i < emptyMemoCount; i++) {
         emptyMemoAry.push({});

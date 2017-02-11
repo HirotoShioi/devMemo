@@ -6,6 +6,14 @@
             img{
                 min-height: 140px;
             }
+            .alt-image-icon-wrapper{
+                height: 100%;
+                font-size: 7em;
+	            font-family: 'Quicksand', sans-serif;
+                .alt-image-icon{
+                    width: 100%;
+                }
+            }
             .card-image-alt-icon{
                 font-size: 8em;
                 margin-top: 15px;
@@ -35,12 +43,10 @@
             width: 100%;
             text-align: left;
             background-color: rgba(0,0,0,0.4);
-            opacity:1;
             bottom: -20px;
             transition:all 0.1s linear;
             &.tooltip-show{
                 bottom: 0;
-                opacity: 1;
                 visibility: visible;
             }
         }
@@ -89,28 +95,36 @@
         }
     }
 }
-@media (max-width: 600px) {
-.memo-card-wrapper{
-    .card {
-            .card-image{
-                height: 200px;
-                img{
-                    min-height: 200px;
+@media (max-width: 980px) {
+    .memo-card-wrapper{
+        .card {
+                .card-image{
+                    height: 240px;
+                    img{
+                        min-height: 240px;
+                    }
+                    .card-image-alt-icon{
+                        font-size: 10em;
+                    }
                 }
-                .card-image-alt-icon{
-                    font-size: 10em;
+                .card-content{
+                    padding: 22px 20px;
                 }
-            }
+        }
     }
 }
+@media (min-width:1650px){
+    .memo-card-wrapper{
+        width: 20% !important;
+    }
 }
 @media (min-width:1380px){
     .memo-card-wrapper{
         .card {
             .card-image{
-                height: 200px;
+                height: 170px;
                 img{
-                    min-height: 200px;
+                    min-height: 170px;
                 }
                 .card-image-alt-icon{
                     font-size: 10em;

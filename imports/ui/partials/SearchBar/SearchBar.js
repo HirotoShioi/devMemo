@@ -2,7 +2,7 @@ import { TemplateController } from 'meteor/space:template-controller';
 import { i18n } from 'meteor/anti:i18n';
 import { Memos } from '../../../api/memos.js';
 import { labelShare } from '../../../api/labelShare.js';
-
+import { Session } from 'meteor/session';
 import './SearchBar.html';
 import './SearchBarItem.js';
 

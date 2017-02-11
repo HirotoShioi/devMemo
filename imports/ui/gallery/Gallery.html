@@ -1,7 +1,6 @@
 <template name="Gallery">
-    <div class="main-container">
         <div class="page-title hide-on-med-and-down z-depth-1">
-            <div class="container">
+            <div class="container title-container">
                 <h4 style="">{{i18n 'pageTitle.gallery'}}</h4>
             </div>
         </div>
@@ -23,8 +22,8 @@
                     </div>
                 {{else}}
                     <div class="row">
-                        {{#each memos}}
-                            {{> Memo}}
+                        {{#each memo in memos}}
+                            {{> Memo memo=memo favoritedAt=memo.favoritedAt}}
                         {{else}}
                             {{#each emptyMemos}}
                                 {{> emptyMemo}}
@@ -43,5 +42,4 @@
             </div>
         {{/if}}
         </div>
-    </div>
 </template>

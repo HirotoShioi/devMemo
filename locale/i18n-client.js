@@ -30,7 +30,14 @@ i18n.map('en', {
 
   gallery: {
     hideExpired: 'Hide old boookmark',
-    noMemoFound: 'No bookmark found'
+    noMemoFound: 'No bookmark found',
+    filter: {
+      label: "Sort by",
+      newest: "Date",
+      mostClicked: "Clicked",
+      byLabels: "Labels",
+      byTitle: "Title"
+    }
   },
 
   pageTitle: {
@@ -53,6 +60,10 @@ i18n.map('en', {
 
   label: {
     title: 'Label',
+  },
+
+  labelDetail: {
+    addUser: 'Add user'
   },
 
   settings: {
@@ -137,7 +148,7 @@ i18n.map('en', {
     },
 
     addShareUser: {
-      title: 'Add User',
+      title: 'Share label with other user',
       success: 'Request successfuly sent'
     },
 
@@ -150,6 +161,8 @@ i18n.map('en', {
 
   memo: {
     more: 'more',
+    addComments: 'Add comment',
+    comments: 'comments:',
   },
 
   errors: {
@@ -191,7 +204,14 @@ i18n.map('ja', {
 
   gallery: {
     hideExpired: '過去のブックマークを隠す',
-    noMemoFound: 'メモは見つかりませんでした'
+    noMemoFound: 'メモは見つかりませんでした',
+    filter: {
+      label: "並べ替え",
+      newest: "作成日",
+      mostClicked: "クリック回数",
+      byLabels: "ラベル",
+      byTitle: "タイトル"
+    }
   },
 
   pageTitle: {
@@ -214,6 +234,10 @@ i18n.map('ja', {
 
   label: {
     title: 'ラベル',
+  },
+
+  labelDetail: {
+    addUser: 'ユーザー追加'
   },
 
   settings: {
@@ -298,7 +322,7 @@ i18n.map('ja', {
     },
 
     addShareUser: {
-      title: 'ユーザーと共有する',
+      title: 'ユーザーとラベルを共有する',
       success: 'リクエストを送信しました',
     },
 
@@ -311,6 +335,8 @@ i18n.map('ja', {
 
   memo: {
     more: 'more',
+    addComments: 'コメントを追加',
+    comments: 'コメント数：',
   },
 
   errors: {

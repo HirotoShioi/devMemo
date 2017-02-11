@@ -5,11 +5,9 @@
 	background-color: #fefefe;
 	transition:all 0.2s ease;
     &.show-search-nav{
-        visibility: visible;
         top:0;
     }
     &.hide-search-nav{
-        visibility: hidden;
         top: -64px;
     }
     .fa-arrow-left{
@@ -102,20 +100,17 @@
     background: #fefefe;
     z-index: 800;
     border-right: 1px solid #ddd;
-    visibility: hidden;
     overflow-x: hidden;
-
+    transition: all 0.25s linear;
     &.search-bar-show{
         left: 240px;
         width: 340px;
         visibility: visible;
-        transition: all 0.3s ease;
     }
     &.search-bar-hidden{
         left: 0px;
         width: 240px;
         visibility: hidden;
-        transition: all 0.3s ease;
     }
     .not-found{
         display: flex;
@@ -146,6 +141,7 @@
         transition: margin .25s ease;
         margin-top: 1px;
         padding: 20px;
+        padding-bottom: 23px;
         z-index: 2;
         
         input#search{
@@ -191,7 +187,7 @@
     }
 
     .search-result{
-        overflow-y:scroll;
+        overflow-y:auto;
         .search-result-title{
             width: 100%;
             padding:0 20px;
@@ -214,7 +210,7 @@
                     color:#555;
                     &.search-title{
                         .truncate{
-                            width: 68%;
+                            width: 65%;
                         }
                     }
                 }
@@ -232,7 +228,6 @@
                     font-size: 12px;
                     height: 22px;
                     line-height: 22px;
-                    padding: 0 8px;
                 }
 
                 .fa-trash:hover{
@@ -272,7 +267,7 @@
                 }
             }
             .search-memo-item{
-                min-height: 76px;
+                min-height: 70px;
                 .provider_url{
                     color:#039be5;
                 }

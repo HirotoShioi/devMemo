@@ -109,7 +109,6 @@ module.exports = function() {
         lang = "日本語";
     }
     waitAndClickButton('.select-dropdown');
-    client.moveToObject(`span=${lang}`);
     client.click(`span=${lang}`);
   });
 

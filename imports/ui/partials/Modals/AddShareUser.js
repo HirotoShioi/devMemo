@@ -3,7 +3,7 @@ import { AutoForm } from 'meteor/aldeed:autoform';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { i18n } from 'meteor/anti:i18n';
 import { Bert } from 'meteor/themeteorchef:bert';
-
+import { Session } from 'meteor/session';
 import { resetModalForm } from './modalHelper.js';
 
 import './AddShareUser.html';
@@ -24,6 +24,7 @@ TemplateController('AddShareUser', {
           type: String,
           optional: true,
           max: 100,
+          label: function() {return i18n('collection.users.shareLabelMessage');},
         },
       });
       return schema;

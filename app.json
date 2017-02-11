@@ -1,7 +1,6 @@
 {
   "name": "devMemo",
-  "scripts": {
-  },
+  "scripts": { },
   "env": {
     "METEOR_SETTINGS": {
       "required": true
@@ -11,10 +10,15 @@
     },
     "ROOT_URL": {
       "required": true
+    },
+    "BASIC_AUTH_USERNAME": {
+      "required": true
+    },
+    "BASIC_AUTH_PASSWORD": {
+      "required": true
     }
   },
-  "formation": {
-  },
+  "formation": { },
   "addons": [
     "mongolab"
   ],

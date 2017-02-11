@@ -1,7 +1,7 @@
 import { TemplateController } from 'meteor/space:template-controller';
 import { resetModalForm } from './modalHelper.js';
 import { Session } from 'meteor/session';
-
+import { rwindow } from 'meteor/gadicohen:reactive-window';
 // modals
 import './AddLabelForm.js';
 import './AddMemoForm.js';
@@ -22,6 +22,9 @@ TemplateController('Modals', {
 
   helpers: {
     overlayShow() {
+      if ( rwindow.$width() <= 980 ) {
+        return false;
+      }
       if (Session.get('showModal')) {
         Session.set('modalOverlayShow', true);
       }
@@ -32,7 +35,7 @@ TemplateController('Modals', {
     },
     formType() {
       return Session.get('formType');
-    }
+    },
   },
   events: {
     'click .fa-close'() {

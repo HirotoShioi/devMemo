@@ -10,22 +10,19 @@ import './AddLabelForm.html';
 TemplateController('AddLabelForm', {
   state: {
     labelColorsFirst: [
-      {value: "#40c4ff"},
-      {value: "#18ffff"},
-      {value: "#64ffda"},
-      {value: "#69f0ae"},
-      {value: "#b2ff59"},
+      {value: "#F2D600"},
+      {value: "#fab81e"},
+      {value: "#7fdbb6"},
+      {value: "#19cf86"},
+      {value: "#abb8c2"},
     ],
     labelColorsSecond: [
       {value: "#ff5252"},
-      {value: "#ff4081"},
-      {value: "#e040fb"},
-      {value: "#b388ff"},
-      {value: "#8c9eff"},
+      {value: "#f58ea8"},
+      {value: "#91d2fa"},
+      {value: "#1b95e0"},
+      {value: "#C377E0"},
     ],
-  },
-  onRendered() {
-    Session.set('addLabelSelectedColor', "#40c4ff");
   },
   helpers: {
     selectedColor() {

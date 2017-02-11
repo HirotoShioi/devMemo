@@ -91,6 +91,7 @@ TemplateController('labelBar', {
     },
     'click .fa-plus-circle'() {
       Session.set('showModal', true);
+      Session.set('addLabelSelectedColor', "#1b95e0");
       Session.set('formType', 'AddLabel');
     },
   }

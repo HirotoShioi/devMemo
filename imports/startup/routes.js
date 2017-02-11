@@ -14,11 +14,13 @@ import '../ui/home/Home.js';
 import '../ui/settings/Settings.js';
 import '../ui/notification/Notification.js';
 
+// collecitons
 import '../api/memos.js';
 import '../api/label.js';
 import '../api/user.js';
 import '../api/labelShare.js';
 import '../api/userFavorites.js';
+import '../api/comments.js';
 
 import { Router } from 'meteor/iron:router';
 import { Meteor } from 'meteor/meteor';

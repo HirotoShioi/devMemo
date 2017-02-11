@@ -3,6 +3,7 @@ import { Memos } from '../../api/memos.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Session } from 'meteor/session';
 import { i18n } from 'meteor/anti:i18n';
+import { rwindow } from 'meteor/gadicohen:reactive-window';
 import './Gallery.html';
 
 // partials
@@ -33,6 +34,7 @@ TemplateController('Gallery', {
       if (Session.get('hideExpired')) { query.status = "active";}
       let counts  =  Memos.find(query).count();
       this.session.set('resultsCount', counts);
+      self.subscribe('memos');
     });
     Session.set("Title", {name: i18n('pageTitle.memos')});
   },
@@ -45,10 +47,28 @@ TemplateController('Gallery', {
     memos() {
       let query = {owner: Meteor.userId()};
       if (Session.get('hideExpired')) { query.status = "active"; }
-      return Memos.find(query, {limit: this.session.get('resultsLimit'), sort: {createdAt: -1}});
+      const sortFilter = Session.get('gallerySortFilter');
+      let sort = {};
+      switch (sortFilter) {
+        case "newest":
+          sort = {createdAt: -1};
+          break;
+        case "mostClicked":
+          sort = {clicked: -1};
+          break;
+        case "byLabels":
+          sort = {labelId: 1};
+          break;
+        case "byTitle":
+          sort = {name: 1};
+          break;
+        default:
+          sort = {createdAt: -1};
+      }
+      return Memos.find(query, {limit: this.session.get('resultsLimit'), sort: sort});
     },
     emptyMemos() {
-      const emptyMemoCount = 8;
+      const emptyMemoCount = (rwindow.$width() >= 1650 ) ? 10 : 8;
       emptyMemoAry = [];
       for (i = 0; i < emptyMemoCount; i++) {
         emptyMemoAry.push({});

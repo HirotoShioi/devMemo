@@ -5,17 +5,35 @@ min-height: 100vh;
 flex-direction: column;
 font-size: 14px;
 overflow: hidden;
+font-family: "Roboto", "Hiragino Kaku Gothic Pro","Noto Sans Japanese", sans-serif;
 }
 main {
 flex: 1 0 auto;
 }
+.title-container{
+  max-width: 1120px;
+}
+@media (min-width:1650px){
+    .title-container{
+      max-width:calc(~'1500px - 80px');
+    }
+}
 .main-content{
-    max-width: 1140px;
+    max-width: 1200px;
     padding: 0 40px;
     margin: 0 auto;
 }
+@media (min-width:1650px){
+    .main-content{
+        max-width: 1500px;
+    }
+}
 .main-layout{
   width: 100%;
+  transition: margin-left 0.25s linear;
+  &.side-nav-showing{
+    margin-left: 240px;
+  }
 }
 @media (min-width: 991px) {
   .main-layout {
@@ -43,10 +61,13 @@ flex: 1 0 auto;
   .main-content{
     padding: 0;
   }
+  .loading-wrapper{
+    width: 100%;
+  }
 }
 .loading-wrapper{
     position: fixed;
-    width: 75%;
+    width: calc(~'100% - 240px');
     height: 65%;
     .center{
 		margin:0 auto;

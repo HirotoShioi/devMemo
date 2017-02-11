@@ -23,7 +23,7 @@ TemplateController('SingleList', {
       return (Meteor.userId() === this.data.memo.owner);
     },
     faviconUrl() {
-      return `http://www.google.com/s2/favicons?domain=${this.data.memo.url}`;
+      return `https://www.google.com/s2/favicons?domain=${this.data.memo.url}`;
     },
     progressBarColor() {
       const expireDate = moment(this.data.memo.expiredAt);

@@ -1,11 +1,12 @@
 import { TemplateController } from 'meteor/space:template-controller';
-import { Memos } from '../../api/memos.js';
-import { userFavorites } from '../../api/userFavorites.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { rwindow } from 'meteor/gadicohen:reactive-window';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 import { i18n } from 'meteor/anti:i18n';
 import { Label } from '../../api/label.js';
+import { Memos } from '../../api/memos.js';
+import { userFavorites } from '../../api/userFavorites.js';
 import '../partials/Loading.js';
 import '../partials/Memo.js';
 import '../partials/emptyMemo.js';
@@ -13,7 +14,7 @@ import '../partials/emptyMemo.js';
 import './Home.html';
 
 const session = new ReactiveDict('Home');
-
+// 1650
 TemplateController('Home', {
   state: {
     recentCount: 0,
@@ -28,6 +29,9 @@ TemplateController('Home', {
   },
   onCreated() {
     this.session = session;
+    const resultCount = (rwindow.$width() >= 1650 ) ? 10 : 8;
+    this.initialResult = resultCount;
+    this.incrementBy = resultCount;
     this.session.setDefault('recentResultsLimit', this.initialResult);
     this.session.setDefault('favoriteResultsLimit', this.initialResult);
     Session.set('Title', {name: i18n('pageTitle.featured')});
@@ -38,7 +42,12 @@ TemplateController('Home', {
       }
       if (result) {
         self.state.recommendLabels = result;
-        self.state.recommendCount = Memos.find({labelId: result._id}).count();
+        const recommendQuery = {
+          owner: Meteor.userId(),
+          labelId: result._id,
+          status: "expired",
+        };
+        self.state.recommendCount = Memos.find(recommendQuery).count();
       }
     });
     self.autorun(()=>{
@@ -47,16 +56,14 @@ TemplateController('Home', {
       favorites.forEach((favorite)=>{
         this.state.favoriteList.push(favorite.memoId);
       });
+      self.subscribe('memos');
     });
   },
 
   helpers: {
     favoriteMemos() {
       this.state.favoriteCount = userFavorites.find().count();
-      let query = {
-        _id: {$in: this.state.favoriteList}
-      };
-      return Memos.find(query, {limit: this.session.get('favoriteResultsLimit'), sort: {favoritedAt: -1}});
+      return userFavorites.find({userId: Meteor.userId()}, {limit: this.session.get('favoriteResultsLimit'), sort: {favoritedAt: -1}});
     },
     recentMemos() {
       let query = {
@@ -68,7 +75,7 @@ TemplateController('Home', {
       return Memos.find(query, {limit: this.session.get('recentResultsLimit'), sort: {clickedAt: -1}});
     },
     noRecentMemos() {
-      const emptyMemoCount = 4;
+      const emptyMemoCount = (rwindow.$width() >= 1650 ) ? 5 : 4;
       emptyMemoAry = [];
       for (i = 0; i < emptyMemoCount; i++) {
         emptyMemoAry.push({});
@@ -83,9 +90,6 @@ TemplateController('Home', {
       return label;
     },
     recommendMemos() {
-      if (this.state.recommendCount <= 0) {
-        return false;
-      }
       let query = {
         owner: Meteor.userId(),
         status: "expired",
@@ -94,7 +98,9 @@ TemplateController('Home', {
       if (this.state.recommendLabels) {
         query.labelId = this.state.recommendLabels._id;
       }
-      return Memos.find(query, {limit: 4, sort: {clicked: -1}});
+      const recommendMemoLimit = (rwindow.$width() >= 1650 ) ? 5 : 4;
+      const favoriteMemos =  Memos.find(query, {limit: recommendMemoLimit, sort: {clicked: 1}});
+      return favoriteMemos;
     },
     recentHasMoreContent() {
       return this.session.get('recentResultsLimit') < this.state.recentCount;
@@ -102,6 +108,14 @@ TemplateController('Home', {
     favoriteHasMoreContent() {
       return this.session.get('favoriteResultsLimit') < this.state.favoriteCount;
     },
+    shouldShowButtonOnFavorite() {
+      const resultCount = (rwindow.$width() >= 1650 ) ? 10 : 8;
+      return this.state.favoriteCount > resultCount;
+    },
+    shouldShowButtonOnRecent() {
+      const resultCount = (rwindow.$width() >= 1650 ) ? 10 : 8;
+      return this.state.recentCount > resultCount;
+    }
   },
 
   events: {
