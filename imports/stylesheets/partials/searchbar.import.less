@@ -33,11 +33,14 @@
     }
     input[type=text]{
         position: absolute;
-        margin-top: 15px;
+        margin-top: 10px;
         width: 50%;
-        height: 35px;
+        height: 40px;
         font-size: 1.5em;
         line-height: 0px;
+    }
+    input[type=text]:focus:not([readonly]){
+        box-shadow: none;
     }
 
     .collection{
@@ -45,7 +48,7 @@
         margin:0;
         width: 50%;
         position: absolute;
-        top: 64px;
+        top: 56px;
         left: 50%;
         -webkit-transform: translateX(-50%);
         transform: translateX(-50%);
