@@ -7,7 +7,7 @@
         <div id="memo-detail-content" class="main-content about-content">
         {{#if Template.subscriptionsReady}}
             <div class="row">
-                <div class="center">
+                <div class="center detail-image-wrapper">
                     {{#if state.memo.thumbnailUrl}}
                         <img class="memo-detail-image" src="{{state.memo.thumbnailUrl}}" alt="{{state.memo.desc}}" />
                     {{else}}
@@ -17,7 +17,7 @@
                 <div class="col s12">
                     <h5>{{state.memo.name}}</h5>
                     <p>
-                        <a class="memo-detail-url" href="{{state.memo.url}}">{{state.memo.url}}</a>
+                        <a class="memo-detail-url" href="{{state.memo.url}}">{{state.memo.provider_url}}</a>
                     </p>
                     <p class="caption">
                         {{state.memo.desc}}
