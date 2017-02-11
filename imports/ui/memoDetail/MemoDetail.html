@@ -15,11 +15,13 @@
                     {{/if}}
                 </div>
                 <div class="col s12">
-                    <h5>{{state.memo.name}}</h5>
+                    <p>
+                        <strong class="about-title">{{state.memo.name}}</strong>
+                    </p>
                     <p>
                         <a class="memo-detail-url" href="{{state.memo.url}}">{{state.memo.provider_url}}</a>
                     </p>
-                    <p class="caption">
+                    <p class="caption grey-text">
                         {{state.memo.desc}}
                         {{memo}}
                     </p>
