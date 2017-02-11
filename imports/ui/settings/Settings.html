@@ -1,28 +1,26 @@
 <template name="Settings">
-  <div class="main-container">
-    <div class="page-title hide-on-med-and-down z-depth-1">
-      <div class="container">
-        <h4 style="">{{i18n 'settings.title'}}</h4>
-      </div>
+  <div class="page-title hide-on-med-and-down z-depth-1">
+    <div class="container">
+      <h4 style="">{{i18n 'settings.title'}}</h4>
     </div>
-    {{#if needSettings}}
-      <div class="setting-note-wrapper blue z-depth-1">
-        <p class="white-text">{{i18n 'settings.settingsNotify'}}</p>
-      </div>
-    {{/if}}
-    <div class="main-content">
-      <div class="settings-wrapper">
-          <div class="row">
-            <div class="col s12 m4 offset-m4">
-              {{#autoForm id='accountForm' collection='Meteor.users' doc=currentUser type='update' id='accountForm'}}
-                {{> afQuickField name="username"}}
-                {{> afQuickField name="profile.language"}}
-                <button type="submit" class="btn blue darken-3 btn-primary">{{i18n 'settings.save'}}</button>
-              {{/autoForm}}
-            </div>
-            {{profile}}
+  </div>
+  {{#if needSettings}}
+    <div class="setting-note-wrapper blue z-depth-1">
+      <p class="white-text">{{i18n 'settings.settingsNotify'}}</p>
+    </div>
+  {{/if}}
+  <div class="main-content">
+    <div class="settings-wrapper">
+        <div class="row">
+          <div class="col s12 m4 offset-m4">
+            {{#autoForm id='accountForm' collection='Meteor.users' doc=currentUser type='update' id='accountForm'}}
+              {{> afQuickField name="username"}}
+              {{> afQuickField name="profile.language"}}
+              <button type="submit" class="btn blue darken-3 btn-primary">{{i18n 'settings.save'}}</button>
+            {{/autoForm}}
           </div>
+          {{profile}}
         </div>
       </div>
-  </div>
+    </div>
 </template>

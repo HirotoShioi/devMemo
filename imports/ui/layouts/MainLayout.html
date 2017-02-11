@@ -8,8 +8,10 @@
   {{/if}}
   {{> Modals}}
   {{> Header}}
-    <main class="main-layout {{#if $.Session.get 'isShrinkedSideNavShown'}}side-nav-showing{{/if}}">
+    <main class="main-layout">
+      <div class="main-container {{#if $.Session.get 'isShrinkedSideNavShown'}}side-nav-showing{{/if}}">
         {{> yield}}
+      </div>
     </main>
   {{> Overlay}}
 </template>

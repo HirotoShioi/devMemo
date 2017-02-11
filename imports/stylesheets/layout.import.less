@@ -61,10 +61,13 @@ flex: 1 0 auto;
   .main-content{
     padding: 0;
   }
+  .loading-wrapper{
+    width: 100%;
+  }
 }
 .loading-wrapper{
     position: fixed;
-    width: 75%;
+    width: calc(~'100% - 240px');
     height: 65%;
     .center{
 		margin:0 auto;
@@ -72,9 +75,4 @@ flex: 1 0 auto;
 }
 .infinite-scroller{
   height: 100px;
-}
-@media (max-width: 980px) {
-  body{
-    font-size:1em;
-  }
 }
