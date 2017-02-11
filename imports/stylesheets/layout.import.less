@@ -54,6 +54,14 @@ flex: 1 0 auto;
     display: none;
   }
 }
+.loading-wrapper{
+    position: fixed;
+    width: calc(~'100% - 240px');
+    height: 65%;
+    .center{
+		margin:0 auto;
+    }
+}
 @media (max-width: 992px){
   .main-container{
     width: 100%;
@@ -64,14 +72,6 @@ flex: 1 0 auto;
   .loading-wrapper{
     width: 100%;
   }
-}
-.loading-wrapper{
-    position: fixed;
-    width: calc(~'100% - 240px');
-    height: 65%;
-    .center{
-		margin:0 auto;
-    }
 }
 .infinite-scroller{
   height: 100px;
