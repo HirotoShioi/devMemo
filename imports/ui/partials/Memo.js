@@ -18,6 +18,9 @@ TemplateController('Memo', {
   },
 
   helpers: {
+    isMobile() {
+      return (rwindow.$width() < 992);
+    },
     altImage() {
       if (this.data.memo) {
         return this.data.memo.name.substring(0, 1);
