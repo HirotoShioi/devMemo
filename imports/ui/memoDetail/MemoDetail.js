@@ -11,14 +11,14 @@ TemplateController('MemoDetail', {
   },
 
   onCreated() {
-    const self = this;
-    self.autorun(()=>{
-      self.subscribe('singleMemo', self.data._id);
-      self.state.memo = Memos.findOne({_id: self.data._id});
-    });
     Session.set('Title', {name: i18n('pageTitle.memoDetail')});
   },
 
+  helpers: {
+    memo() {
+      this.state.memo = Memos.findOne({_id: this.data._id});
+    }
+  },
   events: {
     'click .memo-detail-url'() {
       window.open(this.state.memo.url, '_blank');
