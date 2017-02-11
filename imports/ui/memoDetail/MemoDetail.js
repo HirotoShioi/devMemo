@@ -10,10 +10,6 @@ TemplateController('MemoDetail', {
     memo: '',
   },
 
-  onCreated() {
-    Session.set('Title', {name: i18n('pageTitle.memoDetail')});
-  },
-
   helpers: {
     memo() {
       this.state.memo = Memos.findOne({_id: this.data._id});
