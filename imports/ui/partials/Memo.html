@@ -1,6 +1,6 @@
 <template name="Memo">
   <div id="card-{{memo._id}}" class="col l3 m6 s12 memo-card-wrapper">
-    <div class="card {{#if isMobile}}hoverable{{/if}}">
+    <div class="card">
         <div class="card-image center">
         {{#if $eq favoritedAt false}}
           <div class="expire-progress {{#if shouldExpireProgressbarShow}}show{{else}}hide{{/if}}-progress-bar">
