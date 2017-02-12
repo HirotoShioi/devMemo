@@ -15,6 +15,11 @@ TemplateController('Memo', {
     progressRate: 0,
     isMemoExpired: false,
     shouldToolTipShow: true,
+    shoulBeHoverable: false,
+  },
+
+  onRendered() {
+    this.state.shoulBeHoverable = (rwindow.$width() < 992) ? false : true;
   },
 
   helpers: {
