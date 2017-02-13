@@ -13,6 +13,7 @@ import '../ui/labelDetail/LabelDetail.js';
 import '../ui/home/Home.js';
 import '../ui/settings/Settings.js';
 import '../ui/notification/Notification.js';
+import '../ui/labels/Labels.html';
 
 // collecitons
 import '../api/memos.js';
@@ -39,7 +40,7 @@ Router.onBeforeAction(function() {
   }
   this.next();
 }, {
-  only: ['memo.home', 'memo.detail', 'labeldetail', 'memo.gallery', 'settings', 'notification']
+  only: ['memo.home', 'memo.detail', 'labeldetail', 'memo.gallery', 'settings', 'notification', "memo.labels"]
 });
 
 Router.route('/landing', function() {
@@ -97,6 +98,12 @@ Router.route('/notification', function() {
   onStop: function() {
     Meteor.call('requestNotified');
   },
+});
+
+Router.route('/labels', function() {
+  this.render('Labels');
+}, {
+  name: "memo.labels"
 });
 // account routing
 // Routes
