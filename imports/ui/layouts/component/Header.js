@@ -11,7 +11,13 @@ TemplateController('Header', {
   onCreated() {
     const self = this;
     self.autorun(()=>{
+      // self.subscribe('labelShare');
+      self.subscribe('label');
       self.subscribe('memos');
+      self.subscribe('usernames');
+      self.subscribe('MemoLabelShares');
+      self.subscribe('userFavorites');
+      self.subscribe('comments');
     });
   },
   helpers: {

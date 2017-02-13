@@ -13,7 +13,7 @@ import '../ui/labelDetail/LabelDetail.js';
 import '../ui/home/Home.js';
 import '../ui/settings/Settings.js';
 import '../ui/notification/Notification.js';
-import '../ui/labels/Labels.html';
+import '../ui/labels/Labels.js';
 
 // collecitons
 import '../api/memos.js';
