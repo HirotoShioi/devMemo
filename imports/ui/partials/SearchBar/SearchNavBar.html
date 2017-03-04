@@ -2,11 +2,10 @@
   <div class="search-nav-wrapper {{#if $.Session.get 'isSearchNavShown'}}show{{else}}hide{{/if}}-search-nav">
     <i class="nav-icon fa fa-arrow-left left"></i>
     <input type="text" name="search-header"
-     id="nav-search" class="nav-search"
-      placeholder="Search..." value="{{$.Session.get 'searchQuery'}}" autocomplete="off"/>
+     id="nav-search" class="nav-search" value="{{$.Session.get 'searchQuery'}}" autocomplete="off"/>
       <ul class="collection">
-      {{#each searchedMemos}}
-        {{> SearchBarItem}}
+      {{#each memo in searchedMemos}}
+        {{> SearchBarItem memo=memo}}
       {{/each}}
       </ul>
   </div>

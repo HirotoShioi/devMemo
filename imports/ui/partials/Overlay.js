@@ -6,7 +6,7 @@ import './Overlay.html';
 TemplateController('Overlay', {
   helpers: {
     shouldOverlayShow() {
-      if ( Session.get('isSearching') || Session.get('labelBarShow')) {
+      if (Session.get('isSearching') || Session.get('labelBarShow')) {
         return true;
       } else if (!Meteor.userId()) {
         return false;
@@ -16,12 +16,13 @@ TemplateController('Overlay', {
     },
   },
   events: {
-    'click .sidebar-overlay'() {
+    'click .overlay'() {
       Session.set('isShrinkedSideNavShown', false);
       Session.set('isSearchNavShown', false);
       Session.set('isSearching', false);
       Session.set('labelBarShow', false);
       Session.set('labelFormShow', false);
+      return false;
     },
   },
 });

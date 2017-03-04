@@ -36,20 +36,6 @@ TemplateController('Home', {
     this.session.setDefault('favoriteResultsLimit', this.initialResult);
     Session.set('Title', {name: i18n('pageTitle.featured')});
     const self = this;
-    Meteor.call('getRecommend', (err, result)=>{
-      if (err) {
-        return;
-      }
-      if (result) {
-        self.state.recommendLabels = result;
-        const recommendQuery = {
-          owner: Meteor.userId(),
-          labelId: result._id,
-          status: "expired",
-        };
-        self.state.recommendCount = Memos.find(recommendQuery).count();
-      }
-    });
     self.autorun(()=>{
       let favorites = userFavorites.find({}, {sort: {favoritedAt: -1}}).fetch();
       this.state.favoriteList = [];
@@ -57,6 +43,21 @@ TemplateController('Home', {
         this.state.favoriteList.push(favorite.memoId);
       });
       self.subscribe('memos');
+    });
+  },
+
+  onRendered() {
+    Meteor.call('getRecommend', (err, result)=>{
+      if (err) {
+        return;
+      }
+      if (result) {
+        console.log(result);
+        this.state.recommendLabels = result;
+        if (result._id !== null) {
+          this.state.recommendCount = result.count;
+        }
+      }
     });
   },
 
@@ -99,8 +100,8 @@ TemplateController('Home', {
         query.labelId = this.state.recommendLabels._id;
       }
       const recommendMemoLimit = (rwindow.$width() >= 1650 ) ? 5 : 4;
-      const favoriteMemos =  Memos.find(query, {limit: recommendMemoLimit, sort: {clicked: 1}});
-      return favoriteMemos;
+      const recommendMemos =  Memos.find(query, {limit: recommendMemoLimit, sort: {clicked: 1}});
+      return recommendMemos;
     },
     recentHasMoreContent() {
       return this.session.get('recentResultsLimit') < this.state.recentCount;

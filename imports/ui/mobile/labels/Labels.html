@@ -1,0 +1,33 @@
+<template name="Labels">
+    <div class="row">
+      <div class="col s12 label-container">
+        {{#if Template.subscriptionsReady}}
+          {{#if noLabel}}
+            <div id="no-label" class="not-found">
+              <i class="fa fa-tag"></i>
+              <h4>{{i18n 'search.noLabel'}}</h4>
+            </div>
+          {{else}}
+            <div class="search-result">
+              {{#if $neq labelResultCount 0}}
+                <div class="search-result-title">
+                  <span>{{i18n 'label.title'}}</span>
+                </div>
+                <ul class="collection label-wrapper">
+                {{#each label in labels}}
+                  {{> labelBarItem label=label}}
+                {{/each}}
+                </ul>
+              {{/if}}
+            </div>
+          {{/if}}
+        {{else}}
+          <div class="loading-wrapper valign-wrapper">
+              <div class="center valign">
+                  {{> Loading size="big"}}
+              </div>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+</template>

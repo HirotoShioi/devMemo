@@ -33,11 +33,15 @@
     }
     input[type=text]{
         position: absolute;
-        margin-top: 15px;
+        margin-top: 10px;
         width: 50%;
-        height: 35px;
+        height: 30px;
+        margin-bottom: 0;
         font-size: 1.5em;
         line-height: 0px;
+    }
+    input[type=text]:focus:not([readonly]){
+        box-shadow: none;
     }
 
     .collection{
@@ -45,7 +49,7 @@
         margin:0;
         width: 50%;
         position: absolute;
-        top: 64px;
+        top: 45px;
         left: 50%;
         -webkit-transform: translateX(-50%);
         transform: translateX(-50%);
@@ -103,13 +107,13 @@
     overflow-x: hidden;
     transition: all 0.25s linear;
     &.search-bar-show{
-        left: 240px;
+        left: 210px;
         width: 340px;
         visibility: visible;
     }
     &.search-bar-hidden{
         left: 0px;
-        width: 240px;
+        width: 210px;
         visibility: hidden;
     }
     .not-found{
@@ -215,57 +219,6 @@
                     }
                 }
             }
-            .search-item {
-                .option-icon {
-                    cursor: pointer;
-                    font-size: 1.5em;
-                    transition:all 0.2s ease;
-                    margin-right: 5px;
-                    color:#777;
-                }
-
-                .chip{
-                    font-size: 12px;
-                    height: 22px;
-                    line-height: 22px;
-                }
-
-                .fa-trash:hover{
-                    color:#cc0000;
-                }
-                .fa-pencil:hover{
-                    color:#00c853;
-                }
-                .fa-share-alt{
-                    color:#42A5F5;
-                }
-
-                .label-bar-chip{
-                    display: inline-block;
-                    height: 29px;
-                    font-weight: 500;
-                    font-size: 13px;
-                    color: rgba(0, 0, 0, 0.6);
-                    line-height: 29px;
-                    padding: 0px 5px 0 12px;
-                    border-radius: 16px;
-                    background-color: #e4e4e4;
-                }
-                .counter-chip{
-                    display: inline-block;
-                    height: 20px;
-                    font-size: 14px;
-                    font-weight: 500;
-                    color: rgba(0, 0, 0, 0.6);
-                    line-height: 20px;
-                    padding: 0px 6px;
-                    border-radius: 20px;
-                    background-color: #fff;
-                }
-                .label-text{
-                    margin-right: 2px;
-                }
-            }
             .search-memo-item{
                 min-height: 70px;
                 .provider_url{
@@ -280,4 +233,55 @@
     display: none;
     left:0px;
   }
+}
+.search-item {
+    .option-icon {
+        cursor: pointer;
+        font-size: 1.5em;
+        transition:all 0.2s ease;
+        margin-right: 5px;
+        color:#777;
+    }
+
+    .chip{
+        font-size: 12px;
+        height: 22px;
+        line-height: 22px;
+    }
+
+    .fa-trash:hover{
+        color:#cc0000;
+    }
+    .fa-pencil:hover{
+        color:#00c853;
+    }
+    .fa-share-alt{
+        color:#42A5F5;
+    }
+
+    .label-bar-chip{
+        display: inline-block;
+        height: 29px;
+        font-weight: 500;
+        font-size: 13px;
+        color: rgba(0, 0, 0, 0.6);
+        line-height: 29px;
+        padding: 0px 5px 0 12px;
+        border-radius: 16px;
+        background-color: #e4e4e4;
+    }
+    .counter-chip{
+        display: inline-block;
+        height: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        color: rgba(0, 0, 0, 0.6);
+        line-height: 20px;
+        padding: 0px 6px;
+        border-radius: 20px;
+        background-color: #fff;
+    }
+    .label-text{
+        margin-right: 2px;
+    }
 }

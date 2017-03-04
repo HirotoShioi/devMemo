@@ -1,9 +1,13 @@
 /* layout */
+@media only screen and (min-width: 1200px){
+  html{
+      font-size: 13px;
+  }
+}
 body {
 display: flex;
 min-height: 100vh;
 flex-direction: column;
-font-size: 14px;
 overflow: hidden;
 font-family: "Roboto", "Hiragino Kaku Gothic Pro","Noto Sans Japanese", sans-serif;
 }
@@ -32,18 +36,18 @@ flex: 1 0 auto;
   width: 100%;
   transition: margin-left 0.25s linear;
   &.side-nav-showing{
-    margin-left: 240px;
+    margin-left: 210px;
   }
 }
 @media (min-width: 991px) {
   .main-layout {
-    padding-left: 240px;
+    padding-left: 210px;
   }
 }
 .main-container {
-    width:calc(~'100% - 240px');
+    width:calc(~'100% - 210px');
     overflow-y: auto;
-    height:100%;
+    height: 100%;
     position: fixed;
 }
 .container{
@@ -54,6 +58,14 @@ flex: 1 0 auto;
     display: none;
   }
 }
+.loading-wrapper{
+    position: fixed;
+    width: calc(~'100% - 210px');
+    height: 65%;
+    .center{
+		margin:0 auto;
+    }
+}
 @media (max-width: 992px){
   .main-container{
     width: 100%;
@@ -61,20 +73,13 @@ flex: 1 0 auto;
   .main-content{
     padding: 0;
   }
-}
-.loading-wrapper{
-    position: fixed;
-    width: 75%;
-    height: 65%;
-    .center{
-		margin:0 auto;
-    }
+  .loading-wrapper{
+    width: 100%;
+  }
+  .main-container{
+   height:calc(~'100% - 50px');
+  }
 }
 .infinite-scroller{
   height: 100px;
-}
-@media (max-width: 980px) {
-  body{
-    font-size:1em;
-  }
 }

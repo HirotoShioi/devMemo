@@ -1,8 +1,15 @@
 /* sideNav */
 /* header */
 nav {
+    .mobile-nav{
+        width: 240px;
+        a{
+            height: 55px;
+            line-height: 55px;
+        }
+    }
     .sidenav-active{
-        left:240px;
+        left: 240px;
         z-index: 1003;
         display: block;
         transition: left 0.2s ease-in;
@@ -24,6 +31,7 @@ nav {
 }
 .side-nav{
 	z-index: 801;
+    width: 210px;
     .brand-logo{
         height: 64px;
         a{
@@ -49,13 +57,13 @@ nav {
         }
     }
     a{
-        height: 55px;
-        line-height: 55px;
+        height: 45px;
+        line-height: 45px;
     }
 
     .fa {
         font-size: 1.3em;
-        width: 25px;
+        width: 23px;
     }
     .fa-circle{
         font-size:0.7em;
@@ -70,8 +78,11 @@ nav {
         padding: 0 9px;
         border-radius: 16px;
     }
+    .mobile-logout{
+        position: fixed;
+        bottom: 65px;
+    }
     .logout{
-        text-decoration: underline;
         font-weight: 400;
     }
     .auth-link{
@@ -83,4 +94,16 @@ nav {
         border-top:1px solid rgba(230,230,230,0.8);
         transition:all 0.2s linear;
     }
+}
+.navbar-fixed{
+    height: 45px;
+    nav{
+        height: 45px;
+        .button-collapse i{
+            line-height: 45px;
+        }
+    }
+}
+nav{
+    line-height: 45px;
 }

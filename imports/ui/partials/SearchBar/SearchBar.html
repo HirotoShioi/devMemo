@@ -18,8 +18,8 @@
         {{state.labelTitle}}
         <a href="" class="right toggle-memo-show">{{i18n 'search.more'}}</a>
       </div>
-      {{#each searchedMemos}}
-        {{> SearchBarItem}}
+      {{#each memo in searchedMemos}}
+        {{> SearchBarItem memo=memo}}
       {{/each}}
       </ul>
     </div>

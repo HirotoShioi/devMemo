@@ -1,0 +1,28 @@
+<template name="addBookmark">
+  <div class="container" style="margin-top:20px">
+    <p class="form-title">{{i18n 'forms.addMemo.title'}}</p>
+    {{#autoForm id="addBookmark" autocomplete="off" schema=schema}}
+      {{>afQuickField name="url"}}
+      <div class="label-select-wrapper">
+        <div class="row">
+          <div class="col s12">
+          {{#each label in labels}}
+            <a href="" class="label-{{label._id}} chip label-select hoverable {{#if $eq selectedLabelId label._id}} selected-label z-depth-2 {{/if}}" 
+            style="background-color:{{label.color}}" data="{{label._id}}">
+            {{#if $eq selectedLabelId label._id}} <i class="fa fa-check"></i> {{/if}}
+              {{label.name}}
+            </a>
+          {{/each}}				
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn blue darken-3 {{#if isLoading}}disabled{{/if}}">
+        {{#if isLoading}}
+          {{> Loading size="small"}}
+        {{else}}
+          {{i18n 'forms.addMemo.submit'}}
+        {{/if}}
+      </button>
+    {{/autoForm}}
+  </div>
+</template>

@@ -4,7 +4,7 @@ import { Label } from '../../api/label.js';
 import { moment } from 'meteor/momentjs:moment';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
-
+import { rwindow } from 'meteor/gadicohen:reactive-window';
 TemplateController('Memo', {
   state: {
     isHovered: false,
@@ -15,6 +15,11 @@ TemplateController('Memo', {
     progressRate: 0,
     isMemoExpired: false,
     shouldToolTipShow: true,
+    shoulBeHoverable: false,
+  },
+
+  onRendered() {
+    this.state.shoulBeHoverable = (rwindow.$width() < 992) ? false : true;
   },
 
   helpers: {
@@ -106,9 +111,13 @@ TemplateController('Memo', {
       Meteor.call('toggleFavorite', this.data.memo._id);
     },
     'click .card-image-url'() {
-      Session.set('showModal', true);
-      Session.set('MemoDetailId', this.data.memo._id);
-      Session.set('showMemoDetail', true);
+      if (rwindow.$width() < 992) {
+        Router.go('memo.detail', {_id: this.data.memo._id});
+      } else {
+        Session.set('showModal', true);
+        Session.set('MemoDetailId', this.data.memo._id);
+        Session.set('showMemoDetail', true);
+      }
       return false;
     },
     'click .archive-memo'() {
