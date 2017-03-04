@@ -229,7 +229,7 @@ Meteor.methods({
         {
           $group: {
             _id: '$labelId',
-            result: {$sum: 1}
+            count: {$sum: 1}
           }
         },
         {

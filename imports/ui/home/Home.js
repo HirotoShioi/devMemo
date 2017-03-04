@@ -52,13 +52,11 @@ TemplateController('Home', {
         return;
       }
       if (result) {
+        console.log(result);
         this.state.recommendLabels = result;
-        const recommendQuery = {
-          owner: Meteor.userId(),
-          labelId: result._id,
-          status: "expired",
-        };
-        this.state.recommendCount = Memos.find(recommendQuery).count();
+        if (result._id !== null) {
+          this.state.recommendCount = result.count;
+        }
       }
     });
   },
@@ -102,8 +100,8 @@ TemplateController('Home', {
         query.labelId = this.state.recommendLabels._id;
       }
       const recommendMemoLimit = (rwindow.$width() >= 1650 ) ? 5 : 4;
-      const favoriteMemos =  Memos.find(query, {limit: recommendMemoLimit, sort: {clicked: 1}});
-      return favoriteMemos;
+      const recommendMemos =  Memos.find(query, {limit: recommendMemoLimit, sort: {clicked: 1}});
+      return recommendMemos;
     },
     recentHasMoreContent() {
       return this.session.get('recentResultsLimit') < this.state.recentCount;
