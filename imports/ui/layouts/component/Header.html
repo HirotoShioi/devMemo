@@ -62,11 +62,14 @@
                   {{i18n 'sideNav.notification'}}
                 </a>
               </li>
+              <li>
+                <a href="" class="waves-effect logout mobile-logout">
+                  <i class="fa fa-sign-out" aria-hidden="true"></i>
+                  {{i18n 'accounts.signOut'}}
+                </a>
+              </li>
             {{else}}
               <li>{{> atNavButton }}</li>
-              <li>
-                <a href="" class="waves-effect red-text logout auth-link">Logout<i class="fa fa-sign-out" aria-hidden="true"></i></a>
-              </li>
             {{/if}}
         </ul>
         <a href="#" data-activates="slide-out" class="button-collapse toggle-sidenav"><i class="fa fa-bars" aria-hidden="true"></i></a>
