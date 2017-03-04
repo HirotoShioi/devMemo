@@ -35,7 +35,7 @@
           </li>
           {{/if}}
         </ul>
-        <ul id="slide-out" class="side-nav  {{#if $.Session.get 'isShrinkedSideNavShown'}}sidenav-active {{else}} sidenav-inactive {{/if}}">
+        <ul id="slide-out" class="side-nav mobile-nav {{#if $.Session.get 'isShrinkedSideNavShown'}}sidenav-active {{else}} sidenav-inactive {{/if}}">
             {{#if currentUser}}
               {{> AddMemoButton}}
               <li class="{{isActiveRoute 'memo.home'}}">
