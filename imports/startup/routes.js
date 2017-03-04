@@ -13,7 +13,9 @@ import '../ui/labelDetail/LabelDetail.js';
 import '../ui/home/Home.js';
 import '../ui/settings/Settings.js';
 import '../ui/notification/Notification.js';
+// mobile page
 import '../ui/mobile/labels/Labels.js';
+import '../ui/mobile/addBookmark/addBookmark.js';
 
 // collecitons
 import '../api/memos.js';
@@ -40,7 +42,7 @@ Router.onBeforeAction(function() {
   }
   this.next();
 }, {
-  only: ['memo.home', 'memo.detail', 'labeldetail', 'memo.gallery', 'settings', 'notification', "memo.labels"]
+  only: ['memo.home', 'memo.detail', 'labeldetail', 'memo.gallery', 'settings', 'notification', "mobile.labels"]
 });
 
 Router.route('/landing', function() {
@@ -100,10 +102,17 @@ Router.route('/notification', function() {
   },
 });
 
+//mobile pages
 Router.route('/labels', function() {
   this.render('Labels');
 }, {
-  name: "memo.labels"
+  name: "mobile.labels"
+});
+
+Router.route('/addBookmark', function() {
+  this.render('addBookmark');
+}, {
+  name: "mobile.addBookmark"
 });
 // account routing
 // Routes
