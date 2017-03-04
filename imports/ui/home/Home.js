@@ -36,20 +36,6 @@ TemplateController('Home', {
     this.session.setDefault('favoriteResultsLimit', this.initialResult);
     Session.set('Title', {name: i18n('pageTitle.featured')});
     const self = this;
-    Meteor.call('getRecommend', (err, result)=>{
-      if (err) {
-        return;
-      }
-      if (result) {
-        self.state.recommendLabels = result;
-        const recommendQuery = {
-          owner: Meteor.userId(),
-          labelId: result._id,
-          status: "expired",
-        };
-        self.state.recommendCount = Memos.find(recommendQuery).count();
-      }
-    });
     self.autorun(()=>{
       let favorites = userFavorites.find({}, {sort: {favoritedAt: -1}}).fetch();
       this.state.favoriteList = [];
@@ -57,6 +43,23 @@ TemplateController('Home', {
         this.state.favoriteList.push(favorite.memoId);
       });
       self.subscribe('memos');
+    });
+  },
+
+  onRendered() {
+    Meteor.call('getRecommend', (err, result)=>{
+      if (err) {
+        return;
+      }
+      if (result) {
+        this.state.recommendLabels = result;
+        const recommendQuery = {
+          owner: Meteor.userId(),
+          labelId: result._id,
+          status: "expired",
+        };
+        this.state.recommendCount = Memos.find(recommendQuery).count();
+      }
     });
   },
 
