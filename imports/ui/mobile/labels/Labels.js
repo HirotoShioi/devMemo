@@ -1,12 +1,12 @@
 import { TemplateController } from 'meteor/space:template-controller';
-import { Label } from '../../api/label.js';
-import { labelShare } from '../../api/labelShare.js';
+import { Label } from '../../../api/label.js';
+import { labelShare } from '../../../api/labelShare.js';
 import { Session } from 'meteor/session';
 
 import './Labels.html';
 
-import '../partials/LabelBar/labelBarItem.js';
-import '../partials/Loading.js';
+import '../../partials/LabelBar/labelBarItem.js';
+import '../../partials/Loading.js';
 
 const queryAvailableLabels = ((userId)=>{
   let availableArray = [{owner: userId}];
